@@ -496,7 +496,10 @@ public final class Mk3SwerveModuleHelper {
         /**
          * Mk3 swerve in the fast gear configuration.
          */
-        FAST(SdsModuleConfigurations.MK3_FAST);
+        FAST_FL(SdsModuleConfigurations.MK3_FAST_FL),
+        FAST_BL(SdsModuleConfigurations.MK3_FAST_BL),
+        FAST_FR(SdsModuleConfigurations.MK3_FAST_FR),
+        FAST_BR(SdsModuleConfigurations.MK3_FAST_BR);
 
         private final ModuleConfiguration configuration;
 
