@@ -18,6 +18,7 @@ public class RobotContainer {
   private final XboxController m_controller = new XboxController(0);
 
   public RobotContainer() {
+    m_drivetrainSubsystem.zeroGyroscope();
     // Set up the default command for the drivetrain.
     // The controls are for field-oriented driving:
     // Left stick Y axis -> forward and backwards movement
@@ -71,10 +72,8 @@ public class RobotContainer {
 
   private static double modifyAxis(double value) {
     // Deadband
-    value = deadband(value, 0.05);
+    value = deadband(value, 0.2); //0.05, 0.1 seems to work
 
-    // Square the axis
-    value = Math.copySign(value * value, value);
 
     return value;
   }

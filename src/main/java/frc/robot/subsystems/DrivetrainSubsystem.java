@@ -41,9 +41,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
    * <p>
    * This is a measure of how fast the robot should be able to drive in a straight line.
    */
-  public static final double MAX_VELOCITY_METERS_PER_SECOND = 6380.0 / 60.0 *
-          SdsModuleConfigurations.MK3_FAST_FR.getDriveReduction() *
-          SdsModuleConfigurations.MK3_FAST_FR.getWheelDiameter() * Math.PI;
+   public static final double MAX_VELOCITY_METERS_PER_SECOND = 6380.0 / 60.0 *
+           SdsModuleConfigurations.MK3_FAST_FR.getDriveReduction() *
+           SdsModuleConfigurations.MK3_FAST_FR.getWheelDiameter() * Math.PI; // ~5 M/S
   /**
    * The maximum angular velocity of the robot in radians per second.
    * <p>
@@ -51,7 +51,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
    */
   // Here we calculate the theoretical maximum angular velocity. You can also replace this with a measured amount.
   public static final double MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = MAX_VELOCITY_METERS_PER_SECOND /
-          Math.hypot(DRIVETRAIN_TRACKWIDTH_METERS / 2.0, DRIVETRAIN_WHEELBASE_METERS / 2.0);
+          Math.hypot(DRIVETRAIN_TRACKWIDTH_METERS / 2.0, DRIVETRAIN_WHEELBASE_METERS / 2.0); //~15 RAD/S or 2.3 rotations per sec
 
   private final SwerveDriveKinematics m_kinematics = new SwerveDriveKinematics(
           // Front left
@@ -184,6 +184,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public void drive(ChassisSpeeds chassisSpeeds) {
     m_chassisSpeeds = chassisSpeeds;
   }
+
+  
 
   @Override
   public void periodic() {
