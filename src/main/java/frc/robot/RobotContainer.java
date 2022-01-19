@@ -53,11 +53,13 @@ public class RobotContainer {
     JoystickButton buttonA = new JoystickButton(m_controller, XboxController.Button.kA.value);
     JoystickButton buttonB = new JoystickButton(m_controller, XboxController.Button.kB.value);
     JoystickButton buttonX = new JoystickButton(m_controller, XboxController.Button.kX.value);
+    JoystickButton buttonY = new JoystickButton(m_controller, XboxController.Button.kY.value);
+    JoystickButton start = new JoystickButton(m_controller, XboxController.Button.kStart.value);
     
 
-    buttonA.whenPressed(m_drivetrainSubsystem::toggleDriveMode);
-    buttonB.whenPressed(() -> m_drivetrainSubsystem.setWheelAngle(Math.PI / 2));
-    buttonX.whenPressed(() -> m_drivetrainSubsystem.setWheelAngle(0));
+    start.whenPressed(m_drivetrainSubsystem::toggleDriveMode);
+    buttonY.whenPressed(() -> m_drivetrainSubsystem.setWheelAngle(0));
+    buttonA.whenPressed(() -> m_drivetrainSubsystem.changeWheelAngleBy45());
   }
 
   /**

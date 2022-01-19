@@ -78,6 +78,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   private final SwerveModule m_backLeftModule;
   private final SwerveModule m_backRightModule;
   private Rotation2d m_angleInRad;
+  private double aIR; // keep track of angle in rad
   private boolean driveMode; // if not drive mode then calibration mode
 
   private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
@@ -85,6 +86,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public DrivetrainSubsystem() {
     ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
     m_angleInRad = new Rotation2d(0);
+    aIR = 0.0;
     driveMode = true;
 
     // There are 4 methods you can call to create your swerve modules.
@@ -191,6 +193,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   public void setWheelAngle(double angleInRad) {
      m_angleInRad = new Rotation2d(angleInRad);
+     aIR = angleInRad;
+  }
+
+  public void changeWheelAngleBy45() {
+          setWheelAngle(aIR + Math.PI / 4);
   }
 
   public boolean toggleDriveMode() {
