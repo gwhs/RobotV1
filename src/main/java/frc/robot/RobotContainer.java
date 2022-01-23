@@ -46,9 +46,9 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Back button zeros the gyroscope
-    new Button(m_controller::getBackButton)
-            // No requirements because we don't need to interrupt anything
-            .whenPressed(m_drivetrainSubsystem::zeroGyroscope);
+    // new Button(m_controller::getBackButton)
+    //         // No requirements because we don't need to interrupt anything
+    //         .whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     
     JoystickButton buttonA = new JoystickButton(m_controller, XboxController.Button.kA.value);
     JoystickButton buttonB = new JoystickButton(m_controller, XboxController.Button.kB.value);
@@ -60,6 +60,7 @@ public class RobotContainer {
     start.whenPressed(m_drivetrainSubsystem::toggleDriveMode);
     buttonY.whenPressed(() -> m_drivetrainSubsystem.setWheelAngle(0));
     buttonA.whenPressed(() -> m_drivetrainSubsystem.changeWheelAngleBy45());
+    buttonX.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
   }
 
   /**
