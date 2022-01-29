@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.DefaultDriveCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class RobotContainer {
@@ -18,6 +19,7 @@ public class RobotContainer {
   private final XboxController m_controller = new XboxController(0);
 
   public RobotContainer() {
+    m_drivetrainSubsystem.zeroGyroscope();
     // Set up the default command for the drivetrain.
     // The controls are for field-oriented driving:
     // Left stick Y axis -> forward and backwards movement
@@ -25,10 +27,13 @@ public class RobotContainer {
     // Right stick X axis -> rotation
     m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(
             m_drivetrainSubsystem,
-            () -> -modifyAxis(m_controller.getLeftY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
-            () -> -modifyAxis(m_controller.getLeftX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
-            () -> -modifyAxis(m_controller.getRightX()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
+            () -> -modifyAxis(m_controller.getLeftY()) * 1,//DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(m_controller.getLeftX()) * 1,//DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
+            () -> -modifyAxis(m_controller.getRightX()) * 2//DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
+            //() -> modifyAxis(m_controller.getLeftTriggerAxis() - m_controller.getRightTriggerAxis()) * 2
     ));
+
+
 
     // Configure the button bindings
     configureButtonBindings();
@@ -42,9 +47,21 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Back button zeros the gyroscope
-    new Button(m_controller::getBackButton)
-            // No requirements because we don't need to interrupt anything
-            .whenPressed(m_drivetrainSubsystem::zeroGyroscope);
+    // new Button(m_controller::getBackButton)
+    //         // No requirements because we don't need to interrupt anything
+    //         .whenPressed(m_drivetrainSubsystem::zeroGyroscope);
+    
+    JoystickButton buttonA = new JoystickButton(m_controller, XboxController.Button.kA.value);
+    JoystickButton buttonB = new JoystickButton(m_controller, XboxController.Button.kB.value);
+    JoystickButton buttonX = new JoystickButton(m_controller, XboxController.Button.kX.value);
+    JoystickButton buttonY = new JoystickButton(m_controller, XboxController.Button.kY.value);
+    JoystickButton start = new JoystickButton(m_controller, XboxController.Button.kStart.value);
+    
+
+    start.whenPressed(m_drivetrainSubsystem::toggleDriveMode);
+    buttonY.whenPressed(() -> m_drivetrainSubsystem.setWheelAngle(0));
+    buttonA.whenPressed(() -> m_drivetrainSubsystem.changeWheelAngleBy45());
+    buttonX.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
   }
 
   /**
@@ -71,10 +88,8 @@ public class RobotContainer {
 
   private static double modifyAxis(double value) {
     // Deadband
-    value = deadband(value, 0.05);
+    value = deadband(value, 0.2); //0.05, 0.1 seems to work
 
-    // Square the axis
-    value = Math.copySign(value * value, value);
 
     return value;
   }

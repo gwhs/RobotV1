@@ -8,18 +8,40 @@ public final class SdsModuleConfigurations {
             (15.0 / 32.0) * (10.0 / 60.0),
             true
     );
-    public static final ModuleConfiguration MK3_FAST = new ModuleConfiguration(
+    public static final ModuleConfiguration MK3_FAST_FL = new ModuleConfiguration(
             0.1016,
-            (16.0 / 48.0) * (28.0 / 16.0) * (15.0 / 60.0),
+            (16.0 / 48.0) * (28.0 / 16.0) * (15.0 / 60.0), // 6.86 to 1
             true,
             (15.0 / 32.0) * (10.0 / 60.0),
             true
     );
+    public static final ModuleConfiguration MK3_FAST_BL = new ModuleConfiguration(
+        0.1016,
+        (16.0 / 48.0) * (28.0 / 16.0) * (15.0 / 60.0), // 6.86 to 1
+        true,
+        (15.0 / 32.0) * (10.0 / 60.0),
+        true
+        );
+        
+        public static final ModuleConfiguration MK3_FAST_FR = new ModuleConfiguration(
+                0.1016,
+                (16.0 / 48.0) * (28.0 / 16.0) * (15.0 / 60.0), // 6.86 to 1
+                true,
+                (15.0 / 32.0) * (10.0 / 60.0),
+                true
+        );
+        public static final ModuleConfiguration MK3_FAST_BR = new ModuleConfiguration(
+                0.1016,
+                (16.0 / 48.0) * (28.0 / 16.0) * (15.0 / 60.0), // 6.86 to 1
+                true,
+                (15.0 / 32.0) * (10.0 / 60.0),
+                true
+        );
 
     public static final ModuleConfiguration MK4_L1 = new ModuleConfiguration(
             0.10033,
             (14.0 / 50.0) * (25.0 / 19.0) * (15.0 / 45.0),
-            true,
+            false,
             (15.0 / 32.0) * (10.0 / 60.0),
             true
     );
@@ -33,7 +55,7 @@ public final class SdsModuleConfigurations {
     public static final ModuleConfiguration MK4_L3 = new ModuleConfiguration(
             0.10033,
             (14.0 / 50.0) * (28.0 / 16.0) * (15.0 / 45.0),
-            true,
+            false,
             (15.0 / 32.0) * (10.0 / 60.0),
             true
     );
