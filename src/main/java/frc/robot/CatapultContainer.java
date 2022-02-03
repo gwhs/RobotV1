@@ -27,8 +27,8 @@ public class CatapultContainer{
 
         // SpinMotor s
         // change motor and speed here. SpinMotor(motor id, percent output[-1 to 1 as double])
-        buttonB.whenPressed(() -> new CatapultCommand(motor, .8));
-        buttonX.whenPressed(() -> new CatapultCommand(motor1, .8));
+        buttonB.whenPressed( new CatapultCommand(motor, .8));
+        buttonX.whenPressed( new CatapultCommand(motor1, .8));
     }
 
     public void printSomething(){
