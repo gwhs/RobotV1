@@ -4,16 +4,16 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.SpinMotor;
+import frc.robot.commands.CatapultCommand;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.Motor;
+import frc.robot.subsystems.CatapultMotor;
 
 
 public class CatapultContainer{
-    private final Motor motor = new Motor(1);
-    private final Motor motor1 = new Motor(2);
+    private final CatapultMotor motor = new CatapultMotor(1);
+    private final CatapultMotor motor1 = new CatapultMotor(2);
     private final XboxController m_controller = new XboxController(0);
 
     public CatapultContainer(){
@@ -27,8 +27,8 @@ public class CatapultContainer{
 
         // SpinMotor s
         // change motor and speed here. SpinMotor(motor id, percent output[-1 to 1 as double])
-        buttonB.whenPressed(() -> new SpinMotor(motor));
-        buttonX.whenPressed(() -> new SpinMotor(motor1));
+        buttonB.whenPressed(() -> new CatapultCommand(motor, .8));
+        buttonX.whenPressed(() -> new CatapultCommand(motor1, .8));
     }
 
     public void printSomething(){
