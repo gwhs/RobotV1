@@ -18,6 +18,7 @@ public class SpinMotor extends CommandBase {
     @Override
     public void execute() {
         motor.setSelectedSensorPosition();
+        //changes speed -1 to 1;
         motor.setMotorPercent(1);
         System.out.println("position is: " + motor.getPosition());
     }

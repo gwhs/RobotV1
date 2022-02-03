@@ -24,7 +24,7 @@ public class Robot extends TimedRobot {
   public static final String CATAPULT = "Catapult";
   public static final String SWERVE = "Swerve";
 
-  private static final String container = SWERVE;
+  private static final String container = CATAPULT;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -39,7 +39,7 @@ public class Robot extends TimedRobot {
         m_RobotContainer = new RobotContainer();
         m_autonomousCommand = m_RobotContainer.getAutonomousCommand();
         break;
-      case "Catapult":
+      case CATAPULT:
         m_CatapultContainer = new CatapultContainer();
         m_autonomousCommand = m_CatapultContainer.getAutonomousCommand();
         break;

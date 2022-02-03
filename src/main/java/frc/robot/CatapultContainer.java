@@ -29,11 +29,14 @@ public class CatapultContainer{
         // change motor and speed here. SpinMotor(motor id, percent output[-1 to 1 as double])
         buttonB.whenPressed(() -> new SpinMotor(motor));
         buttonX.whenPressed(() -> new SpinMotor(motor1));
-        
+    }
+
+    public void printSomething(){
+        System.out.println("Hellow there");
     }
 
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        return new InstantCommand();
+        return new InstantCommand(this::printSomething);
       }
 }
