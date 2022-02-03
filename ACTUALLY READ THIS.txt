@@ -1,0 +1,2 @@
+There are two catapults that have separate containers, right and left. 
+Change the ids passed into Motor(int) at the top of each class, to make sure you're turning the right motor.
