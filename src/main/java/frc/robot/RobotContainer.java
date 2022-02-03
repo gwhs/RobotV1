@@ -5,16 +5,14 @@
 
 package frc.robot;
 
-import javax.print.attribute.standard.JobPriority;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.commands.DefaultDriveCommand;
+import frc.robot.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.DrivetrainSubSystem.DrivetrainSubsystem;
 
 
 public class RobotContainer {
@@ -56,8 +54,6 @@ public class RobotContainer {
     //         .whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     
     JoystickButton buttonA = new JoystickButton(m_controller, XboxController.Button.kA.value);
-    JoystickButton buttonB = new JoystickButton(m_controller, XboxController.Button.kB.value);
-    JoystickButton buttonX = new JoystickButton(m_controller, XboxController.Button.kX.value);
     JoystickButton buttonY = new JoystickButton(m_controller, XboxController.Button.kY.value);
     JoystickButton back = new JoystickButton(m_controller, XboxController.Button.kBack.value);
     JoystickButton start = new JoystickButton(m_controller, XboxController.Button.kStart.value);
