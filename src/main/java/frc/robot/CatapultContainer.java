@@ -9,21 +9,24 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.Motor;
 
 
-public class LeftCatapult{
+public class CatapultContainer{
     private final Motor motor = new Motor(1);
+    private final Motor motor1 = new Motor(2);
     private final XboxController m_controller = new XboxController(0);
 
-    public LeftCatapult(){
+    public CatapultContainer(){
 
         configureButtonBindings();
     }
 
     public void configureButtonBindings(){
         JoystickButton buttonB = new JoystickButton(m_controller, XboxController.Button.kB.value);
+        JoystickButton buttonX = new JoystickButton(m_controller, XboxController.Button.kX.value);
 
         // SpinMotor s
         // change motor and speed here. SpinMotor(motor id, percent output[-1 to 1 as double])
         buttonB.whenPressed(() -> new SpinMotor(motor, .9));
+        buttonX.whenPressed(() -> new SpinMotor(motor1, .9));
         
     }
 

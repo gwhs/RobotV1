@@ -10,7 +10,7 @@ import frc.robot.subsystems.Motor;
 
 public class SpinMotor extends CommandBase {
     private Motor motor;
-    private double speed; // perscent output -1 -> 1
+    private double speed; // percent output -1 -> 1
 
     public SpinMotor(Motor moto, double speed) {
         this.motor = moto;
