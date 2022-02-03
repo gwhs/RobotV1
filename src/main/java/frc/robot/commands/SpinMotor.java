@@ -1,20 +1,14 @@
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
-
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Motor;
 
 
 public class SpinMotor extends CommandBase {
     private Motor motor;
-    private double speed; // percent output -1 -> 1
 
-    public SpinMotor(Motor moto, double speed) {
+    public SpinMotor(Motor moto) {
         this.motor = moto;
-        this.speed = speed;
     }
 
     @Override
