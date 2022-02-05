@@ -1,6 +1,5 @@
 package frc.robot.commands;
 import frc.robot.subsystems.CatapultMotor;
-import frc.robot.Constants;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
