@@ -1,5 +1,6 @@
 package frc.robot.commands;
 import frc.robot.subsystems.CatapultMotor;
+import frc.robot.Constants;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -8,6 +9,7 @@ public class CatapultCommand extends CommandBase {
     private double speed; // percent output -1 -> 1 double
     private double offset; // motor keeps moving after end, so we get an offset to make sure the motor returns to the same position each time
     private boolean ran; // ensures the motor shoots, otherwise, it will not run after one shot, needed for isFinished
+    private double returnSpeed;// returns at slow pace
 
     //private long start;
     //private long end;
@@ -15,7 +17,10 @@ public class CatapultCommand extends CommandBase {
     public CatapultCommand(CatapultMotor moto, double speed) {
         this.motor = moto;
         this.speed = speed;
+        this.returnSpeed = -0.06;
         
+        addRequirements(motor);
+
     }
 
     @Override
@@ -41,7 +46,7 @@ public class CatapultCommand extends CommandBase {
         //position is 77.3k for 360 degrees of rotation
         if (position >= 100 - offset){
             motor.setBrake();
-            motor.setMotorPercent(-.06);
+            motor.setMotorPercent(returnSpeed);
             
             //put motor in reverse to reset
             ran = true;
@@ -60,6 +65,7 @@ public class CatapultCommand extends CommandBase {
         //System.out.println("End time: " + (end - start));
         motor.setMotorPercent(0);
         System.out.println("Goodbye World");
+
     }
 
 

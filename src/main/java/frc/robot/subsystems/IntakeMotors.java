@@ -3,8 +3,9 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class IntakeMotors {
+public class IntakeMotors extends SubsystemBase{
     private TalonFX motor1;
     private TalonFX motor2;
     private double speed1;
@@ -25,5 +26,10 @@ public class IntakeMotors {
     public void setSpeed(){
         motor1.set(ControlMode.PercentOutput, speed1);
         motor2.set(ControlMode.PercentOutput, speed2);
+    }
+
+    public void stop(){
+        motor1.set(ControlMode.PercentOutput, 0);
+        motor2.set(ControlMode.PercentOutput, 0);
     }
 }
