@@ -11,7 +11,7 @@ public class IntakeMotors {
     private double speed2;
 
     
-    IntakeMotors(int talon1, int talon2, double speed1, double speed2){
+    public IntakeMotors(int talon1, int talon2, double speed1, double speed2){
         this.motor1 = new TalonFX(talon1);
         this.motor2 = new TalonFX(talon2);
         this.speed1 = speed1;
