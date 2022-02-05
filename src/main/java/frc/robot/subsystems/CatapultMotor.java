@@ -16,7 +16,6 @@ public class CatapultMotor extends SubsystemBase {
   public CatapultMotor(int id) {
     motor = new TalonFX(id);
 
-
   }
 
   @Override
@@ -27,7 +26,6 @@ public class CatapultMotor extends SubsystemBase {
 
   public void setMotorPercent(double speed){
     motor.set(ControlMode.PercentOutput, speed);
-
   }
   
   public void setSelectedSensorPosition() {

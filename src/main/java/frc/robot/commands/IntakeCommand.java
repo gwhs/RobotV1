@@ -13,6 +13,8 @@ public class IntakeCommand extends CommandBase{
 
     public IntakeCommand(IntakeMotors motors){
         this.motors = motors;
+
+        addRequirements(motors);
     }
 
     @Override
