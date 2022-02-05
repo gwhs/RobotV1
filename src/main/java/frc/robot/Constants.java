@@ -9,5 +9,8 @@ public class Constants {
     public static final double INTAKE_SPEED_TALON1 = 0.0;
     public static final double INTAKE_SPEED_TALON2 = 0.0;
 
+    public static final int followerArm = 23;
+    public static final int leaderArm = 32;
+
 
 }

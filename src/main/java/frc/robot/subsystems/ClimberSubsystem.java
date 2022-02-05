@@ -14,15 +14,22 @@ public class ClimberSubsystem extends SubsystemBase {
   /** Creates a new ClimberSubsystem. */
   private TalonFX rightArm;
   private TalonFX leftArm;
-  private double speed;
-  public ClimberSubsystem(int rightMotor, int leftMotor) {
-    this.rightArm = new TalonFX(rightMotor);
-    this.leftArm = new TalonFX(leftMotor);
+  public ClimberSubsystem(int rightMotorId, int leftMotorId) {
+    this.rightArm = new TalonFX(rightMotorId);
+    this.leftArm = new TalonFX(leftMotorId);
   }
 
-  public void setSpeed() {
+  public void moveRightArm(double speed) {
     rightArm.set(ControlMode.PercentOutput, speed);
+  }
+
+  public void moveLeftArm(double speed) {
     leftArm.set(ControlMode.PercentOutput, speed);
+  }
+
+  public void moveBothArms(double speed){
+    moveRightArm(speed);
+    moveLeftArm(speed);
   }
 
   @Override

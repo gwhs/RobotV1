@@ -45,8 +45,8 @@ public class ClimberContainer {
     JoystickButton leftStick = new JoystickButton(m_controller, XboxController.Button.kLeftStick.value);
     
     
-    rightStick.whenPressed(new ClimberCommand());
-    leftStick.whenPressed(new ClimberCommand());
+    rightStick.whenPressed(new ClimberCommand(m_ClimberSubsytem, 0.5));
+    leftStick.whenPressed(new ClimberCommand(m_ClimberSubsytem, 0.5));
 
     
   
