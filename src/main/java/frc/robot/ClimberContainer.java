@@ -18,7 +18,7 @@ import frc.robot.commands.ClimberCommand;
 public class ClimberContainer {
   private final ClimberSubsystem m_ClimberSubsytem = new ClimberSubsystem(32, 23); //FIX INPUTS
   private final XboxController m_controller = new XboxController(0);
-  
+  private final ClimberSubsystem arms = new ClimberSubsystem(Constants.leaderArm, Constants.followerArm);
 
   public ClimberContainer() {
 
@@ -36,17 +36,13 @@ public class ClimberContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    JoystickButton buttonX = new JoystickButton(m_controller, XboxController.Button.kX.value);
     // Back button zeros the gyroscope
     // new Button(m_controller::getBackButton)
     //         // No requirements because we don't need to interrupt anything
     //         .whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     
-    JoystickButton rightStick = new JoystickButton(m_controller, XboxController.Button.kRightStick.value);
-    JoystickButton leftStick = new JoystickButton(m_controller, XboxController.Button.kLeftStick.value);
-    
-    
-    rightStick.whenPressed(new ClimberCommand(m_ClimberSubsytem, 0.5));
-    leftStick.whenPressed(new ClimberCommand(m_ClimberSubsytem, 0.5));
+    buttonX.whenPressed(new ClimberCommand(m_ClimberSubsytem, 0.5));
 
     
   

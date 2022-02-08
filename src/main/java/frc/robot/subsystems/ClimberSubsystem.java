@@ -32,6 +32,23 @@ public class ClimberSubsystem extends SubsystemBase {
     moveLeftArm(speed);
   }
 
+  public TalonFX rightArm(){
+    return rightArm;
+  }
+
+  public TalonFX leftArm(){
+    return leftArm;
+  }
+  // public double getLeftArm(){
+  //   leftArm.getSelectedSensorPosition();
+  //   return leftArm.getSelectedSensorPosition();
+  // }
+
+  // public double getghtArm(){
+  //   rightArm.getSelectedSensorPosition();
+  //   return rightArm.getSelectedSensorPosition();
+  // }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
