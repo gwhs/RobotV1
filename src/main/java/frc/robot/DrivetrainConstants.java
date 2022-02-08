@@ -9,7 +9,7 @@ package frc.robot;
  * constants. This class should not be used for any other purpose. All constants should be declared
  * globally (i.e. public static). Do not put anything functional in this class.
  *
- * <p>It is advised to statically import this class (or one of its inner classes) wherever the
+ * <p>It is advised to statically import this class (or one of its in                                   ner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
 public final class DrivetrainConstants {
@@ -18,13 +18,13 @@ public final class DrivetrainConstants {
      *
      * Should be measured from center to center.
      */
-    public static final double DRIVETRAIN_TRACKWIDTH_METERS = 0.470; // 18.5" 
+    public static final double DRIVETRAIN_TRACKWIDTH_METERS = 0.570; // 22.25 inches
     /**
      * The front-to-back distance between the drivetrain wheels.
      *
      * Should be measured from center to center.
      */
-    public static final double DRIVETRAIN_WHEELBASE_METERS = 0.473; //18.625" 
+    public static final double DRIVETRAIN_WHEELBASE_METERS = 0.570; // 22.25 inches
 
     //public static final int DRIVETRAIN_PIGEON_ID = 30; 
 
