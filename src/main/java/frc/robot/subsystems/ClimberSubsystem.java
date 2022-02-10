@@ -19,17 +19,17 @@ public class ClimberSubsystem extends SubsystemBase {
     this.leftArm = new TalonFX(leftMotorId);
   }
 
-  public void moveRightArm(double speed) {
-    rightArm.set(ControlMode.PercentOutput, speed);
+  public void moveRightArm(double amps) {
+    rightArm.set(ControlMode.Current, amps);
   }
 
-  public void moveLeftArm(double speed) {
-    leftArm.set(ControlMode.PercentOutput, speed);
+  public void moveLeftArm(double amps) {
+    leftArm.set(ControlMode.Current, amps);
   }
 
-  public void moveBothArms(double speed){
-    moveRightArm(speed);
-    moveLeftArm(speed);
+  public void moveBothArms(double amps){
+    moveRightArm(amps);
+    moveLeftArm(amps);
   }
 
   public TalonFX rightArm(){

@@ -28,9 +28,14 @@ public class ClimberCommand extends CommandBase {
   private double targetPos;
 
   private ClimberSubsystem climberArms;
+  private int climberID;
+  private double ticks;
   public ClimberCommand(ClimberSubsystem climberArms, double ticks) {
     //this.speed = speed;
     this.climberArms = climberArms;
+    this.ticks = ticks;
+
+
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(climberArms);
     leaderArm = climberArms.rightArm();

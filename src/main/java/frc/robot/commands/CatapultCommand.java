@@ -9,13 +9,14 @@ public class CatapultCommand extends CommandBase {
     private double offset; // motor keeps moving after end, so we get an offset to make sure the motor returns to the same position each time
     private boolean ran; // ensures the motor shoots, otherwise, it will not run after one shot, needed for isFinished
     private double returnSpeed;// returns at slow pace
+    private double amps;
 
     //private long start;
     //private long end;
     //used for creating the motor and setting the speed
-    public CatapultCommand(CatapultMotor moto, double speed) {
+    public CatapultCommand(CatapultMotor moto, double amps) {
         this.motor = moto;
-        this.speed = speed;
+        this.amps = amps;
         this.returnSpeed = -0.06;
         
         addRequirements(motor);
@@ -33,7 +34,7 @@ public class CatapultCommand extends CommandBase {
         System.out.println("Round 1 pos:"+motor.getPosition());
         System.out.println("Round 2 pos: "+motor.getPosition());
         //sets speed
-        motor.setMotorPercent(speed);
+        motor.setCurrent(amps);
     }
 
 
@@ -45,7 +46,7 @@ public class CatapultCommand extends CommandBase {
         //position is 77.3k for 360 degrees of rotation
         if (position >= 100 - offset){
             motor.setBrake();
-            motor.setMotorPercent(returnSpeed);
+            motor.setCurrent(amps);
             
             //put motor in reverse to reset
             ran = true;
@@ -62,7 +63,7 @@ public class CatapultCommand extends CommandBase {
         //stops 
         //end = System.currentTimeMillis();
         //System.out.println("End time: " + (end - start));
-        motor.setMotorPercent(0);
+        motor.setCurrent(0);
         System.out.println("Goodbye World");
 
     }
