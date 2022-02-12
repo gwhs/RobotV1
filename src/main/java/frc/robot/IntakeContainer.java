@@ -14,7 +14,7 @@ import frc.robot.subsystems.IntakeMotors;
 import frc.robot.commands.*;
 
 public class IntakeContainer {
-  private final IntakeMotors m_IntakeMotor = new IntakeMotors(Constants.INTAKE_TALON1_ID,Constants.INTAKE_TALON2_ID,Constants.INTAKE_SPEED_TALON1,Constants.INTAKE_SPEED_TALON2); //FIX INPUTS
+  private final IntakeMotors m_IntakeMotor = new IntakeMotors(Constants.INTAKE_UPPERTALON_ID,Constants.INTAKE_LOWERTALON_ID, Constants.INTAKE_ALPHANEO_ID, Constants.INTAKE_BETANEO_ID,Constants.INTAKE_SPEED_TALON1,Constants.INTAKE_SPEED_TALON2, Constants.INTAKE_DEPLOY_SPEED); //FIX INPUTS
   private final XboxController m_controller = new XboxController(0);
   
 
