@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.StatorCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import com.ctre.phoenix.motorcontrol.can.BaseMotorControllerConfiguration.*;
 
 public class CatapultSubsystem extends SubsystemBase {
   private TalonFX motor;
@@ -20,7 +21,8 @@ public class CatapultSubsystem extends SubsystemBase {
   /** Creates a new motor. */
   public CatapultSubsystem(int id) {
     motor = new TalonFX(id);
-
+    motor.configVoltageCompSaturation(11.5);
+    motor.enableVoltageCompensation(true);
   }
 
   @Override
@@ -67,6 +69,8 @@ public class CatapultSubsystem extends SubsystemBase {
     // motor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 0, 100, 1));
 
   }
+
+
 
 
 
