@@ -2,34 +2,53 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.ExternalFollower;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.swervedrivespecialties.swervelib.ctre.CanCoderAbsoluteConfiguration;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeMotors extends SubsystemBase{
-    private TalonFX motor1;
-    private TalonFX motor2;
-    private double speed1;
-    private double speed2;
+    private TalonFX upperMotor;
+    private TalonFX lowerMotor;
+    private CANSparkMax leaderMotor;
+    private CANSparkMax followerMotor;
+    private double upperSpeed;
+    private double lowerSpeed;
+    private double neoSpeed;
 
     
-    public IntakeMotors(int talon1, int talon2, double speed1, double speed2){
-        this.motor1 = new TalonFX(talon1);
-        this.motor2 = new TalonFX(talon2);
-        this.speed1 = speed1;
-        this.speed2 = speed2;
-    }
+    public IntakeMotors(int upperMotor, int lowerMotor, int leader, int follower, double upperSpeed, double lowerSpeed, double neoSpeed){
+        this.upperMotor = new TalonFX(upperMotor);
+        this.lowerMotor = new TalonFX(lowerMotor);
+        this.leaderMotor = new CANSparkMax(leader, MotorType.kBrushless);
+        this.followerMotor = new CANSparkMax(follower, MotorType.kBrushless);
+        this.upperSpeed = upperSpeed;
+        this.lowerSpeed = lowerSpeed;
+        this.neoSpeed = neoSpeed;
 
-    public void getPosition(){
-        System.out.println("" + motor2.getSelectedSensorPosition() + motor1.getSelectedSensorPosition());
+        followerMotor.follow(ExternalFollower.kFollowerSparkMax, leader, true);
     }
 
     public void setSpeed(){
-        motor1.set(ControlMode.PercentOutput, speed1);
-        motor2.set(ControlMode.PercentOutput, speed2);
+        upperMotor.set(ControlMode.PercentOutput, upperSpeed);
+        lowerMotor.set(ControlMode.PercentOutput, lowerSpeed);
     }
 
     public void stop(){
-        motor1.set(ControlMode.PercentOutput, 0);
-        motor2.set(ControlMode.PercentOutput, 0);
+        upperMotor.set(ControlMode.PercentOutput, 0);
+        lowerMotor.set(ControlMode.PercentOutput, 0);
+    }
+
+    //deploy intake
+    public void sendItOut(){
+        
+        leaderMotor.set(neoSpeed);
+    }
+    
+    //undeploy intake
+    public void takeItBack(){
+        leaderMotor.set(-neoSpeed);
     }
 }
