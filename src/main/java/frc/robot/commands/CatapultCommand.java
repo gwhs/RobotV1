@@ -1,6 +1,6 @@
 package frc.robot.commands;
 import frc.robot.subsystems.CatapultSubsystem;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class CatapultCommand extends CommandBase {
@@ -10,7 +10,7 @@ public class CatapultCommand extends CommandBase {
     private boolean ran; // ensures the motor shoots, otherwise, it will not run after one shot, needed for isFinished
     private double returnSpeed;// returns at slow pace
     private double amps;
-    private double returnAmps; 
+    private double returnLimit = 100;
 
     //private long start;
     //private long end;
@@ -43,13 +43,14 @@ public class CatapultCommand extends CommandBase {
         //long elapsedTime = System.currentTimeMillis() - start;
         double position = motor.getPosition();
         //position is 77.3k for 360 degrees of rotation
-        if (position >= 100 - offset){
+        if (position >= returnLimit - offset){
             motor.setBrake();
             motor.setPercent(returnSpeed);
-            
             //put motor in reverse to reset
             ran = true;
         }
+        SmartDashboard.getNumber("Set Percent to:", speed); //original limit was 1
+        SmartDashboard.getNumber("Set Return Limit", returnLimit);
         //System.out.println("Elapsed time: " + elapsedTime);
         //System.out.println("check position " + motor.getPosition());
       //  SmartDashboard.putNumber("Spinner Pos", motor.getPosition());
