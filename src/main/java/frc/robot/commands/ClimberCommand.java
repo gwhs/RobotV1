@@ -4,28 +4,11 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.CANifier.LEDChannel;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.InvertType;
-import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
-
-import edu.wpi.first.wpilibj.AddressableLED;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.subsystems.CatapultSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 
 public class ClimberCommand extends CommandBase {
   /** Creates a new ClimvberCommand. */
-  private double distance;
-  private double speed;
-  private TalonFX leaderArm;
-  private TalonFX followerArm;
-  private double initPos;
-  private double targetPos;
 
   private ClimberSubsystem climberSubsystem;
   public ClimberCommand(ClimberSubsystem climberSubsystem) {

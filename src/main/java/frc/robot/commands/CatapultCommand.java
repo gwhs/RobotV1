@@ -5,11 +5,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class CatapultCommand extends CommandBase {
     private CatapultSubsystem motor;
-    private double speed; // percent output -1 -> 1 double
     private double offset; // motor keeps moving after end, so we get an offset to make sure the motor returns to the same position each time
     private boolean ran; // ensures the motor shoots, otherwise, it will not run after one shot, needed for isFinished
     private double returnSpeed;// returns at slow pace
     private double amps;
+    private double speed;
     private double returnLimit = 100;
 
     //private long start;
