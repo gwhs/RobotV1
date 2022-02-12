@@ -47,20 +47,23 @@ public class IntakeMotors extends SubsystemBase{
         lowerMotor.set(ControlMode.PercentOutput, 0);
     }
 
-    public void getNeoPosition(){
-        alphaMotor.getEncoder().getPosition();
-        betaMotor.getEncoder().getPosition();
+    public double getAlphaPosition(){
+        return alphaMotor.getEncoder().getPosition();
+    }
+
+    public double getBetaPosition(){
+        return betaMotor.getEncoder().getPosition();
     }
 
     //deploy intake
     public void deploy(){
-        alphaMotor.setSoftLimit(SoftLimitDirection.kForward, 4000);
+        //alphaMotor.setSoftLimit(SoftLimitDirection.kForward, 4000);
         alphaMotor.set(neoSpeed);
     }
     
     //undeploy intake
     public void undeploy(){
-        alphaMotor.setSoftLimit(SoftLimitDirection.kReverse, 4000);
+        //alphaMotor.setSoftLimit(SoftLimitDirection.kReverse, 4000);
         alphaMotor.set(-neoSpeed);
     }
 }

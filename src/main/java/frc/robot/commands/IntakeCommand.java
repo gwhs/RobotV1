@@ -19,7 +19,7 @@ public class IntakeCommand extends CommandBase{
 
     @Override
     public void initialize(){
-        motors.setSpeed();
+        motors.suck();
         start = System.currentTimeMillis();
     }
 
@@ -27,9 +27,11 @@ public class IntakeCommand extends CommandBase{
     @Override
     public void execute(){
         current = System.currentTimeMillis();
+        System.out.println("Alpha Motor Position: " + motors.getAlphaPosition());
+        System.out.println("Beta Motor Position: " + motors.getBetaPosition());
         elapsedTime = current - start;
         if (elapsedTime >= 2000){
-            motors.stop();
+            motors.choke();
         }
     }
 
