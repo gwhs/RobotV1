@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.ExternalFollower;
+import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.swervedrivespecialties.swervelib.ctre.CanCoderAbsoluteConfiguration;
 
@@ -12,43 +13,54 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class IntakeMotors extends SubsystemBase{
     private TalonFX upperMotor;
     private TalonFX lowerMotor;
-    private CANSparkMax leaderMotor;
-    private CANSparkMax followerMotor;
+    private CANSparkMax alphaMotor;
+    private CANSparkMax betaMotor;
     private double upperSpeed;
     private double lowerSpeed;
     private double neoSpeed;
 
     
-    public IntakeMotors(int upperMotor, int lowerMotor, int leader, int follower, double upperSpeed, double lowerSpeed, double neoSpeed){
-        this.upperMotor = new TalonFX(upperMotor);
-        this.lowerMotor = new TalonFX(lowerMotor);
-        this.leaderMotor = new CANSparkMax(leader, MotorType.kBrushless);
-        this.followerMotor = new CANSparkMax(follower, MotorType.kBrushless);
+    public IntakeMotors(int upperMotorID, int lowerMotorID, int leaderID, int followerID, double upperSpeed, double lowerSpeed, double neoSpeed){
+        this.upperMotor = new TalonFX(upperMotorID);
+        this.lowerMotor = new TalonFX(lowerMotorID);
+        this.alphaMotor = new CANSparkMax(leaderID, MotorType.kBrushless);
+        this.betaMotor = new CANSparkMax(followerID, MotorType.kBrushless);
         this.upperSpeed = upperSpeed;
         this.lowerSpeed = lowerSpeed;
         this.neoSpeed = neoSpeed;
 
-        followerMotor.follow(ExternalFollower.kFollowerSparkMax, leader, true);
+        betaMotor.follow(ExternalFollower.kFollowerSparkMax, leaderID, true);
     }
 
-    public void setSpeed(){
+    public void suck(){
         upperMotor.set(ControlMode.PercentOutput, upperSpeed);
         lowerMotor.set(ControlMode.PercentOutput, lowerSpeed);
     }
 
-    public void stop(){
+    public void spit(){
+        upperMotor.set(ControlMode.PercentOutput, -upperSpeed);
+        lowerMotor.set(ControlMode.PercentOutput, lowerSpeed);
+    }
+
+    public void choke(){
         upperMotor.set(ControlMode.PercentOutput, 0);
         lowerMotor.set(ControlMode.PercentOutput, 0);
     }
 
+    public void getNeoPosition(){
+        alphaMotor.getEncoder().getPosition();
+        betaMotor.getEncoder().getPosition();
+    }
+
     //deploy intake
-    public void sendItOut(){
-        
-        leaderMotor.set(neoSpeed);
+    public void deploy(){
+        alphaMotor.setSoftLimit(SoftLimitDirection.kForward, 4000);
+        alphaMotor.set(neoSpeed);
     }
     
     //undeploy intake
-    public void takeItBack(){
-        leaderMotor.set(-neoSpeed);
+    public void undeploy(){
+        alphaMotor.setSoftLimit(SoftLimitDirection.kReverse, 4000);
+        alphaMotor.set(-neoSpeed);
     }
 }
