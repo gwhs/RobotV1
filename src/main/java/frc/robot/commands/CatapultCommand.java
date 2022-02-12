@@ -15,10 +15,11 @@ public class CatapultCommand extends CommandBase {
     //private long start;
     //private long end;
     //used for creating the motor and setting the speed
-    public CatapultCommand(CatapultSubsystem moto, double amps) {
+    public CatapultCommand(CatapultSubsystem moto, double speed) {
         this.motor = moto;
-        this.amps = amps;
-        this.returnAmps = 10;
+        this.speed = speed;
+
+        this.returnSpeed = 0.1;
         
         addRequirements(moto);
 
@@ -31,7 +32,8 @@ public class CatapultCommand extends CommandBase {
         ran = false;
         System.out.println("Round 1 pos:"+motor.getPosition());
         //sets speed
-        motor.setCurrent(amps);
+        motor.setSelectedSensorPosition();
+        motor.setPercent(speed);
     }
 
 
@@ -43,7 +45,7 @@ public class CatapultCommand extends CommandBase {
         //position is 77.3k for 360 degrees of rotation
         if (position >= 100 - offset){
             motor.setBrake();
-            motor.setCurrent(amps);
+            motor.setPercent(returnSpeed);
             
             //put motor in reverse to reset
             ran = true;
@@ -60,7 +62,8 @@ public class CatapultCommand extends CommandBase {
         //stops 
         //end = System.currentTimeMillis();
         //System.out.println("End time: " + (end - start));
-        motor.setCurrent(0);
+        motor.setPercent(0);
+        System.out.println(motor.getPosition());
         System.out.println("Goodbye World");
 
     }

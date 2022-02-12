@@ -21,7 +21,7 @@ public class CatapultSubsystem extends SubsystemBase {
   /** Creates a new motor. */
   public CatapultSubsystem(int id) {
     motor = new TalonFX(id);
-    motor.configVoltageCompSaturation(11.5);
+    motor.configVoltageCompSaturation(12);
     motor.enableVoltageCompensation(true);
   }
 
@@ -30,10 +30,6 @@ public class CatapultSubsystem extends SubsystemBase {
     // This method will be called once per scheduler 
 
     }
-
-  public void setCurrent(double amps){
-    motor.set(ControlMode.Current, amps);
-  }
 
   public void setPercent(double speed){
     motor.set(ControlMode.PercentOutput, speed);
@@ -49,7 +45,7 @@ public class CatapultSubsystem extends SubsystemBase {
   }
 
   public void setBrake(){
-    motor.setNeutralMode(NeutralMode.Brake);
+    motor.setNeutralMode(NeutralMode.Coast);
   }
 
   public TalonFX getMotor(){
