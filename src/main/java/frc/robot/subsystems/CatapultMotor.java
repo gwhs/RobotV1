@@ -6,6 +6,8 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.StatorCurrentLimitConfiguration;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -24,8 +26,8 @@ public class CatapultMotor extends SubsystemBase {
 
     }
 
-  public void setMotorPercent(double speed){
-    motor.set(ControlMode.PercentOutput, speed);
+  public void setCurrent(double amps){
+    motor.set(ControlMode.Current, amps);
   }
   
   public void setSelectedSensorPosition() {
@@ -44,6 +46,25 @@ public class CatapultMotor extends SubsystemBase {
   public TalonFX getMotor(){
     return motor;
   }
+
+  public double getStatorCurrent(){
+    return motor.getStatorCurrent();
+  }
+
+  public double getSupplyCurrent(){
+    return motor.getSupplyCurrent();
+  }
+
+  public void setCurrentLimit(){
+    motor.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, 0, 100, 1));
+    motor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 0, 100, 1));
+
+  }
+
+
+
+
+
 
 
   }
