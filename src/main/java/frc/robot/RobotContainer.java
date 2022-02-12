@@ -61,9 +61,9 @@ public class RobotContainer {
     JoystickButton start = new JoystickButton(m_controller, XboxController.Button.kStart.value);
     
 
-    //start.whenPressed(m_drivetrainSubsystem::toggleDriveMode);
-   // buttonY.whenPressed(() -> m_drivetrainSubsystem.setWheelAngle(0));
-    //buttonA.whenPressed(() -> m_drivetrainSubsystem.changeWheelAngleBy45());
+    start.whenPressed(m_drivetrainSubsystem::toggleDriveMode);
+   buttonY.whenPressed(() -> m_drivetrainSubsystem.setWheelAngle(0));
+    buttonA.whenPressed(() -> m_drivetrainSubsystem.changeWheelAngleBy45());
     buttonB.whenPressed(new AutoCommand(m_drivetrainSubsystem));
     
     // SwervedDrive
