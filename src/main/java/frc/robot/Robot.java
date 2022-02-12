@@ -20,7 +20,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_RobotContainer;
   private CatapultContainer m_CatapultContainer;
   private IntakeContainer m_IntakeContainer;
-  private ClimberContainer m_ClimberContainer;
+  // private ClimberContainer m_ClimberContainer;
   
 
   public static final String CATAPULT = "Catapult";
@@ -28,7 +28,7 @@ public class Robot extends TimedRobot {
   public static final String INTAKE = "Intake";
   public static final String CLIMBER = "Climber";
 
-  private static final String container = SWERVE;
+  private static final String container = CATAPULT;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -53,8 +53,8 @@ public class Robot extends TimedRobot {
         m_autonomousCommand = m_IntakeContainer.getAutonomousCommand();
         break;
       case CLIMBER:
-        m_ClimberContainer = new ClimberContainer();
-        m_autonomousCommand = m_ClimberContainer.getAutonomousCommand();
+        // m_ClimberContainer = new ClimberContainer();
+        // m_autonomousCommand = m_ClimberContainer.getAutonomousCommand();
         break;
     }
   }
