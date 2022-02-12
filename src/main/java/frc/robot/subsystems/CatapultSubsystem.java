@@ -4,16 +4,11 @@
 
 package frc.robot.subsystems;
 
-import java.util.ResourceBundle.Control;
-
-import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatorCurrentLimitConfiguration;
-import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.ctre.phoenix.motorcontrol.can.BaseMotorControllerConfiguration.*;
 
 public class CatapultSubsystem extends SubsystemBase {
   private TalonFX motor;

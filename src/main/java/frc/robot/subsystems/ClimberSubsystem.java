@@ -4,15 +4,9 @@
 
 package frc.robot.subsystems;
 
-import java.lang.reflect.GenericArrayType;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
-
-import org.ejml.generic.GenericMatrixOps_F32;
-
-import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ClimberSubsystem extends SubsystemBase {
