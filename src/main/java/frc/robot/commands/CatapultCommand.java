@@ -44,7 +44,7 @@ public class CatapultCommand extends CommandBase {
         if (position >= 100 - offset){
             motor.setBrake();
             motor.setCurrent(amps);
-            
+            motor.setPercent(returnSpeed);
             //put motor in reverse to reset
             ran = true;
         }

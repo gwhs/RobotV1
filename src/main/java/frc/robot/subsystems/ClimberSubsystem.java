@@ -4,8 +4,13 @@
 
 package frc.robot.subsystems;
 
+import java.lang.reflect.GenericArrayType;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+
+import org.ejml.generic.GenericMatrixOps_F32;
 
 import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -14,22 +19,42 @@ public class ClimberSubsystem extends SubsystemBase {
   /** Creates a new ClimberSubsystem. */
   private TalonFX rightArm;
   private TalonFX leftArm;
-  public ClimberSubsystem(int rightMotorId){//, int leftMotorId) {
+  public ClimberSubsystem(int rightMotorId, int leftMotorId){//, int leftMotorId) {
     this.rightArm = new TalonFX(rightMotorId);
-    // this.leftArm = new TalonFX(leftMotorId);
+    this.leftArm = new TalonFX(leftMotorId);
+    leftArm.setInverted(InvertType.InvertMotorOutput);
+    leftArm.set(ControlMode.Follower, rightMotorId);
+
+  }
+  //need to find ticks
+  public void climbLower(){
+    double position = getRightArm();
+    if (position < 15000){
+      rightArm.set(ControlMode.PercentOutput, -.5);
+    } else{
+      this.pullUp();
+    }
   }
 
-  public void moveRightArm(double amps) {
-    rightArm.set(ControlMode.Current, amps);
+  public void climbUpper(){
+    double position = getRightArm();
+    if (position < 15000){
+      rightArm.set(ControlMode.PercentOutput, -.5);
+    } else{
+      this.pullUp();
+    }
+  }
+  
+  public void pullUp(){
+    this.setSpeed(-.5);
+    long start = System.currentTimeMillis();
+    if (System.currentTimeMillis() - start > 3000){
+      this.setSpeed(0);
+    }
   }
 
-  public void moveLeftArm(double amps) {
-    leftArm.set(ControlMode.Current, amps);
-  }
-
-  public void moveBothArms(double amps){
-    moveRightArm(amps);
-    moveLeftArm(amps);
+  public void setSpeed(double speed){
+    rightArm.set(ControlMode.PercentOutput, speed);
   }
 
   public TalonFX rightArm(){
@@ -44,10 +69,14 @@ public class ClimberSubsystem extends SubsystemBase {
   //   return leftArm.getSelectedSensorPosition();
   // }
 
-  // public double getghtArm(){
-  //   rightArm.getSelectedSensorPosition();
-  //   return rightArm.getSelectedSensorPosition();
-  // }
+  public void setPosition(){
+    rightArm.setSelectedSensorPosition(0);
+  }
+
+  public double getRightArm(){
+    rightArm.getSelectedSensorPosition();
+    return rightArm.getSelectedSensorPosition();
+  }
 
   @Override
   public void periodic() {
