@@ -4,20 +4,25 @@
 
 package frc.robot.subsystems;
 
+import java.util.ResourceBundle.Control;
+
+import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatorCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import com.ctre.phoenix.motorcontrol.can.BaseMotorControllerConfiguration.*;
 
-public class CatapultMotor extends SubsystemBase {
+public class CatapultSubsystem extends SubsystemBase {
   private TalonFX motor;
 
   /** Creates a new motor. */
-  public CatapultMotor(int id) {
+  public CatapultSubsystem(int id) {
     motor = new TalonFX(id);
-
+    motor.configVoltageCompSaturation(11.5);
+    motor.enableVoltageCompensation(true);
   }
 
   @Override
@@ -28,6 +33,10 @@ public class CatapultMotor extends SubsystemBase {
 
   public void setCurrent(double amps){
     motor.set(ControlMode.Current, amps);
+  }
+
+  public void setPercent(double speed){
+    motor.set(ControlMode.PercentOutput, speed);
   }
   
   public void setSelectedSensorPosition() {
@@ -56,10 +65,12 @@ public class CatapultMotor extends SubsystemBase {
   }
 
   public void setCurrentLimit(){
-    motor.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, 0, 100, 1));
-    motor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 0, 100, 1));
+    motor.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, 0, 45, 1));
+    // motor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 0, 100, 1));
 
   }
+
+
 
 
 
