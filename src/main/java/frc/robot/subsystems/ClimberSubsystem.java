@@ -16,60 +16,24 @@ public class ClimberSubsystem extends SubsystemBase {
   public ClimberSubsystem(int rightMotorId, int leftMotorId){//, int leftMotorId) {
     this.rightArm = new TalonFX(rightMotorId);
     this.leftArm = new TalonFX(leftMotorId);
-    leftArm.setInverted(InvertType.InvertMotorOutput);
+    leftArm.setInverted(InvertType.OpposeMaster);
     leftArm.set(ControlMode.Follower, rightMotorId);
-
-  }
-  //need to find ticks
-  public void climbLower(){
-    double position = getRightArm();
-    if (position < 15000){
-      rightArm.set(ControlMode.PercentOutput, -.5);
-    } else{
-      this.pullUp();
-    }
-  }
-
-  public void climbUpper(){
-    double position = getRightArm();
-    if (position < 15000){
-      rightArm.set(ControlMode.PercentOutput, -.5);
-    } else{
-      this.pullUp();
-    }
-  }
-  
-  public void pullUp(){
-    this.setSpeed(-.5);
-    long start = System.currentTimeMillis();
-    if (System.currentTimeMillis() - start > 3000){
-      this.setSpeed(0);
-    }
   }
 
   public void setSpeed(double speed){
     rightArm.set(ControlMode.PercentOutput, speed);
   }
 
-  public TalonFX rightArm(){
-    return rightArm;
-  }
-
-  public TalonFX leftArm(){
-    return leftArm;
-  }
-  // public double getLeftArm(){
-  //   leftArm.getSelectedSensorPosition();
-  //   return leftArm.getSelectedSensorPosition();
-  // }
-
-  public void setPosition(){
+  public void setZero(){
     rightArm.setSelectedSensorPosition(0);
   }
 
-  public double getRightArm(){
-    rightArm.getSelectedSensorPosition();
+  public double getRightArmPosition(){
     return rightArm.getSelectedSensorPosition();
+  }
+
+  public double getLeftArmPosition(){
+    return leftArm.getSelectedSensorPosition();
   }
 
   @Override
