@@ -1,5 +1,9 @@
 package frc.robot.commands;
 import frc.robot.subsystems.CatapultSubsystem;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -19,7 +23,7 @@ public class CatapultCommand extends CommandBase {
         this.motor = moto;
         this.speed = speed;
 
-        this.returnSpeed = 0.1;
+        this.returnSpeed = -0.06;
         
         addRequirements(moto);
 
@@ -27,12 +31,12 @@ public class CatapultCommand extends CommandBase {
 
     @Override
     public void initialize() {
-        motor.setSelectedSensorPosition();
         //start = System.currentTimeMillis();
         ran = false;
         System.out.println("Round 1 pos:"+motor.getPosition());
-        //sets speed
+        //sets speed\
         motor.setSelectedSensorPosition();
+        offset = motor.getPosition();
         motor.setPercent(speed);
     }
 
@@ -43,14 +47,15 @@ public class CatapultCommand extends CommandBase {
         //long elapsedTime = System.currentTimeMillis() - start;
         double position = motor.getPosition();
         //position is 77.3k for 360 degrees of rotation
-        if (position >= returnLimit - offset){
+        if (position >= 7750 - offset){
             motor.setBrake();
-            motor.setPercent(returnSpeed);
+            motor.setPercent(-0.06);
             //put motor in reverse to reset
             ran = true;
         }
         SmartDashboard.getNumber("Set Percent to:", speed); //original limit was 1
         SmartDashboard.getNumber("Set Return Limit", returnLimit);
+        System.out.println(motor.getPosition());
         //System.out.println("Elapsed time: " + elapsedTime);
         //System.out.println("check position " + motor.getPosition());
       //  SmartDashboard.putNumber("Spinner Pos", motor.getPosition());

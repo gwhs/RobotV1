@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatorCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
@@ -16,9 +17,15 @@ public class CatapultSubsystem extends SubsystemBase {
   /** Creates a new motor. */
   public CatapultSubsystem(int id) {
     motor = new TalonFX(id);
-    motor.configVoltageCompSaturation(12);
+    motor.configVoltageCompSaturation(11);
     motor.enableVoltageCompensation(true);
+
+    if(id == 21){
+      motor.setInverted(InvertType.InvertMotorOutput);
+    }
   }
+
+
 
   @Override
   public void periodic() {
