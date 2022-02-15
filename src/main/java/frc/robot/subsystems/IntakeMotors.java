@@ -45,6 +45,14 @@ public class IntakeMotors extends SubsystemBase{
         lowerMotor.set(ControlMode.PercentOutput, 0);
     }
 
+    //setAlphaPosition() sets perceived position to specified value "pos"
+    //returns previous position as a double
+    public double setAlphaPosition(double pos){
+        double prevPos = this.getAlphaPosition();
+        alphaMotor.getEncoder().setPosition(pos);
+        return prevPos;
+    }
+
     public double getAlphaPosition(){
         return alphaMotor.getEncoder().getPosition();
     }
@@ -59,6 +67,10 @@ public class IntakeMotors extends SubsystemBase{
         alphaMotor.set(neoSpeed);
     }
     
+    public void chill(){
+        alphaMotor.set(0);
+    }
+
     //undeploy intake
     public void undeploy(){
         //alphaMotor.setSoftLimit(SoftLimitDirection.kReverse, 4000);

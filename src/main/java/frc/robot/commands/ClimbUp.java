@@ -9,12 +9,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimberSubsystem;
 
-public class ClimberCommand extends CommandBase {
+public class ClimbUp extends CommandBase {
   /** Creates a new ClimvberCommand. */
 
-  private double position = 0;
   private ClimberSubsystem climberSubsystem;
-  public ClimberCommand(ClimberSubsystem climberSubsystem) {
+  public ClimbUp(ClimberSubsystem climberSubsystem) {
     //this.speed = speed;
     this.climberSubsystem = climberSubsystem;
 
@@ -26,20 +25,13 @@ public class ClimberCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    climberSubsystem.setZero();
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putNumber("RightPosition", climberSubsystem.getRightArmPosition());
-    SmartDashboard.putNumber("LeftPosition", climberSubsystem.getLeftArmPosition());
     climberSubsystem.setSpeed(.2);
-    position = climberSubsystem.getRightArmPosition();
-    if (position > 221000){
-      climberSubsystem.setSpeed(0);
-      climberSubsystem.setBrake();
-    }
   }
 
   // Called once the command ends or is interrupted.
@@ -52,7 +44,7 @@ public class ClimberCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(climberSubsystem.getRightArmPosition() > 1000){
+    if (climberSubsystem.getRightArmPosition() < 900){
       return true;
     }
     return false;

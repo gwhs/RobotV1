@@ -41,7 +41,7 @@ public class IntakeContainer {
     
     JoystickButton RB = new JoystickButton(m_controller, XboxController.Button.kRightBumper.value);
 
-    RB.whenPressed(new IntakeCommand(m_IntakeMotor));
+    RB.whenPressed(new ToggleIntake(m_IntakeMotor));
   
     
   
