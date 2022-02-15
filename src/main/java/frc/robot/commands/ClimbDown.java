@@ -11,7 +11,7 @@ import frc.robot.subsystems.ClimberSubsystem;
 
 public class ClimbDown extends CommandBase {
   /** Creates a new ClimvberCommand. */
-
+  private double position;
   private ClimberSubsystem climberSubsystem;
   public ClimbDown(ClimberSubsystem climberSubsystem) {
     //this.speed = speed;
@@ -25,12 +25,15 @@ public class ClimbDown extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     climberSubsystem.setSpeed(-.2);
+    position = climberSubsystem.getRightArmPosition();
+    
   }
 
   // Called once the command ends or is interrupted.
@@ -43,7 +46,7 @@ public class ClimbDown extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(climberSubsystem.getRightArmPosition() > 1500){
+    if(climberSubsystem.getRightArmPosition() < 195000){
       return true;
     }
     return false;

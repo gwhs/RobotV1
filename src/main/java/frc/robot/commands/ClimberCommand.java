@@ -12,6 +12,7 @@ import frc.robot.subsystems.ClimberSubsystem;
 public class ClimberCommand extends CommandBase {
   /** Creates a new ClimvberCommand. */
 
+  private double position = 0;
   private ClimberSubsystem climberSubsystem;
   public ClimberCommand(ClimberSubsystem climberSubsystem) {
     //this.speed = speed;
@@ -33,7 +34,12 @@ public class ClimberCommand extends CommandBase {
   public void execute() {
     SmartDashboard.putNumber("RightPosition", climberSubsystem.getRightArmPosition());
     SmartDashboard.putNumber("LeftPosition", climberSubsystem.getLeftArmPosition());
-    climberSubsystem.setSpeed(-.2);
+    climberSubsystem.setSpeed(.2);
+    position = climberSubsystem.getRightArmPosition();
+    if (position > 221000){
+      climberSubsystem.setSpeed(0);
+      climberSubsystem.setBrake();
+    }
   }
 
   // Called once the command ends or is interrupted.

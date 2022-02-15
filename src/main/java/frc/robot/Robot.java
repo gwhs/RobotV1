@@ -20,7 +20,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_RobotContainer;
   private CatapultContainer m_CatapultContainer;
   private IntakeContainer m_IntakeContainer;
-  // private ClimberContainer m_ClimberContainer;
+  private ClimberContainer m_ClimberContainer;
   
 
   public static final String CATAPULT = "Catapult";
@@ -53,8 +53,8 @@ public class Robot extends TimedRobot {
         m_autonomousCommand = m_IntakeContainer.getAutonomousCommand();
         break;
       case CLIMBER:
-        // m_ClimberContainer = new ClimberContainer();
-        // m_autonomousCommand = m_ClimberContainer.getAutonomousCommand();
+        m_ClimberContainer = new ClimberContainer();
+        m_autonomousCommand = m_ClimberContainer.getAutonomousCommand();
         break;
     }
   }
