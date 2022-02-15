@@ -8,7 +8,7 @@ public class IntakeCommand extends CommandBase{
     private long elapsedTime;
     private long start;
     private long current;
-
+    
 
 
     public IntakeCommand(IntakeMotors motors){
@@ -19,32 +19,27 @@ public class IntakeCommand extends CommandBase{
 
     @Override
     public void initialize(){
-        motors.suck();
+        motors.deploy();
+
         start = System.currentTimeMillis();
     }
 
 
     @Override
     public void execute(){
-        current = System.currentTimeMillis();
-        System.out.println("Alpha Motor Position: " + motors.getAlphaPosition());
-        System.out.println("Beta Motor Position: " + motors.getBetaPosition());
-        elapsedTime = current - start;
-        if (elapsedTime >= 2000){
-            motors.choke();
-        }
+        
+        motors.suck();
+        
     }
 
     @Override
     public void end(boolean interupted){
-        System.out.println("ENDING INTAKE");
     }
 
     @Override
     public boolean isFinished() {
         // makes sure arm is at bottom and has shot before ending.
-        return true;
-        
-        //return false;
+
+        return false;
     }
 }
