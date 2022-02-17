@@ -36,10 +36,7 @@ public class ClimberCommand extends CommandBase {
     SmartDashboard.putNumber("LeftPosition", climberSubsystem.getLeftArmPosition());
     climberSubsystem.setSpeed(.2);
     position = climberSubsystem.getRightArmPosition();
-    if (position > 221000){
-      climberSubsystem.setSpeed(0);
-      climberSubsystem.setBrake();
-    }
+    
   }
 
   // Called once the command ends or is interrupted.
@@ -52,7 +49,9 @@ public class ClimberCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(climberSubsystem.getRightArmPosition() > 1000){
+    if (position > 200000){
+      climberSubsystem.setSpeed(0);
+      climberSubsystem.setBrake();
       return true;
     }
     return false;
