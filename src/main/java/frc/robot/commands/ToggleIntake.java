@@ -17,11 +17,11 @@ public class ToggleIntake extends CommandBase{
     @Override
     public void initialize(){
         double currentPosition = motors.getAlphaPosition();
-        if (currentPosition >= 11600){
+        if (currentPosition >= -10){
             deploying = false;
             motors.undeploy();
             motors.choke();
-        }else if(currentPosition <= 1){
+        } else if(currentPosition <= -11000){
             deploying = true;
             motors.deploy();
         } else {
@@ -49,7 +49,7 @@ public class ToggleIntake extends CommandBase{
     public boolean isFinished() {
         // makes sure arm is at bottom and has shot before ending.
         double currentPosition = motors.getAlphaPosition();
-        if (currentPosition >= 11600 && deploying == true){
+        if (currentPosition >= 11000 && deploying == true){
             motors.suck();
             return true;
         } else if (currentPosition <= 1 && deploying == false){
