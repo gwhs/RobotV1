@@ -65,15 +65,5 @@ public class CatapultSubsystem extends SubsystemBase {
   public void setCurrentLimit(){
     motor.configStatorCurrentLimit(new StatorCurrentLimitConfiguration(true, 0, 45, 1));
     // motor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 0, 100, 1));
-
-  }
-
-
-
-
-
-
-
-
-
+    }
   }
