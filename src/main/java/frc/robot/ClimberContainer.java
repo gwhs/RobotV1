@@ -13,9 +13,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.ClimberSubsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.ExtendArm;
-import frc.robot.commands.ClimberCommand;
-import frc.robot.commands.RetractArm;
+import frc.robot.commands.ClimberCommands.ClimberCommand;
+import frc.robot.commands.ClimberCommands.ExtendArm;
+import frc.robot.commands.ClimberCommands.RetractArm;
 
 
 public class ClimberContainer {
