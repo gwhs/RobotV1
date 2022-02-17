@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.ShuffleboardTest;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -21,6 +22,7 @@ public class Robot extends TimedRobot {
   private CatapultContainer m_CatapultContainer;
   private IntakeContainer m_IntakeContainer;
   private ClimberContainer m_ClimberContainer;
+  ShuffleboardTest tab = new ShuffleboardTest();
   
 
   public static final String CATAPULT = "Catapult";
@@ -28,7 +30,11 @@ public class Robot extends TimedRobot {
   public static final String INTAKE = "Intake";
   public static final String CLIMBER = "Climber";
 
+<<<<<<< HEAD
   private static final String container = INTAKE;
+=======
+  private static final String container = SWERVE;
+>>>>>>> ed69b57d1d4561432c2f0c51d03c270f3478b2f6
 
   /**
    * This function is run when the robot is first started up and should be used for any
