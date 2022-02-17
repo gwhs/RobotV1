@@ -30,11 +30,7 @@ public class Robot extends TimedRobot {
   public static final String INTAKE = "Intake";
   public static final String CLIMBER = "Climber";
 
-<<<<<<< HEAD
   private static final String container = INTAKE;
-=======
-  private static final String container = SWERVE;
->>>>>>> ed69b57d1d4561432c2f0c51d03c270f3478b2f6
 
   /**
    * This function is run when the robot is first started up and should be used for any
