@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimberSubsystem;
 
-public class ClimbDown extends CommandBase {
+public class ExtendArm extends CommandBase {
   /** Creates a new ClimvberCommand. */
-  private double position;
+
   private ClimberSubsystem climberSubsystem;
-  public ClimbDown(ClimberSubsystem climberSubsystem) {
+  public ExtendArm(ClimberSubsystem climberSubsystem) {
     //this.speed = speed;
     this.climberSubsystem = climberSubsystem;
 
@@ -31,9 +31,7 @@ public class ClimbDown extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    climberSubsystem.setSpeed(-.2);
-    position = climberSubsystem.getRightArmPosition();
-    
+    climberSubsystem.setSpeed(.2);
   }
 
   // Called once the command ends or is interrupted.
@@ -46,7 +44,7 @@ public class ClimbDown extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(climberSubsystem.getRightArmPosition() < 195000){
+    if (climberSubsystem.getRightArmPosition() >200000){
       return true;
     }
     return false;

@@ -5,56 +5,54 @@ import frc.robot.subsystems.IntakeMotors;
 
 public class ToggleIntake extends CommandBase{
     private IntakeMotors motors;
-    private static boolean deployed = false;
-    private long elapsedTime;
-    private long start;
-    private long current;
-    
+    private boolean deploying = false;
 
 
     public ToggleIntake(IntakeMotors motors){
         this.motors = motors;
-
+        this.motors.setBrakeMode();
         addRequirements(motors);
     }
 
     @Override
     public void initialize(){
-        if (!deployed)
-        motors.deploy();
-        else if (deployed)
-        motors.undeploy();
+        double currentPosition = motors.getAlphaPosition();
+        if (currentPosition >= 11600){
+            deploying = false;
+            motors.undeploy();
+            motors.choke();
+        }else if(currentPosition <= 1){
+            deploying = true;
+            motors.deploy();
+        } else {
+            deploying = false;
+            motors.undeploy();
+        }
 
-        start = System.currentTimeMillis();
+
     }
 
 
     @Override
     public void execute(){
-        
-        current = System.currentTimeMillis();
         System.out.println("Alpha Motor Position: " + motors.getAlphaPosition());
-        System.out.println("Beta Motor Position: " + motors.getBetaPosition());
-        elapsedTime = current - start;
-        
+        System.out.println(".");
     }
 
     @Override
-    public void end(boolean interupted){
+    public void end(boolean interrupted){
         System.out.println("ENDING INTAKE - DEPLOY");
+        motors.stopDeploy();
     }
 
     @Override
     public boolean isFinished() {
         // makes sure arm is at bottom and has shot before ending.
-        if (!deployed && motors.getAlphaPosition() >= 11600){
-            motors.chill();
-            deployed = !deployed;
+        double currentPosition = motors.getAlphaPosition();
+        if (currentPosition >= 11600 && deploying == true){
+            motors.suck();
             return true;
-        }
-        else if (deployed && motors.getAlphaPosition() <= 0){
-            motors.chill();
-            deployed = !deployed;
+        } else if (currentPosition <= 1 && deploying == false){
             return true;
         }
 

@@ -40,9 +40,10 @@ public class IntakeContainer {
     //         .whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     
     JoystickButton RB = new JoystickButton(m_controller, XboxController.Button.kRightBumper.value);
-
+    JoystickButton X = new JoystickButton(m_controller,XboxController.Button.kX.value);
     RB.whenPressed(new ToggleIntake(m_IntakeMotor));
-  
+    X.whileHeld(new HeldSpit(m_IntakeMotor), true);
+    
     
   
   }

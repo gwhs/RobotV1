@@ -2,16 +2,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeMotors;
+import frc.robot.commands.ToggleIntake;
 
-public class IntakeCommand extends CommandBase{
+public class HeldSpit extends CommandBase{
     private IntakeMotors motors;
-    private long elapsedTime;
-    private long start;
-    private long current;
-    
+    private boolean spittingMode;
 
-
-    public IntakeCommand(IntakeMotors motors){
+    public HeldSpit(IntakeMotors motors){
         this.motors = motors;
 
         addRequirements(motors);
@@ -19,27 +16,25 @@ public class IntakeCommand extends CommandBase{
 
     @Override
     public void initialize(){
-        motors.deploy();
 
-        start = System.currentTimeMillis();
     }
 
 
     @Override
     public void execute(){
         
-        motors.suck();
-        
+        motors.spit();
     }
 
     @Override
-    public void end(boolean interupted){
+    public void end(boolean interrupted){
+        motors.suck();
     }
 
     @Override
     public boolean isFinished() {
         // makes sure arm is at bottom and has shot before ending.
-
+        
         return false;
     }
 }
