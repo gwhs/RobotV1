@@ -39,7 +39,7 @@ public class IntakeCommand extends CommandBase{
     @Override
     public boolean isFinished() {
         // makes sure arm is at bottom and has shot before ending.
-
+        
         return false;
     }
 }
