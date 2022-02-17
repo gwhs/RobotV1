@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import javax.swing.RowFilter.ComparisonType;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.revrobotics.CANSparkMax;
@@ -27,7 +29,8 @@ public class IntakeMotors extends SubsystemBase{
         this.upperSpeed = upperSpeed;
         this.lowerSpeed = lowerSpeed;
         this.neoSpeed = neoSpeed;
-
+        
+        this.setSoftLimits();
         this.setConversionFactor();
         betaMotor.follow(ExternalFollower.kFollowerSparkMax, leaderID, true);
     }
@@ -96,5 +99,12 @@ public class IntakeMotors extends SubsystemBase{
     public void undeploy(){
         //alphaMotor.setSoftLimit(SoftLimitDirection.kReverse, 4000);
         alphaMotor.set(-neoSpeed);
+    }
+
+    public void setSoftLimits(){
+        alphaMotor.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
+        alphaMotor.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, 11700);
+        alphaMotor.enableSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, true);
+        alphaMotor.setSoftLimit(CANSparkMax.SoftLimitDirection.kReverse, -100);
     }
 }
