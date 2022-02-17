@@ -6,6 +6,10 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 public class CatapultCommand extends CommandBase {
     private CatapultSubsystem motor;
@@ -53,8 +57,6 @@ public class CatapultCommand extends CommandBase {
             //put motor in reverse to reset
             ran = true;
         }
-        SmartDashboard.getNumber("Set Percent to:", speed); //original limit was 1
-        SmartDashboard.getNumber("Set Return Limit", returnLimit);
         System.out.println(motor.getPosition());
         //System.out.println("Elapsed time: " + elapsedTime);
         //System.out.println("check position " + motor.getPosition());
