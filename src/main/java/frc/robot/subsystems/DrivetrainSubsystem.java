@@ -6,6 +6,10 @@ package frc.robot.subsystems;
 
 //import com.ctre.phoenix.sensors.PigeonIMU;
 import frc.robot.DrivetrainConstants;
+
+import com.ctre.phoenix.sensors.AbsoluteSensorRange;
+import com.ctre.phoenix.sensors.CANCoder;
+import com.ctre.phoenix.sensors.SensorInitializationStrategy;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import com.swervedrivespecialties.swervelib.Mk3SwerveModuleHelper;
@@ -23,6 +27,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -101,6 +106,18 @@ public class DrivetrainSubsystem extends SubsystemBase {
   private int BL = 2;
   private int BR = 3;
 
+  private CANCoder m_frontLeftCanCoder;
+  private CANCoder m_frontRightCanCoder;
+  private CANCoder m_backLeftCanCoder;
+  private CANCoder m_backRightCanCoder;
+
+  private ShuffleboardTab speedTab = Shuffleboard.getTab("Motor Speed");
+
+  NetworkTableEntry motorFL = speedTab.add("Speed FL moto", 0).getEntry();
+  NetworkTableEntry motorFR = speedTab.add("Speed FR moto", 0).getEntry();
+  NetworkTableEntry motorBL = speedTab.add("Speed BL moto", 0).getEntry();
+  NetworkTableEntry motorBR = speedTab.add("Speed BR moto", 0).getEntry();
+
   public DrivetrainSubsystem() {
     ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
     m_angleInRad = new Rotation2d(0);
@@ -178,6 +195,31 @@ public class DrivetrainSubsystem extends SubsystemBase {
             DrivetrainConstants.BACK_RIGHT_MODULE_STEER_ENCODER,
             DrivetrainConstants.BACK_RIGHT_MODULE_STEER_OFFSET
     );
+
+        m_frontLeftCanCoder = new CANCoder(DrivetrainConstants.FRONT_LEFT_MODULE_STEER_ENCODER);
+        m_frontRightCanCoder = new CANCoder(DrivetrainConstants.FRONT_LEFT_MODULE_STEER_ENCODER);
+        m_backLeftCanCoder = new CANCoder(DrivetrainConstants.BACK_LEFT_MODULE_STEER_ENCODER);
+        m_backRightCanCoder = new CANCoder(DrivetrainConstants.BACK_RIGHT_MODULE_STEER_ENCODER);
+
+        // m_frontLeftCanCoder.configFactoryDefault();
+        // m_frontRightCanCoder.configFactoryDefault();
+        // m_backLeftCanCoder.configFactoryDefault();
+        // m_backRightCanCoder.configFactoryDefault();
+
+       // m_frontLeftCanCoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
+       // m_frontRightCanCoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
+       // m_backLeftCanCoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
+       // m_backRightCanCoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
+
+       // m_frontLeftCanCoder.configSensorDirection(true);
+       // m_frontRightCanCoder.configSensorDirection(true);
+       // m_backLeftCanCoder.configSensorDirection(true);
+       // m_backRightCanCoder.configSensorDirection(true);
+
+        // m_frontLeftCanCoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
+        // m_frontRightCanCoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
+        // m_backLeftCanCoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
+        // m_backRightCanCoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
   }
 
   public Pose2d getPose() {
@@ -264,10 +306,10 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   private void setStatesInternal(SwerveModuleState[] states) {
         m_states = states;
-        m_frontLeftModule.set(m_states[FL].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[FL].angle.getRadians());
-        m_frontRightModule.set(m_states[FR].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[FR].angle.getRadians());
-        m_backLeftModule.set(m_states[BL].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[BL].angle.getRadians());
-        m_backRightModule.set(m_states[BR].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[BR].angle.getRadians());      
+        m_frontLeftModule.set(m_states[FL].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE * 1.12 * 0.98, states[FL].angle.getRadians());
+        m_frontRightModule.set(m_states[FR].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE * 1.12, states[FR].angle.getRadians());
+        m_backLeftModule.set(m_states[BL].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE * 1.12 * 0.98, states[BL].angle.getRadians());
+        m_backRightModule.set(m_states[BR].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE * 1.12, states[BR].angle.getRadians());      
      }
    
   //TODO: we guessed the m_states that are in the sample code
@@ -291,6 +333,11 @@ public class DrivetrainSubsystem extends SubsystemBase {
     SwerveDriveKinematics.desaturateWheelSpeeds(states, MAX_VELOCITY_METERS_PER_SECOND);
 
     setStatesInternal(states);
+
+    motorFL.setDouble(m_states[FL].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE);
+    motorFR.setDouble(m_states[FR].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE);
+    motorBL.setDouble(m_states[BL].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE);
+    motorBR.setDouble(m_states[BR].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE);
 
   }
 }
