@@ -35,6 +35,11 @@ public class IntakeMotors extends SubsystemBase{
         betaMotor.follow(ExternalFollower.kFollowerSparkMax, leaderID, true);
     }
 
+    public void setZero(){
+        alphaMotor.getEncoder().setPosition(0.0);
+        betaMotor.getEncoder().setPosition(0.0);
+    }
+
     public void suck(){
         upperMotor.set(ControlMode.PercentOutput, upperSpeed);
         lowerMotor.set(ControlMode.PercentOutput, lowerSpeed);

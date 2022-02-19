@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.ClimberCommands;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -25,14 +25,15 @@ public class RetractArm extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
+    position = climberSubsystem.getRightArmPosition();
+    climberSubsystem.setSpeed(-0.2);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    climberSubsystem.setSpeed(-.2);
-    position = climberSubsystem.getRightArmPosition();
+    // climberSubsystem.setSpeed(-0.2);
+    // position = climberSubsystem.getRightArmPosition();
     
   }
 
@@ -46,7 +47,7 @@ public class RetractArm extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(climberSubsystem.getRightArmPosition() < 185000){
+    if(climberSubsystem.getRightArmPosition() < position - 15000){
       return true;
     }
     return false;

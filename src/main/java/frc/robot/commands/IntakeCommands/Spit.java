@@ -1,14 +1,14 @@
-package frc.robot.commands;
+package frc.robot.commands.IntakeCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeMotors;
-import frc.robot.commands.ToggleIntake;
+import frc.robot.commands.IntakeCommands.Spit;
 
-public class HeldSpit extends CommandBase{
+public class Spit extends CommandBase{
     private IntakeMotors motors;
     private boolean spittingMode;
 
-    public HeldSpit(IntakeMotors motors){
+    public Spit(IntakeMotors motors){
         this.motors = motors;
 
         addRequirements(motors);

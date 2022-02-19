@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.IntakeMotors;
 import frc.robot.commands.*;
+import frc.robot.commands.IntakeCommands.Spit;
+import frc.robot.commands.IntakeCommands.ToggleIntake;
 
 public class IntakeContainer {
   private final IntakeMotors m_IntakeMotor = new IntakeMotors(Constants.INTAKE_UPPERTALON_ID,Constants.INTAKE_LOWERTALON_ID, Constants.INTAKE_ALPHANEO_ID, Constants.INTAKE_BETANEO_ID,Constants.INTAKE_SPEED_TALON1,Constants.INTAKE_SPEED_TALON2, Constants.INTAKE_DEPLOY_SPEED); //FIX INPUTS
@@ -41,8 +43,9 @@ public class IntakeContainer {
     
     JoystickButton RB = new JoystickButton(m_controller, XboxController.Button.kRightBumper.value);
     JoystickButton X = new JoystickButton(m_controller,XboxController.Button.kX.value);
-    RB.whenPressed(new ToggleIntake(m_IntakeMotor));
-    X.whileHeld(new HeldSpit(m_IntakeMotor), true);
+
+    RB.whenPressed(new ToggleIntake(m_IntakeMotor, false));
+    X.whileHeld(new Spit(m_IntakeMotor), true);
     
     
   
