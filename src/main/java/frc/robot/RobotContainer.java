@@ -59,6 +59,7 @@ public class RobotContainer {
     JoystickButton buttonY = new JoystickButton(m_controller, XboxController.Button.kY.value);
     JoystickButton back = new JoystickButton(m_controller, XboxController.Button.kBack.value);
     JoystickButton start = new JoystickButton(m_controller, XboxController.Button.kStart.value);
+    JoystickButton buttonB = new JoystickButton(m_controller, XboxController.Button.kB.value);
     
 
   //   start.whenPressed(m_drivetrainSubsystem::toggleDriveMode);
