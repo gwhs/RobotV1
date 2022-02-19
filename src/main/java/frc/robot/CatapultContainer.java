@@ -32,7 +32,7 @@ public class CatapultContainer{
         // change motor and speed here. SpinMotor(motor id, percent output[-1 to 1 as double])
         buttonB.whenPressed( new CatapultCommand(m_CatapultSubsystemRight, 1));
         buttonX.whenPressed( new CatapultCommand(m_CatapultSubsystemLeft, 0.5));
-        buttonA.whenPressed( new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, 1));
+        buttonA.whenPressed( new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_DOUBLE));
 
 
     }
