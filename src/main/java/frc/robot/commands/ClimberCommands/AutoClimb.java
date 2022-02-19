@@ -9,9 +9,9 @@ import frc.robot.Constants;
 import frc.robot.subsystems.CatapultSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 
-public class AutoClimbLow extends SequentialCommandGroup {
+public class AutoClimb extends SequentialCommandGroup {
     private ClimberSubsystem climberSubsystem;
-    public AutoClimbLow(ClimberSubsystem climberSubsystem, int climberMode){
+    public AutoClimb(ClimberSubsystem climberSubsystem, int climberMode){
         this.climberSubsystem = climberSubsystem;
 
         double low_tick = 73000;

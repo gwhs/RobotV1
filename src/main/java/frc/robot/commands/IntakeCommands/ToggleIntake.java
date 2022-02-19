@@ -17,13 +17,13 @@ public class ToggleIntake extends CommandBase{
     @Override
     public void initialize(){
         double currentPosition = motors.getAlphaPosition();
-        if (currentPosition >= -10){
+        if (currentPosition <= 10){
             deploying = false;
+            motors.deploy();
+        } else if(currentPosition >= 11000){
+            deploying = true;
             motors.undeploy();
             motors.choke();
-        } else if(currentPosition <= -11000){
-            deploying = true;
-            motors.deploy();
         } else {
             deploying = false;
             motors.undeploy();
