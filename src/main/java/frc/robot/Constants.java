@@ -22,7 +22,7 @@ public class Constants {
     public static final int leaderArm = 32;
 
     public static final int CLIMBER_MODE_LOW = 1;
-    public static final int CLIMBER_MODE_HIGH = 2;
+    public static final int CLIMBER_MODE_MID = 2;
 
     public static final int SHOOTER_MODE_DOUBLE = 1;
     public static final int SHOOTER_MODE_DELAY = 2;

@@ -44,6 +44,8 @@ public class ClimberCommand extends CommandBase {
   public void end(boolean interrupted) {
     climberSubsystem.setSpeed(0);
     System.out.println("done");
+    System.out.println("Right position " + climberSubsystem.getRightArmPosition());
+    System.out.println("Left position " + climberSubsystem.getLeftArmPosition());
   }
 
   // Returns true when the command should end.

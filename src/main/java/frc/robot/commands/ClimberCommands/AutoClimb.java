@@ -16,10 +16,10 @@ public class AutoClimb extends SequentialCommandGroup {
 
         double low_tick = 73000;
         double mid_tick = 272500; 
-    if(climberMode == Constants.CLIMBER_MODE_HIGH)
+    if(climberMode == 1)
     addCommands(new ClimberCommand(climberSubsystem, low_tick).withTimeout(5), 
     new RetractArm(climberSubsystem));
-    else if (climberMode == Constants.CLIMBER_MODE_LOW) {
+    else if (climberMode == 2) {
         new ClimberCommand(climberSubsystem, mid_tick).withTimeout(5);
     };
     }
