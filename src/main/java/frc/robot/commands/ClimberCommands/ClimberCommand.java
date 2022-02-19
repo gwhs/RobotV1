@@ -11,13 +11,13 @@ import frc.robot.subsystems.ClimberSubsystem;
 
 public class ClimberCommand extends CommandBase {
   /** Creates a new ClimvberCommand. */
-
+  private double targetPosition;
   private double position = 0;
   private ClimberSubsystem climberSubsystem;
-  public ClimberCommand(ClimberSubsystem climberSubsystem) {
+  public ClimberCommand(ClimberSubsystem climberSubsystem, double target) {
     //this.speed = speed;
     this.climberSubsystem = climberSubsystem;
-
+    this.targetPosition = target;
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(climberSubsystem);
@@ -49,7 +49,7 @@ public class ClimberCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (position > 200000){
+    if (position > targetPosition){
       climberSubsystem.setSpeed(0);
       climberSubsystem.setBrake();
       return true;

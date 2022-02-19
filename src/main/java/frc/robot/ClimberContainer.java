@@ -46,7 +46,7 @@ public class ClimberContainer {
     //         // No requirements because we don't need to interrupt anything
     //         .whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     
-    buttonX.whenPressed(new ClimberCommand(m_ClimberSubsytem));
+    buttonX.whenPressed(new ClimberCommand(m_ClimberSubsytem, 0));
     // buttonb.whileHeld(new ExtendArm(m_ClimberSubsytem));
     buttonA.whenPressed(new RetractArm(m_ClimberSubsytem));
     
