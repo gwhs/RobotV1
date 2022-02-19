@@ -15,7 +15,7 @@ public class Constants {
     public static final int INTAKE_BETANEO_ID = 51;
 
     public static final double INTAKE_SPEED_TALON1 = .4;
-    public static final double INTAKE_SPEED_TALON2 = .2;
+    public static final double INTAKE_SPEED_TALON2 = -.2;
     public static final double INTAKE_DEPLOY_SPEED = .1;
 
     public static final int followerArm = 23;

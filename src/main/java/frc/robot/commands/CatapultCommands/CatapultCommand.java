@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.CatapultCommands;
 import frc.robot.subsystems.CatapultSubsystem;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;

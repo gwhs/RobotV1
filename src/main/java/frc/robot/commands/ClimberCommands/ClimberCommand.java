@@ -2,18 +2,19 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.ClimberCommands;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimberSubsystem;
 
-public class ExtendArm extends CommandBase {
+public class ClimberCommand extends CommandBase {
   /** Creates a new ClimvberCommand. */
 
+  private double position = 0;
   private ClimberSubsystem climberSubsystem;
-  public ExtendArm(ClimberSubsystem climberSubsystem) {
+  public ClimberCommand(ClimberSubsystem climberSubsystem) {
     //this.speed = speed;
     this.climberSubsystem = climberSubsystem;
 
@@ -25,13 +26,17 @@ public class ExtendArm extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
+    climberSubsystem.setZero();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    SmartDashboard.putNumber("RightPosition", climberSubsystem.getRightArmPosition());
+    SmartDashboard.putNumber("LeftPosition", climberSubsystem.getLeftArmPosition());
     climberSubsystem.setSpeed(.2);
+    position = climberSubsystem.getRightArmPosition();
+    
   }
 
   // Called once the command ends or is interrupted.
@@ -44,7 +49,9 @@ public class ExtendArm extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (climberSubsystem.getRightArmPosition() >200000){
+    if (position > 200000){
+      climberSubsystem.setSpeed(0);
+      climberSubsystem.setBrake();
       return true;
     }
     return false;
