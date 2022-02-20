@@ -47,7 +47,7 @@ public class RetractArm extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(climberSubsystem.getRightArmPosition() < position - 15000){
+    if(climberSubsystem.getRightArmPosition() < position - 30000){
       return true;
     }
     return false;
