@@ -32,7 +32,7 @@ public final class DrivetrainConstants {
     public static final int FRONT_LEFT_MODULE_DRIVE_MOTOR = 1; 
     public static final int FRONT_LEFT_MODULE_STEER_MOTOR = 2; 
     public static final int FRONT_LEFT_MODULE_STEER_ENCODER = 9; 
-    public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(50.0); // FIXME Measure and set front left steer offset 141 
+    public static final double FRONT_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(48.0); // FIXME Measure and set front left steer offset 141 
 
     public static final int FRONT_RIGHT_MODULE_DRIVE_MOTOR = 3; 
     public static final int FRONT_RIGHT_MODULE_STEER_MOTOR = 4; 
@@ -47,5 +47,5 @@ public final class DrivetrainConstants {
     public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR = 5; 
     public static final int BACK_RIGHT_MODULE_STEER_MOTOR = 6; 
     public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 13; 
-    public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(342.0); // FIXME Measure and set back right steer offset 37
+    public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(340.0); // FIXME Measure and set back right steer offset 37
 }
