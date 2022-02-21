@@ -4,11 +4,15 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IndicationLight;
 
 public class IndicationLightCommand extends CommandBase {
   IndicationLight m_IndicationLight;
+  private AddressableLED m_led;
+  private AddressableLEDBuffer m_ledBuffer;
   /** Creates a new IndicationLightCommand. */
   public IndicationLightCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -17,7 +21,9 @@ public class IndicationLightCommand extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() { // # on the PMW on RoboRio
+
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
