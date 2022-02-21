@@ -30,8 +30,11 @@ public class Robot extends TimedRobot {
   public static final String INTAKE = "Intake";
   public static final String CLIMBER = "Climber";
 
-  private static final String container = CLIMBER;
+  private static final String container = SWERVE;
 
+  // public Robot() {
+  //   super(0.04); //temporary constructor to avoid loop overrun messages
+  // }
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.

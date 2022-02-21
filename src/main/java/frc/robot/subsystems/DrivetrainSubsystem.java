@@ -36,7 +36,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class DrivetrainSubsystem extends SubsystemBase {
   /**
    * The maximum voltage that will be delivered to the drive motors.
-   * <p>
+   * <p>A
    * This can be reduced to cap the robot's maximum speed. Typically, this is useful during initial testing of the robot.
    */
   public static final double MAX_VOLTAGE = 12.0;
@@ -126,30 +126,30 @@ public class DrivetrainSubsystem extends SubsystemBase {
     thetaController.enableContinuousInput(-Math.PI, Math.PI);
     drive(new ChassisSpeeds(0,0,0));
 
-    m_frontLeftCanCoder = new CANCoder(DrivetrainConstants.FRONT_LEFT_MODULE_STEER_ENCODER);
-    m_frontRightCanCoder = new CANCoder(DrivetrainConstants.FRONT_LEFT_MODULE_STEER_ENCODER);
-    m_backLeftCanCoder = new CANCoder(DrivetrainConstants.BACK_LEFT_MODULE_STEER_ENCODER);
-    m_backRightCanCoder = new CANCoder(DrivetrainConstants.BACK_RIGHT_MODULE_STEER_ENCODER);
+//     m_frontLeftCanCoder = new CANCoder(DrivetrainConstants.FRONT_LEFT_MODULE_STEER_ENCODER);
+//     m_frontRightCanCoder = new CANCoder(DrivetrainConstants.FRONT_LEFT_MODULE_STEER_ENCODER);
+//     m_backLeftCanCoder = new CANCoder(DrivetrainConstants.BACK_LEFT_MODULE_STEER_ENCODER);
+//     m_backRightCanCoder = new CANCoder(DrivetrainConstants.BACK_RIGHT_MODULE_STEER_ENCODER);
 
-    m_frontLeftCanCoder.configFactoryDefault();
-    m_frontRightCanCoder.configFactoryDefault();
-    m_backLeftCanCoder.configFactoryDefault();
-    m_backRightCanCoder.configFactoryDefault();
+//     m_frontLeftCanCoder.configFactoryDefault();
+//     m_frontRightCanCoder.configFactoryDefault();
+//     m_backLeftCanCoder.configFactoryDefault();
+//     m_backRightCanCoder.configFactoryDefault();
 
-   m_frontLeftCanCoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
-   m_frontRightCanCoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
-   m_backLeftCanCoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
-   m_backRightCanCoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
+//    m_frontLeftCanCoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
+//    m_frontRightCanCoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
+//    m_backLeftCanCoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
+//    m_backRightCanCoder.configSensorInitializationStrategy(SensorInitializationStrategy.BootToAbsolutePosition);
 
-   m_frontLeftCanCoder.configSensorDirection(true);
-   m_frontRightCanCoder.configSensorDirection(true);
-   m_backLeftCanCoder.configSensorDirection(true);
-   m_backRightCanCoder.configSensorDirection(true);
+//    m_frontLeftCanCoder.configSensorDirection(true);
+//    m_frontRightCanCoder.configSensorDirection(true);
+//    m_backLeftCanCoder.configSensorDirection(true);
+//    m_backRightCanCoder.configSensorDirection(true);
 
-    m_frontLeftCanCoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
-    m_frontRightCanCoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
-    m_backLeftCanCoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
-    m_backRightCanCoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
+//     m_frontLeftCanCoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
+//     m_frontRightCanCoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
+//     m_backLeftCanCoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
+//     m_backRightCanCoder.configAbsoluteSensorRange(AbsoluteSensorRange.Signed_PlusMinus180);
 
     // There are 4 methods you can call to create your swerve modules.
     // The method you use depends on what motors you are using.
@@ -312,10 +312,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
         m_frontLeftModule.set(m_states[FL].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[FL].angle.getRadians());
         m_frontRightModule.set(m_states[FR].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[FR].angle.getRadians());
         m_backLeftModule.set(m_states[BL].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[BL].angle.getRadians());
-        m_backRightModule.set(m_states[BR].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[BR].angle.getRadians());      
+        m_backRightModule.set(m_states[BR].speedMetersPerSecond * 1.33 / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[BR].angle.getRadians());      
      }
    
-  //TODO: we guessed the m_states that are in the sample code
   @Override
   public void periodic() {
     m_odometry.update(
