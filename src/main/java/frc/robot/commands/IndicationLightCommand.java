@@ -5,11 +5,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.IndicationLight;
 
 public class IndicationLightCommand extends CommandBase {
+  IndicationLight m_IndicationLight;
   /** Creates a new IndicationLightCommand. */
   public IndicationLightCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(m_IndicationLight);
   }
 
   // Called when the command is initially scheduled.
