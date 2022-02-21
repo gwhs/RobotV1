@@ -32,6 +32,7 @@ public class IntakeMotors extends SubsystemBase{
         
         this.setSoftLimits();
         this.setConversionFactor();
+        this.setZero();
         betaMotor.follow(ExternalFollower.kFollowerSparkMax, leaderID, true);
     }
 
