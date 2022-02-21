@@ -35,4 +35,8 @@ public class Constants {
     public static final int SHOOTER_MODE_RIGHT_LOW =9;
     public static final int SHOOTER_MODE_LEFT_DUMP = 10;
     public static final int SHOOTER_MODE_RIGHT_DUMP = 11;
+
+    public static final double LL_HEIGHT = 29.5; //needs to be changed to v1 measurements
+    public static final double LL_MOUNT_ANGLE = 45;
+    public static final double VISION_TARGET_HEIGHT = 104;
 }
