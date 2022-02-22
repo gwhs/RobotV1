@@ -23,7 +23,11 @@ public class AutoCommand extends SequentialCommandGroup {
 
     public AutoCommand(DrivetrainSubsystem m_drivetrainSubsystem) {
         this.m_drivetrainSubsystem = m_drivetrainSubsystem;
-        PathPlannerTrajectory oneMeter = PathPlanner.loadPath("A-C", 1, 1);
+        PathPlannerTrajectory test1 = PathPlanner.loadPath("test1", 1, 1);
+        PathPlannerTrajectory test2 = PathPlanner.loadPath("test2", 1, 1);
+        PathPlannerTrajectory oneMeter = PathPlanner.loadPath("oneMeter", 1, 1);
+        PathPlannerTrajectory interesting = PathPlanner.loadPath("interesting", 1, 1);
+
         PathPlannerTrajectory straightPath = PathPlanner.loadPath("Straight2", 0.5, 0.5);
         addCommands(new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(oneMeter.getInitialPose())),
                     new PPSwerveControllerCommand(
