@@ -47,22 +47,22 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    m_led = new AddressableLED(9);
+    // m_led = new AddressableLED(9);
 
-    // Reuse buffer
-    // Default to a length of 60, start empty output
-    // Length is expensive to set, so only set it once, then just update data
-    m_ledBuffer = new AddressableLEDBuffer(5);
-    m_led.setLength(m_ledBuffer.getLength());
+    // // Reuse buffer
+    // // Default to a length of 60, start empty output
+    // // Length is expensive to set, so only set it once, then just update data
+    // m_ledBuffer = new AddressableLEDBuffer(5);
+    // m_led.setLength(m_ledBuffer.getLength());
 
-    // Set the data
-    m_led.setData(m_ledBuffer);
-    m_led.start();
-    for (var i = 0; i < m_ledBuffer.getLength(); i++) {
-      // Sets the specified LED to the RGB values for red
-      m_ledBuffer.setHSV(i, 0, 0, 100);
-    }
-    m_led.setData(m_ledBuffer);
+    // // Set the data
+    // m_led.setData(m_ledBuffer);
+    // m_led.start();
+    // for (var i = 0; i < m_ledBuffer.getLength(); i++) {
+    //   // Sets the specified LED to the RGB values for red
+    //   m_ledBuffer.setHSV(i, 0, 0, 100);
+    // }
+    // m_led.setData(m_ledBuffer);
 
     switch (container){
       case SWERVE:

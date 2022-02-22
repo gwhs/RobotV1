@@ -9,10 +9,10 @@ import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 
 public class IndicationLight extends SubsystemBase {
-  private AddressableLED m_led;
+ private AddressableLED m_led;
   /** Creates a new IndicationLight. */
-  public IndicationLight(int AOL, int R, int G, int B) {
-
+  public IndicationLight() {
+    m_led = new AddressableLED(9);
     }
 
   @Override

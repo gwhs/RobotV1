@@ -23,19 +23,19 @@ public class CatapultDouble extends SequentialCommandGroup {
             new CatapultCommand(m_CatapultSubsystemRight,Constants.CATAPULT_SPEED));
         else if (shooterMode == Constants.SHOOTER_MODE_DELAY) {
             new SequentialCommandGroup(new CatapultCommand(m_CatapultSubsystemLeft,Constants.CATAPULT_SPEED).withTimeout(0.1),
-            new SequentialCommandGroup(new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED)));
+            new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED));
             }
         else if (shooterMode == Constants.SHOOTER_MODE_LOW_HIGH){
             new ParallelCommandGroup(new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED),
-            new ParallelCommandGroup(new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_LOW)));
+            new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_LOW));
         }
         else if (shooterMode == Constants.SHOOTER_MODE_DOUBLE_LOW){
             new ParallelCommandGroup(new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED_LOW),
-            new ParallelCommandGroup(new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_LOW)));
+            new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_LOW));
         }
         else if (shooterMode == Constants.SHOOTER_MODE_DUMP){
             new ParallelCommandGroup(new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED_DUMP),
-            new ParallelCommandGroup(new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP)));
+            new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP));
         }
         else if (shooterMode == Constants.SHOOTER_MODE_LEFT){
             new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED);
