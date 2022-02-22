@@ -16,13 +16,13 @@ public class Constants {
 
     public static final double INTAKE_SPEED_TALON1 = .4;
     public static final double INTAKE_SPEED_TALON2 = -.2;
-    public static final double INTAKE_DEPLOY_SPEED = .1;
+    public static final double INTAKE_DEPLOY_SPEED = .3;
 
     public static final int followerArm = 23;
     public static final int leaderArm = 32;
 
     public static final int CLIMBER_MODE_LOW = 1;
-    public static final int CLIMBER_MODE_HIGH = 2;
+    public static final int CLIMBER_MODE_MID = 2;
 
     public static final int SHOOTER_MODE_DOUBLE = 1;
     public static final int SHOOTER_MODE_DELAY = 2;
@@ -35,4 +35,8 @@ public class Constants {
     public static final int SHOOTER_MODE_RIGHT_LOW =9;
     public static final int SHOOTER_MODE_LEFT_DUMP = 10;
     public static final int SHOOTER_MODE_RIGHT_DUMP = 11;
+
+    public static final double LL_HEIGHT = 29.5; //needs to be changed to v1 measurements
+    public static final double LL_MOUNT_ANGLE = 45;
+    public static final double VISION_TARGET_HEIGHT = 104;
 }

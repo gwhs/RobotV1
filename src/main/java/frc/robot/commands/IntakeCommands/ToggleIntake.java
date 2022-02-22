@@ -5,12 +5,13 @@ import frc.robot.subsystems.IntakeMotors;
 
 public class ToggleIntake extends CommandBase{
     private IntakeMotors motors;
-    private boolean deploying = false;
+    private boolean deploying = true;
 
 
-    public ToggleIntake(IntakeMotors motors){
+    public ToggleIntake(IntakeMotors motors, boolean deploying){
         this.motors = motors;
-        this.motors.setBrakeMode();
+        this.deploying = deploying;
+        motors.setCoastMode();
         addRequirements(motors);
     }
 
@@ -18,15 +19,16 @@ public class ToggleIntake extends CommandBase{
     public void initialize(){
         double currentPosition = motors.getAlphaPosition();
         if (currentPosition <= 10){
-            deploying = false;
-            motors.deploy();
-        } else if(currentPosition >= 11000){
             deploying = true;
             motors.undeploy();
             motors.choke();
+        } else if(currentPosition >= 11000){
+            deploying = false;
+            motors.deploy();
         } else {
             deploying = false;
             motors.undeploy();
+            motors.choke();
         }
 
 
@@ -37,12 +39,17 @@ public class ToggleIntake extends CommandBase{
     public void execute(){
         System.out.println("Alpha Motor Position: " + motors.getAlphaPosition());
         System.out.println(".");
+
+
     }
 
     @Override
     public void end(boolean interrupted){
         System.out.println("ENDING INTAKE - DEPLOY");
         motors.stopDeploy();
+        if (motors.getAlphaPosition() > 1000 && motors.getAlphaPosition() < 10000){
+            deploying = !deploying;
+        }
     }
 
     @Override
@@ -52,7 +59,7 @@ public class ToggleIntake extends CommandBase{
         if (currentPosition >= 11000 && deploying == true){
             motors.suck();
             return true;
-        } else if (currentPosition <= 1 && deploying == false){
+        } else if (currentPosition <= 10 && deploying == false){
             return true;
         }
 

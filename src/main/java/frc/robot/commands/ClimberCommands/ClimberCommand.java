@@ -14,11 +14,10 @@ public class ClimberCommand extends CommandBase {
   private double targetPosition;
   private double position = 0;
   private ClimberSubsystem climberSubsystem;
-  public ClimberCommand(ClimberSubsystem climberSubsystem, double target) {
+  public ClimberCommand(ClimberSubsystem climberSubsystem, double targetTicks) {
     //this.speed = speed;
     this.climberSubsystem = climberSubsystem;
-    this.targetPosition = target;
-
+    targetPosition = targetTicks;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(climberSubsystem);
   }
@@ -44,6 +43,9 @@ public class ClimberCommand extends CommandBase {
   public void end(boolean interrupted) {
     climberSubsystem.setSpeed(0);
     System.out.println("done");
+    System.out.println("Right position " + climberSubsystem.getRightArmPosition());
+    System.out.println("Left position " + climberSubsystem.getLeftArmPosition());
+  climberSubsystem.setCoast();
   }
 
   // Returns true when the command should end.
