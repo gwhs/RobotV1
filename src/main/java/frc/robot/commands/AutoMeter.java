@@ -17,22 +17,15 @@ import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 import com.pathplanner.lib.commands.PPSwerveControllerCommand;
 
-public class AutoCommand extends SequentialCommandGroup {
+public class AutoMeter extends SequentialCommandGroup {
     private DrivetrainSubsystem m_drivetrainSubsystem;
 
 
-    public AutoCommand(DrivetrainSubsystem m_drivetrainSubsystem) {
+    public AutoMeter(DrivetrainSubsystem m_drivetrainSubsystem) {
         this.m_drivetrainSubsystem = m_drivetrainSubsystem;
-        PathPlannerTrajectory test1 = PathPlanner.loadPath("test1", 1, 1);
-        PathPlannerTrajectory test2 = PathPlanner.loadPath("test2", 1, 1);
         PathPlannerTrajectory oneMeter = PathPlanner.loadPath("oneMeter", 1, 1);
-        PathPlannerTrajectory interesting = PathPlanner.loadPath("interesting", 1, 1);
-        PathPlannerTrajectory threeBall = PathPlanner.loadPath("3 Cargo - Right", 0.5, 0.5);
-        PathPlannerTrajectory simple = PathPlanner.loadPath("simple", 1, 1);
-        PathPlannerTrajectory straightPath = PathPlanner.loadPath("Straight2", 0.5, 0.5);
-        PathPlannerTrajectory weird = PathPlanner.loadPath("oneMeterWeird", 1, 1);
-
-        PathPlannerTrajectory path = simple;
+       
+        PathPlannerTrajectory path = oneMeter;
         addCommands(new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(path.getInitialPose())),
                     new PPSwerveControllerCommand(
                         path,
