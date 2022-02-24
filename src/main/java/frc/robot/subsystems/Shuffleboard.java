@@ -7,7 +7,9 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shuffleboard extends SubsystemBase {
-  /** Creates a new Shuffleboard. */
+  /** Creates a new Shuffleboard.
+   * Main Shuffleboard subsystem, might not be used???
+   */
   public Shuffleboard() {}
 
   @Override
