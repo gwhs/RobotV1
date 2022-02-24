@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.commands.CatapultCommands.CatapultCommand;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardComponent;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import frc.robot.subsystems.CatapultSubsystem;
 
@@ -18,7 +17,6 @@ public class ShuffleboardUpdater extends CommandBase {
    NetworkTableEntry output;
    CatapultSubsystem m_CatapultSubsystem;
    CatapultCommand m_CatapultCommand;
-   double percentOutput;
    double speed;
   /** Creates a new ShuffleboardUpdater. */
   public ShuffleboardUpdater() {

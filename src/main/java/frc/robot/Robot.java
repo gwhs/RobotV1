@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.ShuffleboardUpdater;
 import frc.robot.subsystems.ShuffleboardTest;
 
 /**
@@ -24,6 +25,7 @@ public class Robot extends TimedRobot {
   private CatapultContainer m_CatapultContainer;
   private IntakeContainer m_IntakeContainer;
   private ClimberContainer m_ClimberContainer;
+  private ShuffleboardUpdater m_ShuffleboardUpdater;
   ShuffleboardTest tab = new ShuffleboardTest();
   
   
@@ -63,7 +65,7 @@ public class Robot extends TimedRobot {
     //   m_ledBuffer.setHSV(i, 0, 0, 100);
     // }
     // m_led.setData(m_ledBuffer);
-
+    
     switch (container){
       case SWERVE:
         m_RobotContainer = new RobotContainer();
@@ -93,11 +95,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    
     // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    m_ShuffleboardUpdater = new ShuffleboardUpdater();
+    
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
