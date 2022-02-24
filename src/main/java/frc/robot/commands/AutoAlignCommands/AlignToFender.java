@@ -29,7 +29,6 @@ public class AlignToFender extends SequentialCommandGroup {
     super(new AlignAndMoveToLimelight(70, swerveDrive, ll), 
       new AlignAndMoveToLimelight(70, swerveDrive, ll), 
       new TurnToZeroLimelight(0, swerveDrive, ll).withTimeout(0.25),
-      new GoToDistanceTimeOfFlight(3, swerveDrive, sensor)
-    );
+      new GoToDistanceTimeOfFlight(3, swerveDrive, sensor));
   }
 }
