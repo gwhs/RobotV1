@@ -5,15 +5,12 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.AddressableLED;
-import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 
-public class IndicationLight extends SubsystemBase {
- private AddressableLED m_led;
-  /** Creates a new IndicationLight. */
-  public IndicationLight() {
-    m_led = new AddressableLED(9);
-    }
+public class Shuffleboard extends SubsystemBase {
+  /** Creates a new Shuffleboard.
+   * Main Shuffleboard subsystem, might not be used???
+   */
+  public Shuffleboard() {}
 
   @Override
   public void periodic() {

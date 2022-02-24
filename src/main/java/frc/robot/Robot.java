@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.ShuffleboardUpdater;
 import frc.robot.subsystems.ShuffleboardTest;
 
 /**
@@ -24,6 +25,7 @@ public class Robot extends TimedRobot {
   private CatapultContainer m_CatapultContainer;
   private IntakeContainer m_IntakeContainer;
   private ClimberContainer m_ClimberContainer;
+  private ShuffleboardUpdater m_ShuffleboardUpdater;
   ShuffleboardTest tab = new ShuffleboardTest();
   
   
@@ -34,7 +36,7 @@ public class Robot extends TimedRobot {
   public static final String CLIMBER = "Climber";
 
 
-  private static final String container = SWERVE;
+  private static final String container = CATAPULT;
 
   private AddressableLEDBuffer m_ledBuffer;
   private AddressableLED m_led;
@@ -47,23 +49,23 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    m_led = new AddressableLED(9);
+    // m_led = new AddressableLED(9);
 
-    // Reuse buffer
-    // Default to a length of 60, start empty output
-    // Length is expensive to set, so only set it once, then just update data
-    m_ledBuffer = new AddressableLEDBuffer(5);
-    m_led.setLength(m_ledBuffer.getLength());
+    // // Reuse buffer
+    // // Default to a length of 60, start empty output
+    // // Length is expensive to set, so only set it once, then just update data
+    // m_ledBuffer = new AddressableLEDBuffer(5);
+    // m_led.setLength(m_ledBuffer.getLength());
 
-    // Set the data
-    m_led.setData(m_ledBuffer);
-    m_led.start();
-    for (var i = 0; i < m_ledBuffer.getLength(); i++) {
-      // Sets the specified LED to the RGB values for red
-      m_ledBuffer.setRGB(i,255, 255, 255);
-    }
-    m_led.setData(m_ledBuffer);
-
+    // // Set the data
+    // m_led.setData(m_ledBuffer);
+    // m_led.start();
+    // for (var i = 0; i < m_ledBuffer.getLength(); i++) {
+    //   // Sets the specified LED to the RGB values for red
+    //   m_ledBuffer.setHSV(i, 0, 0, 100);
+    // }
+    // m_led.setData(m_ledBuffer);
+    
     switch (container){
       case SWERVE:
         m_RobotContainer = new RobotContainer();
@@ -93,11 +95,14 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    
     // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    m_ShuffleboardUpdater = new ShuffleboardUpdater();
+    
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
