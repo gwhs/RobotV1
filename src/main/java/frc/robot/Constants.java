@@ -16,7 +16,7 @@ public class Constants {
 
     public static final double INTAKE_SPEED_TALON1 = .4;
     public static final double INTAKE_SPEED_TALON2 = -.2;
-    public static final double INTAKE_DEPLOY_SPEED = .3;
+    public static final double INTAKE_DEPLOY_SPEED = .1;
 
     public static final int followerArm = 23;
     public static final int leaderArm = 32;
@@ -36,7 +36,37 @@ public class Constants {
     public static final int SHOOTER_MODE_LEFT_DUMP = 10;
     public static final int SHOOTER_MODE_RIGHT_DUMP = 11;
 
+    //constants added for limelight
     public static final double LL_HEIGHT = 29.5; //needs to be changed to v1 measurements
     public static final double LL_MOUNT_ANGLE = 45;
     public static final double VISION_TARGET_HEIGHT = 104;
+    
+    public static final double MAX_ANGLE_VELOCITY = 90;
+    public static final double MAX_ANGLE_ACCELERATION = 180;
+
+    public static final double MAX_DISTANCE_VELOCITY = 96; //24 inches per second
+    public static final double MAX_DISTANCE_ACCELERATION = 96;
+    public static final double DISTANCE_TOLERANCE = 3;  //inches
+    public static final double DISTANCE_PID_P = 0.03;
+    public static final double DISTANCE_PID_I = 0.001;
+    public static final double DISTANCE_PID_D = 0.00237;
+
+    public static final double TURN_TOLERANCE = 0.5;
+    public static final double ANGLE_PID_P = 0.2;
+    public static final double ANGLE_PID_I = 0.00;  //dont change this number
+    public static final double ANGLE_PID_D = 0.008;
+
+    public static final int STAGE_1_DISTANCE = 50;
+    public static final int STAGE_2_DISTANCE = 20;
+    public static final int STAGE_3_DISTANCE = 10;
+    public static final int STAGE_4_DISTANCE = 5;
+    
+    public static final double STAGE_1_SPEED = 0.8;
+    public static final double STAGE_2_SPEED = 0.5;
+    public static final double STAGE_3_SPEED = 0.3;
+    public static final double STAGE_4_SPEED = 0.1;
+    public static final double STAGE_5_SPEED = 0.05;
+
+    public static final int TURN_CAP = 30;
+
 }

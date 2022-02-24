@@ -5,39 +5,64 @@
 package frc.robot.commands.AutoAlignCommands;
 
 import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj2.command.ProfiledPIDCommand;
+import frc.robot.Constants;
+import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.LimelightPortal;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class TurnToZeroLimelight extends ProfiledPIDCommand {
   /** Creates a new TurnToZeroLimelight. */
-  public TurnToZeroLimelight() {
+    private DrivetrainSubsystem drivetrainSubsystem;
+    private LimelightPortal limeL;
+     TrapezoidProfile.Constraints rampUpDown = new TrapezoidProfile.Constraints(10,5);
+
+    /**
+     * Turns to robot to the specified angle.
+     *
+     * @param targetAngleDegrees The angle to turn to
+     * @param drive              The drive subsystem to use
+     */
+    public TurnToZeroLimelight(double targetAngleDegrees, DrivetrainSubsystem drivetrain, LimelightPortal ll) {
     super(
-        // The ProfiledPIDController used by the command
-        new ProfiledPIDController(
-            // The PID gains
-            0,
-            0,
-            0,
-            // The motion profile constraints
-            new TrapezoidProfile.Constraints(0, 0)),
-        // This should return the measurement
-        () -> 0,
-        // This should return the goal (can also be a constant)
-        () -> new TrapezoidProfile.State(),
-        // This uses the output
-        (output, setpoint) -> {
-          // Use the output (and setpoint, if desired) here
-        });
-    // Use addRequirements() here to declare subsystem dependencies.
-    // Configure additional PID options by calling `getController` here.
+        new ProfiledPIDController(Constants.ANGLE_PID_P,Constants.ANGLE_PID_I, Constants.ANGLE_PID_D, //need to tune this better
+            new TrapezoidProfile.Constraints(Constants.MAX_ANGLE_VELOCITY,Constants.MAX_ANGLE_ACCELERATION)),
+        
+        // Close loop on heading
+        ll::getX,
+        // Set reference to target
+        targetAngleDegrees,  
+        // Pipe output to turn branchrobot
+        (output,setpoint) -> drivetrain.drive(new ChassisSpeeds(output,0,0)),
+        // Require the drive
+        drivetrain);
+  
+      // Set the controller to be continuous (because it is an angle controller)
+      //getController().enableContinuousInput(-180, 180);
+    drivetrainSubsystem = drivetrain;
+    limeL = ll;
+    // Set the controller tolerance - the delta tolerance ensures the robot is stationary at the
+    // setpoint before it is considered as having reached the reference
+    getController().setTolerance(Constants.TURN_TOLERANCE, 10);
+
+    // ll.printLoc();
+    // Shuffleboard.getTab("limelight-test").add("test");
+    System.out.println("***********" + ll.getDistance() + "**********");
   }
 
-  // Returns true when the command should end.
+
+  @Override
+  public void execute() {
+    // TODO Auto-generated method stub
+  }
+
   @Override
   public boolean isFinished() {
-    return false;
+    // End when the controller is at the reference.
+    return getController().atGoal();
   }
 }
