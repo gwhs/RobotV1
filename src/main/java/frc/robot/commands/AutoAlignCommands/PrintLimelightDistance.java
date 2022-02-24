@@ -4,17 +4,31 @@
 
 package frc.robot.commands.AutoAlignCommands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.robot.subsystems.LimelightPortal;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class PrintLimelightDistance extends InstantCommand {
-  public PrintLimelightDistance() {
+  /** Creates a new GoToDistanceTimeOfFlight. 
+   * Prints the distance time of flight detects, 
+   * never prints exact number
+  */
+  LimelightPortal llGet;
+
+  public PrintLimelightDistance(LimelightPortal LL) {
+    llGet = LL;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    double llDistance = llGet.getDistance();
+    double llX = llGet.getX();
+    SmartDashboard.putNumber("limelight-distance", llDistance);
+    SmartDashboard.putNumber("limelight-angle", llX);
+  }
 }

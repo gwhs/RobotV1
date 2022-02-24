@@ -15,8 +15,15 @@ import frc.robot.subsystems.IndicationLight;
 
 
 public class IndicaterLightContainer{
+<<<<<<< HEAD
     private final IndicationLight light = new IndicationLight();
     private GenericHID m_controller;
+=======
+    private final CatapultSubsystem motor = new CatapultSubsystem(21);
+    private final XboxController m_controller = new XboxController(0);
+    private final CatapultSubsystem m_CatapultSubsystemLeft = new CatapultSubsystem(14);
+    private final CatapultSubsystem m_CatapultSubsystemRight = new CatapultSubsystem(21);
+>>>>>>> fb5992bc874e6941ab5e40bf6038b855834c9a3b
 
     public IndicaterLightContainer(){
 

@@ -14,8 +14,8 @@ public class TimeOfFlightRange extends SubsystemBase {
   private TimeOfFlight sensor;
 
   public TimeOfFlightRange() {
-    sensor = new TimeOfFlight(2);
-    sensor.setRangingMode(TimeOfFlight.RangingMode.Long, 24);
+    sensor = new TimeOfFlight(2); //get the id of the timeOfFlight on the v1, get ToF added if it has yet to be then scan
+    sensor.setRangingMode(TimeOfFlight.RangingMode.Long, 24); //remember to review and see if improvements can be made
   }
 
   @Override
