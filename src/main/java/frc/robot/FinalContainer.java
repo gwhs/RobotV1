@@ -97,7 +97,6 @@ public class FinalContainer{
 //     return new InstantCommand();
 //   }
 
-<<<<<<< HEAD
   private static double deadband(double value, double deadband) {
     if (Math.abs(value) > deadband) {
       if (value > 0.0) {
@@ -118,6 +117,3 @@ public class FinalContainer{
     return value;
   }
 }
-=======
-// }
->>>>>>> 5c103529c887ab3618d7da3fa2840f7fcdca14ad
