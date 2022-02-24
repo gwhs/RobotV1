@@ -5,17 +5,24 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.commands.CatapultCommands.CatapultCommand;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardComponent;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import frc.robot.subsystems.CatapultSubsystem;
 
 
 public class ShuffleboardUpdater extends CommandBase {
    ShuffleboardTab ShTab;
+   NetworkTableEntry output;
+   CatapultSubsystem m_CatapultSubsystem;
+   CatapultCommand m_CatapultCommand;
+   double percentOutput;
+   double speed;
   /** Creates a new ShuffleboardUpdater. */
   public ShuffleboardUpdater() {
-    ShuffleboardTab ShTab = Shuffleboard.getTab("Percent Output");
+    ShTab = Shuffleboard.getTab("Percent Output ");
   
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -23,12 +30,14 @@ public class ShuffleboardUpdater extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    NetworkTableEntry output = ShTab.add("Percent Output", 1).getEntry();
+    output = ShTab.add("Percent Output ", 1).getEntry();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    m_CatapultCommand = new CatapultCommand(m_CatapultSubsystem,output.getDouble(speed));
+  }
 
   // Called once the command ends or is interrupted.
   @Override
