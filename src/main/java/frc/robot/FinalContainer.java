@@ -3,9 +3,10 @@
 // the WPILib BSD license file in the root directory of this project.
 
 
-package frc.robot;
+// package frc.robot;
 
 
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -32,6 +33,27 @@ public class FinalContainer{
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
 
   public FinalContainer() {
+=======
+// import edu.wpi.first.wpilibj.GenericHID;
+// import edu.wpi.first.wpilibj.Joystick;
+// import edu.wpi.first.wpilibj.XboxController;
+// import edu.wpi.first.wpilibj2.command.Command;
+// import edu.wpi.first.wpilibj2.command.InstantCommand;
+// import frc.robot.subsystems.ClimberSubsystem;
+// import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+// import frc.robot.commands.ClimberCommands.AutoClimb;
+// import frc.robot.commands.ClimberCommands.ClimberCommand;
+// import frc.robot.commands.ClimberCommands.ExtendArm;
+// import frc.robot.commands.ClimberCommands.RetractArm;
+
+
+// public class ClimberContainer {
+//   private final ClimberSubsystem m_ClimberSubsytem = new ClimberSubsystem(43, 45); //FIX INPUTS
+//   private final XboxController m_controller = new XboxController(0);
+
+//   public ClimberContainer() {
+
+>>>>>>> 5c103529c887ab3618d7da3fa2840f7fcdca14ad
 
 
     m_drivetrainSubsystem.zeroGyroscope();
@@ -48,9 +70,9 @@ public class FinalContainer{
             () -> modifyAxis(m_controller.getLeftTriggerAxis() - m_controller.getRightTriggerAxis()) * 2 //DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
     ));
 
-    // Configure the button bindings
-    configureButtonBindings();
-  }
+//     // Configure the button bindings
+//     configureButtonBindings();
+//   }
 
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
@@ -77,11 +99,11 @@ public class FinalContainer{
     //         // No requirements because we don't need to interrupt anything
     //         .whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     
-    buttonX.whenPressed(new AutoClimb(m_ClimberSubsytem)); //Climb
+//     buttonX.whenPressed(new AutoClimb(m_ClimberSubsytem)); //Climb
     
-    // buttonX.whenPressed(new ClimberCommand(m_ClimberSubsytem, ));
-    // // buttonb.whileHeld(new ExtendArm(m_ClimberSubsytem));
-    // buttonA.whenPressed(new RetractArm(m_ClimberSubsytem));
+//     // buttonX.whenPressed(new ClimberCommand(m_ClimberSubsytem, ));
+//     // // buttonb.whileHeld(new ExtendArm(m_ClimberSubsytem));
+//     // buttonA.whenPressed(new RetractArm(m_ClimberSubsytem));
     
     
     
@@ -90,18 +112,19 @@ public class FinalContainer{
   
     
   
-  }
+//   }
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return new InstantCommand();
-  }
+//   /**
+//    * Use this to pass the autonomous command to the main {@link Robot} class.
+//    *
+//    * @return the command to run in autonomous
+//    */
+//   public Command getAutonomousCommand() {
+//     // An ExampleCommand will run in autonomous
+//     return new InstantCommand();
+//   }
 
+<<<<<<< HEAD
   private static double deadband(double value, double deadband) {
     if (Math.abs(value) > deadband) {
       if (value > 0.0) {
@@ -122,3 +145,6 @@ public class FinalContainer{
     return value;
   }
 }
+=======
+// }
+>>>>>>> 5c103529c887ab3618d7da3fa2840f7fcdca14ad
