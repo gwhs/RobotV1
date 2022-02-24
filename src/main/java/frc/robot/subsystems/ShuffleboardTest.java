@@ -16,14 +16,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ShuffleboardTest extends SubsystemBase {
   /** Creates a new Shuffleboard. */
-  private ShuffleboardTab ShTab = Shuffleboard.getTab("Percent Output");
-  NetworkTableEntry output = ShTab.add("Percent Output", 1).getEntry();
-  public ShuffleboardTest() {}
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    double percentOutput = output.getDouble(1);
-    Constants.CATAPULT_SPEED = percentOutput;
+    // double percentOutput = output.getDouble(1);
+    // Constants.CATAPULT_SPEED = percentOutput;
   }
 }
