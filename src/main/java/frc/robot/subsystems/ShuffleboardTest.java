@@ -19,7 +19,5 @@ public class ShuffleboardTest extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    // double percentOutput = output.getDouble(1);
-    // Constants.CATAPULT_SPEED = percentOutput;
   }
 }
