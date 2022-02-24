@@ -6,7 +6,6 @@
 // package frc.robot;
 
 
-<<<<<<< HEAD
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -33,27 +32,6 @@ public class FinalContainer{
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
 
   public FinalContainer() {
-=======
-// import edu.wpi.first.wpilibj.GenericHID;
-// import edu.wpi.first.wpilibj.Joystick;
-// import edu.wpi.first.wpilibj.XboxController;
-// import edu.wpi.first.wpilibj2.command.Command;
-// import edu.wpi.first.wpilibj2.command.InstantCommand;
-// import frc.robot.subsystems.ClimberSubsystem;
-// import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-// import frc.robot.commands.ClimberCommands.AutoClimb;
-// import frc.robot.commands.ClimberCommands.ClimberCommand;
-// import frc.robot.commands.ClimberCommands.ExtendArm;
-// import frc.robot.commands.ClimberCommands.RetractArm;
-
-
-// public class ClimberContainer {
-//   private final ClimberSubsystem m_ClimberSubsytem = new ClimberSubsystem(43, 45); //FIX INPUTS
-//   private final XboxController m_controller = new XboxController(0);
-
-//   public ClimberContainer() {
-
->>>>>>> 5c103529c887ab3618d7da3fa2840f7fcdca14ad
 
 
     m_drivetrainSubsystem.zeroGyroscope();
@@ -69,6 +47,7 @@ public class FinalContainer{
             //() -> -modifyAxis(m_controller.getRightX()) * 2//DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
             () -> modifyAxis(m_controller.getLeftTriggerAxis() - m_controller.getRightTriggerAxis()) * 2 //DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
     ));
+};
 
 //     // Configure the button bindings
 //     configureButtonBindings();
@@ -87,13 +66,7 @@ public class FinalContainer{
     JoystickButton buttonY = new JoystickButton(m_controller, XboxController.Button.kY.value);
     JoystickButton buttonLTrigger = new JoystickButton(m_controller, XboxController.Button.kLeftBumper.value);
     JoystickButton buttonRTrigger = new JoystickButton(m_controller, XboxController.Button.kRightBumper.value);
-    JoystickButton button = new JoystickButton(m_controller, XboxController.g.value);
-    JoystickButton button = new JoystickButton(m_controller, XboxController.Button.k.value);
-    JoystickButton button = new JoystickButton(m_controller, XboxController.Button.k.value);
-    JoystickButton button = new JoystickButton(m_controller, XboxController.Button.k.value);
-    JoystickButton button = new JoystickButton(m_controller, XboxController.Button.k.value);
-    JoystickButton button = new JoystickButton(m_controller, XboxController.Button.k.value);
-    JoystickButton button = new JoystickButton(m_controller, XboxController.Button.k.value);
+
     // Back button zeros the gyroscope
     // new Button(m_controller::getBackButton)
     //         // No requirements because we don't need to interrupt anything
