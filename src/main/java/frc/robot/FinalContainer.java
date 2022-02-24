@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 
-// package frc.robot;
+package frc.robot;
 
 
 import edu.wpi.first.wpilibj.GenericHID;
@@ -17,10 +17,15 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeMotors;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DefaultDriveCommand;
+import frc.robot.commands.CatapultCommands.CatapultCommand;
+import frc.robot.commands.CatapultCommands.CatapultDouble;
 import frc.robot.commands.ClimberCommands.AutoClimb;
 import frc.robot.commands.ClimberCommands.ClimberCommand;
 import frc.robot.commands.ClimberCommands.ExtendArm;
 import frc.robot.commands.ClimberCommands.RetractArm;
+import frc.robot.commands.IntakeCommands.Spit;
+import frc.robot.commands.IntakeCommands.ToggleIntake;
+import frc.robot.utils.Utilities;
 
 
 public class FinalContainer{
@@ -42,11 +47,12 @@ public class FinalContainer{
     // Right stick X axis -> rotation
     m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(
             m_drivetrainSubsystem,
-            () -> -modifyAxis(m_controller.getLeftY()) * 1, //DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND, //1
-            () -> -modifyAxis(m_controller.getLeftX()) * 1, //DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND, //1
+            () -> -Utilities.modifyAxis(m_controller.getLeftY()) * 1, //DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND, //1
+            () -> -Utilities.modifyAxis(m_controller.getLeftX()) * 1, //DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND, //1
             //() -> -modifyAxis(m_controller.getRightX()) * 2//DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
-            () -> modifyAxis(m_controller.getLeftTriggerAxis() - m_controller.getRightTriggerAxis()) * 2 //DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
+            () -> Utilities.modifyAxis(m_controller.getLeftTriggerAxis() - m_controller.getRightTriggerAxis()) * 2 //DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
     ));
+    configureButtonBindings();
 };
 
 //     // Configure the button bindings
@@ -64,8 +70,14 @@ public class FinalContainer{
     JoystickButton buttonB = new JoystickButton(m_controller, XboxController.Button.kB.value);
     JoystickButton buttonA = new JoystickButton(m_controller, XboxController.Button.kA.value);
     JoystickButton buttonY = new JoystickButton(m_controller, XboxController.Button.kY.value);
-    JoystickButton buttonLTrigger = new JoystickButton(m_controller, XboxController.Button.kLeftBumper.value);
-    JoystickButton buttonRTrigger = new JoystickButton(m_controller, XboxController.Button.kRightBumper.value);
+    JoystickButton buttonLBumpers= new JoystickButton(m_controller, XboxController.Button.kLeftBumper.value);
+    JoystickButton buttonRBumpers = new JoystickButton(m_controller, XboxController.Button.kRightBumper.value);
+
+    buttonX.whenPressed(new CatapultDouble(m_LeftCatapultSubsystem, m_RightCatapultSubsystem, Constants.SHOOTER_MODE_DOUBLE));
+    buttonA.whenPressed(new CatapultDouble(m_LeftCatapultSubsystem, m_RightCatapultSubsystem, Constants.SHOOTER_MODE_LEFT));
+    buttonB.whenPressed(new CatapultDouble(m_LeftCatapultSubsystem, m_RightCatapultSubsystem, Constants.SHOOTER_MODE_RIGHT));
+    buttonLBumpers.whenPressed(new ToggleIntake(m_IntakeMotors));
+    buttonRBumpers.whenPressed(new Spit(m_IntakeMotors));
 
     // Back button zeros the gyroscope
     // new Button(m_controller::getBackButton)
@@ -89,31 +101,12 @@ public class FinalContainer{
 
 //   /**
 //    * Use this to pass the autonomous command to the main {@link Robot} class.
-//    *
-//    * @return the command to run in autonomous
+//    *//    * @return the command to run in autonomous
 //    */
 //   public Command getAutonomousCommand() {
 //     // An ExampleCommand will run in autonomous
 //     return new InstantCommand();
 //   }
 
-  private static double deadband(double value, double deadband) {
-    if (Math.abs(value) > deadband) {
-      if (value > 0.0) {
-        return (value - deadband) / (1.0 - deadband);
-      } else {
-        return (value + deadband) / (1.0 - deadband);
-      }
-    } else {
-      return 0.0;
-    }
-  }
-
-  private static double modifyAxis(double value) {
-    // Deadband
-    value = deadband(value, 0.2); //0.05, 0.1 seems to work
-
-
-    return value;
-  }
-}
+ 
+  }}
