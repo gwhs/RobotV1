@@ -16,6 +16,7 @@ import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeMotors;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.CatapultCommands.CatapultCommand;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
@@ -25,6 +26,7 @@ import frc.robot.commands.ClimberCommands.ExtendArm;
 import frc.robot.commands.ClimberCommands.RetractArm;
 import frc.robot.commands.IntakeCommands.Spit;
 import frc.robot.commands.IntakeCommands.ToggleIntake;
+import frc.robot.utils.TriggerSensing;
 import frc.robot.utils.Utilities;
 
 
@@ -35,6 +37,7 @@ public class FinalContainer{
   private final IntakeMotors m_IntakeMotors = new IntakeMotors(Constants.INTAKE_UPPERTALON_ID,Constants.INTAKE_LOWERTALON_ID, Constants.INTAKE_ALPHANEO_ID, Constants.INTAKE_BETANEO_ID,Constants.INTAKE_SPEED_TALON1,Constants.INTAKE_SPEED_TALON2, Constants.INTAKE_DEPLOY_SPEED);
   private final XboxController m_controller = new XboxController(0);
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
+  private final GenericHID m_GenericHID = new GenericHID(0);
 
   public FinalContainer() {
 
@@ -72,6 +75,8 @@ public class FinalContainer{
     JoystickButton buttonY = new JoystickButton(m_controller, XboxController.Button.kY.value);
     JoystickButton buttonLBumpers= new JoystickButton(m_controller, XboxController.Button.kLeftBumper.value);
     JoystickButton buttonRBumpers = new JoystickButton(m_controller, XboxController.Button.kRightBumper.value);
+    TriggerSensing leftTrigger = new TriggerSensing(m_GenericHID, XboxController.Axis.kLeftTrigger.value);
+    TriggerSensing rightTrigger = new TriggerSensing(m_GenericHID, XboxController.Axis.kRightTrigger.value);
 
     buttonX.whenPressed(new CatapultDouble(m_LeftCatapultSubsystem, m_RightCatapultSubsystem, Constants.SHOOTER_MODE_DOUBLE));
     buttonA.whenPressed(new CatapultDouble(m_LeftCatapultSubsystem, m_RightCatapultSubsystem, Constants.SHOOTER_MODE_LEFT));

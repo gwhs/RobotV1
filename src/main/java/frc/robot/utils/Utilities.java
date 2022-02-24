@@ -1,6 +1,8 @@
 package frc.robot.utils;
 
+
 public class Utilities {
+
     public static double deadband(double value, double deadband) {
         if (Math.abs(value) > deadband) {
           if (value > 0.0) {
