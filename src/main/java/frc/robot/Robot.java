@@ -46,6 +46,8 @@ public class Robot extends TimedRobot {
     CATAPULT, SWERVE, INTAKE, CLIMBER, FINAL
   }; 
 
+  public static final String container = SWERVE;
+
   /*To set the robot container, use the dropdown menu in shuffleboard, under the smartdashboard tab*/
 
   private AddressableLEDBuffer m_ledBuffer;
@@ -76,7 +78,7 @@ public class Robot extends TimedRobot {
     // }
     // m_led.setData(m_ledBuffer);
 
-    switch (tab.getContainerMode()){
+    switch (container){
       case SWERVE:
         m_RobotContainer = new RobotContainer();
         m_autonomousCommand = m_RobotContainer.getAutonomousCommand();
