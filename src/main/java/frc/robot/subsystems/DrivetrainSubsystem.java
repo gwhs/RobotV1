@@ -226,7 +226,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
 
   public Pose2d getPose() {
-    System.out.println(m_odometry.getPoseMeters());
     return m_odometry.getPoseMeters();
   }
 
