@@ -39,24 +39,46 @@ public class AutoMeter extends SequentialCommandGroup {
         this.m_catapultSubsystemRight = m_catapultSubsystemRight;
         this.m_intakeMotors = m_intakeMotors;
         PathPlannerTrajectory oneMeter = PathPlanner.loadPath("oneMeter", 1, 1);
+        PathPlannerTrajectory oneMeterBack = PathPlanner.loadPath("oneMeterBack", 1, 1);
         PathPlannerTrajectory simple = PathPlanner.loadPath("simple", 1, 1);
         PathPlannerTrajectory simpleReversed = PathPlanner.loadPath("simpleReversed", 1, 1);
         PathPlannerTrajectory diagonal = PathPlanner.loadPath("diagonal", 1, 1);
-        PathPlannerTrajectory path = diagonal;
+        PathPlannerTrajectory pathOne = oneMeter;
+        PathPlannerTrajectory pathTwo = oneMeterBack;
+        PathPlannerTrajectory threeBallAuto = PathPlanner.loadPath("3 Cargo - Right", 1, 1);
 
-        System.out.println(simple.getInitialPose());
         //addCommands(new InstantCommand(() -> System.out.println(simple.getInitialPose())));
-        addCommands(new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(new Translation2d(1.0, 3.0), new Rotation2d(Math.toRadians(225))))),
-                    new ParallelCommandGroup(new Spit(m_intakeMotors).withTimeout(8), new PPSwerveControllerCommand(
-                        path,
+        addCommands(new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT),
+                    new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(new Translation2d(8.0, 2.62), new Rotation2d(Math.toRadians(-105.15))))),
+                    new PPSwerveControllerCommand(
+                        threeBallAuto,
                         m_drivetrainSubsystem::getPose,
                         m_drivetrainSubsystem.getKinematics(),
                         new PIDController(1, 0, 0),
                         new PIDController(1, 0, 0),
                         m_drivetrainSubsystem.getThetaController(),
                         m_drivetrainSubsystem::setStates,
-                        m_drivetrainSubsystem)),
-                        new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT)
+                        m_drivetrainSubsystem),
+                    // new PPSwerveControllerCommand(
+                    //     pathOne,
+                    //     m_drivetrainSubsystem::getPose,
+                    //     m_drivetrainSubsystem.getKinematics(),
+                    //     new PIDController(1, 0, 0),
+                    //     new PIDController(1, 0, 0),
+                    //     m_drivetrainSubsystem.getThetaController(),
+                    //     m_drivetrainSubsystem::setStates,
+                    //     m_drivetrainSubsystem),
+                    // new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(new Translation2d(1.0, 3.0), new Rotation2d(Math.toRadians(180))))),
+                    // new PPSwerveControllerCommand(
+                    //     pathTwo,
+                    //     m_drivetrainSubsystem::getPose,
+                    //     m_drivetrainSubsystem.getKinematics(),
+                    //     new PIDController(1, 0, 0),
+                    //     new PIDController(1, 0, 0),
+                    //     m_drivetrainSubsystem.getThetaController(),
+                    //     m_drivetrainSubsystem::setStates,
+                    //     m_drivetrainSubsystem),
+                    new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT)
                     );
     }
 
