@@ -26,7 +26,7 @@ public class Constants {
 
     public static final int SHOOTER_MODE_DOUBLE = 1;
     public static final int SHOOTER_MODE_DELAY = 2;
-    public static final int SHOOTER_MODE_LOW_HIGH= 3;
+    public static final int SHOOTER_MODE_LOW_HIGH = 3;
     public static final int SHOOTER_MODE_DOUBLE_LOW = 4;
     public static final int SHOOTER_MODE_DUMP = 5;
     public static final int SHOOTER_MODE_LEFT = 6;
