@@ -25,6 +25,7 @@ public class AutoMeter extends SequentialCommandGroup {
         this.m_drivetrainSubsystem = m_drivetrainSubsystem;
         PathPlannerTrajectory oneMeter = PathPlanner.loadPath("oneMeter", 1, 1);
         PathPlannerTrajectory simple = PathPlanner.loadPath("simple", 1, 1);
+        PathPlannerTrajectory simpleReversed = PathPlanner.loadPath("simpleReversed", 1, 1);
         PathPlannerTrajectory path = simple;
         addCommands(new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(path.getInitialPose())),
                     new PPSwerveControllerCommand(
