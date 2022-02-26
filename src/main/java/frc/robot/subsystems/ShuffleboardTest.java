@@ -9,22 +9,36 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
-
+import frc.robot.commands.CatapultCommands.CatapultDouble;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ShuffleboardTest extends SubsystemBase {
-  /** Creates a new Shuffleboard. */
-  private ShuffleboardTab ShTab = Shuffleboard.getTab("Percent Output");
-  NetworkTableEntry output = ShTab.add("Percent Output", 1).getEntry();
-  public ShuffleboardTest() {}
 
+  public static SendableChooser<CatapultDouble> m_chooser = new SendableChooser<>();
+  private final CatapultSubsystem m_CatapultSubsystemLeft = new CatapultSubsystem(14);
+  private final CatapultSubsystem m_CatapultSubsystemRight = new CatapultSubsystem(21);
+
+
+  public ShuffleboardTest() {
+    m_chooser.setDefaultOption("Double Shoot", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_DOUBLE));
+    m_chooser.addOption("Delay", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_DELAY));
+    m_chooser.addOption("Low + High", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_LOW_HIGH));
+    m_chooser.addOption("Dump", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_DUMP));
+    m_chooser.addOption("Left Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_LEFT));
+    m_chooser.addOption("Right Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT));
+    m_chooser.addOption("Left Low Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_LEFT_LOW));
+    m_chooser.addOption("Right Low Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT_LOW));
+    m_chooser.addOption("Left Dump Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_LEFT_DUMP));
+    m_chooser.addOption("Right Dump Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT_DUMP));  
+  }
+
+
+  /** Creates a new Shuffleboard. */
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    double PercentOutput = output.getDouble(1);
-    Constants.CATAPULT_SPEED = PercentOutput;
-    
   }
 }

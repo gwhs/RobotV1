@@ -312,7 +312,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
         m_frontLeftModule.set(m_states[FL].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[FL].angle.getRadians());
         m_frontRightModule.set(m_states[FR].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[FR].angle.getRadians());
         m_backLeftModule.set(m_states[BL].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[BL].angle.getRadians());
-        m_backRightModule.set(m_states[BR].speedMetersPerSecond * 1.33 / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[BR].angle.getRadians());      
+        m_backRightModule.set(m_states[BR].speedMetersPerSecond * 1.3 / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[BR].angle.getRadians());      
      }
    
   @Override
@@ -341,5 +341,14 @@ public class DrivetrainSubsystem extends SubsystemBase {
     motorBL.setDouble(m_states[BL].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE);
     motorBR.setDouble(m_states[BR].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE);
 
+  }
+
+  public void forcingZero() {
+    for(int i = 0; i < 500; i++) {
+      m_frontLeftModule.set(0, 0);
+      m_frontRightModule.set(0, 0);
+      m_backLeftModule.set(0, 0);
+      m_backRightModule.set(0, 0);
+    }
   }
 }

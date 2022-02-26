@@ -3,6 +3,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.CatapultCommands.CatapultCommand;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
@@ -10,15 +11,14 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.CatapultSubsystem;
+import frc.robot.subsystems.IndicationLight;
 
 
-public class CatapultContainer{
-    private final CatapultSubsystem motor = new CatapultSubsystem(21);
-    private final XboxController m_controller = new XboxController(0);
-    private final CatapultSubsystem m_CatapultSubsystemLeft = new CatapultSubsystem(14);
-    private final CatapultSubsystem m_CatapultSubsystemRight = new CatapultSubsystem(21);
+public class IndicaterLightContainer{
+    private final IndicationLight light = new IndicationLight();
+    private GenericHID m_controller;
 
-    public CatapultContainer(){
+    public IndicaterLightContainer(){
 
         configureButtonBindings();
     }
@@ -27,12 +27,6 @@ public class CatapultContainer{
         JoystickButton buttonB = new JoystickButton(m_controller, XboxController.Button.kB.value);
         JoystickButton buttonX = new JoystickButton(m_controller, XboxController.Button.kX.value);
         JoystickButton buttonA = new JoystickButton(m_controller, XboxController.Button.kA.value);
-        // SpinMotor s
-        // change motor and speed here. SpinMotor(motor id, percent output[-1 to 1 as double])
-        buttonB.whenPressed( new CatapultCommand(m_CatapultSubsystemRight, 1));
-        buttonX.whenPressed( new CatapultCommand(m_CatapultSubsystemLeft, 0.5));
-        buttonA.whenPressed( new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT));
-
 
     }
 
