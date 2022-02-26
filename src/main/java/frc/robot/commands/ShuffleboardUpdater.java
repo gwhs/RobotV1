@@ -12,10 +12,14 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 
 public class ShuffleboardUpdater extends CommandBase {
-   ShuffleboardTab ShTab;
+  private ShuffleboardTab ShTab;
+  private NetworkTableEntry output;
+  private NetworkTableEntry containerSwap;
+  public static String containerMode;
+
   /** Creates a new ShuffleboardUpdater. */
   public ShuffleboardUpdater() {
-    ShuffleboardTab ShTab = Shuffleboard.getTab("Percent Output");
+    ShTab = Shuffleboard.getTab("Percent Output");
   
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -23,12 +27,15 @@ public class ShuffleboardUpdater extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    NetworkTableEntry output = ShTab.add("Percent Output", 1).getEntry();
+    output = ShTab.add("Percent Output", 1).getEntry();
+    containerSwap = ShTab.add("Container: ", "CATAPULT").getEntry();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    containerMode = containerSwap.getString("CATAPULT");
+  }
 
   // Called once the command ends or is interrupted.
   @Override
