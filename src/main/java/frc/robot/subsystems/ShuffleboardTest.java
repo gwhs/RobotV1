@@ -35,8 +35,8 @@ public class ShuffleboardTest extends SubsystemBase {
     output = shTab.add("Percent Output", 1).getEntry();
     // containerSwap = shTab.add("Container: ", Robot.CATAPULT).getEntry();
     delayInput = shTab.add("Delay set:", 3.0).getEntry();
-    SmartDashboard.putData(m_chooser);
-    SmartDashboard.putData(m_containerChooser);
+    SmartDashboard.putData("Catapult mode", m_chooser);
+    SmartDashboard.putData("Container mode", m_containerChooser);
     
     m_chooser.setDefaultOption("Double Shoot", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_DOUBLE));
     m_chooser.addOption("Delay", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_DELAY));
@@ -49,10 +49,18 @@ public class ShuffleboardTest extends SubsystemBase {
     m_chooser.addOption("Left Dump Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_LEFT_DUMP));
     m_chooser.addOption("Right Dump Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT_DUMP)); 
     
-    m_containerChooser.setDefaultOption(Robot.CATAPULT , Robot.CATAPULT);
-    m_containerChooser.addOption(Robot.SWERVE, Robot.SWERVE);
-    m_containerChooser.addOption(Robot.INTAKE, Robot.INTAKE);
-    m_containerChooser.addOption(Robot.CLIMBER, Robot.CLIMBER);
+    for(int count = 0; count < Robot.ALL_CONTAINER.length; count++)
+    {
+      String containerName = Robot.ALL_CONTAINER[count];
+      if(count == 0)
+      {
+        m_containerChooser.setDefaultOption(containerName, containerName);
+      }
+      else
+      {
+        m_containerChooser.addOption(containerName, containerName);
+      }
+    }
   }
 
   public String getContainerMode()

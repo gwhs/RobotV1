@@ -27,17 +27,26 @@ public class Robot extends TimedRobot {
   private CatapultContainer m_CatapultContainer;
   private IntakeContainer m_IntakeContainer;
   private ClimberContainer m_ClimberContainer;
+  private IndicaterLightContainer m_IndicaterLightContainer;
   private FinalContainer m_FinalContainer;
   ShuffleboardUpdater m_ShuffleboardUpdater = new ShuffleboardUpdater();
   ShuffleboardTest tab = new ShuffleboardTest();
   
   
 
-  public static final String CATAPULT = "Catapult";
+  public static final String CATAPULT = "Catapult"; 
   public static final String SWERVE = "Swerve";
   public static final String INTAKE = "Intake";
   public static final String CLIMBER = "Climber";
+  public static final String INDICATORLIGHT = "Indicator Light";
   public static final String FINAL = "Final";
+
+  //first is default
+  public static final String[] ALL_CONTAINER = {
+    CATAPULT, SWERVE, INTAKE, CLIMBER, FINAL
+  }; 
+
+  /*To set the robot container, use the dropdown menu in shuffleboard, under the smartdashboard tab*/
 
   private AddressableLEDBuffer m_ledBuffer;
   private AddressableLED m_led;
@@ -84,9 +93,14 @@ public class Robot extends TimedRobot {
         m_ClimberContainer = new ClimberContainer();
         m_autonomousCommand = m_ClimberContainer.getAutonomousCommand();
         break;
+      case INDICATORLIGHT:
+        m_IndicaterLightContainer = new IndicaterLightContainer();
+        m_autonomousCommand = m_IndicaterLightContainer.getAutonomousCommand();
+        break;
       case FINAL:
         m_FinalContainer = new FinalContainer();
         m_autonomousCommand = m_FinalContainer.getAutonomousCommand();
+        break;
     } 
   }
 
