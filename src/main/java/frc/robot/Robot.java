@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
   public static final String CLIMBER = "Climber";
 
 
-  private static final String container = SWERVE;
+  private static final String container = ShuffleboardUpdater.containerMode;
 
   private AddressableLEDBuffer m_ledBuffer;
   private AddressableLED m_led;
