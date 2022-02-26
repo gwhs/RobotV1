@@ -8,7 +8,7 @@ public class ToggleIntake extends CommandBase{
     private boolean deploying = true;
 
 
-    public ToggleIntake(IntakeMotors motors, boolean deploying){
+    public ToggleIntake(IntakeMotors motors){
         this.motors = motors;
         this.deploying = deploying;
         motors.setCoastMode();

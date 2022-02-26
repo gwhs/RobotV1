@@ -25,6 +25,7 @@ public class Robot extends TimedRobot {
   private CatapultContainer m_CatapultContainer;
   private IntakeContainer m_IntakeContainer;
   private ClimberContainer m_ClimberContainer;
+ ShuffleboardUpdater m_ShuffleboardUpdater = new ShuffleboardUpdater();
   ShuffleboardTest tab = new ShuffleboardTest();
   
   
@@ -99,6 +100,8 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    m_ShuffleboardUpdater = new ShuffleboardUpdater();
+
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
