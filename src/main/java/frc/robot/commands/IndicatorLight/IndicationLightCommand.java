@@ -7,7 +7,6 @@ package frc.robot.commands.IndicatorLight;
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.subsystems.IndicationLight;
 
 public class IndicationLightCommand extends CommandBase {
