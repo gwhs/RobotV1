@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
   public static final String CLIMBER = "Climber";
 
 
-  private /*static final*/ String container = ShuffleboardUpdater.containerMode;
+  // private static final String container = CATAPULT; //ShuffleboardUpdater.containerMode
 
   private AddressableLEDBuffer m_ledBuffer;
   private AddressableLED m_led;
@@ -66,7 +66,7 @@ public class Robot extends TimedRobot {
     // }
     // m_led.setData(m_ledBuffer);
 
-    switch (container){
+    switch (tab.getContainerMode()){
       case SWERVE:
         m_RobotContainer = new RobotContainer();
         m_autonomousCommand = m_RobotContainer.getAutonomousCommand();
@@ -101,7 +101,6 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     m_ShuffleboardUpdater = new ShuffleboardUpdater();
-
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
