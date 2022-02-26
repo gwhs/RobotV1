@@ -67,6 +67,23 @@ public class CatapultDouble extends SequentialCommandGroup {
             addCommands(
             new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP));
         }
+        else if (shooterMode == Constants.SHOOTER_MODE_DOUBLE_FAR){
+            addCommands(
+            new ParallelCommandGroup(new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED_FAR)),
+                                    new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_FAR));
+        }
+        else if (shooterMode == Constants.SHOOTER_MODE_LEFT_FAR){
+            addCommands(new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED_FAR));
+        }
+        else if (shooterMode == Constants.SHOOTER_MODE_RIGHT_FAR){
+            addCommands(new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_FAR));
+        }
+        else if (shooterMode == Constants.SHOOTER_MODE_DOUBLE_FAR_DELAY){
+            addCommands(
+                new ParallelCommandGroup(new CatapultCommand(m_CatapultSubsystemLeft,Constants.CATAPULT_SPEED_FAR),
+                                        new SequentialCommandGroup(new WaitCommand(3),
+                                                new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_FAR))));
+        }
     }
 
 }

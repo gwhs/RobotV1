@@ -7,6 +7,7 @@ public class Constants {
     public static double CATAPULT_SPEED = 0.1;
     public static double CATAPULT_SPEED_LOW = 0.05;
     public static double CATAPULT_SPEED_DUMP = 0.015;
+    public static double CATAPULT_SPEED_FAR = 1;
 
 
     public static final int INTAKE_UPPERTALON_ID = 55;
@@ -21,8 +22,12 @@ public class Constants {
     public static final int followerArm = 23;
     public static final int leaderArm = 32;
 
+    //Climbing Modes
+
     public static final int CLIMBER_MODE_LOW = 1;
     public static final int CLIMBER_MODE_MID = 2;
+
+    //SHOOTER MODES
 
     public static final int SHOOTER_MODE_DOUBLE = 1;
     public static final int SHOOTER_MODE_DELAY = 2;
@@ -35,6 +40,10 @@ public class Constants {
     public static final int SHOOTER_MODE_RIGHT_LOW =9;
     public static final int SHOOTER_MODE_LEFT_DUMP = 10;
     public static final int SHOOTER_MODE_RIGHT_DUMP = 11;
+    public static final int SHOOTER_MODE_DOUBLE_FAR = 12;
+    public static final int SHOOTER_MODE_RIGHT_FAR = 13;
+    public static final int SHOOTER_MODE_LEFT_FAR = 14;
+    public static final int SHOOTER_MODE_DOUBLE_FAR_DELAY = 15;
 
     //constants added for limelight
     public static final double LL_HEIGHT = 29.5; //needs to be changed to v1 measurements
