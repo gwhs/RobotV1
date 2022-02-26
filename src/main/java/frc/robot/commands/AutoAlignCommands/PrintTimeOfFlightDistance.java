@@ -25,6 +25,5 @@ public class PrintTimeOfFlightDistance extends InstantCommand {
   @Override
   public void initialize() {
     SmartDashboard.putNumber("Time of Flight:", sensor.getDistanceSensor());
-
   }
 }
