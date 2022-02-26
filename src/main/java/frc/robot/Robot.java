@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
   public static final String FINAL = "Final";
 
 
-  private /*static final*/ String container = ShuffleboardUpdater.containerMode;
+  private static final String container = SWERVE; //ShuffleboardUpdater.containerMode;
 
   private AddressableLEDBuffer m_ledBuffer;
   private AddressableLED m_led;
