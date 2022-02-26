@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import javax.print.attribute.standard.Finishings;
+
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -25,6 +27,7 @@ public class Robot extends TimedRobot {
   private CatapultContainer m_CatapultContainer;
   private IntakeContainer m_IntakeContainer;
   private ClimberContainer m_ClimberContainer;
+  private FinalContainer m_FinalContainer;
   ShuffleboardUpdater m_ShuffleboardUpdater = new ShuffleboardUpdater();
   ShuffleboardTest tab = new ShuffleboardTest();
   
@@ -34,6 +37,7 @@ public class Robot extends TimedRobot {
   public static final String SWERVE = "Swerve";
   public static final String INTAKE = "Intake";
   public static final String CLIMBER = "Climber";
+  public static final String FINAL = "Final";
 
 
   private /*static final*/ String container = ShuffleboardUpdater.containerMode;
@@ -83,6 +87,9 @@ public class Robot extends TimedRobot {
         m_ClimberContainer = new ClimberContainer();
         m_autonomousCommand = m_ClimberContainer.getAutonomousCommand();
         break;
+      case FINAL:
+        m_FinalContainer = new FinalContainer();
+        m_autonomousCommand = m_FinalContainer.getAutonomousCommand();
     } 
   }
 
