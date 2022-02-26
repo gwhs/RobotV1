@@ -1,1 +1,5 @@
+<<<<<<< HEAD
+{"waypoints":[{"anchorPoint":{"x":7.983740396303164,"y":2.849269670419976},"prevControl":null,"nextControl":{"x":8.027130289761333,"y":2.8348063726005863},"holonomicAngle":-108.43494882292202,"isReversal":false,"velOverride":null,"isLocked":false},{"anchorPoint":{"x":9.025097839293878,"y":0.8533345713467918},"prevControl":{"x":9.054024434932659,"y":0.8533345713467918},"nextControl":null,"holonomicAngle":-84.28940686250051,"isReversal":false,"velOverride":null,"isLocked":false}]}
+=======
 {"waypoints":[{"anchorPoint":{"x":7.809738068455729,"y":2.9671406281588073},"prevControl":null,"nextControl":{"x":7.725762390300291,"y":1.6981748249210782},"holonomicAngle":-110.55604521958341,"isReversal":false,"velOverride":null,"isLocked":false},{"anchorPoint":{"x":7.660447973957174,"y":0.5598378543695861},"prevControl":{"x":7.725762390300291,"y":1.716836086733397},"nextControl":null,"holonomicAngle":-88.60281897270364,"isReversal":false,"velOverride":null,"isLocked":false}]}
+>>>>>>> 203485ad36d75dcd622b03ff5611c38be57dc11d

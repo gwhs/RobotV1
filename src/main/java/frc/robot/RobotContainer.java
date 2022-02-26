@@ -40,6 +40,7 @@ public class RobotContainer {
 
 
 
+
     // Configure the button bindings
     configureButtonBindings();
   }
@@ -68,6 +69,7 @@ public class RobotContainer {
   //   buttonA.whenPressed(() -> m_drivetrainSubsystem.changeWheelAngleBy45());
     buttonA.whenPressed(new AutoMeter(m_drivetrainSubsystem));
     buttonB.whenPressed(new AutoCommand(m_drivetrainSubsystem));
+    buttonY.whenPressed(() -> m_drivetrainSubsystem.forcingZero());
 
     // SwervedDrive
     back.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
