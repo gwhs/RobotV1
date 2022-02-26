@@ -25,7 +25,7 @@ public class Robot extends TimedRobot {
   private CatapultContainer m_CatapultContainer;
   private IntakeContainer m_IntakeContainer;
   private ClimberContainer m_ClimberContainer;
- ShuffleboardUpdater m_ShuffleboardUpdater = new ShuffleboardUpdater();
+  ShuffleboardUpdater m_ShuffleboardUpdater = new ShuffleboardUpdater();
   ShuffleboardTest tab = new ShuffleboardTest();
   
   
@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
   public static final String CLIMBER = "Climber";
 
 
-  private static final String container = ShuffleboardUpdater.containerMode;
+  private /*static final*/ String container = ShuffleboardUpdater.containerMode;
 
   private AddressableLEDBuffer m_ledBuffer;
   private AddressableLED m_led;
