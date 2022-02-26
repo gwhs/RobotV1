@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import javax.print.attribute.standard.Finishings;
+
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -25,6 +27,7 @@ public class Robot extends TimedRobot {
   private CatapultContainer m_CatapultContainer;
   private IntakeContainer m_IntakeContainer;
   private ClimberContainer m_ClimberContainer;
+  private FinalContainer m_FinalContainer;
   ShuffleboardUpdater m_ShuffleboardUpdater = new ShuffleboardUpdater();
   ShuffleboardTest tab = new ShuffleboardTest();
   
@@ -34,9 +37,7 @@ public class Robot extends TimedRobot {
   public static final String SWERVE = "Swerve";
   public static final String INTAKE = "Intake";
   public static final String CLIMBER = "Climber";
-
-
-  private static final String container = SWERVE; //ShuffleboardUpdater.containerMode;
+  public static final String FINAL = "Final";
 
   private AddressableLEDBuffer m_ledBuffer;
   private AddressableLED m_led;
@@ -66,7 +67,7 @@ public class Robot extends TimedRobot {
     // }
     // m_led.setData(m_ledBuffer);
 
-    switch (container){
+    switch (tab.getContainerMode()){
       case SWERVE:
         m_RobotContainer = new RobotContainer();
         m_autonomousCommand = m_RobotContainer.getAutonomousCommand();
@@ -83,6 +84,9 @@ public class Robot extends TimedRobot {
         m_ClimberContainer = new ClimberContainer();
         m_autonomousCommand = m_ClimberContainer.getAutonomousCommand();
         break;
+      case FINAL:
+        m_FinalContainer = new FinalContainer();
+        m_autonomousCommand = m_FinalContainer.getAutonomousCommand();
     } 
   }
 
@@ -101,7 +105,6 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     m_ShuffleboardUpdater = new ShuffleboardUpdater();
-
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

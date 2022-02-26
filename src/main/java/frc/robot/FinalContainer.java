@@ -13,6 +13,7 @@ import frc.robot.subsystems.CatapultSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeMotors;
+import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
@@ -30,7 +31,6 @@ public class FinalContainer {
   private final CatapultSubsystem m_CatapultLeftSubsystem = new CatapultSubsystem(1);
   private final CatapultSubsystem m_CatapultRightSubsystem = new CatapultSubsystem(21);
   private final IntakeMotors m_IntakeMotors = new IntakeMotors(Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID, Constants.INTAKE_ALPHANEO_ID, Constants.INTAKE_BETANEO_ID, Constants.INTAKE_SPEED_TALON1, Constants.INTAKE_SPEED_TALON2, Constants.INTAKE_DEPLOY_SPEED);
-  
 
   public FinalContainer() {
 
@@ -70,6 +70,7 @@ public class FinalContainer {
     JoystickButton buttonBack = new JoystickButton(m_controller, XboxController.Button.kBack.value);
     JoystickButton buttonLeftJoystickButton = new JoystickButton(m_controller, XboxController.Button.kLeftStick.value);
     JoystickButton buttonRightJoystickButton = new JoystickButton(m_controller, XboxController.Button.kRightStick.value);
+
     // JoystickButton button = new JoystickButton(m_controller, XboxController.k.value);
     buttonBack.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     buttonX.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem, 2));

@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.commands.CatapultCommands.CatapultCommand;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
 import edu.wpi.first.networktables.NetworkTableEntry;
@@ -18,16 +19,20 @@ import frc.robot.subsystems.ShuffleboardTest;
 
 
 public class ShuffleboardUpdater extends CommandBase {
-  private ShuffleboardTab ShTab;
+  private ShuffleboardTab shTab;
   private NetworkTableEntry output;
   private NetworkTableEntry containerSwap;
   private NetworkTableEntry delayInput;
-  public static String containerMode;
-  public static double delayCount;
+  String containerMode;
+  double delayCount;
 
   /** Creates a new ShuffleboardUpdater. */
   public ShuffleboardUpdater() {
-    ShTab = Shuffleboard.getTab("Percent Output");
+    // shTab = Shuffleboard.getTab("Percent Output");
+    // output = shTab.add("Percent Output", 1).getEntry();
+    // containerSwap = shTab.add("Container: ", "CATAPULT").getEntry();
+    // delayInput = shTab.add("Delay set:", 3.0).getEntry();
+    // SmartDashboard.putData(ShuffleboardTest.m_chooser);
   
     // Use addRequirements() here to declare subsystem dependencies.
     
@@ -38,18 +43,15 @@ public class ShuffleboardUpdater extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    output = ShTab.add("Percent Output", 1).getEntry();
-    containerSwap = ShTab.add("Container: ", "CATAPULT").getEntry();
-    delayInput = ShTab.add("Delay set:", 3.0).getEntry();
-    SmartDashboard.putData(ShuffleboardTest.m_chooser);
+   
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    containerMode = containerSwap.getString("CATAPULT");
+  //   containerMode = containerSwap.getString(Robot.CATAPULT);
 
-    delayCount = delayInput.getDouble(3.0);
+  //   delayCount = delayInput.getDouble(3.0);
   }
 
   // Called once the command ends or is interrupted.
