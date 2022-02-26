@@ -23,7 +23,7 @@ import frc.robot.utils.Utilities;
 import frc.robot.commands.AutoMeter;
 import frc.robot.commands.AutoCommand;
 
-public class FinalContainer {
+public class FinalContainer implements BaseContainer{
   private final XboxController m_controller = new XboxController(0);
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
 

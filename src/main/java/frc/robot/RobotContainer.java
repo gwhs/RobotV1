@@ -20,7 +20,7 @@ import frc.robot.subsystems.IntakeMotors;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
-public class RobotContainer {
+public class RobotContainer implements BaseContainer{
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
   private final XboxController m_controller = new XboxController(0);
   private final CatapultSubsystem m_catapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID);
