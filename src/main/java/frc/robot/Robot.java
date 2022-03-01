@@ -23,12 +23,7 @@ import frc.robot.subsystems.ShuffleboardTest;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
-  private RobotContainer m_RobotContainer;
-  private CatapultContainer m_CatapultContainer;
-  private IntakeContainer m_IntakeContainer;
-  private ClimberContainer m_ClimberContainer;
-  private IndicaterLightContainer m_IndicaterLightContainer;
-  private FinalContainer m_FinalContainer;
+  private BaseContainer m_BaseContainer;
   ShuffleboardUpdater m_ShuffleboardUpdater = new ShuffleboardUpdater();
   ShuffleboardTest tab = new ShuffleboardTest();
   
@@ -80,30 +75,25 @@ public class Robot extends TimedRobot {
 
     switch (container){
       case SWERVE:
-        m_RobotContainer = new RobotContainer();
-        m_autonomousCommand = m_RobotContainer.getAutonomousCommand();
+        m_BaseContainer = new RobotContainer();
         break;
       case CATAPULT:
-        m_CatapultContainer = new CatapultContainer();
-        m_autonomousCommand = m_CatapultContainer.getAutonomousCommand();
+        m_BaseContainer = new CatapultContainer();
         break;
       case INTAKE:
-        m_IntakeContainer = new IntakeContainer();
-        m_autonomousCommand = m_IntakeContainer.getAutonomousCommand();
+        m_BaseContainer = new IntakeContainer();
         break;
       case CLIMBER:
-        m_ClimberContainer = new ClimberContainer();
-        m_autonomousCommand = m_ClimberContainer.getAutonomousCommand();
+        m_BaseContainer = new ClimberContainer();
         break;
       case INDICATORLIGHT:
-        m_IndicaterLightContainer = new IndicaterLightContainer();
-        m_autonomousCommand = m_IndicaterLightContainer.getAutonomousCommand();
+        m_BaseContainer = new IndicaterLightContainer();
         break;
       case FINAL:
-        m_FinalContainer = new FinalContainer();
-        m_autonomousCommand = m_FinalContainer.getAutonomousCommand();
+        m_BaseContainer = new FinalContainer();
         break;
     } 
+    m_autonomousCommand = m_BaseContainer.getAutonomousCommand();
   }
 
   /**
