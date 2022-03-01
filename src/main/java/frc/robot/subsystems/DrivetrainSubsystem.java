@@ -12,11 +12,9 @@ import com.ctre.phoenix.sensors.CANCoder;
 import com.ctre.phoenix.sensors.SensorInitializationStrategy;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
-import com.swervedrivespecialties.swervelib.Mk3SwerveModuleHelper;
-import com.swervedrivespecialties.swervelib.Mk4SwerveModuleHelper;
-import com.swervedrivespecialties.swervelib.Mk4iSwerveModuleHelper;
-import com.swervedrivespecialties.swervelib.SdsModuleConfigurations;
-import com.swervedrivespecialties.swervelib.SwerveModule;
+import frc.swervelib.Mk4iSwerveModuleHelper;
+import frc.swervelib.SdsModuleConfigurations;
+import frc.swervelib.SwerveModule;
 
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -185,7 +183,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
             // This is the ID of the steer encoder
             DrivetrainConstants.FRONT_LEFT_MODULE_STEER_ENCODER,
             // This is how much the steer encoder is offset from true zero (In our case, zero is facing straight forward)
-            DrivetrainConstants.FRONT_LEFT_MODULE_STEER_OFFSET
+            DrivetrainConstants.FRONT_LEFT_MODULE_STEER_OFFSET,"FL"
     );
 
     // We will do the same for the other modules
@@ -197,7 +195,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
             DrivetrainConstants.FRONT_RIGHT_MODULE_DRIVE_MOTOR,
             DrivetrainConstants.FRONT_RIGHT_MODULE_STEER_MOTOR,
             DrivetrainConstants.FRONT_RIGHT_MODULE_STEER_ENCODER,
-            DrivetrainConstants.FRONT_RIGHT_MODULE_STEER_OFFSET
+            DrivetrainConstants.FRONT_RIGHT_MODULE_STEER_OFFSET, "FR"
     );
 
     m_backLeftModule = Mk4iSwerveModuleHelper.createFalcon500(
@@ -208,7 +206,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
             DrivetrainConstants.BACK_LEFT_MODULE_DRIVE_MOTOR,
             DrivetrainConstants.BACK_LEFT_MODULE_STEER_MOTOR,
             DrivetrainConstants.BACK_LEFT_MODULE_STEER_ENCODER,
-            DrivetrainConstants.BACK_LEFT_MODULE_STEER_OFFSET
+            DrivetrainConstants.BACK_LEFT_MODULE_STEER_OFFSET,"BL"
     );
 
     m_backRightModule = Mk4iSwerveModuleHelper.createFalcon500(
@@ -219,7 +217,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
             DrivetrainConstants.BACK_RIGHT_MODULE_DRIVE_MOTOR,
             DrivetrainConstants.BACK_RIGHT_MODULE_STEER_MOTOR,
             DrivetrainConstants.BACK_RIGHT_MODULE_STEER_ENCODER,
-            DrivetrainConstants.BACK_RIGHT_MODULE_STEER_OFFSET
+            DrivetrainConstants.BACK_RIGHT_MODULE_STEER_OFFSET,"BR"
     );
 
        
