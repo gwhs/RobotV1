@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import javax.print.attribute.standard.Finishings;
+
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -21,22 +23,27 @@ import frc.robot.subsystems.ShuffleboardTest;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
-  private RobotContainer m_RobotContainer;
-  private CatapultContainer m_CatapultContainer;
-  private IntakeContainer m_IntakeContainer;
-  private ClimberContainer m_ClimberContainer;
- ShuffleboardUpdater m_ShuffleboardUpdater = new ShuffleboardUpdater();
+  private BaseContainer m_BaseContainer;
+  ShuffleboardUpdater m_ShuffleboardUpdater = new ShuffleboardUpdater();
   ShuffleboardTest tab = new ShuffleboardTest();
   
   
 
-  public static final String CATAPULT = "Catapult";
+  public static final String CATAPULT = "Catapult"; 
   public static final String SWERVE = "Swerve";
   public static final String INTAKE = "Intake";
   public static final String CLIMBER = "Climber";
+  public static final String INDICATORLIGHT = "Indicator Light";
+  public static final String FINAL = "Final";
 
+  //first is default
+  public static final String[] ALL_CONTAINER = {
+    CATAPULT, SWERVE, INTAKE, CLIMBER, FINAL
+  }; 
 
-  private static final String container = ShuffleboardUpdater.containerMode;
+  public static final String container = SWERVE;
+
+  /*To set the robot container, use the dropdown menu in shuffleboard, under the smartdashboard tab*/
 
   private AddressableLEDBuffer m_ledBuffer;
   private AddressableLED m_led;
@@ -68,22 +75,25 @@ public class Robot extends TimedRobot {
 
     switch (container){
       case SWERVE:
-        m_RobotContainer = new RobotContainer();
-        m_autonomousCommand = m_RobotContainer.getAutonomousCommand();
+        m_BaseContainer = new RobotContainer();
         break;
       case CATAPULT:
-        m_CatapultContainer = new CatapultContainer();
-        m_autonomousCommand = m_CatapultContainer.getAutonomousCommand();
+        m_BaseContainer = new CatapultContainer();
         break;
       case INTAKE:
-        m_IntakeContainer = new IntakeContainer();
-        m_autonomousCommand = m_IntakeContainer.getAutonomousCommand();
+        m_BaseContainer = new IntakeContainer();
         break;
       case CLIMBER:
-        m_ClimberContainer = new ClimberContainer();
-        m_autonomousCommand = m_ClimberContainer.getAutonomousCommand();
+        m_BaseContainer = new ClimberContainer();
+        break;
+      case INDICATORLIGHT:
+        m_BaseContainer = new IndicaterLightContainer();
+        break;
+      case FINAL:
+        m_BaseContainer = new FinalContainer();
         break;
     } 
+    m_autonomousCommand = m_BaseContainer.getAutonomousCommand();
   }
 
   /**
@@ -101,7 +111,6 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     m_ShuffleboardUpdater = new ShuffleboardUpdater();
-
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

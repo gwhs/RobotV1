@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.CatapultSubsystem;
 
 
-public class CatapultContainer{
+public class CatapultContainer implements BaseContainer{
     private final CatapultSubsystem motor = new CatapultSubsystem(21);
     private final XboxController m_controller = new XboxController(0);
     private final CatapultSubsystem m_CatapultSubsystemLeft = new CatapultSubsystem(14);

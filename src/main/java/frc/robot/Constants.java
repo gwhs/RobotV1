@@ -2,7 +2,7 @@ package frc.robot;
 
 public class Constants {
     // for the catapults, speed is -1.0 to 1.0 as decimal
-    public static final int CATAPULT_LEFT_ID = 1;
+    public static final int CATAPULT_LEFT_ID = 37;
     public static final int CATAPULT_RIGHT_ID = 21;
     public static double CATAPULT_SPEED = 0.1;
     public static double CATAPULT_SPEED_LOW = 0.05;
@@ -12,15 +12,12 @@ public class Constants {
 
     public static final int INTAKE_UPPERTALON_ID = 55;
     public static final int INTAKE_LOWERTALON_ID = 47;
-    public static final int INTAKE_ALPHANEO_ID = 31;
-    public static final int INTAKE_BETANEO_ID = 51;
+    public static final int INTAKE_DELOY_ID = 31;
 
     public static final double INTAKE_SPEED_TALON1 = .4;
     public static final double INTAKE_SPEED_TALON2 = -.2;
     public static final double INTAKE_DEPLOY_SPEED = .1;
 
-    public static final int followerArm = 23;
-    public static final int leaderArm = 32;
 
     //Climbing Modes
 
@@ -31,7 +28,7 @@ public class Constants {
 
     public static final int SHOOTER_MODE_DOUBLE = 1;
     public static final int SHOOTER_MODE_DELAY = 2;
-    public static final int SHOOTER_MODE_LOW_HIGH= 3;
+    public static final int SHOOTER_MODE_LOW_HIGH = 3;
     public static final int SHOOTER_MODE_DOUBLE_LOW = 4;
     public static final int SHOOTER_MODE_DUMP = 5;
     public static final int SHOOTER_MODE_LEFT = 6;

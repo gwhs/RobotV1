@@ -4,31 +4,33 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeMotors;
 
 public class ToggleIntake extends CommandBase{
-    private IntakeMotors motors;
+    private IntakeMotors motor;
     private boolean deploying = true;
+    private IntakeMotors deployMotor;
+    private double speed;
 
 
-    public ToggleIntake(IntakeMotors motors){
-        this.motors = motors;
+    public ToggleIntake(IntakeMotors motor){
+        this.motor = motor;
         this.deploying = deploying;
-        motors.setCoastMode();
-        addRequirements(motors);
+        motor.setCoastMode();
+        addRequirements(motor);
     }
 
     @Override
     public void initialize(){
-        double currentPosition = motors.getAlphaPosition();
+        double currentPosition = deployMotor.getPosition();
         if (currentPosition <= 10){
             deploying = true;
-            motors.undeploy();
-            motors.choke();
+            motor.undeploy(-speed);
+            motor.choke();
         } else if(currentPosition >= 11000){
             deploying = false;
-            motors.deploy();
+            motor.deploy(speed);
         } else {
             deploying = false;
-            motors.undeploy();
-            motors.choke();
+            motor.undeploy(-speed);
+            motor.choke();
         }
 
 
@@ -37,7 +39,7 @@ public class ToggleIntake extends CommandBase{
 
     @Override
     public void execute(){
-        System.out.println("Alpha Motor Position: " + motors.getAlphaPosition());
+        System.out.println("Deploy motor Position: " + motor.getPosition());
         System.out.println(".");
 
 
@@ -46,8 +48,8 @@ public class ToggleIntake extends CommandBase{
     @Override
     public void end(boolean interrupted){
         System.out.println("ENDING INTAKE - DEPLOY");
-        motors.stopDeploy();
-        if (motors.getAlphaPosition() > 1000 && motors.getAlphaPosition() < 10000){
+        motor.stopDeploy();
+        if (motor.getPosition() > 1000 && motor.getPosition() < 10000){
             deploying = !deploying;
         }
     }
@@ -55,9 +57,9 @@ public class ToggleIntake extends CommandBase{
     @Override
     public boolean isFinished() {
         // makes sure arm is at bottom and has shot before ending.
-        double currentPosition = motors.getAlphaPosition();
+        double currentPosition = motor.getPosition();
         if (currentPosition >= 11000 && deploying == true){
-            motors.suck();
+            motor.suck();
             return true;
         } else if (currentPosition <= 10 && deploying == false){
             return true;

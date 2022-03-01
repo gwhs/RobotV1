@@ -19,7 +19,7 @@ import frc.robot.commands.ClimberCommands.ExtendArm;
 import frc.robot.commands.ClimberCommands.RetractArm;
 
 
-public class ClimberContainer {
+public class ClimberContainer implements BaseContainer{
   private final ClimberSubsystem m_ClimberSubsytem = new ClimberSubsystem(43, 45); //FIX INPUTS
   private final XboxController m_controller = new XboxController(0);
 
