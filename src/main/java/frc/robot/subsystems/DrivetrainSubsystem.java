@@ -311,8 +311,8 @@ public class DrivetrainSubsystem extends SubsystemBase {
         m_frontLeftModule.set(m_states[FL].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[FL].angle.getRadians());
         m_frontRightModule.set(m_states[FR].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[FR].angle.getRadians());
         m_backLeftModule.set(m_states[BL].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[BL].angle.getRadians());
-        m_backRightModule.set(m_states[BR].speedMetersPerSecond * 1.3 / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[BR].angle.getRadians());      
-     }
+        m_backRightModule.set(m_states[BR].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[BR].angle.getRadians());      
+     }                             // x1.3
    
   @Override
   public void periodic() {

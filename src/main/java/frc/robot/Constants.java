@@ -12,7 +12,7 @@ public class Constants {
 
     public static final int INTAKE_UPPERTALON_ID = 55;
     public static final int INTAKE_LOWERTALON_ID = 47;
-    public static final int INTAKE_DELOY_ID = 22;
+    public static final int INTAKE_DELOY_ID = 31;
 
     public static final double INTAKE_SPEED_TALON1 = .4;
     public static final double INTAKE_SPEED_TALON2 = -.2;
