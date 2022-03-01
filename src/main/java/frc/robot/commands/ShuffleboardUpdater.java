@@ -35,6 +35,7 @@ public class ShuffleboardUpdater extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    output = ShTab.add("Percent Output", 1).getEntry();
     containerMode = containerSwap.getString("CATAPULT");
   }
 
