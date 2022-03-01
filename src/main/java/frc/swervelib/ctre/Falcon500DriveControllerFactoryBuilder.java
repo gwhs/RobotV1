@@ -85,7 +85,7 @@ public final class Falcon500DriveControllerFactoryBuilder {
                 motorConfiguration.supplyCurrLimit.enable = true;
             }
 
-            WPI_TalonFX motor = new WPI_TalonFX(driveConfiguration);
+            WPI_TalonFX motor = new WPI_TalonFX(driveConfiguration,"canvore");
             motor.configAllSettings(motorConfiguration);
 
             if (hasVoltageCompensation()) {
