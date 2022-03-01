@@ -14,7 +14,7 @@ import frc.robot.subsystems.CatapultSubsystem;
 import frc.robot.subsystems.IndicationLight;
 
 
-public class IndicaterLightContainer{
+public class IndicaterLightContainer implements BaseContainer{
     private final IndicationLight light = new IndicationLight();
     private GenericHID m_controller;
 

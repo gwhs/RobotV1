@@ -226,7 +226,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
   }
 
   public Pose2d getPose() {
-    System.out.println(m_odometry.getPoseMeters());
     return m_odometry.getPoseMeters();
   }
 
@@ -341,5 +340,14 @@ public class DrivetrainSubsystem extends SubsystemBase {
     motorBL.setDouble(m_states[BL].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE);
     motorBR.setDouble(m_states[BR].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE);
 
+  }
+
+  public void forcingZero() {
+    for(int i = 0; i < 500; i++) {
+      m_frontLeftModule.set(0, 0);
+      m_frontRightModule.set(0, 0);
+      m_backLeftModule.set(0, 0);
+      m_backRightModule.set(0, 0);
+    }
   }
 }

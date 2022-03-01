@@ -14,13 +14,18 @@ import frc.robot.commands.AutoCommand;
 import frc.robot.commands.AutoMeter;
 // import frc.robot.commands.AutoCommand;
 import frc.robot.commands.DefaultDriveCommand;
+import frc.robot.subsystems.CatapultSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.IntakeMotors;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
-public class RobotContainer {
+public class RobotContainer implements BaseContainer{
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
   private final XboxController m_controller = new XboxController(0);
+  private final CatapultSubsystem m_catapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID);
+  private final CatapultSubsystem m_catapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID);
+  private final IntakeMotors m_intakeMotors = new IntakeMotors(Constants.INTAKE_LOWERTALON_ID, Constants.INTAKE_UPPERTALON_ID,Constants.INTAKE_DELOY_ID,Constants.INTAKE_SPEED_TALON1, Constants.INTAKE_SPEED_TALON2, Constants.INTAKE_DEPLOY_SPEED);
   
 
   public RobotContainer() {
@@ -37,6 +42,7 @@ public class RobotContainer {
             //() -> -modifyAxis(m_controller.getRightX()) * 2//DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
             () -> modifyAxis(m_controller.getLeftTriggerAxis() - m_controller.getRightTriggerAxis()) * 2 //DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
     ));
+
 
 
 
@@ -66,8 +72,9 @@ public class RobotContainer {
   //   start.whenPressed(m_drivetrainSubsystem::toggleDriveMode);
   //  buttonY.whenPressed(() -> m_drivetrainSubsystem.setWheelAngle(0));
   //   buttonA.whenPressed(() -> m_drivetrainSubsystem.changeWheelAngleBy45());
-    buttonA.whenPressed(new AutoMeter(m_drivetrainSubsystem));
+    buttonA.whenPressed(new AutoMeter(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotors));
     buttonB.whenPressed(new AutoCommand(m_drivetrainSubsystem));
+    buttonY.whenPressed(() -> m_drivetrainSubsystem.forcingZero());
 
     // SwervedDrive
     back.whenPressed(m_drivetrainSubsystem::zeroGyroscope);

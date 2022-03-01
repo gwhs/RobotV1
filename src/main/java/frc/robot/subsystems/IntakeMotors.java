@@ -17,17 +17,21 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class IntakeMotors extends SubsystemBase{
     private TalonFX upperMotor;
     private TalonFX lowerMotor;
+    private TalonFX deployMotr;
     private double upperSpeed;
     private double lowerSpeed;
+    private double deploySpeed;
+
     private TalonFX deployMotor;
 
     
-    public IntakeMotors(int upperMotorID, int lowerMotorID,int deployMotor, double upperSpeed, double lowerSpeed){
+    public IntakeMotors(int deployMotorID, int upperMotorID, int lowerMotorID, double deploySpeed, double upperSpeed, double lowerSpeed){
         this.upperMotor = new TalonFX(upperMotorID);
         this.lowerMotor = new TalonFX(lowerMotorID);
-        this.deployMotor = new TalonFX(deployMotor);
+        this.deployMotor = new TalonFX(deployMotorID);
         this.upperSpeed = upperSpeed;
         this.lowerSpeed = lowerSpeed;
+        this.deploySpeed = deploySpeed;
         this.setSoftLimits();
         this.setZero();
     }
