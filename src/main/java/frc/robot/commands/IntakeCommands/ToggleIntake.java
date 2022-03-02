@@ -5,32 +5,30 @@ import frc.robot.subsystems.IntakeMotors;
 
 public class ToggleIntake extends CommandBase{
     private IntakeMotors motor;
-    private boolean deploying = true;
-    private IntakeMotors deployMotor;
-    private double speed;
+    private boolean deploying;
+    private double speed = .3;
 
 
     public ToggleIntake(IntakeMotors motor){
         this.motor = motor;
-        this.deploying = deploying;
+        motor.setZero();
         motor.setCoastMode();
         addRequirements(motor);
     }
 
     @Override
     public void initialize(){
-        double currentPosition = deployMotor.getPosition();
+        double currentPosition = motor.getPosition();
         if (currentPosition <= 10){
             deploying = true;
-            motor.undeploy(-speed);
+            motor.undeploy(speed);
             motor.choke();
         } else if(currentPosition >= 11000){
             deploying = false;
             motor.deploy(speed);
         } else {
             deploying = false;
-            motor.undeploy(-speed);
-            motor.choke();
+            motor.undeploy(speed);
         }
 
 
@@ -49,9 +47,6 @@ public class ToggleIntake extends CommandBase{
     public void end(boolean interrupted){
         System.out.println("ENDING INTAKE - DEPLOY");
         motor.stopDeploy();
-        if (motor.getPosition() > 1000 && motor.getPosition() < 10000){
-            deploying = !deploying;
-        }
     }
 
     @Override
@@ -59,7 +54,7 @@ public class ToggleIntake extends CommandBase{
         // makes sure arm is at bottom and has shot before ending.
         double currentPosition = motor.getPosition();
         if (currentPosition >= 11000 && deploying == true){
-            motor.suck();
+            motor.suckBalls();
             return true;
         } else if (currentPosition <= 10 && deploying == false){
             return true;

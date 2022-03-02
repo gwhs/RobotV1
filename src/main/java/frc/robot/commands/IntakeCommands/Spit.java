@@ -28,7 +28,7 @@ public class Spit extends CommandBase{
 
     @Override
     public void end(boolean interrupted){
-        motors.suck();
+        motors.suckBalls();
     }
 
     @Override
