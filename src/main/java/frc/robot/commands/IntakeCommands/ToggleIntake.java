@@ -57,6 +57,7 @@ public class ToggleIntake extends CommandBase{
             motor.suckBalls();
             return true;
         } else if (currentPosition <= 10 && deploying == false){
+            motor.choke();
             return true;
         }
 
