@@ -37,9 +37,11 @@ public class TurnToZeroLimelight extends ProfiledPIDCommand {
         // Set reference to target
         targetAngleDegrees,  
         // Pipe output to turn branchrobot
-        (output,setpoint) -> drivetrain.drive(new ChassisSpeeds(output,0,0)),
+        (output,setpoint) -> drivetrain.drive(new ChassisSpeeds(0,0,output)),
         // Require the drive
         drivetrain);
+
+        
   
       // Set the controller to be continuous (because it is an angle controller)
       //getController().enableContinuousInput(-180, 180);
@@ -51,7 +53,7 @@ public class TurnToZeroLimelight extends ProfiledPIDCommand {
 
     // ll.printLoc();
     // Shuffleboard.getTab("limelight-test").add("test");
-    System.out.println("***********" + ll.getDistance() + "**********");
+    // System.out.println("***********" + ll.getDistance() + "**********");
   }
 
 
