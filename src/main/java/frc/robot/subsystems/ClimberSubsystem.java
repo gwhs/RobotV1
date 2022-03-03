@@ -17,14 +17,15 @@ public class ClimberSubsystem extends SubsystemBase {
   public ClimberSubsystem(int rightMotorId, int leftMotorId){//, int leftMotorId) {
     this.rightArm = new TalonFX(rightMotorId);
     this.leftArm = new TalonFX(leftMotorId);
-    
-    leftArm.set(ControlMode.Follower, rightMotorId);
     leftArm.setInverted(false);
+    rightArm.setInverted(true);
+    
     
   }
 
   public void setSpeed(double speed){
     rightArm.set(ControlMode.PercentOutput, speed);
+    leftArm.set(ControlMode.PercentOutput, speed);
   }
 
   public void setCoast(){
@@ -39,6 +40,7 @@ public class ClimberSubsystem extends SubsystemBase {
 
   public void setZero(){
     rightArm.setSelectedSensorPosition(0);
+    leftArm.setSelectedSensorPosition(0);
   }
 
   public double getRightArmPosition(){

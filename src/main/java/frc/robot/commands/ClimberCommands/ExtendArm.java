@@ -12,7 +12,7 @@ public class ExtendArm extends CommandBase {
   
 
   private ClimberSubsystem climberSubsystem;
-  public ExtendArm(ClimberSubsystem climberSubsystem, double target) {
+  public ExtendArm(ClimberSubsystem climberSubsystem) {
     //this.speed = speed;
     this.climberSubsystem = climberSubsystem;
     
