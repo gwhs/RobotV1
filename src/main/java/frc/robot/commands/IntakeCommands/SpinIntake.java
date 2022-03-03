@@ -31,7 +31,11 @@ public class SpinIntake extends CommandBase{
 
     @Override
     public void end(boolean interrupted){
+<<<<<<< HEAD:src/main/java/frc/robot/commands/IntakeCommands/SpinIntake.java
         motors.choke();
+=======
+        motors.suckBalls();
+>>>>>>> be47373921ca1c1cd26d48466a030aef5fc507e1:src/main/java/frc/robot/commands/IntakeCommands/Spit.java
     }
 
     @Override
