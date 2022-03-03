@@ -8,9 +8,10 @@ public class AutoClimb extends SequentialCommandGroup {
     public AutoClimb(ClimberSubsystem climberSubsystem){
         this.climberSubsystem = climberSubsystem;
 
-        //low ticks - 73k, mid ticks - 272.5k change this below
+        //98304 ticks per 4.55 inches per 30 teeth for gear
+        //98304 ticks : 1 gear rotation : 30 teeth : 4.55 inches
     
-    addCommands(new ClimberCommand(climberSubsystem, 272500).withTimeout(5), 
+    addCommands(new ClimberCommand(climberSubsystem, 482000).withTimeout(5), 
     new RetractArm(climberSubsystem));
     
     }

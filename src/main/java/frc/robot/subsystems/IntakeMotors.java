@@ -1,8 +1,6 @@
 package frc.robot.subsystems;
 
-import java.util.ResourceBundle.Control;
 
-import javax.swing.RowFilter.ComparisonType;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -17,24 +15,20 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class IntakeMotors extends SubsystemBase{
     private TalonFX upperMotor;
     private TalonFX lowerMotor;
-    private TalonFX deployMotr;
-    private double upperSpeed;
-    private double lowerSpeed;
     private double deploySpeed;
 
     private TalonFX deployMotor;
 
     
-    public IntakeMotors(int deployMotorID, int upperMotorID, int lowerMotorID, double deploySpeed, double upperSpeed, double lowerSpeed){
+    public IntakeMotors(int deployMotorID, int upperMotorID, int lowerMotorID){
         this.upperMotor = new TalonFX(upperMotorID);
         this.lowerMotor = new TalonFX(lowerMotorID);
         this.deployMotor = new TalonFX(deployMotorID);
-        this.upperSpeed = upperSpeed;
-        this.lowerSpeed = lowerSpeed;
-        this.deploySpeed = deploySpeed;
+        deployMotor.setNeutralMode(NeutralMode.Brake);
         this.setSoftLimits();
         this.setZero();
     }
+
 
     public void setZero(){
         deployMotor.setSelectedSensorPosition(0);
@@ -44,13 +38,9 @@ public class IntakeMotors extends SubsystemBase{
         return deployMotor.getSelectedSensorPosition();
     }
 
-    public void suckBalls(){
-        upperMotor.set(ControlMode.PercentOutput, upperSpeed);
-        lowerMotor.set(ControlMode.PercentOutput, lowerSpeed);
-    }
 
-    public void spit(){
-        upperMotor.set(ControlMode.PercentOutput, -upperSpeed);
+    public void setIntakeMotorSpeeds(double upperSpeed, double lowerSpeed){
+        upperMotor.set(ControlMode.PercentOutput, upperSpeed);
         lowerMotor.set(ControlMode.PercentOutput, lowerSpeed);
     }
 

@@ -43,7 +43,7 @@ public class CatapultCommand extends CommandBase {
         //long elapsedTime = System.currentTimeMillis() - start;
         double position = motor.getPosition();
         //position is 77.3k for 360 degrees of rotation
-        if (position >= 7750 - offset){
+        if (Math.abs(position) >= 5100 - offset){
             motor.setBrake();
             motor.setPercent(-0.06);
             //put motor in reverse to reset
