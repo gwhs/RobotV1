@@ -38,13 +38,6 @@ public class IntakeMotors extends SubsystemBase{
         return deployMotor.getSelectedSensorPosition();
     }
 
-<<<<<<< HEAD
-=======
-    public void suckBalls(){
-        upperMotor.set(ControlMode.PercentOutput, upperSpeed);
-        lowerMotor.set(ControlMode.PercentOutput, lowerSpeed);
-    }
->>>>>>> be47373921ca1c1cd26d48466a030aef5fc507e1
 
     public void setIntakeMotorSpeeds(double upperSpeed, double lowerSpeed){
         upperMotor.set(ControlMode.PercentOutput, upperSpeed);
