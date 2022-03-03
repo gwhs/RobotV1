@@ -18,7 +18,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
 import frc.robot.commands.IntakeCommands.SpinIntake;
-import frc.robot.commands.IntakeCommands.ToggleIntake;
 import frc.robot.utils.Utilities;
 import frc.robot.commands.AutoMeter;
 import frc.robot.commands.AutoCommand;
@@ -77,7 +76,6 @@ public class FinalContainer implements BaseContainer{
     //buttonB.whenPressed();
     buttonA.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem,1 ));
     buttonY.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem, 2));
-    buttonLBumper.whenPressed(new ToggleIntake(m_IntakeMotors));
     buttonRBumper.whenPressed(new SpinIntake(m_IntakeMotors, 0.1, 0.1));
     buttonLeftJoystickButton.whenPressed(new AutoMeter(m_drivetrainSubsystem, m_CatapultLeftSubsystem, m_CatapultLeftSubsystem, m_IntakeMotors));
     buttonRightJoystickButton.whenPressed(new AutoCommand(m_drivetrainSubsystem));

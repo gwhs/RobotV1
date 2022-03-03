@@ -34,7 +34,7 @@ public class IntakeMotors extends SubsystemBase{
         deployMotor.setSelectedSensorPosition(0);
     }
 
-    public double getPosition(){
+    public double getDeployPosition(){
         return deployMotor.getSelectedSensorPosition();
     }
 
@@ -42,6 +42,10 @@ public class IntakeMotors extends SubsystemBase{
     public void setIntakeMotorSpeeds(double upperSpeed, double lowerSpeed){
         upperMotor.set(ControlMode.PercentOutput, upperSpeed);
         lowerMotor.set(ControlMode.PercentOutput, lowerSpeed);
+    }
+
+    public void setDeployMotorSpeed(double speed) {
+        deployMotor.set(ControlMode.PercentOutput, speed);
     }
 
     public void choke(){

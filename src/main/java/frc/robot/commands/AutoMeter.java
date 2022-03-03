@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
 import frc.robot.commands.IntakeCommands.SpinIntake;
-import frc.robot.commands.IntakeCommands.ToggleIntake;
 import frc.robot.subsystems.CatapultSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeMotors;
