@@ -13,18 +13,19 @@ public class ToggleIntake extends CommandBase{
     public ToggleIntake(IntakeMotors motor){
         this.motor = motor;
         this.deploying = deploying;
-        motor.setCoastMode();
+        motor.setBrakeMode();
         addRequirements(motor);
     }
 
     @Override
     public void initialize(){
         double currentPosition = deployMotor.getPosition();
+        System.out.println(deployMotor.getPosition());
         if (currentPosition <= 10){
             deploying = true;
             motor.undeploy(-speed);
             motor.choke();
-        } else if(currentPosition >= 11000){
+        } else if(currentPosition >= 1700){
             deploying = false;
             motor.deploy(speed);
         } else {
@@ -58,8 +59,8 @@ public class ToggleIntake extends CommandBase{
     public boolean isFinished() {
         // makes sure arm is at bottom and has shot before ending.
         double currentPosition = motor.getPosition();
-        if (currentPosition >= 11000 && deploying == true){
-            motor.suck();
+        if (currentPosition >= 1700 && deploying == true){
+            motor.setIntakeMotorSpeeds(0, 0);
             return true;
         } else if (currentPosition <= 10 && deploying == false){
             return true;
