@@ -25,7 +25,7 @@ public class RobotContainer implements BaseContainer{
   private final XboxController m_controller = new XboxController(0);
   private final CatapultSubsystem m_catapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID);
   private final CatapultSubsystem m_catapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID);
-  private final IntakeMotors m_intakeMotors = new IntakeMotors(Constants.INTAKE_LOWERTALON_ID, Constants.INTAKE_UPPERTALON_ID,Constants.INTAKE_DELOY_ID,Constants.INTAKE_SPEED_TALON1, Constants.INTAKE_SPEED_TALON2, Constants.INTAKE_DEPLOY_SPEED);
+  private final IntakeMotors m_intakeMotors = new IntakeMotors(Constants.INTAKE_DEPLOY_ID, Constants.INTAKE_UPPERTALON_ID,Constants.INTAKE_LOWERTALON_ID);
   
 
   public RobotContainer() {

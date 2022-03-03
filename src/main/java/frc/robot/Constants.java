@@ -4,7 +4,7 @@ public class Constants {
     // for the catapults, speed is -1.0 to 1.0 as decimal
     public static final int CATAPULT_LEFT_ID = 37;
     public static final int CATAPULT_RIGHT_ID = 21;
-    public static double CATAPULT_SPEED = 0.1;
+    public static double CATAPULT_SPEED = .85;
     public static double CATAPULT_SPEED_LOW = 0.05;
     public static double CATAPULT_SPEED_DUMP = 0.015;
     public static double CATAPULT_SPEED_FAR = 1;
@@ -12,7 +12,7 @@ public class Constants {
 
     public static final int INTAKE_UPPERTALON_ID = 55;
     public static final int INTAKE_LOWERTALON_ID = 47;
-    public static final int INTAKE_DELOY_ID = 31;
+    public static final int INTAKE_DEPLOY_ID = 31;
 
     public static final double INTAKE_SPEED_TALON1 = .4;
     public static final double INTAKE_SPEED_TALON2 = -.2;

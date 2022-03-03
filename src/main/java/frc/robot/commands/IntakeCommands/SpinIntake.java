@@ -2,33 +2,36 @@ package frc.robot.commands.IntakeCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeMotors;
-import frc.robot.commands.IntakeCommands.Spit;
+import frc.robot.commands.IntakeCommands.SpinIntake;
 
-public class Spit extends CommandBase{
+public class SpinIntake extends CommandBase{
     private IntakeMotors motors;
-    private boolean spittingMode;
+    private double lowerSpeed;
+    private double upperSpeed;
 
-    public Spit(IntakeMotors motors){
+    public SpinIntake(IntakeMotors motors, double upperSpeed, double lowerSpeed){
         this.motors = motors;
+        this.upperSpeed = upperSpeed;
+        this.lowerSpeed = lowerSpeed;
 
         addRequirements(motors);
     }
 
     @Override
     public void initialize(){
-
+    
     }
 
 
     @Override
     public void execute(){
         
-        motors.spit();
+        motors.setIntakeMotorSpeeds(upperSpeed, lowerSpeed);
     }
 
     @Override
     public void end(boolean interrupted){
-        motors.suckBalls();
+        motors.choke();
     }
 
     @Override

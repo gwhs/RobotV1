@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
-import frc.robot.commands.IntakeCommands.Spit;
+import frc.robot.commands.IntakeCommands.SpinIntake;
 import frc.robot.commands.IntakeCommands.ToggleIntake;
 import frc.robot.utils.Utilities;
 import frc.robot.commands.AutoMeter;
@@ -30,7 +30,7 @@ public class FinalContainer implements BaseContainer{
   private final ClimberSubsystem m_ClimberSubsytem = new ClimberSubsystem(43, 45); //FIX INPUTS
   private final CatapultSubsystem m_CatapultLeftSubsystem = new CatapultSubsystem(1);
   private final CatapultSubsystem m_CatapultRightSubsystem = new CatapultSubsystem(21);
-  private final IntakeMotors m_IntakeMotors = new IntakeMotors(Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID,Constants.INTAKE_DELOY_ID,Constants.INTAKE_SPEED_TALON1, Constants.INTAKE_SPEED_TALON2, Constants.INTAKE_DEPLOY_SPEED);
+  private final IntakeMotors m_IntakeMotors = new IntakeMotors(Constants.INTAKE_DEPLOY_ID,Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID);
 
   public FinalContainer() {
 
@@ -78,7 +78,7 @@ public class FinalContainer implements BaseContainer{
     buttonA.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem,1 ));
     buttonY.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem, 2));
     buttonLBumper.whenPressed(new ToggleIntake(m_IntakeMotors));
-    buttonRBumper.whenPressed(new Spit(m_IntakeMotors));
+    buttonRBumper.whenPressed(new SpinIntake(m_IntakeMotors, 0.1, 0.1));
     buttonLeftJoystickButton.whenPressed(new AutoMeter(m_drivetrainSubsystem, m_CatapultLeftSubsystem, m_CatapultLeftSubsystem, m_IntakeMotors));
     buttonRightJoystickButton.whenPressed(new AutoCommand(m_drivetrainSubsystem));
     
