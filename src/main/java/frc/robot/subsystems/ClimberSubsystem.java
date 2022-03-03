@@ -19,6 +19,7 @@ public class ClimberSubsystem extends SubsystemBase {
     this.leftArm = new TalonFX(leftMotorId);
     
     leftArm.set(ControlMode.Follower, rightMotorId);
+    leftArm.setInverted(false);
     
   }
 
