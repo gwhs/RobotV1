@@ -7,6 +7,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -44,9 +45,11 @@ public class IntakeContainer implements BaseContainer{
     
     JoystickButton RB = new JoystickButton(m_controller, XboxController.Button.kRightBumper.value);
     JoystickButton X = new JoystickButton(m_controller,XboxController.Button.kX.value);
+    JoystickButton Y = new JoystickButton(m_controller, XboxController.Button.kY.value);
 
-    X.whenPressed(new ToggleIntake(m_IntakeMotors, 0.3, 1, 1));
-    //X.whenPressed(new SpinIntake(m_IntakeMotors, -1, 1), true);
+    RB.whenPressed(new ToggleIntake(m_IntakeMotors, 0.3, 0, 0));
+    Y.whenPressed(new ToggleIntake(m_IntakeMotors, -0.3,0,0));
+    X.whenPressed(new SpinIntake(m_IntakeMotors, -1, 1), true);
     
     
   
