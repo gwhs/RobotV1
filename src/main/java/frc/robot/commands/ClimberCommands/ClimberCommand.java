@@ -46,7 +46,7 @@ public class ClimberCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (position > targetPosition){
+    if (position > targetPosition){ //if position is greater than where we want to go it stop climbing, and sets to brake mode.
       climberSubsystem.setSpeed(0);
       climberSubsystem.setBrake();
       return true;
