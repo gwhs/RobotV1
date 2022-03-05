@@ -1,23 +1,20 @@
 package frc.robot.commands.CatapultCommands;
 
-import javax.sound.midi.Sequencer;
 
-import edu.wpi.first.math.interpolation.TimeInterpolatableBuffer;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.subsystems.CatapultSubsystem;
 
 public class CatapultDouble extends SequentialCommandGroup {
-    private CatapultSubsystem m_CatapultSubsystemLeft;
-    private CatapultSubsystem m_CatapultSubsystemRight;
+    // private CatapultSubsystem m_CatapultSubsystemLeft;
+    // private CatapultSubsystem m_CatapultSubsystemRight;
 
 
     public CatapultDouble(CatapultSubsystem m_CatapultSubsystemLeft, CatapultSubsystem m_CatapultSubsystemRight, int shooterMode) {
-        this.m_CatapultSubsystemLeft = m_CatapultSubsystemLeft;
-        this.m_CatapultSubsystemRight = m_CatapultSubsystemRight;
+        // this.m_CatapultSubsystemLeft = m_CatapultSubsystemLeft;
+        // this.m_CatapultSubsystemRight = m_CatapultSubsystemRight;
         if (shooterMode == Constants.SHOOTER_MODE_DOUBLE)        
             addCommands(
                 new ParallelCommandGroup(new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED),
