@@ -67,11 +67,11 @@ public class Constants {
     public static final int STAGE_3_DISTANCE = 10;
     public static final int STAGE_4_DISTANCE = 5;
     
-    public static final double STAGE_1_SPEED = 0.8;
-    public static final double STAGE_2_SPEED = 0.5;
-    public static final double STAGE_3_SPEED = 0.3;
-    public static final double STAGE_4_SPEED = 0.1;
-    public static final double STAGE_5_SPEED = 0.05;
+    public static final double STAGE_1_SPEED = 1.0;
+    public static final double STAGE_2_SPEED = 0.8;
+    public static final double STAGE_3_SPEED = 0.5;
+    public static final double STAGE_4_SPEED = 0.3;
+    public static final double STAGE_5_SPEED = 0.1;
 
     public static final int TURN_CAP = 30;
 

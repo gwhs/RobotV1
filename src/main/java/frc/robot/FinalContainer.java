@@ -20,6 +20,7 @@ import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.AutoAlignCommands.AlignAndMoveToLimelight;
 import frc.robot.commands.AutoAlignCommands.GoToDistanceLimelight;
 import frc.robot.commands.AutoAlignCommands.PrintLimelightDistance;
+import frc.robot.commands.AutoAlignCommands.SwitchLimelightStream;
 import frc.robot.commands.AutoAlignCommands.TurnToZeroLimelight;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
 import frc.robot.commands.IntakeCommands.Spit;
@@ -91,7 +92,7 @@ public class FinalContainer implements BaseContainer{
 
     // limelight commands
     buttonB.whenPressed(new GoToDistanceLimelight(70, m_drivetrainSubsystem, ll));
-    buttonA.whenPressed(new PrintLimelightDistance(ll));
+    buttonA.whenPressed(new SwitchLimelightStream());
     buttonX.whenPressed(new TurnToZeroLimelight(0, m_drivetrainSubsystem, ll));
     buttonY.whenPressed(new AlignAndMoveToLimelight(60, m_drivetrainSubsystem, ll));
 
