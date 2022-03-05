@@ -17,9 +17,11 @@ public class CatapultSubsystem extends SubsystemBase {
   /** Creates a new motor. */
   public CatapultSubsystem(int id) {
     motor = new TalonFX(id);
+    //consistant amt of power every time
     motor.configVoltageCompSaturation(11);
     motor.enableVoltageCompensation(true);
 
+    //one will go forward, the other will go inverted
     if(id == 21){
       motor.setInverted(InvertType.InvertMotorOutput);
     }
@@ -42,7 +44,6 @@ public class CatapultSubsystem extends SubsystemBase {
   }
 
   public double getPosition(){
-    motor.getSelectedSensorPosition();
     return motor.getSelectedSensorPosition();
   }
 
