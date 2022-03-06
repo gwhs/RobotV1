@@ -40,7 +40,7 @@ public class ToggleIntake extends CommandBase {
   @Override
   public void execute() {
     currentPos = motors.getDeployPosition();
-    if (currentPos <= 18399 - offset){ // About 48 degrees (IS THE AVERAGE OF 32 and 60)
+    if (currentPos <= 18399 - offset){ // About 32 degrees
       deployed = true;
       motors.setDeployMotorSpeed(deploySpeed);
     }
