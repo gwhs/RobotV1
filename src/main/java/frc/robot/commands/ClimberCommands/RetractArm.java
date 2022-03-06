@@ -4,14 +4,12 @@
 
 package frc.robot.commands.ClimberCommands;
 
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimberSubsystem;
 
 public class RetractArm extends CommandBase {
   /** Creates a new ClimvberCommand. */
-  private double position;
+  private double beginningPosition;
   private ClimberSubsystem climberSubsystem;
   public RetractArm(ClimberSubsystem climberSubsystem) {
     //this.speed = speed;
@@ -25,7 +23,7 @@ public class RetractArm extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    position = climberSubsystem.getRightArmPosition();
+    beginningPosition = climberSubsystem.getRightArmPosition();
     climberSubsystem.setSpeed(-0.2);
   }
 
@@ -47,7 +45,7 @@ public class RetractArm extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(climberSubsystem.getRightArmPosition() < position - 30000){
+    if(climberSubsystem.getRightArmPosition() < beginningPosition - 108000){
       return true;
     }
     return false;

@@ -1,15 +1,7 @@
 package frc.robot.commands.CatapultCommands;
 import frc.robot.subsystems.CatapultSubsystem;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 public class CatapultCommand extends CommandBase {
     private CatapultSubsystem motor;
@@ -39,8 +31,8 @@ public class CatapultCommand extends CommandBase {
         ran = false;
         System.out.println("Round 1 pos:"+motor.getPosition());
         //sets speed\
-        motor.setSelectedSensorPosition();
         offset = motor.getPosition();
+        motor.setSelectedSensorPosition();
         motor.setPercent(speed);
     }
 
@@ -51,9 +43,9 @@ public class CatapultCommand extends CommandBase {
         //long elapsedTime = System.currentTimeMillis() - start;
         double position = motor.getPosition();
         //position is 77.3k for 360 degrees of rotation
-        if (position >= 7750 - offset){
+        if (Math.abs(position) >= 5100 - offset){
             motor.setBrake();
-            motor.setPercent(-0.06);
+            motor.setPercent(returnSpeed);
             //put motor in reverse to reset
             ran = true;
         }

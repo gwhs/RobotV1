@@ -5,32 +5,40 @@
 package frc.robot.commands.AutoAlignCommands;
 
 import edu.wpi.first.math.controller.ProfiledPIDController;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj2.command.ProfiledPIDCommand;
+import frc.robot.Constants;
+import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.TimeOfFlightRange;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class GoToDistanceTimeOfFlight extends ProfiledPIDCommand {
-  /** Creates a new GoToDistanceTimeOfFlight. */
-  public GoToDistanceTimeOfFlight() {
+  /** Creates a new GoToDistanceTimeOfFlight. 
+   * Uses time of flight to move forward up until a certain 
+   * away from a wall
+  */
+  TimeOfFlightRange sensorCheck;
+
+  public GoToDistanceTimeOfFlight(double distanceInches, DrivetrainSubsystem drivetrain, TimeOfFlightRange sensor) {
     super(
         // The ProfiledPIDController used by the command
-        new ProfiledPIDController(
-            // The PID gains
-            0,
-            0,
-            0,
-            // The motion profile constraints
-            new TrapezoidProfile.Constraints(0, 0)),
+        new ProfiledPIDController(Constants.DISTANCE_PID_P,Constants.DISTANCE_PID_I, Constants.DISTANCE_PID_D, //need to tune this better
+            new TrapezoidProfile.Constraints(Constants.MAX_DISTANCE_VELOCITY,Constants.MAX_DISTANCE_ACCELERATION)),
         // This should return the measurement
-        () -> 0,
+        sensor::getDistanceSensor,
         // This should return the goal (can also be a constant)
-        () -> new TrapezoidProfile.State(),
+        distanceInches,
         // This uses the output
-        (output, setpoint) -> {
-          // Use the output (and setpoint, if desired) here
-        });
+        (output, setpoint) -> drivetrain.drive(new ChassisSpeeds(output,0,0)),
+        // Require the drive
+        drivetrain);
+  
+      // Set the controller to be continuous (because it is an angle controller)
+      //getController().enableContinuousInput(-180, 180);
+      sensorCheck = sensor;
     // Use addRequirements() here to declare subsystem dependencies.
     // Configure additional PID options by calling `getController` here.
   }
@@ -38,6 +46,6 @@ public class GoToDistanceTimeOfFlight extends ProfiledPIDCommand {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return sensorCheck.getDistanceSensor() < 4;
   }
 }

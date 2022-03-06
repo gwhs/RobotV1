@@ -4,8 +4,6 @@
 
 package frc.robot.commands.ClimberCommands;
 
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.ClimberSubsystem;
 
@@ -14,7 +12,7 @@ public class ExtendArm extends CommandBase {
   
 
   private ClimberSubsystem climberSubsystem;
-  public ExtendArm(ClimberSubsystem climberSubsystem, double target) {
+  public ExtendArm(ClimberSubsystem climberSubsystem) {
     //this.speed = speed;
     this.climberSubsystem = climberSubsystem;
     
@@ -45,7 +43,7 @@ public class ExtendArm extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (climberSubsystem.getRightArmPosition() > 200000){
+    if (climberSubsystem.getRightArmPosition() > 482000){
       return true;
     }
     return false;

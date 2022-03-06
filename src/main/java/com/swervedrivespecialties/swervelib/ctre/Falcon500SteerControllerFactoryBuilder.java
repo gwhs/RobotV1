@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardContainer;
 import static com.swervedrivespecialties.swervelib.ctre.CtreUtils.checkCtreError;
 
 public final class Falcon500SteerControllerFactoryBuilder {
-    private static final int CAN_TIMEOUT_MS = 250;
+    private static final int CAN_TIMEOUT_MS = 500; //250 (experiment w larger value)
     private static final int STATUS_FRAME_GENERAL_PERIOD_MS = 250;
 
     private static final double TICKS_PER_ROTATION = 2048.0;
@@ -101,9 +101,9 @@ public final class Falcon500SteerControllerFactoryBuilder {
                 if (hasVoltageCompensation()) {
                     motorConfiguration.slot0.kF = (1023.0 * sensorVelocityCoefficient / nominalVoltage) * velocityConstant;
                 }
-                // TODO: What should be done if no nominal voltage is configured? Use a default voltage?
+                // What should be done if no nominal voltage is configured? Use a default voltage?
 
-                // TODO: Make motion magic max voltages configurable or dynamically determine optimal values
+                // Make motion magic max voltages configurable or dynamically determine optimal values
                 motorConfiguration.motionCruiseVelocity = 2.0 / velocityConstant / sensorVelocityCoefficient;
                 motorConfiguration.motionAcceleration = (8.0 - 2.0) / accelerationConstant / sensorVelocityCoefficient;
             }
@@ -115,7 +115,7 @@ public final class Falcon500SteerControllerFactoryBuilder {
                 motorConfiguration.supplyCurrLimit.enable = true;
             }
 
-            TalonFX motor = new TalonFX(steerConfiguration.getMotorPort());
+            TalonFX motor = new TalonFX(steerConfiguration.getMotorPort(), "canvore");
             checkCtreError(motor.configAllSettings(motorConfiguration, CAN_TIMEOUT_MS), "Failed to configure Falcon 500 settings");
 
             if (hasVoltageCompensation()) {

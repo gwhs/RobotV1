@@ -11,15 +11,21 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.commands.AutoCommand;
+import frc.robot.commands.AutoMeter;
 // import frc.robot.commands.AutoCommand;
 import frc.robot.commands.DefaultDriveCommand;
+import frc.robot.subsystems.CatapultSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.IntakeMotors;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
-public class RobotContainer {
+public class RobotContainer implements BaseContainer{
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
   private final XboxController m_controller = new XboxController(0);
+  private final CatapultSubsystem m_catapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID);
+  private final CatapultSubsystem m_catapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID);
+  private final IntakeMotors m_intakeMotors = new IntakeMotors(Constants.INTAKE_DEPLOY_ID, Constants.INTAKE_UPPERTALON_ID,Constants.INTAKE_LOWERTALON_ID);
   
 
   public RobotContainer() {
@@ -31,11 +37,12 @@ public class RobotContainer {
     // Right stick X axis -> rotation
     m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(
             m_drivetrainSubsystem,
-            () -> -modifyAxis(m_controller.getLeftY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND, //1
-            () -> -modifyAxis(m_controller.getLeftX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND, //1
+            () -> -modifyAxis(m_controller.getLeftY()) * 1, //DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND, //1
+            () -> -modifyAxis(m_controller.getLeftX()) * 1, //DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND, //1
             //() -> -modifyAxis(m_controller.getRightX()) * 2//DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
-            () -> modifyAxis(m_controller.getLeftTriggerAxis() - m_controller.getRightTriggerAxis()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
+            () -> modifyAxis(m_controller.getLeftTriggerAxis() - m_controller.getRightTriggerAxis()) * 2 //DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
     ));
+
 
 
 
@@ -65,7 +72,9 @@ public class RobotContainer {
   //   start.whenPressed(m_drivetrainSubsystem::toggleDriveMode);
   //  buttonY.whenPressed(() -> m_drivetrainSubsystem.setWheelAngle(0));
   //   buttonA.whenPressed(() -> m_drivetrainSubsystem.changeWheelAngleBy45());
+    buttonA.whenPressed(new AutoMeter(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotors));
     buttonB.whenPressed(new AutoCommand(m_drivetrainSubsystem));
+    buttonY.whenPressed(() -> m_drivetrainSubsystem.forcingZero());
 
     // SwervedDrive
     back.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
