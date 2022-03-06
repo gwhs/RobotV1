@@ -4,6 +4,8 @@
 
 package frc.robot.commands.IntakeCommands;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeMotors;
 
@@ -36,11 +38,17 @@ public class ToggleIntakeCatapult extends CommandBase {
       deployed = true;
       motors.setDeployMotorSpeed(0.1);
     }
+    else {
+      deployed = false;
+      motors.setDeployMotorSpeed(-0.1);
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    motors.setDeployMotorSpeed(0);
+  }
 
   // Returns true when the command should end.
   @Override
@@ -49,10 +57,10 @@ public class ToggleIntakeCatapult extends CommandBase {
       deployed = false;
       return true;
     }
-    // if(!deployed && motors.getDeployPosition() >= 16400) {
-    //   deployed = true;
-    //   return true;
-    // }
+    if(!deployed && motors.getDeployPosition() >= 16400) {
+      deployed = true;
+      return true;
+    }
   return false;
 }
   }
