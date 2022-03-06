@@ -312,14 +312,17 @@ public class DrivetrainSubsystem extends SubsystemBase {
         m_backRightModule.set(m_states[BR].speedMetersPerSecond / MAX_VELOCITY_METERS_PER_SECOND * MAX_VOLTAGE, states[BR].angle.getRadians());      
      }                             // x1.3
    
+     private SwerveModuleState getStateFromModule(SwerveModule module) {
+            return new SwerveModuleState(module.getDriveVelocity(), new Rotation2d(module.getSteerAngle()));
+     }
   @Override
   public void periodic() {
     m_odometry.update(
         m_navx.getRotation2d(),
-        m_states[FL],
-        m_states[FR],
-        m_states[BL],
-        m_states[BR]
+        getStateFromModule(m_frontLeftModule),
+        getStateFromModule(m_frontRightModule),
+        getStateFromModule(m_backLeftModule),
+        getStateFromModule(m_backRightModule)
     );
 
     SwerveModuleState[] states;

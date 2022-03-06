@@ -45,7 +45,7 @@ public class AutoMeter extends SequentialCommandGroup {
 
         //addCommands(new InstantCommand(() -> System.out.println(simple.getInitialPose())));
         addCommands(new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT),
-                    new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(new Translation2d(8.0, 2.62), new Rotation2d(Math.toRadians(-105.15))))),
+                    new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(new Translation2d(8.23, 3.07), new Rotation2d(Math.toRadians(-100.70))))),
                     new PPSwerveControllerCommand(
                         threeBallAuto,
                         m_drivetrainSubsystem::getPose,
