@@ -5,7 +5,6 @@ package frc.robot;
 
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -13,9 +12,14 @@ import frc.robot.subsystems.CatapultSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeMotors;
-import edu.wpi.first.wpilibj2.command.button.Button;
+import frc.robot.subsystems.LimelightPortal;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DefaultDriveCommand;
+import frc.robot.commands.AutoAlignCommands.AlignAndMoveToLimelight;
+import frc.robot.commands.AutoAlignCommands.GoToDistanceLimelight;
+import frc.robot.commands.AutoAlignCommands.PrintLimelightDistance;
+import frc.robot.commands.AutoAlignCommands.SwitchLimelightStream;
+import frc.robot.commands.AutoAlignCommands.TurnToZeroLimelight;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
 import frc.robot.commands.IntakeCommands.SpinIntake;
 import frc.robot.utils.Utilities;
@@ -31,6 +35,7 @@ public class FinalContainer implements BaseContainer{
   private final CatapultSubsystem m_CatapultRightSubsystem = new CatapultSubsystem(21);
   private final IntakeMotors m_IntakeMotors = new IntakeMotors(Constants.INTAKE_DEPLOY_ID,Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID);
 
+  private final LimelightPortal ll = new LimelightPortal();
   public FinalContainer() {
 
 
@@ -72,13 +77,23 @@ public class FinalContainer implements BaseContainer{
 
     // JoystickButton button = new JoystickButton(m_controller, XboxController.k.value);
     buttonBack.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
-    buttonX.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem, 2));
+    // buttonX.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem, 2));
     //buttonB.whenPressed();
     buttonA.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem,1 ));
     buttonY.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem, 2));
     buttonRBumper.whenPressed(new SpinIntake(m_IntakeMotors, 0.1, 0.1));
+    // buttonLBumper.whenPressed(new ToggleIntake(m_IntakeMotors));
+    // buttonRBumper.whenPressed(new Spit(m_IntakeMotors));
     buttonLeftJoystickButton.whenPressed(new AutoMeter(m_drivetrainSubsystem, m_CatapultLeftSubsystem, m_CatapultLeftSubsystem, m_IntakeMotors));
     buttonRightJoystickButton.whenPressed(new AutoCommand(m_drivetrainSubsystem));
+
+
+    // limelight commands
+    // buttonB.whenPressed(new GoToDistanceLimelight(70, m_drivetrainSubsystem, ll));
+    // buttonA.whenPressed(new SwitchLimelightStream());
+    // buttonX.whenPressed(new TurnToZeroLimelight(0, m_drivetrainSubsystem, ll));
+    // buttonY.whenPressed(new AlignAndMoveToLimelight(60, m_drivetrainSubsystem, ll));
+
     
   }
 /*

@@ -17,9 +17,10 @@ public class LimelightPortal extends SubsystemBase {
    * Creates a new LimelightPortal.
    */
   public LimelightPortal() {
-     shooterLL = NetworkTableInstance.getDefault().getTable("limelight-shooter"); 
-     shooterLL.getEntry("stream").setNumber(0);
+    shooterLL = NetworkTableInstance.getDefault().getTable("limelight-shooter"); 
 
+    // shooterLL.getEntry("ledMode").setNumber(1);
+    shooterLL.getEntry("stream").setNumber(2); 
   }
 
   @Override
@@ -35,11 +36,14 @@ public class LimelightPortal extends SubsystemBase {
 
   public void printLoc()
   {
-    NetworkTable shooterLL = NetworkTableInstance.getDefault().getTable("limelight-shooter"); // 10.55.7.11
-    NetworkTableEntry shX = shooterLL.getEntry("tx");
+    NetworkTable shooterLL = NetworkTableInstance.getDefault().getTable("limelight-shooter"); // detects 
+    /*gets the y, x, a values from the networktable, what limelight uses to hold their data
+    * (they're in the limelight site menu, right below the camera */
+    NetworkTableEntry shX = shooterLL.getEntry("tx"); 
     NetworkTableEntry shY = shooterLL.getEntry("ty");
     NetworkTableEntry shA = shooterLL.getEntry("ta");
 
+    /* changes data obtained from network table into doubles*/
     double x = shX.getDouble(0.0);
     double y = shY.getDouble(0.0);
     double a = shA.getDouble(0.0);
@@ -48,7 +52,7 @@ public class LimelightPortal extends SubsystemBase {
     System.out.println("x="+x+",y="+y+",a="+a+" ,distance="+getDistance());
   }
 
-  public double getX()
+  public double getX() //get x value, used for turning
   {
     NetworkTable shooterLL = NetworkTableInstance.getDefault().getTable("limelight-shooter"); // 10.55.7.11
     NetworkTableEntry shX = shooterLL.getEntry("tx");
@@ -72,7 +76,7 @@ public class LimelightPortal extends SubsystemBase {
     return v > 0;
   }
 
-  public double getDistance()
+  public double getDistance() //gets y and does trig to get distance to move forward
   {
     NetworkTable shooterLL = NetworkTableInstance.getDefault().getTable("limelight-shooter"); // 10.55.7.11
     NetworkTableEntry shX = shooterLL.getEntry("tx");
@@ -89,8 +93,14 @@ public class LimelightPortal extends SubsystemBase {
     return distance;
   }
 
-  public void setCamera()
+  public void setCamera(double mode)
   {
-    shooterLL.getEntry("stream").setNumber(1);
+    shooterLL.getEntry("stream").setNumber(mode);
+  }
+
+  public double getCamera()
+  {
+    NetworkTableEntry streamMode = shooterLL.getEntry("stream");
+    return streamMode.getDouble(3);
   }
 }

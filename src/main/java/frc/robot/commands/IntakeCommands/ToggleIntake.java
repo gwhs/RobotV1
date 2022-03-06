@@ -14,10 +14,13 @@ public class ToggleIntake extends CommandBase {
   private double upperSpeed;
   private double lowerSpeed;
   private boolean deployed;
+  private int offset;
+  private double currentPos;
 
   /** Creates a new DeployCommand. */
   public ToggleIntake(IntakeMotors motors, double deploySpeed, double upperSpeed, double lowerSpeed) {
     this.motors = motors;
+
     this.deploySpeed = deploySpeed;
     this.upperSpeed = upperSpeed;
     this.lowerSpeed = lowerSpeed;
@@ -28,25 +31,29 @@ public class ToggleIntake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    double currentPos = motors.getDeployPosition();
+    double offset = motors.getDeployPosition();
+    motors.setZero();
     System.out.print(currentPos);
-    if (currentPos <= 27299 ){ // About 48 degrees (IS THE AVERAGE OF 32 and 60)
-      deployed = true;
-    }
-    else {
-      deployed = false;
-    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      if(deployed) {
-        motors.setDeployMotorSpeed(deploySpeed); //undeploys
-      }
-      else {
-        motors.setDeployMotorSpeed(-deploySpeed); //deploys
-      }
+    currentPos = motors.getDeployPosition();
+    if (currentPos <= 18399 - offset){ // About 48 degrees (IS THE AVERAGE OF 32 and 60)
+      deployed = true;
+      motors.setDeployMotorSpeed(deploySpeed);
+    }
+    else {
+      deployed = false;
+      motors.setDeployMotorSpeed(-deploySpeed);
+    }
+      // if(deployed) {
+      //   motors.setDeployMotorSpeed(deploySpeed); //undeploys
+      // }
+      // else {
+      //   motors.setDeployMotorSpeed(-deploySpeed); //deploys
+      // }
           
   }
 
