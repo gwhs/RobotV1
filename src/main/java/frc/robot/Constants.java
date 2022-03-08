@@ -18,6 +18,14 @@ public class Constants {
     public static final double INTAKE_SPEED_TALON2 = -.2;
     public static final double INTAKE_DEPLOY_SPEED = .1;
 
+    //Deploy Speeds
+    public static final double DEPLOY_SPEED = 0.5;
+
+    //Intake speeds
+
+    public static final double LOWERSPEED = 1;
+    public static final double UPPERSPEED = -1;
+
 
     //Climbing Modes
 

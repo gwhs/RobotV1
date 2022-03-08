@@ -13,7 +13,7 @@ public class ClimberCommand extends CommandBase {
   private double targetPosition;
   private double position = 0;
   private ClimberSubsystem climberSubsystem;
-  public ClimberCommand(ClimberSubsystem climberSubsystem, double targetTicks) {
+  public ClimberCommand(ClimberSubsystem climberSubsystem, double targetTicks) {  //Multiply 568.8 by 
     this.climberSubsystem = climberSubsystem;
     targetPosition = targetTicks;
     addRequirements(climberSubsystem);
