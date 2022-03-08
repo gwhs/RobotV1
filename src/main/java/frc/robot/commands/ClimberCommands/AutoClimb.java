@@ -1,5 +1,7 @@
 package frc.robot.commands.ClimberCommands;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.ClimberSubsystem;
 
@@ -13,7 +15,11 @@ public class AutoClimb extends SequentialCommandGroup {
     
         // add a move backwards like 2 inches after extend
     addCommands(new ClimberCommand(climberSubsystem, 482000).withTimeout(5), 
-    new RetractArm(climberSubsystem), new ExtendArm(climberSubsystem).withTimeout(5), new DownClimber(climberSubsystem));
+    new RetractArm(climberSubsystem,  108000).withTimeout(8),
+
+
+    //REMOVE IN COMP
+    new RetractArm(climberSubsystem, 470000));
     
-    }
+    };
 }
