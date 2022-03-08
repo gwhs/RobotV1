@@ -22,7 +22,7 @@ public class CatapultDouble extends SequentialCommandGroup {
         else if (shooterMode == Constants.SHOOTER_MODE_DELAY) {
                 addCommands(
                     new ParallelCommandGroup(new CatapultCommand(m_CatapultSubsystemLeft,Constants.CATAPULT_SPEED),
-                                            new SequentialCommandGroup(new WaitCommand(3),
+                                            new SequentialCommandGroup(new WaitCommand(2),
                                                     new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED))));
             }
         else if (shooterMode == Constants.SHOOTER_MODE_LOW_HIGH){
