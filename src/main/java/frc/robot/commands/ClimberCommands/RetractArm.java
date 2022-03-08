@@ -11,10 +11,12 @@ public class RetractArm extends CommandBase {
   /** Creates a new ClimvberCommand. */
   private double beginningPosition;
   private ClimberSubsystem climberSubsystem;
-  public RetractArm(ClimberSubsystem climberSubsystem) {
+  private double returnDistance;
+
+  public RetractArm(ClimberSubsystem climberSubsystem, double returnDistance) {
     //this.speed = speed;
     this.climberSubsystem = climberSubsystem;
-
+    this.returnDistance = returnDistance;
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(climberSubsystem);
@@ -45,7 +47,7 @@ public class RetractArm extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(climberSubsystem.getRightArmPosition() < beginningPosition - 108000){
+    if(climberSubsystem.getRightArmPosition() < beginningPosition - returnDistance){
       return true;
     }
     return false;

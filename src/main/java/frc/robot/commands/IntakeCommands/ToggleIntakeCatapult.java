@@ -34,7 +34,7 @@ public class ToggleIntakeCatapult extends CommandBase {
   @Override
   public void execute() {
     currentPos = motors.getDeployPosition();
-    if (currentPos <= 16400 - offset){ // About 29 degrees
+    if (currentPos <= 16400 - offset){ // intake 29 degrees out
       deployed = true;
       motors.setDeployMotorSpeed(0.1);
     }
@@ -53,7 +53,7 @@ public class ToggleIntakeCatapult extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(deployed && motors.getDeployPosition() >= 16400) { //29 degrees
+    if(deployed && motors.getDeployPosition() >= 16400) { // intake 29 degrees out
       deployed = false;
       return true;
     }

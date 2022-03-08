@@ -18,7 +18,6 @@ import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.AutoAlignCommands.AlignAndMoveToLimelight;
 import frc.robot.commands.AutoAlignCommands.GoToDistanceLimelight;
 import frc.robot.commands.AutoAlignCommands.PrintLimelightDistance;
-import frc.robot.commands.AutoAlignCommands.SwitchLimelightStream;
 import frc.robot.commands.AutoAlignCommands.TurnToZeroLimelight;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
 import frc.robot.commands.IntakeCommands.SpinIntake;

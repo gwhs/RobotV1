@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.ClimberSubsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.ClimberCommands.AutoClimb;
+import frc.robot.commands.ClimberCommands.ClimberCommand;
+import frc.robot.commands.ClimberCommands.RetractArm;
 
 
 
@@ -44,8 +46,8 @@ public class ClimberContainer implements BaseContainer{
     //         // No requirements because we don't need to interrupt anything
     //         .whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     
-    buttonX.whenPressed(new AutoClimb(m_ClimberSubsytem)); //Climb
-    
+    buttonX.whenPressed(new ClimberCommand(m_ClimberSubsytem, 482000)); //Climb
+    buttonA.whenPressed(new RetractArm(m_ClimberSubsytem, 108000));
     // buttonX.whenPressed(new ClimberCommand(m_ClimberSubsytem, ));
     // // buttonb.whileHeld(new ExtendArm(m_ClimberSubsytem));
     // buttonA.whenPressed(new RetractArm(m_ClimberSubsytem));
