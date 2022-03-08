@@ -20,98 +20,69 @@ public class CatapultDouble extends SequentialCommandGroup {
         // this.m_CatapultSubsystemRight = m_CatapultSubsystemRight;
         if (shooterMode == Constants.SHOOTER_MODE_DOUBLE)        
             addCommands(
-                new ParallelCommandGroup(new ToggleIntakeCatapult(m_IntakeMotors, Constants.DEPLOY_SPEED),
-                                            new SequentialCommandGroup(new WaitCommand(1)),
-                                                                        new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED),
-                                                                        new CatapultCommand(m_CatapultSubsystemRight,Constants.CATAPULT_SPEED)));
+                new ParallelCommandGroup(new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED),  
+                                        new CatapultCommand(m_CatapultSubsystemRight,Constants.CATAPULT_SPEED)));
         else if (shooterMode == Constants.SHOOTER_MODE_DELAY) {
                 addCommands(
-                    new ParallelCommandGroup(new ToggleIntakeCatapult(m_IntakeMotors, Constants.DEPLOY_SPEED),
-                                                new SequentialCommandGroup(new WaitCommand(1)), 
-                                                    new CatapultCommand(m_CatapultSubsystemLeft,Constants.CATAPULT_SPEED),
-                                                        new SequentialCommandGroup(new WaitCommand(3),
-                                                            new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED))));
+                    new ParallelCommandGroup(new CatapultCommand(m_CatapultSubsystemLeft,Constants.CATAPULT_SPEED),
+                                                new SequentialCommandGroup(new WaitCommand(3),
+                                                    new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED))));
             }
         else if (shooterMode == Constants.SHOOTER_MODE_LOW_HIGH){
             addCommands(
-            new ParallelCommandGroup(new ToggleIntakeCatapult(m_IntakeMotors, Constants.DEPLOY_SPEED),
-                                        new SequentialCommandGroup(new WaitCommand(1)),
-                                            new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED),
-                                            new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_LOW)));
+            new ParallelCommandGroup(new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED),
+                                        new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_LOW)));
         }
         else if (shooterMode == Constants.SHOOTER_MODE_DOUBLE_LOW){
             addCommands(
-            new ParallelCommandGroup(new ToggleIntakeCatapult(m_IntakeMotors, Constants.DEPLOY_SPEED),
-                                        new SequentialCommandGroup(new WaitCommand(1)),
-                                            new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED_LOW),
-                                            new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_LOW)));
+            new ParallelCommandGroup(new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED_LOW),
+                                    new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_LOW)));
         }
         else if (shooterMode == Constants.SHOOTER_MODE_DUMP){
             addCommands(
-            new ParallelCommandGroup(new ToggleIntakeCatapult(m_IntakeMotors, Constants.DEPLOY_SPEED),
-                                        new SequentialCommandGroup(new WaitCommand(1)),
-                                            new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED_DUMP),
-                                            new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP)));
+            new ParallelCommandGroup(new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED_DUMP), 
+                                    new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP)));
         }
         else if (shooterMode == Constants.SHOOTER_MODE_LEFT){
             addCommands(
-            new ToggleIntakeCatapult(m_IntakeMotors, Constants.DEPLOY_SPEED),
-                new SequentialCommandGroup(new WaitCommand(1)),
                     new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED));
         }
         else if (shooterMode == Constants.SHOOTER_MODE_RIGHT){
             addCommands(
-            new ToggleIntakeCatapult(m_IntakeMotors, Constants.DEPLOY_SPEED),
-                new SequentialCommandGroup(new WaitCommand(1)),
                     new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED));
         }
         else if (shooterMode == Constants.SHOOTER_MODE_LEFT_LOW){
             addCommands(
-            new ToggleIntakeCatapult(m_IntakeMotors, Constants.DEPLOY_SPEED),
-                new SequentialCommandGroup(new WaitCommand(1)),
                     new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED_LOW));
         }
         else if (shooterMode == Constants.SHOOTER_MODE_RIGHT_LOW){
             addCommands(
-            new ToggleIntakeCatapult(m_IntakeMotors, Constants.DEPLOY_SPEED),
-                new SequentialCommandGroup(new WaitCommand(1)),
                     new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_LOW));
         }
         else if (shooterMode == Constants.SHOOTER_MODE_LEFT_DUMP){
             addCommands(
-            new ToggleIntakeCatapult(m_IntakeMotors, Constants.DEPLOY_SPEED),
-                new SequentialCommandGroup(new WaitCommand(1)),
                     new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED_DUMP));
         }
         else if (shooterMode == Constants.SHOOTER_MODE_RIGHT_DUMP){
             addCommands(
-            new ToggleIntakeCatapult(m_IntakeMotors, Constants.DEPLOY_SPEED),
-                new SequentialCommandGroup(new WaitCommand(1)),
                     new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP));
         }
         else if (shooterMode == Constants.SHOOTER_MODE_DOUBLE_FAR){
             addCommands(
-            new ToggleIntakeCatapult(m_IntakeMotors, Constants.DEPLOY_SPEED),
-                new SequentialCommandGroup(new WaitCommand(1)),
                     new ParallelCommandGroup(new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED_FAR)),
                                     new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_FAR));
         }
         else if (shooterMode == Constants.SHOOTER_MODE_LEFT_FAR){
             addCommands(
-                new ToggleIntakeCatapult(m_IntakeMotors, Constants.DEPLOY_SPEED),
-                    new SequentialCommandGroup(new WaitCommand(1)),
                         new CatapultCommand(m_CatapultSubsystemLeft, Constants.CATAPULT_SPEED_FAR));
         }
         else if (shooterMode == Constants.SHOOTER_MODE_RIGHT_FAR){
             addCommands(
-                new ToggleIntakeCatapult(m_IntakeMotors, Constants.DEPLOY_SPEED),
-                    new SequentialCommandGroup(new WaitCommand(1)),
                         new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_FAR));
         }
         else if (shooterMode == Constants.SHOOTER_MODE_DOUBLE_FAR_DELAY){
             addCommands(
-                new ParallelCommandGroup(new ToggleIntakeCatapult(m_IntakeMotors, Constants.DEPLOY_SPEED),
-                    new SequentialCommandGroup(new WaitCommand(1)),
+                new ParallelCommandGroup(
                         new CatapultCommand(m_CatapultSubsystemLeft,Constants.CATAPULT_SPEED_FAR),
                             new SequentialCommandGroup(new WaitCommand(3),
                                 new CatapultCommand(m_CatapultSubsystemRight, Constants.CATAPULT_SPEED_FAR))));
