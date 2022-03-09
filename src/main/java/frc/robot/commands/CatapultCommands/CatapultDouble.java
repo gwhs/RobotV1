@@ -18,14 +18,12 @@ public class CatapultDouble extends ParallelCommandGroup {
 
 
     public CatapultDouble(CatapultSubsystem m_CatapultSubsystemLeft, CatapultSubsystem m_CatapultSubsystemRight, double leftSpeed, double rightSpeed, double delay) {
-        this.m_CatapultSubsystemLeft = m_CatapultSubsystemLeft;
-        this.m_CatapultSubsystemRight = m_CatapultSubsystemRight;
-        addCommands(new CatapultLeft(m_CatapultSubsystemLeft,leftSpeed),
-                        new SequentialCommandGroup(new WaitCommand(delay),
-                            new CatapultRight(m_CatapultSubsystemRight, rightSpeed)));
+        // this.m_CatapultSubsystemLeft = m_CatapultSubsystemLeft;
+        // this.m_CatapultSubsystemRight = m_CatapultSubsystemRight;
+        addCommands(new CatapultLeft(m_CatapultSubsystemLeft, leftSpeed));
     }
     public void initialize(){
-        
+
     }
     public void execute(){
 
@@ -38,4 +36,4 @@ public class CatapultDouble extends ParallelCommandGroup {
     public boolean isFinished() {
         return true;
     }
-}
+} 

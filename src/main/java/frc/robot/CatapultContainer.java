@@ -48,5 +48,6 @@ public class CatapultContainer implements BaseContainer{
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
         return new InstantCommand(this::printSomething);
+        
       }
 }
