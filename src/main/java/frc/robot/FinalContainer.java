@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.CatapultSubsystem;
-import frc.robot.subsystems.ClimberSubsystem;
+import frc.robot.subsystems.ClimberRightSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeMotors;
 import frc.robot.subsystems.LimelightPortal;
@@ -18,7 +18,6 @@ import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.AutoAlignCommands.AlignAndMoveToLimelight;
 import frc.robot.commands.AutoAlignCommands.GoToDistanceLimelight;
 import frc.robot.commands.AutoAlignCommands.PrintLimelightDistance;
-import frc.robot.commands.AutoAlignCommands.SwitchLimelightStream;
 import frc.robot.commands.AutoAlignCommands.TurnToZeroLimelight;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
 import frc.robot.commands.IntakeCommands.SpinIntake;
@@ -30,7 +29,7 @@ public class FinalContainer implements BaseContainer{
   private final XboxController m_controller = new XboxController(0);
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
 
-  private final ClimberSubsystem m_ClimberSubsytem = new ClimberSubsystem(43, 45); //FIX INPUTS
+  private final ClimberRightSubsystem m_ClimberSubsytem = new ClimberRightSubsystem(43); //FIX INPUTS
   private final CatapultSubsystem m_CatapultLeftSubsystem = new CatapultSubsystem(1);
   private final CatapultSubsystem m_CatapultRightSubsystem = new CatapultSubsystem(21);
   private final IntakeMotors m_IntakeMotors = new IntakeMotors(Constants.INTAKE_DEPLOY_ID,Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID);
@@ -79,8 +78,8 @@ public class FinalContainer implements BaseContainer{
     buttonBack.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     // buttonX.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem, 2));
     //buttonB.whenPressed();
-    buttonA.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem,1 ));
-    buttonY.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem, 2));
+    // buttonA.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem,1 ));
+    // buttonY.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem, 2));
     buttonRBumper.whenPressed(new SpinIntake(m_IntakeMotors, 0.1, 0.1));
     // buttonLBumper.whenPressed(new ToggleIntake(m_IntakeMotors));
     // buttonRBumper.whenPressed(new Spit(m_IntakeMotors));

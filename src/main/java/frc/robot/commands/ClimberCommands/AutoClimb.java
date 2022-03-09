@@ -1,19 +1,20 @@
-package frc.robot.commands.ClimberCommands;
+// package frc.robot.commands.ClimberCommands;
 
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.subsystems.ClimberSubsystem;
+// import java.util.concurrent.locks.ReentrantLock;
 
-public class AutoClimb extends SequentialCommandGroup {
-    // private ClimberSubsystem climberSubsystem;
-    public AutoClimb(ClimberSubsystem climberSubsystem){
-        // this.climberSubsystem = climberSubsystem;
+// import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+// import frc.robot.subsystems.ClimberRightSubsystem;
 
-        //98304 ticks per 4.55 inches per 30 teeth for gear
-        //98304 ticks : 1 gear rotation : 30 teeth : 4.55 inches
+// public class AutoClimb extends ParallelCommandGroup {
+//     // private ClimberSubsystem climberSubsystem;
+//     public AutoClimb(ClimberRightSubsystem climberSubsystem){
+//         // this.climberSubsystem = climberSubsystem;
+
+//         //98304 ticks per 4.55 inches per 30 teeth for gear
+//         //98304 ticks : 1 gear rotation : 30 teeth : 4.55 inches
     
-        // add a move backwards like 2 inches after extend
-    addCommands(new ClimberCommand(climberSubsystem, 482000).withTimeout(5), 
-    new RetractArm(climberSubsystem), new ExtendArm(climberSubsystem).withTimeout(5), new DownClimber(climberSubsystem));
+//         // add a move backwards like 2 inches after extend
+//     addCommands(
     
-    }
-}
+//     };
+// }

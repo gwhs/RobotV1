@@ -10,14 +10,16 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import frc.robot.subsystems.ClimberSubsystem;
+import frc.robot.subsystems.ClimberRightSubsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.ClimberCommands.AutoClimb;
+
+import frc.robot.commands.ClimberCommands.RightClimbCommand;
+
 
 
 
 public class ClimberContainer implements BaseContainer{
-  private final ClimberSubsystem m_ClimberSubsytem = new ClimberSubsystem(43, 45); //FIX INPUTS
+  private final ClimberRightSubsystem m_ClimberSubsytem = new ClimberRightSubsystem(43); //FIX INPUTS
   private final XboxController m_controller = new XboxController(0);
 
   public ClimberContainer() {
@@ -44,8 +46,7 @@ public class ClimberContainer implements BaseContainer{
     //         // No requirements because we don't need to interrupt anything
     //         .whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     
-    buttonX.whenPressed(new AutoClimb(m_ClimberSubsytem)); //Climb
-    
+    buttonX.whenPressed(new RightClimbCommand(m_ClimberSubsytem, 6)); //Climb
     // buttonX.whenPressed(new ClimberCommand(m_ClimberSubsytem, ));
     // // buttonb.whileHeld(new ExtendArm(m_ClimberSubsytem));
     // buttonA.whenPressed(new RetractArm(m_ClimberSubsytem));

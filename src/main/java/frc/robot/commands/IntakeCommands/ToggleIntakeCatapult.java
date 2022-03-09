@@ -11,14 +11,14 @@ import frc.robot.subsystems.IntakeMotors;
 
 public class ToggleIntakeCatapult extends CommandBase {
   private IntakeMotors motors;
-  private double deploySpeed;
+  private double speed;
   private double currentPos;
   private double offset;
   private boolean deployed;
   /** Creates a new ToggleIntakeCatapult. */
-  public ToggleIntakeCatapult(IntakeMotors motors, double deploySpeed) {
+  public ToggleIntakeCatapult(IntakeMotors motors, double speed) {
     this.motors = motors;
-    this.deploySpeed = deploySpeed;
+    this.speed = speed;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(motors);
   }
@@ -34,7 +34,7 @@ public class ToggleIntakeCatapult extends CommandBase {
   @Override
   public void execute() {
     currentPos = motors.getDeployPosition();
-    if (currentPos <= 16400 - offset){ // About 29 degrees
+    if (currentPos <= 14200 - offset){ // intake 29 degrees out
       deployed = true;
       motors.setDeployMotorSpeed(0.1);
     }
@@ -53,11 +53,11 @@ public class ToggleIntakeCatapult extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(deployed && motors.getDeployPosition() >= 16400) { //29 degrees
+    if(deployed && motors.getDeployPosition() <= 14200) { // intake 29 degrees out
       deployed = false;
       return true;
     }
-    if(!deployed && motors.getDeployPosition() >= 16400) {
+    if(!deployed && motors.getDeployPosition() >= 14200) {
       deployed = true;
       return true;
     }
