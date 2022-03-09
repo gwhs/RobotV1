@@ -67,6 +67,7 @@ public class RobotContainer implements BaseContainer{
     JoystickButton back = new JoystickButton(m_controller, XboxController.Button.kBack.value);
     JoystickButton start = new JoystickButton(m_controller, XboxController.Button.kStart.value);
     JoystickButton buttonB = new JoystickButton(m_controller, XboxController.Button.kB.value);
+    JoystickButton buttonX = new JoystickButton(m_controller, XboxController.Button.kX.value);
     
 
   //   start.whenPressed(m_drivetrainSubsystem::toggleDriveMode);
@@ -75,6 +76,7 @@ public class RobotContainer implements BaseContainer{
     buttonA.whenPressed(new AutoMeter(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotors));
     buttonB.whenPressed(new AutoCommand(m_drivetrainSubsystem));
     buttonY.whenPressed(() -> m_drivetrainSubsystem.forcingZero());
+    buttonX.whenPressed(() -> System.out.println(m_drivetrainSubsystem.getPose()));
 
     // SwervedDrive
     back.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
