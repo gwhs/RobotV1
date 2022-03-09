@@ -8,7 +8,9 @@ public class Constants {
     public static double CATAPULT_SPEED_LOW = 0.05;
     public static double CATAPULT_SPEED_DUMP = 0.015;
     public static double CATAPULT_SPEED_FAR = 1;
-
+    public static double CATAPULT_LEFT_SPEED = 0.5;
+    public static double CATAPULT_RIGHT_SPEED = 0.5;
+    public static double DELAY = 1;
 
     public static final int INTAKE_UPPERTALON_ID = 55;
     public static final int INTAKE_LOWERTALON_ID = 47;
@@ -34,21 +36,21 @@ public class Constants {
 
     //SHOOTER MODES
 
-    public static final int SHOOTER_MODE_DOUBLE = 1;
-    public static final int SHOOTER_MODE_DELAY = 2;
-    public static final int SHOOTER_MODE_LOW_HIGH = 3;
-    public static final int SHOOTER_MODE_DOUBLE_LOW = 4;
-    public static final int SHOOTER_MODE_DUMP = 5;
-    public static final int SHOOTER_MODE_LEFT = 6;
-    public static final int SHOOTER_MODE_RIGHT = 7;
-    public static final int SHOOTER_MODE_LEFT_LOW = 8;
-    public static final int SHOOTER_MODE_RIGHT_LOW =9;
-    public static final int SHOOTER_MODE_LEFT_DUMP = 10;
-    public static final int SHOOTER_MODE_RIGHT_DUMP = 11;
-    public static final int SHOOTER_MODE_DOUBLE_FAR = 12;
-    public static final int SHOOTER_MODE_RIGHT_FAR = 13;
-    public static final int SHOOTER_MODE_LEFT_FAR = 14;
-    public static final int SHOOTER_MODE_DOUBLE_FAR_DELAY = 15;
+    // public static final int SHOOTER_MODE_DOUBLE = 1;
+    // public static final int SHOOTER_MODE_DELAY = 2;
+    // public static final int SHOOTER_MODE_LOW_HIGH = 3;
+    // public static final int SHOOTER_MODE_DOUBLE_LOW = 4;
+    // public static final int SHOOTER_MODE_DUMP = 5;
+    // public static final int SHOOTER_MODE_LEFT = 6;
+    // public static final int SHOOTER_MODE_RIGHT = 7;
+    // public static final int SHOOTER_MODE_LEFT_LOW = 8;
+    // public static final int SHOOTER_MODE_RIGHT_LOW =9;
+    // public static final int SHOOTER_MODE_LEFT_DUMP = 10;
+    // public static final int SHOOTER_MODE_RIGHT_DUMP = 11;
+    // public static final int SHOOTER_MODE_DOUBLE_FAR = 12;
+    // public static final int SHOOTER_MODE_RIGHT_FAR = 13;
+    // public static final int SHOOTER_MODE_LEFT_FAR = 14;
+    // public static final int SHOOTER_MODE_DOUBLE_FAR_DELAY = 15;
 
     //constants added for limelight
     public static final double LL_HEIGHT = 29.5; //needs to be changed to v1 measurements

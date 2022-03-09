@@ -38,16 +38,16 @@ public class ShuffleboardTest extends SubsystemBase {
     SmartDashboard.putData("Catapult mode", m_chooser);
     SmartDashboard.putData("Container mode", m_containerChooser);
     
-    m_chooser.setDefaultOption("Double Shoot", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_DOUBLE));
-    m_chooser.addOption("Delay", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_DELAY));
-    m_chooser.addOption("Low + High", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_LOW_HIGH));
-    m_chooser.addOption("Dump", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_DUMP));
-    m_chooser.addOption("Left Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_LEFT));
-    m_chooser.addOption("Right Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT));
-    m_chooser.addOption("Left Low Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_LEFT_LOW));
-    m_chooser.addOption("Right Low Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT_LOW));
-    m_chooser.addOption("Left Dump Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_LEFT_DUMP));
-    m_chooser.addOption("Right Dump Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT_DUMP)); 
+    // m_chooser.setDefaultOption("Double Shoot", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_DOUBLE));
+    // m_chooser.addOption("Delay", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_DELAY));
+    // m_chooser.addOption("Low + High", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_LOW_HIGH));
+    // m_chooser.addOption("Dump", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_DUMP));
+    // m_chooser.addOption("Left Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_LEFT));
+    // m_chooser.addOption("Right Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT));
+    // m_chooser.addOption("Left Low Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_LEFT_LOW));
+    // m_chooser.addOption("Right Low Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT_LOW));
+    // m_chooser.addOption("Left Dump Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_LEFT_DUMP));
+    // m_chooser.addOption("Right Dump Only", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT_DUMP)); 
     
     for(int count = 0; count < Robot.ALL_CONTAINER.length; count++)
     {

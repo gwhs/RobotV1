@@ -44,7 +44,7 @@ public class AutoMeter extends SequentialCommandGroup {
         PathPlannerTrajectory threeBallAuto = PathPlanner.loadPath("3 Cargo - Right", 1, 1);
 
         //addCommands(new InstantCommand(() -> System.out.println(simple.getInitialPose())));
-        addCommands(new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT),
+        addCommands(
                     new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(new Translation2d(8.23, 3.07), new Rotation2d(Math.toRadians(-100.70))))),
                     new PPSwerveControllerCommand(
                         threeBallAuto,
@@ -54,7 +54,7 @@ public class AutoMeter extends SequentialCommandGroup {
                         new PIDController(1, 0, 0),
                         m_drivetrainSubsystem.getThetaController(),
                         m_drivetrainSubsystem::setStates,
-                        m_drivetrainSubsystem),
+                        m_drivetrainSubsystem)
                     // new PPSwerveControllerCommand(
                     //     pathOne,
                     //     m_drivetrainSubsystem::getPose,
@@ -74,7 +74,6 @@ public class AutoMeter extends SequentialCommandGroup {
                     //     m_drivetrainSubsystem.getThetaController(),
                     //     m_drivetrainSubsystem::setStates,
                     //     m_drivetrainSubsystem),
-                    new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT)
                     );
     }
 

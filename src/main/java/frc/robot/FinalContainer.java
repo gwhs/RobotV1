@@ -78,8 +78,8 @@ public class FinalContainer implements BaseContainer{
     buttonBack.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     // buttonX.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem, 2));
     //buttonB.whenPressed();
-    buttonA.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem,1 ));
-    buttonY.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem, 2));
+    // buttonA.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem,1 ));
+    // buttonY.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem, 2));
     buttonRBumper.whenPressed(new SpinIntake(m_IntakeMotors, 0.1, 0.1));
     // buttonLBumper.whenPressed(new ToggleIntake(m_IntakeMotors));
     // buttonRBumper.whenPressed(new Spit(m_IntakeMotors));
