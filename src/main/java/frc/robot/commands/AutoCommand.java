@@ -4,6 +4,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.commands.CatapultCommands.CatapultCommand;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
@@ -16,6 +17,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
@@ -30,9 +32,9 @@ public class AutoCommand extends SequentialCommandGroup {
         PathPlannerTrajectory threeCargoR= PathPlanner.loadPath("3 Cargo - Right", 1, 1);
         
         PathPlannerTrajectory path = threeCargoR;
-        addCommands(new CatapultRight(m_catapultSubsystemRight, 0.20),
+        addCommands(new CatapultRight(m_catapultSubsystemRight, 0.30),
+                    new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(8.17, 2.94, new Rotation2d(Math.toRadians(-113.20))))),
                     new ParallelCommandGroup(
-                        new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(8.17, 2.94, new Rotation2d(Math.toRadians(-113.20))))),
                         new PPSwerveControllerCommand(
                             path,
                             m_drivetrainSubsystem::getPose,
@@ -44,7 +46,9 @@ public class AutoCommand extends SequentialCommandGroup {
                             m_drivetrainSubsystem),
                         new SpinIntake(m_intakeMotors, Constants.UPPERSPEED, Constants.LOWERSPEED).withTimeout(path.getTotalTimeSeconds())
                     ),
-                    new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, 0.20, 0.20, 0)
+                    new InstantCommand(() -> m_drivetrainSubsystem.drive(new ChassisSpeeds(0, 0, 0))),
+                    new WaitCommand(5),
+                    new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, 0.30, 0.30, 0)
 
         );
     }
