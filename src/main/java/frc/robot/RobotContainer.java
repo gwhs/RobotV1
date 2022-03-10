@@ -74,7 +74,7 @@ public class RobotContainer implements BaseContainer{
   //  buttonY.whenPressed(() -> m_drivetrainSubsystem.setWheelAngle(0));
   //   buttonA.whenPressed(() -> m_drivetrainSubsystem.changeWheelAngleBy45());
     buttonA.whenPressed(new AutoMeter(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotors));
-    buttonB.whenPressed(new AutoCommand(m_drivetrainSubsystem));
+    buttonB.whenPressed(new AutoCommand(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotors));
     buttonY.whenPressed(() -> m_drivetrainSubsystem.forcingZero());
     buttonX.whenPressed(() -> System.out.println(m_drivetrainSubsystem.getPose()));
 

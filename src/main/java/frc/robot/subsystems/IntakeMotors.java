@@ -21,7 +21,7 @@ public class IntakeMotors extends SubsystemBase{
         this.upperMotor = new TalonFX(upperMotorID);
         this.lowerMotor = new TalonFX(lowerMotorID);
         this.deployMotor = new TalonFX(deployMotorID);
-        deployMotor.setNeutralMode(NeutralMode.Brake);
+        //deployMotor.setNeutralMode(NeutralMode.Brake);
         this.setSoftLimits();
         this.setZero();
     }
@@ -53,10 +53,6 @@ public class IntakeMotors extends SubsystemBase{
     //setAlphaPosition() sets perceived position to specified value "pos"
     //returns previous position as a double
 
-    public void setCoastMode()
-    {
-        deployMotor.setNeutralMode(NeutralMode.Coast);
-    }
 
     public void setBrakeMode()
     {
