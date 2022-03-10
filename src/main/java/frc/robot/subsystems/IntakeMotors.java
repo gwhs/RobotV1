@@ -12,16 +12,14 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class IntakeMotors extends SubsystemBase{
     private TalonFX upperMotor;
     private TalonFX lowerMotor;
-    private double deploySpeed;
-
     private TalonFX deployMotor;
-
+    private static final double DEPLOYED_TICKS = 18470;
+    private static final double STOWED_TICKS = 36399;
     
     public IntakeMotors(int deployMotorID, int upperMotorID, int lowerMotorID){
         this.upperMotor = new TalonFX(upperMotorID);
         this.lowerMotor = new TalonFX(lowerMotorID);
         this.deployMotor = new TalonFX(deployMotorID);
-        deployMotor.setNeutralMode(NeutralMode.Brake);
         this.setSoftLimits();
         this.setZero();
     }
@@ -30,6 +28,31 @@ public class IntakeMotors extends SubsystemBase{
     public void setZero(){
         deployMotor.setSelectedSensorPosition(0);
     }
+
+    public boolean isDeployed(){
+        double position = deployMotor.getSelectedSensorPosition();
+        if(position <= DEPLOYED_TICKS){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isStowed(){
+        double position = deployMotor.getSelectedSensorPosition();
+        if(position >= STOWED_TICKS){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isMiddle(){
+        double position = deployMotor.getSelectedSensorPosition();
+        if(position > DEPLOYED_TICKS && position < STOWED_TICKS){
+            return true;
+        }
+        return false;
+    }
+
 
     public double getDeployPosition(){
         return deployMotor.getSelectedSensorPosition();
