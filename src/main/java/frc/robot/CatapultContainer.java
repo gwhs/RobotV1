@@ -15,10 +15,9 @@ import frc.robot.subsystems.CatapultSubsystem;
 
 
 public class CatapultContainer implements BaseContainer{
-    private final CatapultSubsystem motor = new CatapultSubsystem(21);
     private final XboxController m_controller = new XboxController(0);
-    private final CatapultSubsystem m_CatapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID);
-    private final CatapultSubsystem m_CatapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID);
+    private final CatapultSubsystem m_CatapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false);
+    private final CatapultSubsystem m_CatapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID, true);
 
     public CatapultContainer(){
 
@@ -48,6 +47,6 @@ public class CatapultContainer implements BaseContainer{
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
         return new InstantCommand(this::printSomething);
-        
+
       }
 }
