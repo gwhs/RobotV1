@@ -84,7 +84,7 @@ public class FinalContainer implements BaseContainer{
     // buttonLBumper.whenPressed(new ToggleIntake(m_IntakeMotors));
     // buttonRBumper.whenPressed(new Spit(m_IntakeMotors));
     buttonLeftJoystickButton.whenPressed(new AutoMeter(m_drivetrainSubsystem, m_CatapultLeftSubsystem, m_CatapultLeftSubsystem, m_IntakeMotors));
-    buttonRightJoystickButton.whenPressed(new AutoCommand(m_drivetrainSubsystem));
+   // buttonRightJoystickButton.whenPressed(new AutoCommand(m_drivetrainSubsystem));
 
 
     // limelight commands

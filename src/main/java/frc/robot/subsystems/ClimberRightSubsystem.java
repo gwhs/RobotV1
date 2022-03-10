@@ -17,6 +17,7 @@ public class ClimberRightSubsystem extends SubsystemBase {
     this.rightArm = new TalonFX(rightMotorId);
     rightArm.setInverted(true);
     rightArm.setNeutralMode(NeutralMode.Brake);
+
   }
 
   public void setSpeedRight(double speed){
