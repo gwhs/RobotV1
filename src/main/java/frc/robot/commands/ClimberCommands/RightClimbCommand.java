@@ -19,7 +19,7 @@ public class RightClimbCommand extends CommandBase {
 
   public RightClimbCommand(ClimberRightSubsystem climberRightSubsystem, double inches) {  //Multiply 568.8 by 
     this.climberRightSubsystem = climberRightSubsystem;
-    addRequirements(climberSubsystem);
+    addRequirements(climberRightSubsystem);
     climberRightSubsystem.setZero();
     
   }

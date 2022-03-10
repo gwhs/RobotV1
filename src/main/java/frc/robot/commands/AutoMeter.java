@@ -38,14 +38,14 @@ public class AutoMeter extends SequentialCommandGroup {
         PathPlannerTrajectory oneMeterBack = PathPlanner.loadPath("oneMeterBack", 1, 1);
         PathPlannerTrajectory simple = PathPlanner.loadPath("simple", 1, 1);
         PathPlannerTrajectory simpleReversed = PathPlanner.loadPath("simpleReversed", 1, 1);
-        PathPlannerTrajectory diagonal = PathPlanner.loadPath("diagonal", 1, 1);
+        PathPlannerTrajectory meter = PathPlanner.loadPath("meter", 1, 1);
         PathPlannerTrajectory pathOne = oneMeter;
         PathPlannerTrajectory pathTwo = oneMeterBack;
-        PathPlannerTrajectory threeBallAuto = PathPlanner.loadPath("3 Cargo - Right", 1, 1);
+        PathPlannerTrajectory threeBallAuto = PathPlanner.loadPath("meter", 1, 1);
 
         //addCommands(new InstantCommand(() -> System.out.println(simple.getInitialPose())));
         addCommands(
-                    new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(new Translation2d(8.23, 3.07), new Rotation2d(Math.toRadians(-100.70))))),
+                    new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(new Translation2d(1.00, 3.00), new Rotation2d(Math.toRadians(0))))),
                     new PPSwerveControllerCommand(
                         threeBallAuto,
                         m_drivetrainSubsystem::getPose,
