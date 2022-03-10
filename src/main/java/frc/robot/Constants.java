@@ -8,9 +8,9 @@ public class Constants {
     public static double CATAPULT_SPEED_LOW = 0.05;
     public static double CATAPULT_SPEED_DUMP = 0.015;
     public static double CATAPULT_SPEED_FAR = 1;
-    public static double CATAPULT_LEFT_SPEED = 0.5;
-    public static double CATAPULT_RIGHT_SPEED = 0.5;
-    public static double DELAY = 1;
+    public static double CATAPULT_LEFT_SPEED = 0.54;
+    public static double CATAPULT_RIGHT_SPEED = 0.54;
+    public static double DELAY = 0;
 
     public static final int INTAKE_UPPERTALON_ID = 55;
     public static final int INTAKE_LOWERTALON_ID = 47;

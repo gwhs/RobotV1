@@ -34,8 +34,8 @@ public class CatapultContainer implements BaseContainer{
         // buttonX.whenPressed( new CatapultDouble(m_CatapultSubsystemLeft,m_CatapultSubsystemRight, Constants.SHOOTER_MODE_RIGHT));
         // buttonA.whenPressed( new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_DELAY));
 
-        buttonB.whenPressed(new CatapultLeft(m_CatapultSubsystemLeft, 0.5));
-        buttonX.whenPressed(new CatapultRight(m_CatapultSubsystemRight, 0.5));
+        buttonB.whenPressed(new CatapultLeft(m_CatapultSubsystemLeft, Constants.CATAPULT_LEFT_SPEED));
+        buttonX.whenPressed(new CatapultRight(m_CatapultSubsystemRight, Constants.CATAPULT_RIGHT_SPEED));
         buttonA.whenPressed(new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.CATAPULT_LEFT_SPEED, Constants.CATAPULT_RIGHT_SPEED, Constants.DELAY));
 
     }
