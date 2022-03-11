@@ -23,8 +23,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer implements BaseContainer{
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
   private final XboxController m_controller = new XboxController(0);
-  private final CatapultSubsystem m_catapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID);
-  private final CatapultSubsystem m_catapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID);
+  private final CatapultSubsystem m_catapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false);
+  private final CatapultSubsystem m_catapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID, true);
   private final IntakeMotors m_intakeMotors = new IntakeMotors(Constants.INTAKE_DEPLOY_ID, Constants.INTAKE_UPPERTALON_ID,Constants.INTAKE_LOWERTALON_ID);
   
 

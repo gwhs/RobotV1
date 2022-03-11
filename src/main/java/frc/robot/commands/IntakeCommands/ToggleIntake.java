@@ -5,7 +5,6 @@
 package frc.robot.commands.IntakeCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.subsystems.IntakeMotors;
 
 public class ToggleIntake extends CommandBase {
@@ -13,9 +12,7 @@ public class ToggleIntake extends CommandBase {
   private double deploySpeed;
   private double upperSpeed;
   private double lowerSpeed;
-  private boolean deployed;
-  private int offset;
-  private double currentPos;
+  private boolean deploying;
 
   /** Creates a new DeployCommand. */
   public ToggleIntake(IntakeMotors motors, double deploySpeed, double upperSpeed, double lowerSpeed) {
@@ -31,55 +28,51 @@ public class ToggleIntake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    double offset = motors.getDeployPosition();
-    motors.setZero();
-    System.out.print(currentPos);
+    boolean isDeployed = motors.isDeployed();
+    boolean isStowed = motors.isStowed();
+    boolean isMiddle = motors.isMiddle();
+    if(isStowed){
+      deploying = true;
+    }
+    else if(isDeployed){
+      deploying = false;
+    }
+    else if(isMiddle){
+      deploying = false;
+     }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    currentPos = motors.getDeployPosition();
-    if (currentPos <= 18399 - offset){ // About 32 degrees
-      deployed = true;
+    if(deploying){
       motors.setDeployMotorSpeed(deploySpeed);
     }
-    else {
-      deployed = false;
+    else{
       motors.setDeployMotorSpeed(-deploySpeed);
     }
-      // if(deployed) {
-      //   motors.setDeployMotorSpeed(deploySpeed); //undeploys
-      // }
-      // else {
-      //   motors.setDeployMotorSpeed(-deploySpeed); //deploys
-      // }
-          
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    if(!deployed) {
-      motors.setDeployMotorSpeed(0);
-      motors.setIntakeMotorSpeeds(0, 0);
+    motors.setDeployMotorSpeed(0);
+    if(deploying) {
+      motors.setIntakeMotorSpeeds(-upperSpeed, lowerSpeed);
     } 
     else {
-      motors.setDeployMotorSpeed(0);
-      motors.setIntakeMotorSpeeds(-upperSpeed, lowerSpeed);
+      motors.setIntakeMotorSpeeds(0, 0);
     }
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-      if(deployed && motors.getDeployPosition() >= 36399) { //64 degrees
-        deployed = false;
-        return true;
+      if(deploying) { //64 degrees
+        return motors.isDeployed();
       }
-      if(!deployed && motors.getDeployPosition() >= 18399) {
-        deployed = true;
-        return true;
+      if(deploying == false) {
+        return motors.isStowed();
       }
     return false;
   }
