@@ -33,8 +33,9 @@ public class AutoCommand extends SequentialCommandGroup {
         
         PathPlannerTrajectory path = threeCargoR;
         addCommands(new CatapultRight(m_catapultSubsystemRight, 0.30),
-                    new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(8.17, 2.94, new Rotation2d(Math.toRadians(-113.20))))),
-                    new ParallelCommandGroup(
+                    new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(7.95, 2.73, new Rotation2d(Math.toRadians(-111.80))))),
+                    //new ParallelCommandGroup(
+                        //new SpinIntake(m_intakeMotors, Constants.UPPERSPEED, Constants.LOWERSPEED).withTimeout(path.getTotalTimeSeconds()),
                         new PPSwerveControllerCommand(
                             path,
                             m_drivetrainSubsystem::getPose,
@@ -43,11 +44,8 @@ public class AutoCommand extends SequentialCommandGroup {
                             new PIDController(1, 0, 0),
                             m_drivetrainSubsystem.getThetaController(),
                             m_drivetrainSubsystem::setStates,
-                            m_drivetrainSubsystem),
-                        new SpinIntake(m_intakeMotors, Constants.UPPERSPEED, Constants.LOWERSPEED).withTimeout(path.getTotalTimeSeconds())
-                    ),
-                    new InstantCommand(() -> m_drivetrainSubsystem.drive(new ChassisSpeeds(0, 0, 0))),
-                    new WaitCommand(5),
+                            m_drivetrainSubsystem), //),
+                    new WaitCommand(1),
                     new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, 0.30, 0.30, 0)
 
         );
