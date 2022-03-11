@@ -19,6 +19,7 @@ public class ClimberLeftSubsystem extends SubsystemBase {
     this.leftArm = new TalonFX(leftMotorId);
     leftArm.setInverted(false);
     leftArm.setNeutralMode(NeutralMode.Brake);
+    this.setZero();
   }
 
   public double inchesToTicks(double inches){
