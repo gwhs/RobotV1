@@ -18,7 +18,7 @@ public class Constants {
 
     public static final double INTAKE_SPEED_TALON1 = .4;
     public static final double INTAKE_SPEED_TALON2 = -.2;
-    public static final double INTAKE_DEPLOY_SPEED = .1;
+    public static final double INTAKE_DEPLOY_SPEED = .3;
 
     //Deploy Speeds
     public static final double DEPLOY_SPEED = 0.5;
