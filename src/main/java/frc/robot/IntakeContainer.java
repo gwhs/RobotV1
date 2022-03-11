@@ -16,6 +16,7 @@ import frc.robot.subsystems.IntakeMotors;
 import frc.robot.commands.*;
 import frc.robot.commands.IntakeCommands.SpinIntake;
 import frc.robot.commands.IntakeCommands.ToggleIntake;
+import frc.robot.commands.IntakeCommands.ToggleIntakeCatapult;
 
 public class IntakeContainer implements BaseContainer{
   private final IntakeMotors m_IntakeMotors = new IntakeMotors(Constants.INTAKE_DEPLOY_ID,Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID); //FIX INPUTS
@@ -46,10 +47,13 @@ public class IntakeContainer implements BaseContainer{
     JoystickButton RB = new JoystickButton(m_controller, XboxController.Button.kRightBumper.value);
     JoystickButton X = new JoystickButton(m_controller,XboxController.Button.kX.value);
     JoystickButton Y = new JoystickButton(m_controller, XboxController.Button.kY.value);
+    JoystickButton B = new JoystickButton(m_controller, XboxController.Button.kB.value);
 
     RB.whenPressed(new ToggleIntake(m_IntakeMotors, 0.3, 0, 0));
     Y.whenPressed(new ToggleIntake(m_IntakeMotors, -0.3,0,0));
     X.whenPressed(new SpinIntake(m_IntakeMotors, -1, 1), true);
+    B.whenPressed(new ToggleIntakeCatapult(m_IntakeMotors, 0.1));
+
     
     
   

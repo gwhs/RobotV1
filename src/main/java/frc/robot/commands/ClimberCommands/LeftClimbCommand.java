@@ -6,40 +6,48 @@ package frc.robot.commands.ClimberCommands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.ClimberContainer;
+import frc.robot.Constants;
 import frc.robot.subsystems.ClimberLeftSubsystem;
 
 public class LeftClimbCommand extends CommandBase {
   /** Creates a new ClimvberCommand. */
   private ClimberLeftSubsystem climberLeftSubsystem;
   private double targetPositionTicks;
-  private double positionLeft = 0;
+  private double positionRight = 0;
+  private boolean goingUp;
 
 
-  public LeftClimbCommand(ClimberLeftSubsystem climberLeftSubsystem) {  //Multiply 568.8 by 
+  public LeftClimbCommand(ClimberLeftSubsystem climberLeftSubsystem, double inches) {  //Multiply 568.8 by 
     this.climberLeftSubsystem = climberLeftSubsystem;
+    this.targetPositionTicks = climberLeftSubsystem.inchesToTicks(inches);
     addRequirements(climberLeftSubsystem);
-    climberLeftSubsystem.setZero();
-    
+
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    climberLeftSubsystem.setZero();
+    if (climberLeftSubsystem.getLeftArmPosition() > targetPositionTicks){
+      goingUp = false;
+      climberLeftSubsystem.setSpeedLeft(-.2);
+    } else {
+      goingUp = true;
+      climberLeftSubsystem.setSpeedLeft(.2);
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     SmartDashboard.putNumber("RightPosition", climberLeftSubsystem.getLeftArmPosition());
-    climberLeftSubsystem.setSpeedLeft(.5);
-    positionLeft = climberLeftSubsystem.getLeftArmPosition();
-    
+    System.out.println(climberLeftSubsystem.ticksToInches(climberLeftSubsystem.getLeftArmPosition()));
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    climberLeftSubsystem.setSpeedLeft(0);
     System.out.println("done");
     System.out.println("Right position " + climberLeftSubsystem.getLeftArmPosition());
   }
@@ -47,11 +55,10 @@ public class LeftClimbCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (positionLeft > targetPositionTicks){ //if position is greater than where we want to go it stop climbing, and sets to brake mode.
-      climberLeftSubsystem.setSpeedLeft(0);
-      climberLeftSubsystem.setBrake();
-      return true;
+    if (goingUp){ //if position is greater than where we want to go it stop climbing, and sets to brake mode.
+      return climberLeftSubsystem.getLeftArmPosition() > targetPositionTicks || climberLeftSubsystem.getLeftArmPosition() > climberLeftSubsystem.inchesToTicks(29);
+    } else {
+      return climberLeftSubsystem.getLeftArmPosition() < targetPositionTicks || climberLeftSubsystem.getLeftArmPosition() < 5000;
     }
-    return false;
   }
 }

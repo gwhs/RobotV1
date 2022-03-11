@@ -10,6 +10,7 @@ import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class ClimberLeftSubsystem extends SubsystemBase {
   /** Creates a new ClimberSubsystem. */
@@ -18,6 +19,14 @@ public class ClimberLeftSubsystem extends SubsystemBase {
     this.leftArm = new TalonFX(leftMotorId);
     leftArm.setInverted(false);
     leftArm.setNeutralMode(NeutralMode.Brake);
+  }
+
+  public double inchesToTicks(double inches){
+    return inches * Constants.CLIMBER_RATIO * Constants.TICKS_PER_REVOLUTION / (Constants.PITCH_DIAMETER_30 * Math.PI);
+  }
+
+  public double ticksToInches(double d){
+    return d / Constants.CLIMBER_RATIO / Constants.TICKS_PER_REVOLUTION * (Constants.PITCH_DIAMETER_30* Math.PI); 
   }
 
   public void setSpeedLeft(double speed){
