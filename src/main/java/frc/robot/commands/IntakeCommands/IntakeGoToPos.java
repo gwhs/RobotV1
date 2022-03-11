@@ -19,7 +19,7 @@ public class IntakeGoToPos extends PIDCommand {
   public IntakeGoToPos(IntakeMotors m_IntakeMotors, double ticks) {
     super(
         // The controller that the command will use
-        new PIDController(0.8, 0, 0),
+        new PIDController(5, 0, 0),
         // This should return the measurement
         m_IntakeMotors::getDeployPosition,
         // This should return the setpoint (can also be a constant)
