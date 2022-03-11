@@ -10,13 +10,14 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class ClimberRightSubsystem extends SubsystemBase {
+public class ClimberSubsystem extends SubsystemBase {
   /** Creates a new ClimberSubsystem. */
-  private TalonFX rightArm;
-  public ClimberRightSubsystem(int rightMotorId){//, int leftMotorId) {
-    this.rightArm = new TalonFX(rightMotorId);
-    rightArm.setInverted(true);
-    rightArm.setNeutralMode(NeutralMode.Brake);
+  private TalonFX climberArm;
+  public ClimberSubsystem(int motorID, boolean inverted){
+    this.climberArm = new TalonFX(motorID);
+    //right is inverted, left is not
+    climberArm.setInverted(inverted);
+    climberArm.setNeutralMode(NeutralMode.Brake);
     this.setZero();
   }
 
@@ -29,20 +30,20 @@ public class ClimberRightSubsystem extends SubsystemBase {
   }
 
   public void setSpeedRight(double speed){
-    rightArm.set(ControlMode.PercentOutput, speed);
+    climberArm.set(ControlMode.PercentOutput, speed);
   }
 
   public void setBrake(){
-    rightArm.setNeutralMode(NeutralMode.Brake);
+    climberArm.setNeutralMode(NeutralMode.Brake);
   }
 
   public void setZero(){
-    rightArm.setSelectedSensorPosition(0);
+    climberArm.setSelectedSensorPosition(0);
 
   }
 
-  public double getRightArmPosition(){
-    return rightArm.getSelectedSensorPosition();
+  public double getPosition(){
+    return climberArm.getSelectedSensorPosition();
   }
 
   @Override
