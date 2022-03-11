@@ -1,3 +1,4 @@
+
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -5,19 +6,19 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class ClimberSubsystem extends SubsystemBase {
+public class ClimberLeftSubsystem extends SubsystemBase {
   /** Creates a new ClimberSubsystem. */
-  private TalonFX climberArm;
-  public ClimberSubsystem(int motorID, boolean inverted){
-    this.climberArm = new TalonFX(motorID);
-    //right is inverted, left is not
-    climberArm.setInverted(inverted);
-    climberArm.setNeutralMode(NeutralMode.Brake);
+  private TalonFX leftArm;
+  public ClimberLeftSubsystem(int leftMotorId){//, int leftMotorId) {
+    this.leftArm = new TalonFX(leftMotorId);
+    leftArm.setInverted(false);
+    leftArm.setNeutralMode(NeutralMode.Brake);
     this.setZero();
   }
 
@@ -29,21 +30,20 @@ public class ClimberSubsystem extends SubsystemBase {
     return d / Constants.CLIMBER_RATIO / Constants.TICKS_PER_REVOLUTION * (Constants.PITCH_DIAMETER_30* Math.PI); 
   }
 
-  public void setSpeed(double speed){
-    climberArm.set(ControlMode.PercentOutput, speed);
+  public void setSpeedLeft(double speed){
+    leftArm.set(ControlMode.PercentOutput, speed);
   }
 
   public void setBrake(){
-    climberArm.setNeutralMode(NeutralMode.Brake);
+    leftArm.setNeutralMode(NeutralMode.Brake);
   }
 
   public void setZero(){
-    climberArm.setSelectedSensorPosition(0);
-
+    leftArm.setSelectedSensorPosition(0);
   }
 
-  public double getPosition(){
-    return climberArm.getSelectedSensorPosition();
+  public double getLeftArmPosition(){
+    return leftArm.getSelectedSensorPosition();
   }
 
   @Override
