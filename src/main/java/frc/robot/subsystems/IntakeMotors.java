@@ -4,6 +4,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.TalonFXSensorCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 
@@ -13,8 +14,8 @@ public class IntakeMotors extends SubsystemBase{
     private TalonFX upperMotor;
     private TalonFX lowerMotor;
     private TalonFX deployMotor;
-    private static final double DEPLOYED_TICKS = 18470;
-    private static final double STOWED_TICKS = 36399;
+    private static final double DEPLOYED_TICKS = 22000;
+    private static final double STOWED_TICKS = 0;
     
     public IntakeMotors(int deployMotorID, int upperMotorID, int lowerMotorID){
         this.upperMotor = new TalonFX(upperMotorID);
@@ -30,9 +31,20 @@ public class IntakeMotors extends SubsystemBase{
         deployMotor.setSelectedSensorPosition(0);
     }
 
+    public int isFWDLIMIT(){
+        TalonFXSensorCollection info = deployMotor.getSensorCollection();
+        return info.isFwdLimitSwitchClosed();
+    }
+
+    public int isREVLIMIT(){
+        TalonFXSensorCollection info = deployMotor.getSensorCollection();
+        return info.isRevLimitSwitchClosed();
+    }
+
+
     public boolean isDeployed(){
         double position = deployMotor.getSelectedSensorPosition();
-        if(position <= DEPLOYED_TICKS){
+        if(position >= DEPLOYED_TICKS - 1000){
             return true;
         }
         return false;
@@ -40,7 +52,7 @@ public class IntakeMotors extends SubsystemBase{
 
     public boolean isStowed(){
         double position = deployMotor.getSelectedSensorPosition();
-        if(position >= STOWED_TICKS){
+        if(position <= STOWED_TICKS + 1000){
             return true;
         }
         return false;
@@ -83,6 +95,12 @@ public class IntakeMotors extends SubsystemBase{
         deployMotor.setNeutralMode(NeutralMode.Brake);
     }
 
+    public void goToPosition(int ticks)
+    {
+        setZero();
+        deployMotor.set(ControlMode.Position, ticks);
+        System.out.println("Intake pos " + deployMotor.getSelectedSensorPosition());
+    }
 
 
     //deploy intake

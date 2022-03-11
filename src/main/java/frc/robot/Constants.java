@@ -8,8 +8,8 @@ public class Constants {
     public static double CATAPULT_SPEED_LOW = 0.05;
     public static double CATAPULT_SPEED_DUMP = 0.015;
     public static double CATAPULT_SPEED_FAR = 1;
-    public static double CATAPULT_LEFT_SPEED = 1;
-    public static double CATAPULT_RIGHT_SPEED = 1;
+    public static double CATAPULT_LEFT_SPEED = 1; //54%
+    public static double CATAPULT_RIGHT_SPEED = 1; //56%
     public static double DELAY = 0.5;
 
     public static final int INTAKE_UPPERTALON_ID = 55;
@@ -86,7 +86,7 @@ public class Constants {
     public static final int TURN_CAP = 30;
 
 
-    public static final double CLIMBER_RATIO = 48;
+    public static final double CLIMBER_RATIO = 36;
     public static final int TICKS_PER_REVOLUTION = 2048;
     public static final double INCHES_PER_REVOLUTION = 4.55;
     public static final double PITCH_DIAMETER_30 = 1.5;

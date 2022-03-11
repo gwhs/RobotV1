@@ -33,12 +33,15 @@ public class ToggleIntake extends CommandBase {
     boolean isMiddle = motors.isMiddle();
     if(isStowed){
       deploying = true;
+      System.out.println("Up ticks: " + motors.getDeployPosition());
     }
     else if(isDeployed){
       deploying = false;
+      System.out.println("Down ticks: " + motors.getDeployPosition());
     }
     else if(isMiddle){
       deploying = false;
+      System.out.println("In middle ticks: " + motors.getDeployPosition());
      }
   }
 
@@ -46,17 +49,19 @@ public class ToggleIntake extends CommandBase {
   @Override
   public void execute() {
     if(deploying){
-      motors.setDeployMotorSpeed(deploySpeed);
-    }
-    else{
       motors.setDeployMotorSpeed(-deploySpeed);
     }
+    else{
+      motors.setDeployMotorSpeed(deploySpeed);
+    }
+    System.out.println("Motor Pos: " + motors.getDeployPosition());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     motors.setDeployMotorSpeed(0);
+    System.out.println("End Pos: " + motors.getDeployPosition());
     if(deploying) {
       motors.setIntakeMotorSpeeds(-upperSpeed, lowerSpeed);
     } 

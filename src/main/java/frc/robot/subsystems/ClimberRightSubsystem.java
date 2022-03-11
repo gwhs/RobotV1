@@ -5,10 +5,10 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class ClimberRightSubsystem extends SubsystemBase {
   /** Creates a new ClimberSubsystem. */
@@ -17,7 +17,15 @@ public class ClimberRightSubsystem extends SubsystemBase {
     this.rightArm = new TalonFX(rightMotorId);
     rightArm.setInverted(true);
     rightArm.setNeutralMode(NeutralMode.Brake);
+    this.setZero();
+  }
 
+  public double inchesToTicks(double inches){
+    return inches * Constants.CLIMBER_RATIO * Constants.TICKS_PER_REVOLUTION / (Constants.PITCH_DIAMETER_30 * Math.PI);
+  }
+
+  public double ticksToInches(double d){
+    return d / Constants.CLIMBER_RATIO / Constants.TICKS_PER_REVOLUTION * (Constants.PITCH_DIAMETER_30* Math.PI); 
   }
 
   public void setSpeedRight(double speed){
