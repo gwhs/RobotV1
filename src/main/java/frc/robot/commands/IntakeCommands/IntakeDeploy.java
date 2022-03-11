@@ -12,10 +12,10 @@ import frc.robot.subsystems.IntakeMotors;
 public class IntakeDeploy extends CommandBase {
   /** Creates a new IntakeDeploy. */
   private IntakeMotors m_IntakeMotors;
-  private double speed;
-  public IntakeDeploy(IntakeMotors m_IntakeMotors, double speed) {
+  private double deploySpeed;
+  public IntakeDeploy(IntakeMotors m_IntakeMotors, double deploySpeed) {
     this.m_IntakeMotors = m_IntakeMotors;
-    this.speed = speed;
+    this.deploySpeed = deploySpeed;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_IntakeMotors);
   }
@@ -23,7 +23,7 @@ public class IntakeDeploy extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-   m_IntakeMotors.setDeployMotorSpeed(-speed);
+   m_IntakeMotors.setDeployMotorSpeed(-deploySpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

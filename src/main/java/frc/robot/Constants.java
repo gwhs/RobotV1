@@ -23,6 +23,9 @@ public class Constants {
     //Deploy Speeds
     public static final double DEPLOY_SPEED = 0.5;
 
+    public static final int DEPLOY = 1;
+    public static final int STOW = 2;
+
     //Intake speeds
 
     public static final double LOWERSPEED = 1;

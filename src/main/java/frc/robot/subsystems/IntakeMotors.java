@@ -50,6 +50,10 @@ public class IntakeMotors extends SubsystemBase{
         return false;
     }
 
+    public void stowNoSping(){
+        
+    }
+
     public boolean isStowed(){
         double position = deployMotor.getSelectedSensorPosition();
         if(position <= STOWED_TICKS + 1000){
