@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.IntakeMotors;
 import frc.robot.commands.*;
+import frc.robot.commands.IntakeCommands.IntakeGoToPos;
 import frc.robot.commands.IntakeCommands.SpinIntake;
 import frc.robot.commands.IntakeCommands.ToggleIntake;
 import frc.robot.commands.IntakeCommands.ToggleIntakeCatapult;
@@ -49,10 +50,10 @@ public class IntakeContainer implements BaseContainer{
     JoystickButton Y = new JoystickButton(m_controller, XboxController.Button.kY.value);
     JoystickButton B = new JoystickButton(m_controller, XboxController.Button.kB.value);
 
-    RB.whenPressed(new ToggleIntake(m_IntakeMotors, 0.3, 0, 0));
-    Y.whenPressed(new ToggleIntake(m_IntakeMotors, -0.3,0,0));
-    X.whenPressed(new SpinIntake(m_IntakeMotors, -1, 1), true);
-    B.whenPressed(new ToggleIntakeCatapult(m_IntakeMotors, 0.1));
+    RB.whenPressed(new ToggleIntake(m_IntakeMotors, 0.5, Constants.UPPERSPEED, Constants.LOWERSPEED));
+    Y.whenPressed(new ToggleIntake(m_IntakeMotors, -0.3, 0, 0));
+    X.whenPressed(new SpinIntake(m_IntakeMotors, -1, 1));
+    B.whenPressed(new IntakeGoToPos(m_IntakeMotors, 15000));
 
     
     

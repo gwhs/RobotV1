@@ -23,8 +23,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer implements BaseContainer{
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
   private final XboxController m_controller = new XboxController(0);
-  private final CatapultSubsystem m_catapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID);
-  private final CatapultSubsystem m_catapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID);
+  private final CatapultSubsystem m_catapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false);
+  private final CatapultSubsystem m_catapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID, true);
   private final IntakeMotors m_intakeMotors = new IntakeMotors(Constants.INTAKE_DEPLOY_ID, Constants.INTAKE_UPPERTALON_ID,Constants.INTAKE_LOWERTALON_ID);
   
 
@@ -67,14 +67,16 @@ public class RobotContainer implements BaseContainer{
     JoystickButton back = new JoystickButton(m_controller, XboxController.Button.kBack.value);
     JoystickButton start = new JoystickButton(m_controller, XboxController.Button.kStart.value);
     JoystickButton buttonB = new JoystickButton(m_controller, XboxController.Button.kB.value);
+    JoystickButton buttonX = new JoystickButton(m_controller, XboxController.Button.kX.value);
     
 
   //   start.whenPressed(m_drivetrainSubsystem::toggleDriveMode);
   //  buttonY.whenPressed(() -> m_drivetrainSubsystem.setWheelAngle(0));
   //   buttonA.whenPressed(() -> m_drivetrainSubsystem.changeWheelAngleBy45());
     buttonA.whenPressed(new AutoMeter(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotors));
-    buttonB.whenPressed(new AutoCommand(m_drivetrainSubsystem));
+    buttonB.whenPressed(new AutoCommand(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotors));
     buttonY.whenPressed(() -> m_drivetrainSubsystem.forcingZero());
+    buttonX.whenPressed(() -> System.out.println(m_drivetrainSubsystem.getPose()));
 
     // SwervedDrive
     back.whenPressed(m_drivetrainSubsystem::zeroGyroscope);

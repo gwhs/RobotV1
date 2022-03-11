@@ -12,16 +12,15 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class IntakeMotors extends SubsystemBase{
     private TalonFX upperMotor;
     private TalonFX lowerMotor;
-    private double deploySpeed;
-
     private TalonFX deployMotor;
-
+    private static final double DEPLOYED_TICKS = 22000;
+    private static final double STOWED_TICKS = -40000;
     
     public IntakeMotors(int deployMotorID, int upperMotorID, int lowerMotorID){
         this.upperMotor = new TalonFX(upperMotorID);
         this.lowerMotor = new TalonFX(lowerMotorID);
         this.deployMotor = new TalonFX(deployMotorID);
-        deployMotor.setNeutralMode(NeutralMode.Brake);
+        //deployMotor.setNeutralMode(NeutralMode.Brake);
         this.setSoftLimits();
         this.setZero();
     }
@@ -30,6 +29,31 @@ public class IntakeMotors extends SubsystemBase{
     public void setZero(){
         deployMotor.setSelectedSensorPosition(0);
     }
+
+    public boolean isDeployed(){
+        double position = deployMotor.getSelectedSensorPosition();
+        if(position <= DEPLOYED_TICKS){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isStowed(){
+        double position = deployMotor.getSelectedSensorPosition();
+        if(position >= STOWED_TICKS){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isMiddle(){
+        double position = deployMotor.getSelectedSensorPosition();
+        if(position > DEPLOYED_TICKS && position < STOWED_TICKS){
+            return true;
+        }
+        return false;
+    }
+
 
     public double getDeployPosition(){
         return deployMotor.getSelectedSensorPosition();
@@ -53,16 +77,18 @@ public class IntakeMotors extends SubsystemBase{
     //setAlphaPosition() sets perceived position to specified value "pos"
     //returns previous position as a double
 
-    public void setCoastMode()
-    {
-        deployMotor.setNeutralMode(NeutralMode.Coast);
-    }
 
     public void setBrakeMode()
     {
         deployMotor.setNeutralMode(NeutralMode.Brake);
     }
 
+    public void goToPosition(int ticks)
+    {
+        setZero();
+        deployMotor.set(ControlMode.Position, ticks);
+        System.out.println("Intake pos " + deployMotor.getSelectedSensorPosition());
+    }
 
 
     //deploy intake

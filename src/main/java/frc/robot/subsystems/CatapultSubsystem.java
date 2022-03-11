@@ -13,17 +13,21 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class CatapultSubsystem extends SubsystemBase {
   private TalonFX motor;
-
+  private double initialOffset;
+  private static final int SHOOT_LIMIT = 5100;
   /** Creates a new motor. */
-  public CatapultSubsystem(int id) {
+  public CatapultSubsystem(int id, boolean inverted) {
     motor = new TalonFX(id);
     //consistant amt of power every time
     motor.configVoltageCompSaturation(11);
     motor.enableVoltageCompensation(true);
-
+    initialOffset = motor.getSelectedSensorPosition();
     //one will go forward, the other will go inverted
-    if(id == 21){
+    if(inverted){
       motor.setInverted(InvertType.InvertMotorOutput);
+    }
+    else{
+      motor.setInverted(InvertType.None);
     }
   }
 
@@ -39,6 +43,21 @@ public class CatapultSubsystem extends SubsystemBase {
     motor.set(ControlMode.PercentOutput, speed);
   }
   
+  public boolean isFinishedShooting(){
+    double shotposition = motor.getSelectedSensorPosition();
+    if(Math.abs(shotposition) >= SHOOT_LIMIT - initialOffset){
+      return true;
+    }
+    return false;
+  }
+
+  public boolean isFinishedReturning(){
+    if (motor.getSelectedSensorPosition() < 0 - initialOffset){
+      return true;
+    }
+    return false;
+  }
+
   public void setSelectedSensorPosition() {
     motor.setSelectedSensorPosition(0.0);
   }

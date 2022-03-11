@@ -30,8 +30,8 @@ public class FinalContainer implements BaseContainer{
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
 
   private final ClimberRightSubsystem m_ClimberSubsytem = new ClimberRightSubsystem(43); //FIX INPUTS
-  private final CatapultSubsystem m_CatapultLeftSubsystem = new CatapultSubsystem(1);
-  private final CatapultSubsystem m_CatapultRightSubsystem = new CatapultSubsystem(21);
+  private final CatapultSubsystem m_CatapultLeftSubsystem = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false);
+  private final CatapultSubsystem m_CatapultRightSubsystem = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID, true);
   private final IntakeMotors m_IntakeMotors = new IntakeMotors(Constants.INTAKE_DEPLOY_ID,Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID);
 
   private final LimelightPortal ll = new LimelightPortal();
@@ -84,7 +84,7 @@ public class FinalContainer implements BaseContainer{
     // buttonLBumper.whenPressed(new ToggleIntake(m_IntakeMotors));
     // buttonRBumper.whenPressed(new Spit(m_IntakeMotors));
     buttonLeftJoystickButton.whenPressed(new AutoMeter(m_drivetrainSubsystem, m_CatapultLeftSubsystem, m_CatapultLeftSubsystem, m_IntakeMotors));
-    buttonRightJoystickButton.whenPressed(new AutoCommand(m_drivetrainSubsystem));
+   // buttonRightJoystickButton.whenPressed(new AutoCommand(m_drivetrainSubsystem));
 
 
     // limelight commands

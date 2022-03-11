@@ -5,12 +5,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class CatapultCommand extends CommandBase {
     private CatapultSubsystem motor;
-    private double offset; // motor keeps moving after end, so we get an offset to make sure the motor returns to the same position each time
+     // motor keeps moving after end, so we get an offset to make sure the motor returns to the same position each time
     private boolean ran; // ensures the motor shoots, otherwise, it will not run after one shot, needed for isFinished
     private double returnSpeed;// returns at slow pace
-    private double amps;
     private double speed;
-    private double returnLimit = 100;
+
 
     //private long start;
     //private long end;
@@ -31,7 +30,6 @@ public class CatapultCommand extends CommandBase {
         ran = false;
         System.out.println("Round 1 pos:"+motor.getPosition());
         //sets speed\
-        offset = motor.getPosition();
         motor.setSelectedSensorPosition();
         motor.setPercent(speed);
     }
@@ -40,10 +38,9 @@ public class CatapultCommand extends CommandBase {
     @Override
     // keeps going until isFinished returns true, pretty much a while loop
     public void execute() {
-        //long elapsedTime = System.currentTimeMillis() - start;
-        double position = motor.getPosition();
+        //long elapsedTime = System.currentTimeMillis() - start;;
         //position is 77.3k for 360 degrees of rotation
-        if (Math.abs(position) >= 5100 - offset){
+        if (motor.isFinishedShooting()){
             motor.setBrake();
             motor.setPercent(returnSpeed);
             //put motor in reverse to reset
@@ -64,7 +61,6 @@ public class CatapultCommand extends CommandBase {
         //System.out.println("End time: " + (end - start));
         motor.setPercent(0);
         System.out.println(motor.getPosition());
-        System.out.println("Goodbye World");
 
     }
 
@@ -72,7 +68,7 @@ public class CatapultCommand extends CommandBase {
     @Override
     public boolean isFinished() {
         // makes sure arm is at bottom and has shot before ending.
-        if (motor.getPosition() < 0 - offset&& ran){
+        if (motor.isFinishedReturning()&&ran){
             return true;
         }
         return false;

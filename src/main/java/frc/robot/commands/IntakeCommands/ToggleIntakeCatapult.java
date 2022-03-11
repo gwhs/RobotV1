@@ -53,7 +53,7 @@ public class ToggleIntakeCatapult extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(deployed && motors.getDeployPosition() <= 14200) { // intake 29 degrees out
+    if(deployed && motors.getDeployPosition() >= 14200) { // intake 29 degrees out
       deployed = false;
       return true;
     }

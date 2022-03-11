@@ -26,8 +26,8 @@ public class ShuffleboardTest extends SubsystemBase {
 
   private SendableChooser<String> m_containerChooser = new SendableChooser<>();
   private SendableChooser<CatapultDouble> m_chooser = new SendableChooser<>();
-  private final CatapultSubsystem m_CatapultSubsystemLeft = new CatapultSubsystem(14);
-  private final CatapultSubsystem m_CatapultSubsystemRight = new CatapultSubsystem(21);
+  private final CatapultSubsystem m_CatapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false);
+  private final CatapultSubsystem m_CatapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID, true);
 
 
   public ShuffleboardTest() {

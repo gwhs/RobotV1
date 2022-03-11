@@ -2,10 +2,20 @@ package frc.robot.commands;
 
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants;
+import frc.robot.commands.CatapultCommands.CatapultCommand;
+import frc.robot.commands.CatapultCommands.CatapultDouble;
+import frc.robot.commands.CatapultCommands.CatapultRight;
+import frc.robot.commands.IntakeCommands.SpinIntake;
+import frc.robot.subsystems.CatapultSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.IntakeMotors;
 import edu.wpi.first.math.controller.PIDController;
-
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
 
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
@@ -15,33 +25,28 @@ public class AutoCommand extends SequentialCommandGroup {
     //private DrivetrainSubsystem m_drivetrainSubsystem;
 
 
-    public AutoCommand(DrivetrainSubsystem m_drivetrainSubsystem) {
+    public AutoCommand(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotors m_intakeMotors) {
         //this.m_drivetrainSubsystem = m_drivetrainSubsystem;
-        PathPlannerTrajectory test1 = PathPlanner.loadPath("test1", 1, 1);
-        PathPlannerTrajectory test2 = PathPlanner.loadPath("test2", 1, 1);
-        PathPlannerTrajectory oneMeter = PathPlanner.loadPath("oneMeter", 1, 1);
-        PathPlannerTrajectory interesting = PathPlanner.loadPath("interesting", 1, 1);
-        PathPlannerTrajectory threeBall = PathPlanner.loadPath("3 Cargo - Right", 0.5, 0.5);
-        PathPlannerTrajectory simple = PathPlanner.loadPath("simple", 1, 1);
-        PathPlannerTrajectory straightPath = PathPlanner.loadPath("Straight2", 0.5, 0.5);
-        PathPlannerTrajectory weird = PathPlanner.loadPath("oneMeterWeird", 1, 1);
+        PathPlannerTrajectory threeCargoR= PathPlanner.loadPath("3 Cargo - Right", 1, 1);
+        
+        PathPlannerTrajectory path = threeCargoR;
+        addCommands(new CatapultRight(m_catapultSubsystemRight, 0.20),
+                    new ParallelCommandGroup(
+                        new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(8.17, 2.94, new Rotation2d(Math.toRadians(-113.20))))),
+                        new PPSwerveControllerCommand(
+                            path,
+                            m_drivetrainSubsystem::getPose,
+                            m_drivetrainSubsystem.getKinematics(),
+                            new PIDController(1, 0, 0),
+                            new PIDController(1, 0, 0),
+                            m_drivetrainSubsystem.getThetaController(),
+                            m_drivetrainSubsystem::setStates,
+                            m_drivetrainSubsystem),
+                        new SpinIntake(m_intakeMotors, Constants.UPPERSPEED, Constants.LOWERSPEED).withTimeout(path.getTotalTimeSeconds())
+                    ),
+                    new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, 0.20, 0.20, 0)
 
-        PathPlannerTrajectory path = simple;
-        addCommands(new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(path.getInitialPose())),
-                    new PPSwerveControllerCommand(
-                        path,
-                        m_drivetrainSubsystem::getPose,
-                        m_drivetrainSubsystem.getKinematics(),
-                        new PIDController(1, 0, 0),
-                        new PIDController(1, 0, 0),
-                        m_drivetrainSubsystem.getThetaController(),
-                        m_drivetrainSubsystem::setStates,
-                        m_drivetrainSubsystem)
-                    );
+        );
     }
 
 }
-
-    
-
-   
