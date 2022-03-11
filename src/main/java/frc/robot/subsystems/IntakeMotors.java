@@ -13,8 +13,8 @@ public class IntakeMotors extends SubsystemBase{
     private TalonFX upperMotor;
     private TalonFX lowerMotor;
     private TalonFX deployMotor;
-    private static final double DEPLOYED_TICKS = 18470;
-    private static final double STOWED_TICKS = 36399;
+    private static final double DEPLOYED_TICKS = 22000;
+    private static final double STOWED_TICKS = -40000;
     
     public IntakeMotors(int deployMotorID, int upperMotorID, int lowerMotorID){
         this.upperMotor = new TalonFX(upperMotorID);
@@ -83,6 +83,12 @@ public class IntakeMotors extends SubsystemBase{
         deployMotor.setNeutralMode(NeutralMode.Brake);
     }
 
+    public void goToPosition(int ticks)
+    {
+        setZero();
+        deployMotor.set(ControlMode.Position, ticks);
+        System.out.println("Intake pos " + deployMotor.getSelectedSensorPosition());
+    }
 
 
     //deploy intake
