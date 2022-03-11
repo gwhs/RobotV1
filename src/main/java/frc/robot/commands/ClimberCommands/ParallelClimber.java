@@ -6,8 +6,8 @@ import frc.robot.commands.ClimberCommands.RightClimbCommand;
 import frc.robot.subsystems.ClimberLeftSubsystem;
 import frc.robot.subsystems.ClimberRightSubsystem;
 
-public class ParallelUpCommand extends ParallelCommandGroup{
-    public ParallelUpCommand(ClimberLeftSubsystem climberLeftSubsystem, ClimberRightSubsystem climberRightSubsystem){
-        super(new LeftClimbCommand(climberLeftSubsystem, 23), new RightClimbCommand(climberRightSubsystem, 23));
+public class ParallelClimber extends ParallelCommandGroup{
+    public ParallelClimber(ClimberLeftSubsystem climberLeftSubsystem, ClimberRightSubsystem climberRightSubsystem, double distance){
+        super(new LeftClimbCommand(climberLeftSubsystem, distance), new RightClimbCommand(climberRightSubsystem, distance));
     }
 }

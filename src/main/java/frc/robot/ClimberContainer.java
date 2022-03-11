@@ -16,8 +16,7 @@ import frc.robot.subsystems.ClimberRightSubsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.ClimberCommands.LeftClimbCommand;
 import frc.robot.commands.ClimberCommands.MoveClimberRelative;
-import frc.robot.commands.ClimberCommands.ParallelUpCommand;
-import frc.robot.commands.ClimberCommands.ParallelbackCommand;
+import frc.robot.commands.ClimberCommands.ParallelClimber;
 import frc.robot.commands.ClimberCommands.RightClimbCommand;
 
 
@@ -58,8 +57,8 @@ public class ClimberContainer implements BaseContainer{
     // buttonY.whenPressed(new LeftClimbCommand(m_ClimberLeftSubsystem, 6));
     // buttonA.whenPressed(new LeftClimbCommand(m_ClimberLeftSubsystem, 12));
 
-    buttonX.whenPressed(new ParallelUpCommand(m_ClimberLeftSubsystem, m_ClimberRightSubsystem));
-    buttonA.whenPressed(new ParallelbackCommand(m_ClimberLeftSubsystem, m_ClimberRightSubsystem));
+    buttonX.whenPressed(new ParallelClimber(m_ClimberLeftSubsystem, m_ClimberRightSubsystem, 23));
+    buttonA.whenPressed(new ParallelClimber(m_ClimberLeftSubsystem, m_ClimberRightSubsystem, 18));
 
     buttonb.whenPressed(new MoveClimberRelative(m_ClimberRightSubsystem, 1));
     buttonY.whenPressed(new MoveClimberRelative(m_ClimberRightSubsystem, -1));
