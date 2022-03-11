@@ -49,11 +49,12 @@ public class ToggleIntake extends CommandBase {
   @Override
   public void execute() {
     if(deploying){
-      motors.setDeployMotorSpeed(deploySpeed);
-    }
-    else{
       motors.setDeployMotorSpeed(-deploySpeed);
     }
+    else{
+      motors.setDeployMotorSpeed(deploySpeed);
+    }
+    System.out.println("Motor Pos: " + motors.getDeployPosition());
   }
 
   // Called once the command ends or is interrupted.

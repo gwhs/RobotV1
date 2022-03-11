@@ -4,16 +4,14 @@
 
 package frc.robot.commands.IntakeCommands;
 
-import com.ctre.phoenix.motorcontrol.TalonFXSensorCollection;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeMotors;
 
-public class IntakeDeploy extends CommandBase {
-  /** Creates a new IntakeDeploy. */
+public class IntakeStow extends CommandBase {
   private IntakeMotors m_IntakeMotors;
   private double speed;
-  public IntakeDeploy(IntakeMotors m_IntakeMotors, double speed) {
+  /** Creates a new IntakeStow. */
+  public IntakeStow(IntakeMotors m_IntakeMotors, double speed) {
     this.m_IntakeMotors = m_IntakeMotors;
     this.speed = speed;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -23,15 +21,12 @@ public class IntakeDeploy extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-   m_IntakeMotors.setDeployMotorSpeed(-speed);
+    m_IntakeMotors.setDeployMotorSpeed(speed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    System.out.println("Forward: " + m_IntakeMotors.isFWDLIMIT());
-    System.out.println("Reverse: " + m_IntakeMotors.isREVLIMIT());
-  }
+  public void execute() {}
 
   // Called once the command ends or is interrupted.
   @Override
@@ -40,6 +35,6 @@ public class IntakeDeploy extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-  return m_IntakeMotors.isREVLIMIT() == 1;
+    return false;
   }
 }
