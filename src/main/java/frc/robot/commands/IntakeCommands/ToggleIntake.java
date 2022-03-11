@@ -38,13 +38,15 @@ public class ToggleIntake extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    m_IntakeMotors.setDeployMotorSpeed(0);
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(m_IntakeMotors.isFWDLIMIT() == 1){
-      
+    if(m_IntakeMotors.isFWDLIMIT() == 1 || m_IntakeMotors.isREVLIMIT() == 1){
+      return true;
     }
     return false;
   }
