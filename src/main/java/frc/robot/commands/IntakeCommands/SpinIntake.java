@@ -40,6 +40,6 @@ public class SpinIntake extends CommandBase{
     public boolean isFinished() {
         // makes sure arm is at bottom and has shot before ending.
         
-        return false;
+        return true;
     }
 }
