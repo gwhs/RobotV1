@@ -31,13 +31,13 @@ public class SpinIntake extends CommandBase{
 
     @Override
     public void end(boolean interrupted){
-        motors.choke();
+        // motors.choke();
     }
 
     @Override
     public boolean isFinished() {
         // makes sure arm is at bottom and has shot before ending.
         
-        return false;
+        return true;
     }
 }
