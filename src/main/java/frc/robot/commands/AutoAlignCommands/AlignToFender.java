@@ -22,13 +22,15 @@ public class AlignToFender extends SequentialCommandGroup {
   private TimeOfFlightRange sensor;
   // TrajectoryMaker move = TrajectoryHelper.createMoveToFender();
 
-  public AlignToFender(LimelightPortal ll, DrivetrainSubsystem swerveDrive, TimeOfFlightRange sensor) {
+  public AlignToFender(DrivetrainSubsystem drivetrain, LimelightPortal ll, TimeOfFlightRange sensor) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
 
-    super(new AlignAndMoveToLimelight(70, swerveDrive, ll), 
-      new AlignAndMoveToLimelight(70, swerveDrive, ll), 
+    super(/*new AlignAndMoveToLimelight(44, swerveDrive, ll), 
+      new AlignAndMoveToLimelight(44, swerveDrive, ll), 
       new TurnToZeroLimelight(0, swerveDrive, ll).withTimeout(0.25),
-      new GoToDistanceTimeOfFlight(3, swerveDrive, sensor));
+      new GoToDistanceTimeOfFlight(3, swerveDrive, sensor)*/
+      new TurnToZeroLimelight(0, drivetrain, ll), 
+      new GoToDistanceTimeOfFlight(6, drivetrain, sensor));
   }
 }
