@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.IntakeMotors;
+import frc.robot.subsystems.UpperLowerIntake;
 import frc.robot.commands.*;
 import frc.robot.commands.IntakeCommands.IntakeDeploy;
 import frc.robot.commands.IntakeCommands.IntakeDeploySpin;
@@ -25,6 +26,7 @@ import frc.robot.commands.IntakeCommands.ToggleIntakeCatapult;
 
 public class IntakeContainer implements BaseContainer{
   private final IntakeMotors m_IntakeMotors = new IntakeMotors(Constants.INTAKE_DEPLOY_ID,Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID); //FIX INPUTS
+  private final UpperLowerIntake m_UpperLowerIntake = new UpperLowerIntake(Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID);
   private final XboxController m_controller = new XboxController(0);
   
 
@@ -54,9 +56,9 @@ public class IntakeContainer implements BaseContainer{
     JoystickButton Y = new JoystickButton(m_controller, XboxController.Button.kY.value);
     JoystickButton B = new JoystickButton(m_controller, XboxController.Button.kB.value);
 
-    RB.whenPressed(new IntakeDeploySpin(m_IntakeMotors, 0.3, 0.4, -0.4));
-    Y.whenPressed(new IntakeStowStop(m_IntakeMotors, 0.3, 0, 0));
-    X.whenPressed(new SpinIntake(m_IntakeMotors, -1, 1));
+    RB.whenPressed(new IntakeDeploySpin(m_UpperLowerIntake, m_IntakeMotors, 0.3, 0.4, -0.4));
+    Y.whenPressed(new IntakeStowStop(m_UpperLowerIntake, m_IntakeMotors, 0.3, 0, 0));
+    X.whenPressed(new SpinIntake(m_UpperLowerIntake, -1, 1));
     B.whenPressed(new IntakeDeploy(m_IntakeMotors, 0.3));
 
 
