@@ -21,6 +21,7 @@ public class GoToDistanceTimeOfFlight extends ProfiledPIDCommand {
    * away from a wall
   */
   TimeOfFlightRange sensorCheck;
+  double target;
 
   public GoToDistanceTimeOfFlight(double distanceInches, DrivetrainSubsystem drivetrain, TimeOfFlightRange sensor) {
     super(
@@ -38,6 +39,7 @@ public class GoToDistanceTimeOfFlight extends ProfiledPIDCommand {
   
       // Set the controller to be continuous (because it is an angle controller)
       //getController().enableContinuousInput(-180, 180);
+      target = distanceInches;
       sensorCheck = sensor;
     // Use addRequirements() here to declare subsystem dependencies.
     // Configure additional PID options by calling `getController` here.
@@ -46,6 +48,7 @@ public class GoToDistanceTimeOfFlight extends ProfiledPIDCommand {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return sensorCheck.getDistanceSensor() < 4;
+    int distance = (int)sensorCheck.getDistanceSensor();
+    return distance < Constants.TOF_TOLERANCE; 
   }
 }

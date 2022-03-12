@@ -3,6 +3,8 @@
 package frc.robot;
 
 
+import com.playingwithfusion.TimeOfFlight;
+
 import edu.wpi.first.hal.simulation.SimValueCallback;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
@@ -14,12 +16,17 @@ import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeMotors;
 import frc.robot.subsystems.LimelightPortal;
+import frc.robot.subsystems.TimeOfFlightRange;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.AutoAlignCommands.AlignAndMoveToLimelight;
+import frc.robot.commands.AutoAlignCommands.AlignToFender;
 import frc.robot.commands.AutoAlignCommands.GoToDistanceLimelight;
+import frc.robot.commands.AutoAlignCommands.GoToDistanceTimeOfFlight;
+import frc.robot.commands.AutoAlignCommands.PrintLLandTOFDistance;
 import frc.robot.commands.AutoAlignCommands.PrintLimelightDistance;
+import frc.robot.commands.AutoAlignCommands.PrintTimeOfFlightDistance;
 import frc.robot.commands.AutoAlignCommands.SwitchLimelightStream;
 import frc.robot.commands.AutoAlignCommands.TurnToZeroLimelight;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
@@ -39,6 +46,7 @@ public class FinalContainer implements BaseContainer{
   private final IntakeMotors m_IntakeMotors = new IntakeMotors(Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID,Constants.INTAKE_DELOY_ID,Constants.INTAKE_SPEED_TALON1, Constants.INTAKE_SPEED_TALON2, Constants.INTAKE_DEPLOY_SPEED);
 
   private final LimelightPortal ll = new LimelightPortal();
+  private final TimeOfFlightRange tof = new TimeOfFlightRange();
   public FinalContainer() {
 
 
@@ -90,11 +98,12 @@ public class FinalContainer implements BaseContainer{
     buttonRightJoystickButton.whenPressed(new AutoCommand(m_drivetrainSubsystem));
 
 
-    // limelight commands
-    buttonB.whenPressed(new GoToDistanceLimelight(70, m_drivetrainSubsystem, ll));
-    buttonA.whenPressed(new SwitchLimelightStream());
-    buttonX.whenPressed(new TurnToZeroLimelight(0, m_drivetrainSubsystem, ll));
-    buttonY.whenPressed(new AlignAndMoveToLimelight(60, m_drivetrainSubsystem, ll));
+    // limelight and tof testing
+    buttonB.whenPressed(new TurnToZeroLimelight(0, m_drivetrainSubsystem, ll));
+    // buttonB.whenPressed(new GoToDistanceTimeOfFlight(6, m_drivetrainSubsystem, tof));
+    buttonA.whenPressed(new PrintLLandTOFDistance());
+    buttonX.whenPressed(new TurnToZeroLimelight(0, m_drivetrainSubsystem, ll).withTimeout(0.75));
+    buttonY.whenPressed(new AlignToFender(m_drivetrainSubsystem, ll, tof));
 
     
   }

@@ -4,6 +4,8 @@
 
 package frc.robot.commands.AutoAlignCommands;
 
+import java.util.concurrent.TimeoutException;
+
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
@@ -17,8 +19,7 @@ import frc.robot.subsystems.LimelightPortal;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class TurnToZeroLimelight extends ProfiledPIDCommand {
   /** Creates a new TurnToZeroLimelight. */
-    private DrivetrainSubsystem drivetrainSubsystem;
-    private LimelightPortal limeL;
+    
      TrapezoidProfile.Constraints rampUpDown = new TrapezoidProfile.Constraints(10,5);
 
     /**
@@ -27,6 +28,8 @@ public class TurnToZeroLimelight extends ProfiledPIDCommand {
      * @param targetAngleDegrees The angle to turn to
      * @param drive              The drive subsystem to use
      */
+    private DrivetrainSubsystem drivetrainSubsystem;
+    private LimelightPortal limeL;
     public TurnToZeroLimelight(double targetAngleDegrees, DrivetrainSubsystem drivetrain, LimelightPortal ll) {
     super(
         new ProfiledPIDController(Constants.ANGLE_PID_P,Constants.ANGLE_PID_I, Constants.ANGLE_PID_D, //need to tune this better
@@ -66,6 +69,8 @@ public class TurnToZeroLimelight extends ProfiledPIDCommand {
   @Override
   public boolean isFinished() {
     // End when the controller is at the reference.
+    System.out.println(limeL.getX() + ":x-value and is not finished");
     return getController().atGoal();
+    // return Math.abs(limeL.getX()) <= 1.5;
   }
 }

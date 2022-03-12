@@ -53,24 +53,27 @@ public class Constants {
     public static final double MAX_DISTANCE_VELOCITY = 96; //24 inches per second
     public static final double MAX_DISTANCE_ACCELERATION = 96;
     public static final double DISTANCE_TOLERANCE = 3;  //inches
-    public static final double DISTANCE_PID_P = 0.03;
+
+    public static final double TURN_TOLERANCE = 0.5;
+    public static final double ANGLE_PID_P = 0.35;
+    public static final double ANGLE_PID_I = 0.00;  //dont change this number
+    public static final double ANGLE_PID_D = 0.008;
+    
+    public static final double DISTANCE_PID_P = 0.0925;
     public static final double DISTANCE_PID_I = 0.001;
     public static final double DISTANCE_PID_D = 0.00237;
 
-    public static final double TURN_TOLERANCE = 0.5;
-    public static final double ANGLE_PID_P = 0.2;
-    public static final double ANGLE_PID_I = 0.00;  //dont change this number
-    public static final double ANGLE_PID_D = 0.008;
+    public static final double TOF_TOLERANCE = 5;
 
     public static final int STAGE_1_DISTANCE = 50;
-    public static final int STAGE_2_DISTANCE = 20;
+    public static final int STAGE_2_DISTANCE = 15;
     public static final int STAGE_3_DISTANCE = 10;
     public static final int STAGE_4_DISTANCE = 5;
     
     public static final double STAGE_1_SPEED = 1.0;
-    public static final double STAGE_2_SPEED = 0.8;
-    public static final double STAGE_3_SPEED = 0.5;
-    public static final double STAGE_4_SPEED = 0.3;
+    public static final double STAGE_2_SPEED = 0.9;
+    public static final double STAGE_3_SPEED = 0.6;
+    public static final double STAGE_4_SPEED = 0.15;
     public static final double STAGE_5_SPEED = 0.1;
 
     public static final int TURN_CAP = 30;
