@@ -14,11 +14,10 @@ public class ClimberCommand extends CommandBase {
   /** Creates a new ClimvberCommand. */
   private ClimberSubsystem ClimberSubsystem;
   private double targetPositionTicks;
-  private double positionRight = 0;
   private boolean goingUp;
 
 
-  public ClimberCommand(ClimberSubsystem ClimberSubsystem, double inches) {  //Multiply 568.8 by 
+  public ClimberCommand(ClimberSubsystem ClimberSubsystem, double inches) {  
     this.ClimberSubsystem = ClimberSubsystem;
     this.targetPositionTicks = ClimberSubsystem.inchesToTicks(inches);
     addRequirements(ClimberSubsystem);

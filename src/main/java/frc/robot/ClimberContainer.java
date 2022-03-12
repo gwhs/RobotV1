@@ -23,7 +23,7 @@ import frc.robot.commands.ClimberCommands.ParallelClimber;
 
 
 public class ClimberContainer implements BaseContainer{
-  private final ClimberSubsystem m_ClimberRightSubsystem = new ClimberSubsystem(43, true); //FIX INPUTS
+  private final ClimberSubsystem m_ClimberRightSubsystem = new ClimberSubsystem(43, false); //FIX INPUTS
   private final ClimberSubsystem m_ClimberLeftSubsystem = new ClimberSubsystem(45, false);
   private final XboxController m_controller = new XboxController(0);
 
