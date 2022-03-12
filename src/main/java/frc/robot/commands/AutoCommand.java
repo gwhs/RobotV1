@@ -31,13 +31,14 @@ public class AutoCommand extends SequentialCommandGroup {
 
     public AutoCommand(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotors m_intakeMotors) {
         //this.m_drivetrainSubsystem = m_drivetrainSubsystem;
-        PathPlannerTrajectory threeCargoRr= PathPlanner.loadPath("2 Cargo - Left", 1, 1);
+        PathPlannerTrajectory threeCargoR = PathPlanner.loadPath("3 Cargo - Right", 1, 1);
         
-        PathPlannerTrajectory path = threeCargoRr;
+        PathPlannerTrajectory path = threeCargoR;
         addCommands(
-                    //new IntakeDeploy(m_intakeMotors, Constants.INTAKE_DEPLOY_SPEED),
-                    
-                    new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(6.89, 4.44, new Rotation2d(Math.toRadians(159.0))))),
+                    new IntakeDeploy(m_intakeMotors, Constants.INTAKE_DEPLOY_SPEED),
+                    new CatapultRight(m_catapultSubsystemRight, 0.25),
+                    //new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(6.89, 4.44, new Rotation2d(Math.toRadians(159.0))))), //left
+                    new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(7.95, 2.73, new Rotation2d(Math.toRadians(-111.00))))), //right
                     new InstantCommand(() -> System.out.println(m_drivetrainSubsystem.getPose())),
                     new ParallelCommandGroup(
                          //new SpinIntake(m_intakeMotors, Constants.UPPERSPEED, Constants.LOWERSPEED),
@@ -52,7 +53,7 @@ public class AutoCommand extends SequentialCommandGroup {
                             m_drivetrainSubsystem)), 
                     new InstantCommand(() -> System.out.println("end of path")),
                     new InstantCommand(() -> m_drivetrainSubsystem.drive(new ChassisSpeeds(0, 0, 0))),
-                    new CatapultRight(m_catapultSubsystemRight, 0.25),
+                    new CatapultRight(m_catapultSubsystemRight, 0.250),
                     new InstantCommand(() -> System.out.println("set wheels to zero"))
                     //new SpinIntake(m_intakeMotors, 0, 0),
                     //new IntakeStow(m_intakeMotors, Constants.INTAKE_DEPLOY_SPEED),
