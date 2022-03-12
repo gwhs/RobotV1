@@ -56,10 +56,10 @@ public class IntakeContainer implements BaseContainer{
     JoystickButton Y = new JoystickButton(m_controller, XboxController.Button.kY.value);
     JoystickButton B = new JoystickButton(m_controller, XboxController.Button.kB.value);
 
-    RB.whenPressed(new IntakeDeploySpin(m_UpperLowerIntake, m_IntakeMotors, 0.3, 0.4, -0.4));
-    Y.whenPressed(new IntakeStowStop(m_UpperLowerIntake, m_IntakeMotors, 0.3, 0, 0));
+    RB.whenPressed(new IntakeDeploySpin(m_UpperLowerIntake, m_IntakeMotors, 0.5, 0.85, -1));
+    Y.whenPressed(new IntakeStowStop(m_UpperLowerIntake, m_IntakeMotors, 0.5, 0, 0));
     X.whenPressed(new SpinIntake(m_UpperLowerIntake, -1, 1));
-    B.whenPressed(new IntakeDeploy(m_IntakeMotors, 0.3));
+    B.whenPressed(new ToggleIntake(m_IntakeMotors, 0.3));
 
 
     

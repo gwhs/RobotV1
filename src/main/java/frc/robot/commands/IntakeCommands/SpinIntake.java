@@ -6,16 +6,17 @@ import frc.robot.subsystems.UpperLowerIntake;
 import frc.robot.commands.IntakeCommands.SpinIntake;
 
 public class SpinIntake extends CommandBase{
-    private UpperLowerIntake upperLowerIntake;
+
     private double lowerSpeed;
     private double upperSpeed;
+    private UpperLowerIntake UpperLowerIntake;
 
-    public SpinIntake(UpperLowerIntake m_UpperLowerIntake, double upperSpeed, double lowerSpeed){
-        this.upperLowerIntake = upperLowerIntake;
+    public SpinIntake(UpperLowerIntake UpperLowerIntake, double upperSpeed, double lowerSpeed){
+        this.UpperLowerIntake = UpperLowerIntake;
         this.upperSpeed = upperSpeed;
         this.lowerSpeed = lowerSpeed;
 
-        addRequirements(m_UpperLowerIntake);
+        addRequirements(UpperLowerIntake);
     }
 
     @Override
@@ -27,12 +28,12 @@ public class SpinIntake extends CommandBase{
     @Override
     public void execute(){
         
-        upperLowerIntake.setIntakeMotorSpeeds(upperSpeed, lowerSpeed);
+        UpperLowerIntake.setIntakeMotorSpeeds(upperSpeed, lowerSpeed);
     }
 
     @Override
     public void end(boolean interrupted){
-        upperLowerIntake.choke();
+        UpperLowerIntake.choke();
     }
 
     @Override
