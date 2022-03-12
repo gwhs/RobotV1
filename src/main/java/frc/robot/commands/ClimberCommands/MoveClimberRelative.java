@@ -8,6 +8,6 @@ import frc.robot.subsystems.ClimberSubsystem;
 public class MoveClimberRelative extends SequentialCommandGroup{
     
     public MoveClimberRelative(ClimberSubsystem climberRightSubsystem, double distance){
-        addCommands(new RightClimbCommand(climberRightSubsystem, climberRightSubsystem.ticksToInches(climberRightSubsystem.getPosition()) + distance));
+        addCommands(new ClimberCommand(climberRightSubsystem, climberRightSubsystem.ticksToInches(climberRightSubsystem.getPosition()) + distance));
     }
 }
