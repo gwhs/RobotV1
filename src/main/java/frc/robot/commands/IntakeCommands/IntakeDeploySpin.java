@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.IntakeMotors;
+import frc.robot.subsystems.UpperLowerIntake;
 
-public class IntakeDeploySpin extends SequentialCommandGroup {
-  public IntakeDeploySpin(IntakeMotors m_IntakeMotors, double deploySpeed, double lowerSpeed, double upperSpeed) {
-      addCommands(new IntakeDeploy(m_IntakeMotors, deploySpeed),
-                  new SequentialCommandGroup(
-                  new SpinIntake(m_IntakeMotors, upperSpeed, lowerSpeed)));
-    }
-  }
+public class IntakeDeploySpin extends ParallelCommandGroup {
+  public IntakeDeploySpin(UpperLowerIntake upperLowerIntake,IntakeMotors m_IntakeMotors, double deploySpeed, double lowerSpeed, double upperSpeed) {
+    addCommands(new IntakeDeploy(m_IntakeMotors, deploySpeed),
+                new SpinIntake(upperLowerIntake, upperSpeed, lowerSpeed));
+                }
+              }

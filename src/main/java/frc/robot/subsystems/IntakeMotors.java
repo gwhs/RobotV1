@@ -76,19 +76,10 @@ public class IntakeMotors extends SubsystemBase{
     }
 
 
-    public void setIntakeMotorSpeeds(double upperSpeed, double lowerSpeed){
-        upperMotor.set(ControlMode.PercentOutput, upperSpeed);
-        lowerMotor.set(ControlMode.PercentOutput, lowerSpeed);
-    }
-
     public void setDeployMotorSpeed(double speed) {
         deployMotor.set(ControlMode.PercentOutput, speed);
     }
 
-    public void choke(){
-        upperMotor.set(ControlMode.PercentOutput, 0);
-        lowerMotor.set(ControlMode.PercentOutput, 0);
-    }
 
     //setAlphaPosition() sets perceived position to specified value "pos"
     //returns previous position as a double
