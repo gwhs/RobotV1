@@ -6,6 +6,8 @@
 package frc.robot;
 
 
+import javax.management.openmbean.OpenMBeanConstructorInfoSupport;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -16,6 +18,7 @@ import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.ClimberCommands.MoveClimberRelative;
+import frc.robot.commands.ClimberCommands.OneInchClimber;
 import frc.robot.commands.ClimberCommands.ParallelClimber;
 
 
@@ -60,8 +63,8 @@ public class ClimberContainer implements BaseContainer{
     buttonX.whenPressed(new ParallelClimber(m_ClimberLeftSubsystem, m_ClimberRightSubsystem, 23));
     buttonA.whenPressed(new ParallelClimber(m_ClimberLeftSubsystem, m_ClimberRightSubsystem, 18));
 
-    buttonb.whenPressed(new MoveClimberRelative(m_ClimberRightSubsystem, 1));
-    buttonY.whenPressed(new MoveClimberRelative(m_ClimberRightSubsystem, -1));
+    buttonb.whenPressed(new OneInchClimber(m_ClimberRightSubsystem, 1));
+    buttonY.whenPressed(new OneInchClimber(m_ClimberRightSubsystem, -1));
     // buttonA.whenPressed(new RetractArm(m_ClimberSubsytem));
     
     
