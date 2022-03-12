@@ -17,7 +17,6 @@ import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.ClimberCommands.MoveClimberRelative;
 import frc.robot.commands.ClimberCommands.OneInchClimber;
 import frc.robot.commands.ClimberCommands.ParallelClimber;
 
