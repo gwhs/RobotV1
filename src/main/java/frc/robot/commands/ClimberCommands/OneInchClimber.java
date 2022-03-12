@@ -10,16 +10,17 @@ import frc.robot.ClimberContainer;
 import frc.robot.Constants;
 import frc.robot.subsystems.ClimberSubsystem;
 
-public class ClimberCommand extends CommandBase {
+public class OneInchClimber extends CommandBase {
   /** Creates a new ClimvberCommand. */
   private ClimberSubsystem ClimberSubsystem;
   private double targetPositionTicks;
   private boolean goingUp;
 
 
-  public ClimberCommand(ClimberSubsystem ClimberSubsystem, double inches) {  
+  public OneInchClimber(ClimberSubsystem ClimberSubsystem, double inches) {  
     this.ClimberSubsystem = ClimberSubsystem;
-    this.targetPositionTicks = ClimberSubsystem.inchesToTicks(inches);
+    this.targetPositionTicks = ClimberSubsystem.inchesToTicks(1);
+    ClimberSubsystem.setZero();
     addRequirements(ClimberSubsystem);
 
   }
@@ -55,9 +56,9 @@ public class ClimberCommand extends CommandBase {
   @Override
   public boolean isFinished() {
     if (goingUp){ //if position is greater than where we want to go it stop climbing, and sets to brake mode.
-      return ClimberSubsystem.getPosition() > targetPositionTicks || ClimberSubsystem.getPosition() > ClimberSubsystem.inchesToTicks(29);
+      return ClimberSubsystem.getPosition() > targetPositionTicks;
     } else {
-      return ClimberSubsystem.getPosition() < targetPositionTicks || ClimberSubsystem.getPosition() < 5000;
+      return ClimberSubsystem.getPosition() < targetPositionTicks;
     }
   }
 }
