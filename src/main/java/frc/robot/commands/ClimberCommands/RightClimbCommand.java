@@ -8,57 +8,57 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.ClimberContainer;
 import frc.robot.Constants;
-import frc.robot.subsystems.ClimberRightSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 
 public class RightClimbCommand extends CommandBase {
   /** Creates a new ClimvberCommand. */
-  private ClimberRightSubsystem climberRightSubsystem;
+  private ClimberSubsystem leftClimber;
   private double targetPositionTicks;
   private double positionRight = 0;
   private boolean goingUp;
 
 
-  public RightClimbCommand(ClimberRightSubsystem climberRightSubsystem, double inches) {  //Multiply 568.8 by 
-    this.climberRightSubsystem = climberRightSubsystem;
-    this.targetPositionTicks = climberRightSubsystem.inchesToTicks(inches);
-    addRequirements(climberRightSubsystem);
+  public RightClimbCommand(ClimberSubsystem leftClimber, double inches) {  //Multiply 568.8 by 
+    this.leftClimber = leftClimber;
+    this.targetPositionTicks = leftClimber.inchesToTicks(inches);
+    addRequirements(leftClimber);
 
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (climberRightSubsystem.getRightArmPosition() > targetPositionTicks){
+    if (leftClimber.getPosition() > targetPositionTicks){
       goingUp = false;
-      climberRightSubsystem.setSpeedRight(-.5);
+      leftClimber.setSpeed(-.5);
     } else {
       goingUp = true;
-      climberRightSubsystem.setSpeedRight(.5);
+      leftClimber.setSpeed(.5);
     }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putNumber("RightPosition", climberRightSubsystem.getRightArmPosition());
-    System.out.println(climberRightSubsystem.ticksToInches(climberRightSubsystem.getRightArmPosition()));
+    SmartDashboard.putNumber("RightPosition", leftClimber.getPosition());
+    System.out.println(leftClimber.ticksToInches(leftClimber.getPosition()));
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    climberRightSubsystem.setSpeedRight(0);
+    leftClimber.setSpeed(0);
     System.out.println("done");
-    System.out.println("Right position " + climberRightSubsystem.getRightArmPosition());
+    System.out.println("Right position " + leftClimber.getPosition());
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     if (goingUp){ //if position is greater than where we want to go it stop climbing, and sets to brake mode.
-      return climberRightSubsystem.getRightArmPosition() > targetPositionTicks || climberRightSubsystem.getRightArmPosition() > climberRightSubsystem.inchesToTicks(29);
+      return leftClimber.getPosition() > targetPositionTicks || leftClimber.getPosition() > leftClimber.inchesToTicks(29);
     } else {
-      return climberRightSubsystem.getRightArmPosition() < targetPositionTicks || climberRightSubsystem.getRightArmPosition() < 5000;
+      return leftClimber.getPosition() < targetPositionTicks || leftClimber.getPosition() < 5000;
     }
   }
 }

@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.CatapultSubsystem;
-import frc.robot.subsystems.ClimberRightSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeMotors;
 import frc.robot.subsystems.LimelightPortal;
@@ -29,7 +29,7 @@ public class FinalContainer implements BaseContainer{
   private final XboxController m_controller = new XboxController(0);
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
 
-  private final ClimberRightSubsystem m_ClimberSubsytem = new ClimberRightSubsystem(43); //FIX INPUTS
+  private final ClimberSubsystem m_ClimberSubsytem = new ClimberSubsystem(43, true); //FIX INPUTS
   private final CatapultSubsystem m_CatapultLeftSubsystem = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false);
   private final CatapultSubsystem m_CatapultRightSubsystem = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID, true);
   private final IntakeMotors m_IntakeMotors = new IntakeMotors(Constants.INTAKE_DEPLOY_ID,Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID);
