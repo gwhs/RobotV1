@@ -31,9 +31,9 @@ public class AutoCommand extends SequentialCommandGroup {
 
     public AutoCommand(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotors m_intakeMotors) {
         //this.m_drivetrainSubsystem = m_drivetrainSubsystem;
-        PathPlannerTrajectory threeCargoR= PathPlanner.loadPath("2 Cargo - Left", 1, 1);
+        PathPlannerTrajectory threeCargoRr= PathPlanner.loadPath("2 Cargo - Left", 1, 1);
         
-        PathPlannerTrajectory path = threeCargoR;
+        PathPlannerTrajectory path = threeCargoRr;
         addCommands(
                     //new IntakeDeploy(m_intakeMotors, Constants.INTAKE_DEPLOY_SPEED),
                     
