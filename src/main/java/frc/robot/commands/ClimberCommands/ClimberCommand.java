@@ -29,10 +29,10 @@ public class ClimberCommand extends CommandBase {
   public void initialize() {
     if (ClimberSubsystem.getPosition() > targetPositionTicks){
       goingUp = false;
-      ClimberSubsystem.setSpeed(-.5);
+      ClimberSubsystem.setSpeed(-.8);
     } else {
       goingUp = true;
-      ClimberSubsystem.setSpeed(.5);
+      ClimberSubsystem.setSpeed(.8);
     }
   }
 
