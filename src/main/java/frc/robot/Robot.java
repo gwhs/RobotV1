@@ -93,7 +93,7 @@ public class Robot extends TimedRobot {
         m_BaseContainer = new IndicaterLightContainer();
         break;
       case FINAL:
-        m_BaseContainer = new FinalContainer();
+        //m_BaseContainer = new FinalContainer();
         break;
     } 
     m_autonomousCommand = m_BaseContainer.getAutonomousCommand();
