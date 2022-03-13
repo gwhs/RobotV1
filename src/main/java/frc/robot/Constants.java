@@ -6,8 +6,10 @@ public class Constants {
     public static final int CATAPULT_RIGHT_ID = 21;
     public static double CATAPULT_SPEED = 1;
     public static double CATAPULT_SPEED_LOW = 0.05;
-    public static double CATAPULT_SPEED_DUMP = 0.015;
-    public static double CATAPULT_SPEED_FAR = 1;
+    public static double CATAPULT_SPEED_DUMP = 0.4;
+
+    public static double CATAPULT_SPEED_FAR = 1; //Might not use
+
     public static double CATAPULT_LEFT_SPEED = 1; //54%
     public static double CATAPULT_RIGHT_SPEED = 1; //56%
     public static double CATAPULT_DELAY = 0.5;
