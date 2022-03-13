@@ -24,6 +24,7 @@ public class CatapultSubsystem extends SubsystemBase {
   private double initialOffset;
   private static final int SHOOT_LIMIT = 5100;
   private double power = Constants.CATAPULT_SPEED_LOW;//will be changed
+  // private SimpleWidget tab = Shuffleboard.getTab("Drive").add("Max Speed", 1).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 0, "max", 1)); // specify widget properties here.getEntry();
   /** Creates a new motor. */
   public CatapultSubsystem(int id, boolean inverted) {
     motor = new TalonFX(id);
