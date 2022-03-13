@@ -5,12 +5,13 @@
 package frc.robot.commands.IntakeCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.Constants;
 import frc.robot.subsystems.IntakeMotor;
 import frc.robot.subsystems.UpperLowerIntake;
 
 public class IntakeStowStop extends ParallelCommandGroup {
-  public IntakeStowStop(UpperLowerIntake upperLowerIntake, IntakeMotor m_IntakeMotor, double deploySpeed, double lowerSpeed, double upperSpeed) {
+  public IntakeStowStop(UpperLowerIntake upperLowerIntake, IntakeMotor m_IntakeMotor, double deploySpeed) {
       addCommands(new IntakeStow(m_IntakeMotor, deploySpeed),
-                  new SpinIntake(upperLowerIntake, upperSpeed, lowerSpeed));
+                  new SpinIntake(upperLowerIntake, 0, 0));
     }
   }

@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeMotor extends SubsystemBase{
     private TalonFX deployMotor;
+    private IntakeMotor m_IntakeMotor;
+    private static boolean deployed = false;
     private static final double DEPLOYED_TICKS = 22000;
     private static final double STOWED_TICKS = 0;
     
@@ -21,7 +23,6 @@ public class IntakeMotor extends SubsystemBase{
         this.setSoftLimits();
         this.setZero();
     }
-
 
     public void setZero(){
         deployMotor.setSelectedSensorPosition(0);
@@ -37,18 +38,22 @@ public class IntakeMotor extends SubsystemBase{
         return info.isRevLimitSwitchClosed();
     }
 
-
     public boolean isDeployed(){
-        double position = deployMotor.getSelectedSensorPosition();
-        if(position >= DEPLOYED_TICKS - 1000){
-            return true;
-        }
-        return false;
-    }
-
-    public void stowNoSping(){
+        if(isFWDLIMIT() == 1){
+            deployed = false;
+            System.out.println("ISFWDLIMIT IS RUNNING");
+          }
+          else if (isREVLIMIT() == 1){
+            deployed = true;
+            System.out.println("ISREVLIMIT IS RUNNING");
+          }
+          else{
+            deployed = false;
         
-    }
+            System.out.println("INTAKE WAS IN MIDDLE POS");
+          }
+          return deployed;
+        }
 
     public boolean isStowed(){
         double position = deployMotor.getSelectedSensorPosition();
