@@ -10,7 +10,7 @@ import frc.robot.subsystems.IntakeMotor;
 
 public class CatapultDouble extends ParallelCommandGroup {
     public CatapultDouble(CatapultSubsystem m_CatapultSubsystemLeft, CatapultSubsystem m_CatapultSubsystemRight, double leftSpeed, double rightSpeed, double delay) {
-        addCommands(new CatapultCommand(m_CatapultSubsystemLeft, leftSpeed),
+        addCommands(new CatapultCommand(m_CatapultSubsystemLeft, leftSpeed).withTimeout(1),
                     new SequentialCommandGroup(new WaitCommand(delay), new CatapultCommand(m_CatapultSubsystemRight, rightSpeed)));
     } 
 }
