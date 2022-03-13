@@ -56,7 +56,7 @@ public class AutoCommand extends SequentialCommandGroup {
                     //new SpinIntake(m_intakeMotor, 0, 0),
                     new IntakeStow(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
                     new IntakeDeploy(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
-                    new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, 0.45, 0.45, Constants.INTAKE_DEPLOY_SPEED, 0)
+                    new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, 0.45, 0.45, 0)
 
         );
     }
