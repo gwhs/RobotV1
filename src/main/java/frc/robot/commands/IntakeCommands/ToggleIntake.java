@@ -13,11 +13,11 @@ public class ToggleIntake extends CommandBase {
   private double deploySpeed;
   public boolean deployed = false;
   /** Creates a new ToggleIntake. */
-  public ToggleIntake(IntakeMotor m_IntakeMotors, double deploySpeed) {
+  public ToggleIntake(IntakeMotor m_IntakeMotor, double deploySpeed) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.m_IntakeMotor = m_IntakeMotor;
     this.deploySpeed = deploySpeed;
-    addRequirements(m_IntakeMotors);
+    addRequirements(m_IntakeMotor);
   }
 
   // Called when the command is initially scheduled.
