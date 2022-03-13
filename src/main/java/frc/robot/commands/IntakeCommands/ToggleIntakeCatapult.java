@@ -7,16 +7,16 @@ package frc.robot.commands.IntakeCommands;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.IntakeMotors;
+import frc.robot.subsystems.IntakeMotor;
 
 public class ToggleIntakeCatapult extends CommandBase {
-  private IntakeMotors motors;
+  private IntakeMotor motors;
   private double speed;
   private double currentPos;
   private double offset;
   private boolean deployed;
   /** Creates a new ToggleIntakeCatapult. */
-  public ToggleIntakeCatapult(IntakeMotors motors, double speed) {
+  public ToggleIntakeCatapult(IntakeMotor motors, double speed) {
     this.motors = motors;
     this.speed = speed;
     // Use addRequirements() here to declare subsystem dependencies.

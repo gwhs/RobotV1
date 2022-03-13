@@ -14,9 +14,11 @@ import frc.robot.commands.AutoCommand;
 import frc.robot.commands.AutoMeter;
 // import frc.robot.commands.AutoCommand;
 import frc.robot.commands.DefaultDriveCommand;
+import frc.robot.commands.IntakeCommands.IntakeStow;
 import frc.robot.subsystems.CatapultSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
-import frc.robot.subsystems.IntakeMotors;
+import frc.robot.subsystems.IntakeMotor;
+import frc.robot.subsystems.UpperLowerIntake;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 
@@ -25,7 +27,8 @@ public class RobotContainer implements BaseContainer{
   private final XboxController m_controller = new XboxController(0);
   private final CatapultSubsystem m_catapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false);
   private final CatapultSubsystem m_catapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID, true);
-  private final IntakeMotors m_intakeMotors = new IntakeMotors(Constants.INTAKE_DEPLOY_ID, Constants.INTAKE_UPPERTALON_ID,Constants.INTAKE_LOWERTALON_ID);
+  private final IntakeMotor m_intakeMotor = new IntakeMotor(Constants.INTAKE_DEPLOY_ID, Constants.INTAKE_UPPERTALON_ID,Constants.INTAKE_LOWERTALON_ID);
+  private final UpperLowerIntake m_upperLowerIntake = new UpperLowerIntake(Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID);
   
 
   public RobotContainer() {
@@ -73,8 +76,8 @@ public class RobotContainer implements BaseContainer{
   //   start.whenPressed(m_drivetrainSubsystem::toggleDriveMode);
   //  buttonY.whenPressed(() -> m_drivetrainSubsystem.setWheelAngle(0));
   //   buttonA.whenPressed(() -> m_drivetrainSubsystem.changeWheelAngleBy45());
-    buttonA.whenPressed(new AutoMeter(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotors));
-    buttonB.whenPressed(new AutoCommand(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotors));
+    buttonA.whenPressed(new IntakeStow(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED));
+    buttonB.whenPressed(new AutoCommand(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake));
     buttonY.whenPressed(() -> m_drivetrainSubsystem.forcingZero());
     buttonX.whenPressed(() -> System.out.println(m_drivetrainSubsystem.getPose()));
 

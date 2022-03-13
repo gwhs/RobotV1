@@ -1,7 +1,7 @@
 package frc.robot.commands.IntakeCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.IntakeMotors;
+import frc.robot.subsystems.IntakeMotor;
 import frc.robot.subsystems.UpperLowerIntake;
 import frc.robot.commands.IntakeCommands.SpinIntake;
 
@@ -40,6 +40,6 @@ public class SpinIntake extends CommandBase{
     public boolean isFinished() {
         // makes sure arm is at bottom and has shot before ending.
         
-        return true;
+        return false;
     }
 }

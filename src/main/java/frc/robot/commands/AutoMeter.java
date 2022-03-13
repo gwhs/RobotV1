@@ -9,7 +9,7 @@ import frc.robot.commands.CatapultCommands.CatapultDouble;
 import frc.robot.commands.IntakeCommands.SpinIntake;
 import frc.robot.subsystems.CatapultSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
-import frc.robot.subsystems.IntakeMotors;
+import frc.robot.subsystems.IntakeMotor;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 
@@ -26,14 +26,14 @@ public class AutoMeter extends SequentialCommandGroup {
     // private DrivetrainSubsystem m_drivetrainSubsystem;
     // private CatapultSubsystem m_catapultSubsystemLeft;
     // private CatapultSubsystem m_catapultSubsystemRight;
-    // private IntakeMotors m_intakeMotors;
+    // private IntakeMotor m_intakeMotor;
 
     //HARD CODE IN INITIAL POSE
-    public AutoMeter(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotors m_intakeMotors) {
+    public AutoMeter(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotor m_intakeMotor) {
         // this.m_drivetrainSubsystem = m_drivetrainSubsystem;
         // this.m_catapultSubsystemLeft = m_catapultSubsystemLeft;
         // this.m_catapultSubsystemRight = m_catapultSubsystemRight;
-        // this.m_intakeMotors = m_intakeMotors;
+        // this.m_intakeMotor = m_intakeMotor;
         PathPlannerTrajectory oneMeter = PathPlanner.loadPath("oneMeter", 1, 1);
         PathPlannerTrajectory oneMeterBack = PathPlanner.loadPath("oneMeterBack", 1, 1);
         PathPlannerTrajectory simple = PathPlanner.loadPath("simple", 1, 1);

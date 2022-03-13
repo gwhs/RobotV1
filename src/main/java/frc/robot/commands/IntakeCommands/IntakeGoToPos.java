@@ -6,39 +6,39 @@ package frc.robot.commands.IntakeCommands;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
-import frc.robot.subsystems.IntakeMotors;
+import frc.robot.subsystems.IntakeMotor;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class IntakeGoToPos extends PIDCommand {
-  private IntakeMotors m_IntakeMotors;
+  private IntakeMotor m_IntakeMotor;
   private double ticks;
 
   /** Creates a new IntakeGoToPos. */
-  public IntakeGoToPos(IntakeMotors m_IntakeMotors, double ticks) {
+  public IntakeGoToPos(IntakeMotor m_IntakeMotor, double ticks) {
     super(
         // The controller that the command will use
         new PIDController(5, 0, 0),
         // This should return the measurement
-        m_IntakeMotors::getDeployPosition,
+        m_IntakeMotor::getDeployPosition,
         // This should return the setpoint (can also be a constant)
         ticks,
         // This uses the output
-        (output) -> m_IntakeMotors.goToPosition((int) output),
-        m_IntakeMotors);
+        (output) -> m_IntakeMotor.goToPosition((int) output),
+        m_IntakeMotor);
           // Use the output here);
     // Use addRequirements() here to declare subsystem dependencies.
     // Configure additional PID options by calling `getController` here.
     this.ticks = ticks;
-    this.m_IntakeMotors = m_IntakeMotors;
-    System.out.println("CONS Sensor ticks: " + m_IntakeMotors.getDeployPosition());
+    this.m_IntakeMotor = m_IntakeMotor;
+    System.out.println("CONS Sensor ticks: " + m_IntakeMotor.getDeployPosition());
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    System.out.println("Sensor ticks: " + m_IntakeMotors.getDeployPosition());
-    return Math.abs(m_IntakeMotors.getDeployPosition() - ticks) <= 2000;
+    System.out.println("Sensor ticks: " + m_IntakeMotor.getDeployPosition());
+    return Math.abs(m_IntakeMotor.getDeployPosition() - ticks) <= 2000;
   }
 }

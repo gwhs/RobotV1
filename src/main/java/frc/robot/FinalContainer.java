@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.CatapultSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
-import frc.robot.subsystems.IntakeMotors;
+import frc.robot.subsystems.IntakeMotor;
 import frc.robot.subsystems.LimelightPortal;
 import frc.robot.subsystems.TimeOfFlightRange;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -28,7 +28,7 @@ public class FinalContainer implements BaseContainer{
   private final ClimberSubsystem m_ClimberSubsytem = new ClimberSubsystem(43, true); //FIX INPUTS
   private final CatapultSubsystem m_CatapultLeftSubsystem = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false);
   private final CatapultSubsystem m_CatapultRightSubsystem = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID, true);
-  private final IntakeMotors m_IntakeMotors = new IntakeMotors(Constants.INTAKE_DEPLOY_ID,Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID);
+  private final IntakeMotor m_IntakeMotor = new IntakeMotor(Constants.INTAKE_DEPLOY_ID,Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID);
 
   private final LimelightPortal ll = new LimelightPortal();
   private final TimeOfFlightRange tof = new TimeOfFlightRange();
@@ -77,10 +77,10 @@ public class FinalContainer implements BaseContainer{
     //buttonB.whenPressed();
     // buttonA.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem,1 ));
     // buttonY.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem, 2));
-    // buttonRBumper.whenPressed(new SpinIntake(m_IntakeMotors, 0.1, 0.1));
-    // buttonLBumper.whenPressed(new ToggleIntake(m_IntakeMotors));
-    // buttonRBumper.whenPressed(new Spit(m_IntakeMotors));
-    buttonLeftJoystickButton.whenPressed(new AutoMeter(m_drivetrainSubsystem, m_CatapultLeftSubsystem, m_CatapultLeftSubsystem, m_IntakeMotors));
+    // buttonRBumper.whenPressed(new SpinIntake(m_IntakeMotor, 0.1, 0.1));
+    // buttonLBumper.whenPressed(new ToggleIntake(m_IntakeMotor));
+    // buttonRBumper.whenPressed(new Spit(m_IntakeMotor));
+    buttonLeftJoystickButton.whenPressed(new AutoMeter(m_drivetrainSubsystem, m_CatapultLeftSubsystem, m_CatapultLeftSubsystem, m_IntakeMotor));
    // buttonRightJoystickButton.whenPressed(new AutoCommand(m_drivetrainSubsystem));
 
 
