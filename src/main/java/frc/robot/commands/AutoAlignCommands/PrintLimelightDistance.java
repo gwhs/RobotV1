@@ -16,10 +16,9 @@ public class PrintLimelightDistance extends InstantCommand {
    * Prints the distance time of flight detects, 
    * never prints exact number
   */
-  LimelightPortal llGet;
+  LimelightPortal llGet = new LimelightPortal();
 
-  public PrintLimelightDistance(LimelightPortal LL) {
-    llGet = LL;
+  public PrintLimelightDistance() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
