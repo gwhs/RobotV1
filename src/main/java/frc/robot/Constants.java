@@ -91,6 +91,8 @@ public class Constants {
 
     public static final int TURN_CAP = 30;
 
+    public static final double CLIMER_EXTEND_INCHES = 23.0;
+    public static final double CLIMBER_RETRACT_INCHES = -1;
 
     public static final double CLIMBER_RATIO = 36;
     public static final int TICKS_PER_REVOLUTION = 2048;
