@@ -5,23 +5,23 @@
 package frc.robot.commands.IntakeCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.IntakeMotors;
+import frc.robot.subsystems.IntakeMotor;
 
 public class IntakeStow extends CommandBase {
-  private IntakeMotors m_IntakeMotors;
+  private IntakeMotor m_IntakeMotor;
   private double speed;
   /** Creates a new IntakeStow. */
-  public IntakeStow(IntakeMotors m_IntakeMotors, double speed) {
-    this.m_IntakeMotors = m_IntakeMotors;
+  public IntakeStow(IntakeMotor m_IntakeMotor, double speed) {
+    this.m_IntakeMotor = m_IntakeMotor;
     this.speed = speed;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_IntakeMotors);
+    addRequirements(m_IntakeMotor);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_IntakeMotors.setDeployMotorSpeed(speed);
+    m_IntakeMotor.setDeployMotorSpeed(speed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -30,11 +30,15 @@ public class IntakeStow extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    System.out.println();
+    System.out.println("stowed");
+    System.out.println();
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return m_IntakeMotors.isREVLIMIT() == 1;
+    return m_IntakeMotor.isFWDLIMIT() == 1;
 }
 }

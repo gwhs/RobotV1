@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.IntakeCommands.IntakeDeploy;
 import frc.robot.commands.IntakeCommands.ToggleIntakeCatapult;
 import frc.robot.subsystems.CatapultSubsystem;
-import frc.robot.subsystems.IntakeMotors;
+import frc.robot.subsystems.IntakeMotor;
 
 
 public class CatapultDouble extends ParallelCommandGroup {

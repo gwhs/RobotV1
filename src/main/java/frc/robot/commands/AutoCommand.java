@@ -13,7 +13,9 @@ import frc.robot.commands.IntakeCommands.IntakeStow;
 import frc.robot.commands.IntakeCommands.SpinIntake;
 import frc.robot.subsystems.CatapultSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
-import frc.robot.subsystems.IntakeMotors;
+import frc.robot.subsystems.IntakeMotor;
+import frc.robot.subsystems.IntakeMotor;
+import frc.robot.subsystems.UpperLowerIntake;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -27,18 +29,19 @@ public class AutoCommand extends SequentialCommandGroup {
     //private DrivetrainSubsystem m_drivetrainSubsystem;
 
 
-    public AutoCommand(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotors m_intakeMotors) {
+    public AutoCommand(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotor m_intakeMotor, UpperLowerIntake m_UpperLower) {
         //this.m_drivetrainSubsystem = m_drivetrainSubsystem;
-        PathPlannerTrajectory threeCargoRr= PathPlanner.loadPath("2 Cargo - Left", 1, 1);
+        PathPlannerTrajectory threeCargoR = PathPlanner.loadPath("2 Cargo - Left", 1, 1);
         
-        PathPlannerTrajectory path = threeCargoRr;
+        PathPlannerTrajectory path = threeCargoR;
         addCommands(
-                    //new IntakeDeploy(m_intakeMotors, Constants.INTAKE_DEPLOY_SPEED),
-                    
-                    new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(6.89, 4.44, new Rotation2d(Math.toRadians(159.0))))),
-                    new InstantCommand(() -> System.out.println(m_drivetrainSubsystem.getPose())),
+                    new IntakeDeploy(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
+                    new CatapultRight(m_catapultSubsystemRight, 0.25),
+                    new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(6.89, 4.44, new Rotation2d(Math.toRadians(159.0))))), //left
+                    //new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(7.95, 2.73, new Rotation2d(Math.toRadians(-111.00))))), //right
+                    //new InstantCommand(() -> System.out.println(m_drivetrainSubsystem.getPose())),
                     new ParallelCommandGroup(
-                         //new SpinIntake(m_intakeMotors, Constants.UPPERSPEED, Constants.LOWERSPEED),
+                         new SpinIntake(m_UpperLower, Constants.UPPERSPEED, Constants.LOWERSPEED).withTimeout(path.getTotalTimeSeconds()),
                          new PPSwerveControllerCommand(
                             path,
                             m_drivetrainSubsystem::getPose,
@@ -48,14 +51,12 @@ public class AutoCommand extends SequentialCommandGroup {
                             m_drivetrainSubsystem.getThetaController(),
                             m_drivetrainSubsystem::setStates,
                             m_drivetrainSubsystem)), 
-                    new InstantCommand(() -> System.out.println("end of path")),
                     new InstantCommand(() -> m_drivetrainSubsystem.drive(new ChassisSpeeds(0, 0, 0))),
-                    new CatapultRight(m_catapultSubsystemRight, 0.25),
-                    new InstantCommand(() -> System.out.println("set wheels to zero"))
-                    //new SpinIntake(m_intakeMotors, 0, 0),
-                    //new IntakeStow(m_intakeMotors, Constants.INTAKE_DEPLOY_SPEED),
-                    //new IntakeDeploy(m_intakeMotors, Constants.INTAKE_DEPLOY_SPEED),
-                    //new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, 0.45, 0.45, 0)
+                    //new CatapultRight(m_catapultSubsystemRight, 0.250),
+                    //new SpinIntake(m_intakeMotor, 0, 0),
+                    new IntakeStow(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
+                    new IntakeDeploy(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
+                    new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, 0.45, 0.45, Constants.INTAKE_DEPLOY_SPEED, 0)
 
         );
     }
