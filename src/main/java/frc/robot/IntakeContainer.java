@@ -22,7 +22,6 @@ import frc.robot.commands.IntakeCommands.IntakeStow;
 import frc.robot.commands.IntakeCommands.IntakeStowStop;
 import frc.robot.commands.IntakeCommands.SpinIntake;
 import frc.robot.commands.IntakeCommands.ToggleIntake;
-import frc.robot.commands.IntakeCommands.ToggleIntakeCatapult;
 
 public class IntakeContainer implements BaseContainer{
   private final IntakeMotor m_IntakeMotor = new IntakeMotor(Constants.INTAKE_DEPLOY_ID); //FIX INPUTS
