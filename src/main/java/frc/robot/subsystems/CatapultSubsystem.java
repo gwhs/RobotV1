@@ -70,6 +70,10 @@ public class CatapultSubsystem extends SubsystemBase {
     return false;
   }
 
+  public void increaseCatapultByOne(double speed){
+    motor.set(ControlMode.PercentOutput, speed);
+  }
+
   public void setSelectedSensorPosition() {
     motor.setSelectedSensorPosition(0.0);
   }
