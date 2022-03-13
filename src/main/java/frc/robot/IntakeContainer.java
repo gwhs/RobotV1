@@ -58,7 +58,7 @@ public class IntakeContainer implements BaseContainer{
 
     RB.whenPressed(new IntakeDeploySpin(m_UpperLowerIntake, m_IntakeMotors, 0.5, 0.85, -1));
     Y.whenPressed(new IntakeStowStop(m_UpperLowerIntake, m_IntakeMotors, 0.5, 0, 0));
-    X.whenPressed(new SpinIntake(m_UpperLowerIntake, -1, 1));
+    X.whenPressed(new SpinIntake(m_UpperLowerIntake, 0.85, -1));
     B.whenPressed(new ToggleIntake(m_IntakeMotors, 0.3));
 
 

@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.ShuffleboardUpdater;
+import frc.robot.subsystems.IntakeMotors;
 import frc.robot.subsystems.ShuffleboardTest;
 
 /**
@@ -41,7 +42,7 @@ public class Robot extends TimedRobot {
     CATAPULT, SWERVE, INTAKE, CLIMBER, FINAL
   }; 
 
-  public static final String container = SWERVE;
+  public static final String container = INTAKE;
 
   /*To set the robot container, use the dropdown menu in shuffleboard, under the smartdashboard tab*/
 
