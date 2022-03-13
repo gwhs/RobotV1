@@ -29,6 +29,7 @@ public class CatapultSubsystem extends SubsystemBase {
     else{
       motor.setInverted(InvertType.None);
     }
+    motor.setNeutralMode(NeutralMode.Brake);
   }
 
 

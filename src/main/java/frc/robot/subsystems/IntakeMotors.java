@@ -17,9 +17,7 @@ public class IntakeMotors extends SubsystemBase{
     private static final double DEPLOYED_TICKS = 22000;
     private static final double STOWED_TICKS = 0;
     
-    public IntakeMotors(int deployMotorID, int upperMotorID, int lowerMotorID){
-        this.upperMotor = new TalonFX(upperMotorID);
-        this.lowerMotor = new TalonFX(lowerMotorID);
+    public IntakeMotors(int deployMotorID){
         this.deployMotor = new TalonFX(deployMotorID);
         //deployMotor.setNeutralMode(NeutralMode.Brake);
         this.setSoftLimits();

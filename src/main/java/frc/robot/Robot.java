@@ -6,6 +6,8 @@ package frc.robot;
 
 import javax.print.attribute.standard.Finishings;
 
+import com.ctre.phoenix.CTREJNIWrapper;
+
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -42,7 +44,7 @@ public class Robot extends TimedRobot {
     CATAPULT, SWERVE, INTAKE, CLIMBER, FINAL
   }; 
 
-  public static final String container = INTAKE;
+  public static final String container = CATAPULT;
 
   /*To set the robot container, use the dropdown menu in shuffleboard, under the smartdashboard tab*/
 

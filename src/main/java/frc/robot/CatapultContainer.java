@@ -20,7 +20,6 @@ public class CatapultContainer implements BaseContainer{
     private final XboxController m_controller = new XboxController(0);
     private final CatapultSubsystem m_CatapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false);
     private final CatapultSubsystem m_CatapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID, true);
-    private IntakeMotors m_IntakeMotors;
 
     public CatapultContainer(){
 
@@ -39,7 +38,7 @@ public class CatapultContainer implements BaseContainer{
 
         buttonB.whenPressed(new CatapultLeft(m_CatapultSubsystemLeft, Constants.CATAPULT_LEFT_SPEED));
         buttonX.whenPressed(new CatapultRight(m_CatapultSubsystemRight, Constants.CATAPULT_RIGHT_SPEED));
-        buttonA.whenPressed(new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, m_IntakeMotors, Constants.CATAPULT_LEFT_SPEED, Constants.CATAPULT_RIGHT_SPEED, Constants.DELAY, Constants.DEPLOY_SPEED));
+        buttonA.whenPressed(new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.CATAPULT_LEFT_SPEED, Constants.CATAPULT_RIGHT_SPEED, Constants.DELAY, Constants.DEPLOY_SPEED));
 
     }
 

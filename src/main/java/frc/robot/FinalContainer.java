@@ -28,7 +28,7 @@ public class FinalContainer implements BaseContainer{
   private final ClimberSubsystem m_ClimberSubsytem = new ClimberSubsystem(43, true); //FIX INPUTS
   private final CatapultSubsystem m_CatapultLeftSubsystem = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false);
   private final CatapultSubsystem m_CatapultRightSubsystem = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID, true);
-  private final IntakeMotors m_IntakeMotors = new IntakeMotors(Constants.INTAKE_DEPLOY_ID,Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID);
+  private final IntakeMotors m_IntakeMotors = new IntakeMotors(Constants.INTAKE_DEPLOY_ID);
 
   private final LimelightPortal ll = new LimelightPortal();
   private final TimeOfFlightRange tof = new TimeOfFlightRange();
