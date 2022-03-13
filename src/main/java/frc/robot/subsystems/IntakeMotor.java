@@ -11,15 +11,11 @@ import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeMotor extends SubsystemBase{
-    private TalonFX upperMotor;
-    private TalonFX lowerMotor;
     private TalonFX deployMotor;
     private static final double DEPLOYED_TICKS = 22000;
     private static final double STOWED_TICKS = 0;
     
-    public IntakeMotor(int deployMotorID, int upperMotorID, int lowerMotorID){
-        this.upperMotor = new TalonFX(upperMotorID);
-        this.lowerMotor = new TalonFX(lowerMotorID);
+    public IntakeMotor(int deployMotorID){
         this.deployMotor = new TalonFX(deployMotorID);
         //deployMotor.setNeutralMode(NeutralMode.Brake);
         this.setSoftLimits();

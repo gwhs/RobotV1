@@ -6,6 +6,8 @@ package frc.robot;
 
 import javax.print.attribute.standard.Finishings;
 
+import com.ctre.phoenix.CTREJNIWrapper;
+
 import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.TimedRobot;

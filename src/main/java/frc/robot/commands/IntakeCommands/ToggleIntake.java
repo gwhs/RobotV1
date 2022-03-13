@@ -10,12 +10,14 @@ import frc.robot.subsystems.IntakeMotor;
 
 public class ToggleIntake extends CommandBase {
   private IntakeMotor m_IntakeMotor;
-  private double speed;
+  private double deploySpeed;
   public boolean deployed = false;
   /** Creates a new ToggleIntake. */
-  public ToggleIntake(IntakeMotor m_IntakeMotor, double speed) {
+  public ToggleIntake(IntakeMotor m_IntakeMotors, double deploySpeed) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_IntakeMotor);
+    this.m_IntakeMotor = m_IntakeMotor;
+    this.deploySpeed = deploySpeed;
+    addRequirements(m_IntakeMotors);
   }
 
   // Called when the command is initially scheduled.
@@ -27,15 +29,17 @@ public class ToggleIntake extends CommandBase {
   public void execute() {
     if(m_IntakeMotor.isFWDLIMIT() == 1){
       deployed = false;
-      m_IntakeMotor.setDeployMotorSpeed(-speed);
+      System.out.println("ISFWDLIMIT IS RUNNING");
+      m_IntakeMotor.setDeployMotorSpeed(-deploySpeed);
     }
     else if (m_IntakeMotor.isREVLIMIT() == 1){
       deployed = true;
-      m_IntakeMotor.setDeployMotorSpeed(speed);
+      System.out.println("ISREVLIMIT IS RUNNING");
+      m_IntakeMotor.setDeployMotorSpeed(deploySpeed);
     }
     else{
       deployed = false;
-      m_IntakeMotor.setDeployMotorSpeed(-speed);
+      m_IntakeMotor.setDeployMotorSpeed(-deploySpeed);
       System.out.println("INTAKE WAS IN MIDDLE POS");
     }
   }

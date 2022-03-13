@@ -25,7 +25,7 @@ import frc.robot.commands.IntakeCommands.ToggleIntake;
 import frc.robot.commands.IntakeCommands.ToggleIntakeCatapult;
 
 public class IntakeContainer implements BaseContainer{
-  private final IntakeMotor m_IntakeMotor = new IntakeMotor(Constants.INTAKE_DEPLOY_ID,Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID); //FIX INPUTS
+  private final IntakeMotor m_IntakeMotor = new IntakeMotor(Constants.INTAKE_DEPLOY_ID); //FIX INPUTS
   private final UpperLowerIntake m_UpperLowerIntake = new UpperLowerIntake(Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID);
   private final XboxController m_controller = new XboxController(0);
   

@@ -20,7 +20,6 @@ public class CatapultContainer implements BaseContainer{
     private final XboxController m_controller = new XboxController(0);
     private final CatapultSubsystem m_CatapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false);
     private final CatapultSubsystem m_CatapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID, true);
-    private IntakeMotor m_IntakeMotor;
 
     public CatapultContainer(){
 
