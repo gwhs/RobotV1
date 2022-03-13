@@ -33,14 +33,11 @@ public class Constants {
     public static final double INTAKE_LOWER_SPEED = 1;
     public static final double INTAKE_UPPER_SPEED = -1;
 
-
-    //Climbing Modes
-
-    public static final int CLIMBER_MODE_LOW = 1;
-    public static final int CLIMBER_MODE_MID = 2;
+    //climber ids
+    public static final int CLIMBER_RIGHT_ID = 43;
+    public static final int CLIMBER_LEFT_ID = 45;
 
     //SHOOTER MODES
-
     // public static final int SHOOTER_MODE_DOUBLE = 1;
     // public static final int SHOOTER_MODE_DELAY = 2;
     // public static final int SHOOTER_MODE_LOW_HIGH = 3;

@@ -40,8 +40,8 @@ public class FinalContainer implements BaseContainer{
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
 
   //climber
-  private final ClimberSubsystem m_climberRightSubsystem = new ClimberSubsystem(43, true); //FIX INPUTS
-  private final ClimberSubsystem m_climberLeftSubsystem = new ClimberSubsystem(45, false);
+  private final ClimberSubsystem m_climberRightSubsystem = new ClimberSubsystem(Constants.CLIMBER_RIGHT_ID, true); //FIX INPUTS
+  private final ClimberSubsystem m_climberLeftSubsystem = new ClimberSubsystem(Constants.CLIMBER_LEFT_ID, false);
 
   //catapult
   private final CatapultSubsystem m_catapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false);
