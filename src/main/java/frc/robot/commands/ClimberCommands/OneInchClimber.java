@@ -32,10 +32,10 @@ public class OneInchClimber extends CommandBase {
     targetPositionTicks = climberSubsystem.getPosition() + inchesInTicks;
     if (climberSubsystem.getPosition() > targetPositionTicks){
       goingUp = false;
-      climberSubsystem.setSpeed(-.5);
+      climberSubsystem.setSpeed(-1);
     } else {
       goingUp = true;
-      climberSubsystem.setSpeed(.5);
+      climberSubsystem.setSpeed(1);
     }
   }
 
