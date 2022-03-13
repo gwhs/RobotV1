@@ -90,7 +90,7 @@ public class FinalContainer implements BaseContainer{
     // buttonB.whenPressed(new GoToDistanceTimeOfFlight(6, m_drivetrainSubsystem, tof));
     buttonA.whenPressed(new PrintLLandTOFDistance());
     buttonX.whenPressed(new TurnToZeroLimelight(0, m_drivetrainSubsystem, ll).withTimeout(0.75));
-    buttonY.whenPressed(new AlignToFender(m_drivetrainSubsystem, ll, tof));
+    buttonY.whenPressed(new AlignToFender(m_drivetrainSubsystem, ll, tof, m_CatapultRightSubsystem));
 
 
   }

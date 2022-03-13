@@ -12,53 +12,52 @@ import frc.robot.subsystems.ClimberSubsystem;
 
 public class OneInchClimber extends CommandBase {
   /** Creates a new ClimvberCommand. */
-  private ClimberSubsystem ClimberSubsystem;
+  private ClimberSubsystem climberSubsystem;
   private double targetPositionTicks;
   private boolean goingUp;
+  private double inchesInTicks;
 
 
-  public OneInchClimber(ClimberSubsystem ClimberSubsystem, double inches) {  
-    this.ClimberSubsystem = ClimberSubsystem;
-    this.targetPositionTicks = ClimberSubsystem.inchesToTicks(1);
-    ClimberSubsystem.setZero();
-    addRequirements(ClimberSubsystem);
+  public OneInchClimber(ClimberSubsystem climberSubsystem, double inches) {  
+    this.climberSubsystem = climberSubsystem;
+    this.inchesInTicks = climberSubsystem.inchesToTicks(inches);
+    
+    addRequirements(climberSubsystem);
 
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (ClimberSubsystem.getPosition() > targetPositionTicks){
+    targetPositionTicks = climberSubsystem.getPosition() + inchesInTicks;
+    if (climberSubsystem.getPosition() > targetPositionTicks){
       goingUp = false;
-      ClimberSubsystem.setSpeed(-.5);
+      climberSubsystem.setSpeed(-.5);
     } else {
       goingUp = true;
-      ClimberSubsystem.setSpeed(.5);
+      climberSubsystem.setSpeed(.5);
     }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SmartDashboard.putNumber("RightPosition", ClimberSubsystem.getPosition());
-    System.out.println(ClimberSubsystem.ticksToInches(ClimberSubsystem.getPosition()));
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    ClimberSubsystem.setSpeed(0);
-    System.out.println("done");
-    System.out.println("Right position " + ClimberSubsystem.getPosition());
+    climberSubsystem.setSpeed(0);
+    System.out.println("Right position " + climberSubsystem.getPosition());
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     if (goingUp){ //if position is greater than where we want to go it stop climbing, and sets to brake mode.
-      return ClimberSubsystem.getPosition() > targetPositionTicks;
+      return climberSubsystem.getPosition() > targetPositionTicks;
     } else {
-      return ClimberSubsystem.getPosition() < targetPositionTicks;
+      return climberSubsystem.getPosition() < targetPositionTicks;
     }
   }
 }
