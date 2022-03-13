@@ -48,7 +48,7 @@ public class GoToDistanceTimeOfFlight extends ProfiledPIDCommand {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    int distance = (int)sensorCheck.getDistanceSensor();
-    return distance < Constants.TOF_TOLERANCE; 
+    double distance = sensorCheck.getDistanceSensor();
+    return Math.abs(distance) < target; 
   }
 }
