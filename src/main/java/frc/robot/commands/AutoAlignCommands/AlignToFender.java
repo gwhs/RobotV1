@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.commands.CatapultCommands.CatapultCommand;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
+import frc.robot.commands.CatapultCommands.CatapultIntake;
 import frc.robot.subsystems.CatapultSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeMotor;
@@ -25,7 +26,7 @@ public class AlignToFender extends SequentialCommandGroup {
 
   // TrajectoryMaker move = TrajectoryHelper.createMoveToFender();
 
-  public AlignToFender(DrivetrainSubsystem drivetrain, LimelightPortal ll, TimeOfFlightRange sensor, CatapultSubsystem m_CatapultSubsystemRight, CatapultSubsystem m_CatapultSubsystemLeft, double delay, IntakeMotor m_intakeMotor) {
+  public AlignToFender(DrivetrainSubsystem drivetrain, LimelightPortal ll, TimeOfFlightRange sensor, CatapultSubsystem m_CatapultSubsystemRight, CatapultSubsystem m_CatapultSubsystemLeft, IntakeMotor m_intakeMotor) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
 
@@ -35,6 +36,6 @@ public class AlignToFender extends SequentialCommandGroup {
       new GoToDistanceTimeOfFlight(3, swerveDrive, sensor)*/
       new TurnToZeroLimelight(0, drivetrain, ll).withTimeout(0.75), 
       new GoToDistanceTimeOfFlight(6, drivetrain, sensor).withTimeout(5),
-      new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.CATAPULT_LEFT_SPEED, Constants.CATAPULT_RIGHT_SPEED, delay)); //change when v2 comes, esp cuz of its speed
+      new CatapultIntake(m_intakeMotor, m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.CATAPULT_LEFT_SPEED, Constants.CATAPULT_RIGHT_SPEED, Constants.INTAKE_DEPLOY_SPEED, Constants.DELAY)); 
   }
 }

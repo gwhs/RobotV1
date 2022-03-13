@@ -20,6 +20,8 @@ import frc.robot.commands.AutoAlignCommands.AlignToFender;
 import frc.robot.commands.AutoAlignCommands.PrintLLandTOFDistance;
 import frc.robot.commands.AutoAlignCommands.TurnToZeroLimelight;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
+import frc.robot.commands.CatapultCommands.CatapultIntake;
+import frc.robot.commands.IntakeCommands.IntakeDeploySpin;
 import frc.robot.utils.Utilities;
 import frc.robot.commands.AutoCommand;
 import frc.robot.commands.AutoMeter;
@@ -99,24 +101,17 @@ public class FinalContainer implements BaseContainer{
     // JoystickButton button = new JoystickButton(m_controller1, XboxController.k.value);
     buttonBack.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     buttonStart.whenPressed(() -> m_drivetrainSubsystem.forcingZero());
-    buttonB.whenPressed(new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_LEFT_SPEED, Constants.CATAPULT_RIGHT_SPEED, 0));
-    // buttonB.whenPressed();
-    // buttonA.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem,1 ));
-    // buttonY.whenPressed(new CatapultDouble(m_CatapultLeftSubsystem, m_CatapultRightSubsystem, 2));
-    // buttonRBumper.whenPressed(new SpinIntake(m_IntakeMotor, 0.1, 0.1));
-    // buttonLBumper.whenPressed(new ToggleIntake(m_IntakeMotor));
-    // buttonRBumper.whenPressed(new Spit(m_IntakeMotor));
-    //buttonB.whenPressed(new AutoCommand(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_IntakeMotor, m_upperLowerIntake));
-   // buttonRightJoystickButton.whenPressed(new AutoCommand(m_drivetrainSubsystem));
-
-
+    buttonB.whenPressed(new CatapultIntake(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_LEFT_SPEED, Constants.CATAPULT_RIGHT_SPEED, m_IntakeMotor));
+    buttonX.whenPressed(new AlignToFender(m_drivetrainSubsystem, ll, tof, m_catapultSubsystemRight, m_catapultSubsystemLeft, m_IntakeMotor));
+    buttonY.whenPressed(new IntakeDeploySpin(m_upperLowerIntake, m_IntakeMotor, Constants.DEPLOY_SPEED, Constants.LOWERSPEED, Constants.UPPERSPEED));
+    
+    
     // limelight and tof testing
-    // TODO: use final button configuration
     // buttonB.whenPressed(new TurnToZeroLimelight(0, m_drivetrainSubsystem, ll));
     // // buttonB.whenPressed(new GoToDistanceTimeOfFlight(6, m_drivetrainSubsystem, tof));
     // buttonA.whenPressed(new PrintLLandTOFDistance());
     // buttonX.whenPressed(new TurnToZeroLimelight(0, m_drivetrainSubsystem, ll).withTimeout(0.75));
-    buttonY.whenPressed(new AlignToFender(m_drivetrainSubsystem, ll, tof, m_catapultSubsystemRight, m_catapultSubsystemLeft, 0, m_IntakeMotor));
+    
 
 
     // buttonA2.whenPressed();
