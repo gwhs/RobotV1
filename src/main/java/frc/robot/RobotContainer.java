@@ -34,7 +34,7 @@ public class RobotContainer implements BaseContainer{
   private final IntakeMotor m_intakeMotor = new IntakeMotor(Constants.INTAKE_DEPLOY_ID);
   private final UpperLowerIntake m_upperLowerIntake = new UpperLowerIntake(Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID);
   
-  private final ClimberSubsystem m_climberRightSubsystem = new ClimberSubsystem(43, false); //FIX INPUTS
+  private final ClimberSubsystem m_climberRightSubsystem = new ClimberSubsystem(43, true); //FIX INPUTS
   private final ClimberSubsystem m_climberLeftSubsystem = new ClimberSubsystem(45, false);
   public RobotContainer() {
     m_drivetrainSubsystem.zeroGyroscope();
@@ -61,7 +61,8 @@ public class RobotContainer implements BaseContainer{
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
+   * edu.wpi.first.wpilibj.Joystick} o
+   * r {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
@@ -70,6 +71,7 @@ public class RobotContainer implements BaseContainer{
     //         // No requirements because we don't need to interrupt anything
     //         .whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     
+
     JoystickButton buttonA = new JoystickButton(m_controller, XboxController.Button.kA.value);
     JoystickButton buttonY = new JoystickButton(m_controller, XboxController.Button.kY.value);
     JoystickButton back = new JoystickButton(m_controller, XboxController.Button.kBack.value);
@@ -81,8 +83,8 @@ public class RobotContainer implements BaseContainer{
   //   start.whenPressed(m_drivetrainSubsystem::toggleDriveMode);
   //  buttonY.whenPressed(() -> m_drivetrainSubsystem.setWheelAngle(0));
   //   buttonA.whenPressed(() -> m_drivetrainSubsystem.changeWheelAngleBy45());
-    buttonA.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, 23));
-    buttonB.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, 1));
+    buttonA.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, 24));
+    buttonB.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, .3));
     buttonY.whenPressed(() -> m_drivetrainSubsystem.forcingZero());
     buttonX.whenPressed(() -> System.out.println(m_drivetrainSubsystem.getPose()));
 
