@@ -57,7 +57,7 @@ public class ClimberCommand extends CommandBase {
     if (goingUp){ //if position is greater than where we want to go it stop climbing, and sets to brake mode.
       return ClimberSubsystem.getPosition() > targetPositionTicks || ClimberSubsystem.getPosition() > ClimberSubsystem.inchesToTicks(29);
     } else {
-      return ClimberSubsystem.getPosition() < targetPositionTicks || ClimberSubsystem.getPosition() < 5000;
+      return ClimberSubsystem.getPosition() < targetPositionTicks || ClimberSubsystem.getPosition() < -20000;
     }
   }
 }

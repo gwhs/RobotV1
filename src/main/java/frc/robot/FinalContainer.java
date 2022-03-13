@@ -50,7 +50,7 @@ public class FinalContainer implements BaseContainer{
   //intake
   private final IntakeMotor m_intakeMotor = new IntakeMotor(Constants.INTAKE_DEPLOY_ID);
   private final UpperLowerIntake m_upperLowerIntake = new UpperLowerIntake(Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID);
-  private final IntakeMotor m_IntakeMotor = new IntakeMotor(Constants.INTAKE_DEPLOY_ID);
+  
 
   private final LimelightPortal ll = new LimelightPortal();
   private final TimeOfFlightRange tof = new TimeOfFlightRange();
@@ -78,15 +78,6 @@ public class FinalContainer implements BaseContainer{
     configureButtonBindings();
   };
 
-  public static enum Direction {
-    UP(0), RIGHT(90), DOWN(180), LEFT(270);
-
-    int direction;
-
-    private Direction(int direction) {
-        this.direction = direction;
-    }
-  }
 
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
@@ -119,10 +110,10 @@ public class FinalContainer implements BaseContainer{
     // JoystickButton button = new JoystickButton(m_controller1, XboxController.k.value);
     buttonBack.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     buttonStart.whenPressed(() -> m_drivetrainSubsystem.forcingZero());
-    buttonB.whenPressed(new CatapultIntake(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_LEFT_SPEED, Constants.CATAPULT_RIGHT_SPEED, m_IntakeMotor));
-    buttonX.whenPressed(new AlignToFender(m_drivetrainSubsystem, ll, tof, m_catapultSubsystemRight, m_catapultSubsystemLeft, m_IntakeMotor));
-    buttonY.whenPressed(new IntakeDeploySpin(m_upperLowerIntake, m_IntakeMotor, Constants.DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED));
-    buttonA.whenPressed(new IntakeStowStop(m_upperLowerIntake, m_IntakeMotor, Constants.DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED));
+    buttonB.whenPressed(new CatapultIntake(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_LEFT_SPEED, Constants.CATAPULT_RIGHT_SPEED, m_intakeMotor));
+    buttonX.whenPressed(new AlignToFender(m_drivetrainSubsystem, ll, tof, m_catapultSubsystemRight, m_catapultSubsystemLeft, m_intakeMotor));
+    buttonY.whenPressed(new IntakeDeploySpin(m_upperLowerIntake, m_intakeMotor, Constants.DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED));
+    buttonA.whenPressed(new IntakeStowStop(m_upperLowerIntake, m_intakeMotor, Constants.DEPLOY_SPEED, 0, 0));
     
     
 
@@ -134,8 +125,8 @@ public class FinalContainer implements BaseContainer{
     
 
 
-    buttonX2.whenPressed(new CatapultIntake(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP, 0, m_IntakeMotor)); // dump left
-    buttonB2.whenPressed(new CatapultIntake(m_catapultSubsystemLeft, m_catapultSubsystemRight, 0, Constants.CATAPULT_SPEED_DUMP, m_IntakeMotor)); // dump right
+    buttonX2.whenPressed(new CatapultIntake(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP, 0, m_intakeMotor)); // dump left
+    buttonB2.whenPressed(new CatapultIntake(m_catapultSubsystemLeft, m_catapultSubsystemRight, 0, Constants.CATAPULT_SPEED_DUMP, m_intakeMotor)); // dump right
     buttonA2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMBER_RETRACT_INCHES)); //retract
     buttonY2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMER_EXTEND_INCHES)); //extend
     
