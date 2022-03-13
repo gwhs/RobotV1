@@ -5,6 +5,9 @@
 package frc.robot.commands.AutoAlignCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants;
+import frc.robot.commands.CatapultCommands.CatapultCommand;
+import frc.robot.subsystems.CatapultSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.LimelightPortal;
 import frc.robot.subsystems.TimeOfFlightRange;
@@ -17,12 +20,10 @@ public class AlignToFender extends SequentialCommandGroup {
    * Aligns w/ limelight then drives forward with limelight till upper hub 
    * is out of view, finishing it up with time of flight sensor
   */
-  private LimelightPortal limelight;
-  private DrivetrainSubsystem swervedrive; 
-  private TimeOfFlightRange sensor;
+
   // TrajectoryMaker move = TrajectoryHelper.createMoveToFender();
 
-  public AlignToFender(DrivetrainSubsystem drivetrain, LimelightPortal ll, TimeOfFlightRange sensor) {
+  public AlignToFender(DrivetrainSubsystem drivetrain, LimelightPortal ll, TimeOfFlightRange sensor, CatapultSubsystem m_CatapultSubsystemRight) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
 
@@ -30,7 +31,8 @@ public class AlignToFender extends SequentialCommandGroup {
       new AlignAndMoveToLimelight(44, swerveDrive, ll), 
       new TurnToZeroLimelight(0, swerveDrive, ll).withTimeout(0.25),
       new GoToDistanceTimeOfFlight(3, swerveDrive, sensor)*/
-      new TurnToZeroLimelight(0, drivetrain, ll), 
-      new GoToDistanceTimeOfFlight(6, drivetrain, sensor));
+      new TurnToZeroLimelight(0, drivetrain, ll).withTimeout(0.75), 
+      new GoToDistanceTimeOfFlight(6, drivetrain, sensor).withTimeout(5),
+      new CatapultCommand(m_CatapultSubsystemRight, 0.1)); //change when v2 comes, esp cuz of its speed
   }
 }
