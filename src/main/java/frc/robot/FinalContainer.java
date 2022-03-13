@@ -24,6 +24,8 @@ import frc.robot.commands.AutoAlignCommands.PrintLLandTOFDistance;
 import frc.robot.commands.AutoAlignCommands.TurnToZeroLimelight;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
 import frc.robot.commands.CatapultCommands.CatapultIntake;
+import frc.robot.commands.CatapultCommands.CatapultLeft;
+import frc.robot.commands.CatapultCommands.CatapultRight;
 import frc.robot.commands.ClimberCommands.ClimberCommand;
 import frc.robot.commands.ClimberCommands.ParallelClimber;
 import frc.robot.commands.IntakeCommands.IntakeDeploySpin;
@@ -126,8 +128,8 @@ public class FinalContainer implements BaseContainer{
     
 
 
-    buttonX2.whenPressed(new CatapultIntake(m_intakeMotor, m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP, 0, Constants.INTAKE_DEPLOY_SPEED, Constants.CATAPULT_DELAY)); // dump left
-    buttonB2.whenPressed(new CatapultIntake(m_intakeMotor, m_catapultSubsystemLeft, m_catapultSubsystemRight, 0, Constants.CATAPULT_SPEED_DUMP,Constants.INTAKE_DEPLOY_SPEED, Constants.CATAPULT_DELAY)); // dump right
+    buttonX2.whenPressed(new CatapultLeft(m_catapultSubsystemLeft, Constants.CATAPULT_SPEED_DUMP)); // dump left
+    buttonB2.whenPressed(new CatapultRight(m_catapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP)); // dump right
     buttonA2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMBER_RETRACT_INCHES)); //retract
     buttonY2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMER_EXTEND_INCHES)); //extend
     //buttonUNKNOWN.whenpressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem,21.0);
