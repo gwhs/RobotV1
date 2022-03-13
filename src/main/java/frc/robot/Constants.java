@@ -6,18 +6,20 @@ public class Constants {
     public static final int CATAPULT_RIGHT_ID = 21;
     public static double CATAPULT_SPEED = 1;
     public static double CATAPULT_SPEED_LOW = 0.05;
-    public static double CATAPULT_SPEED_DUMP = 0.015;
-    public static double CATAPULT_SPEED_FAR = 1;
+    public static double CATAPULT_SPEED_DUMP = 0.4;
+
+    public static double CATAPULT_SPEED_FAR = 1; //Might not use
+
     public static double CATAPULT_LEFT_SPEED = 1; //54%
     public static double CATAPULT_RIGHT_SPEED = 1; //56%
-    public static double DELAY = 0.5;
+    public static double CATAPULT_DELAY = 0.5;
 
     public static final int INTAKE_UPPERTALON_ID = 55;
     public static final int INTAKE_LOWERTALON_ID = 47;
     public static final int INTAKE_DEPLOY_ID = 31;
 
-    public static final double INTAKE_SPEED_TALON1 = .4;
-    public static final double INTAKE_SPEED_TALON2 = -.2;
+    // public static final double INTAKE_SPEED_TALON1 = .4;
+    // public static final double INTAKE_SPEED_TALON2 = -.2;
     public static final double INTAKE_DEPLOY_SPEED = .3;
 
     //Deploy Speeds
@@ -28,8 +30,8 @@ public class Constants {
 
     //Intake speeds
 
-    public static final double LOWERSPEED = 1;
-    public static final double UPPERSPEED = -1;
+    public static final double INTAKE_LOWER_SPEED = 1;
+    public static final double INTAKE_UPPER_SPEED = -1;
 
 
     //Climbing Modes
@@ -89,6 +91,8 @@ public class Constants {
 
     public static final int TURN_CAP = 30;
 
+    public static final double CLIMER_EXTEND_INCHES = 23.0;
+    public static final double CLIMBER_RETRACT_INCHES = -1.5;
 
     public static final double CLIMBER_RATIO = 36;
     public static final int TICKS_PER_REVOLUTION = 2048;

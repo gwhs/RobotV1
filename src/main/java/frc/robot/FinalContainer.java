@@ -106,8 +106,8 @@ public class FinalContainer implements BaseContainer{
     buttonStart.whenPressed(() -> m_drivetrainSubsystem.forcingZero());
     buttonB.whenPressed(new CatapultIntake(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_LEFT_SPEED, Constants.CATAPULT_RIGHT_SPEED, m_IntakeMotor));
     buttonX.whenPressed(new AlignToFender(m_drivetrainSubsystem, ll, tof, m_catapultSubsystemRight, m_catapultSubsystemLeft, m_IntakeMotor));
-    buttonY.whenPressed(new IntakeDeploySpin(m_upperLowerIntake, m_IntakeMotor, Constants.DEPLOY_SPEED, Constants.LOWERSPEED, Constants.UPPERSPEED));
-    buttonA.whenPressed(new IntakeStowStop(m_upperLowerIntake, m_IntakeMotor, Constants.DEPLOY_SPEED, Constants.LOWERSPEED, Constants.UPPERSPEED));
+    buttonY.whenPressed(new IntakeDeploySpin(m_upperLowerIntake, m_IntakeMotor, Constants.DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED));
+    buttonA.whenPressed(new IntakeStowStop(m_upperLowerIntake, m_IntakeMotor, Constants.DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED));
     
     
     // limelight and tof testing
@@ -118,10 +118,10 @@ public class FinalContainer implements BaseContainer{
     
 
 
-    // buttonX2.whenPressed((new CatapultIntake(m_catapultSubsystemLeft, 0, replace, Constants.CATAPULT_RIGHT_SPEED, m_IntakeMotor)); // dump left
-    // buttonB2.whenPressed((new CatapultIntake(m_catapultSubsystemLeft, m_catapultSubsystemRight, 0, replace, m_IntakeMotor)); // dump right
-    //buttonA2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, 1)); //retract
-    //buttonY2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, 1)); //extend
+    buttonX2.whenPressed(new CatapultIntake(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP, 0, m_IntakeMotor)); // dump left
+    buttonB2.whenPressed(new CatapultIntake(m_catapultSubsystemLeft, m_catapultSubsystemRight, 0, Constants.CATAPULT_SPEED_DUMP, m_IntakeMotor)); // dump right
+    buttonA2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMBER_RETRACT_INCHES)); //retract
+    buttonY2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMER_EXTEND_INCHES)); //extend
     
     // buttonLBumper2.whenPressed();
     // buttonRBumber2.whenPressed();
