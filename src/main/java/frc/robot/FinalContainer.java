@@ -105,7 +105,6 @@ public class FinalContainer implements BaseContainer{
     JoystickButton buttonLeftJoystickButton = new JoystickButton(m_controller1, XboxController.Button.kLeftStick.value);
     JoystickButton buttonRightJoystickButton = new JoystickButton(m_controller1, XboxController.Button.kRightStick.value);
     JoystickButton buttonStart = new JoystickButton(m_controller1, XboxController.Button.kStart.value);
-    JoystickButton dpad = new JoystickButton(m_controller1, XboxController.Button.valueOf(direction, );
 
     JoystickButton buttonX2 = new JoystickButton(m_controller2, XboxController.Button.kX.value);
     JoystickButton buttonB2 = new JoystickButton(m_controller2, XboxController.Button.kB.value);
