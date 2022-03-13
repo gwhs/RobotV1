@@ -41,7 +41,7 @@ public class AutoCommand extends SequentialCommandGroup {
                     //new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(7.95, 2.73, new Rotation2d(Math.toRadians(-111.00))))), //right
                     //new InstantCommand(() -> System.out.println(m_drivetrainSubsystem.getPose())),
                     new ParallelCommandGroup(
-                         new SpinIntake(m_UpperLower, Constants.UPPERSPEED, Constants.LOWERSPEED).withTimeout(path.getTotalTimeSeconds()),
+                         new SpinIntake(m_UpperLower, Constants.INTAKE_UPPER_SPEED, Constants.INTAKE_LOWER_SPEED).withTimeout(path.getTotalTimeSeconds()),
                          new PPSwerveControllerCommand(
                             path,
                             m_drivetrainSubsystem::getPose,

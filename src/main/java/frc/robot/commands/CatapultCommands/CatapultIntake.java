@@ -4,7 +4,6 @@
 
 package frc.robot.commands.CatapultCommands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.IntakeCommands.IntakeDeploy;
