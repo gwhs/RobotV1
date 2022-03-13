@@ -21,7 +21,10 @@ import frc.robot.commands.AutoAlignCommands.PrintLLandTOFDistance;
 import frc.robot.commands.AutoAlignCommands.TurnToZeroLimelight;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
 import frc.robot.commands.CatapultCommands.CatapultIntake;
+import frc.robot.commands.ClimberCommands.ClimberCommand;
+import frc.robot.commands.ClimberCommands.ParallelClimber;
 import frc.robot.commands.IntakeCommands.IntakeDeploySpin;
+import frc.robot.commands.IntakeCommands.IntakeStowStop;
 import frc.robot.utils.Utilities;
 import frc.robot.commands.AutoCommand;
 import frc.robot.commands.AutoMeter;
@@ -104,6 +107,7 @@ public class FinalContainer implements BaseContainer{
     buttonB.whenPressed(new CatapultIntake(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_LEFT_SPEED, Constants.CATAPULT_RIGHT_SPEED, m_IntakeMotor));
     buttonX.whenPressed(new AlignToFender(m_drivetrainSubsystem, ll, tof, m_catapultSubsystemRight, m_catapultSubsystemLeft, m_IntakeMotor));
     buttonY.whenPressed(new IntakeDeploySpin(m_upperLowerIntake, m_IntakeMotor, Constants.DEPLOY_SPEED, Constants.LOWERSPEED, Constants.UPPERSPEED));
+    buttonA.whenPressed(new IntakeStowStop(m_upperLowerIntake, m_IntakeMotor, Constants.DEPLOY_SPEED, Constants.LOWERSPEED, Constants.UPPERSPEED));
     
     
     // limelight and tof testing
@@ -114,10 +118,11 @@ public class FinalContainer implements BaseContainer{
     
 
 
-    // buttonA2.whenPressed();
-    // buttonB2.whenPressed();
-    // buttonA2.whenPressed(); //retract
-    // buttonY2.whenPressed(); //extend
+    // buttonX2.whenPressed((new CatapultIntake(m_catapultSubsystemLeft, 0, replace, Constants.CATAPULT_RIGHT_SPEED, m_IntakeMotor)); // dump left
+    // buttonB2.whenPressed((new CatapultIntake(m_catapultSubsystemLeft, m_catapultSubsystemRight, 0, replace, m_IntakeMotor)); // dump right
+    //buttonA2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, 1)); //retract
+    //buttonY2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, 1)); //extend
+    
     // buttonLBumper2.whenPressed();
     // buttonRBumber2.whenPressed();
 
