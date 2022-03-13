@@ -3,7 +3,10 @@
 package frc.robot;
 
 
+import com.ctre.phoenix.led.ColorFlowAnimation.Direction;
+
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -48,6 +51,8 @@ public class FinalContainer implements BaseContainer{
 
   private final LimelightPortal ll = new LimelightPortal();
   private final TimeOfFlightRange tof = new TimeOfFlightRange();
+
+  public static Direction direction;
   public FinalContainer() {
 
 
@@ -65,10 +70,20 @@ public class FinalContainer implements BaseContainer{
             //() -> -modifyAxis(m_controller1.getRightX()) * 2//DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
             () -> Utilities.modifyAxis(m_controller1.getLeftTriggerAxis() - m_controller1.getRightTriggerAxis()) * 2 //DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
     ));
+    
 
     configureButtonBindings();
   };
 
+  public static enum Direction {
+    UP(0), RIGHT(90), DOWN(180), LEFT(270);
+
+    int direction;
+
+    private Direction(int direction) {
+        this.direction = direction;
+    }
+  }
 
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
@@ -87,6 +102,7 @@ public class FinalContainer implements BaseContainer{
     JoystickButton buttonLeftJoystickButton = new JoystickButton(m_controller1, XboxController.Button.kLeftStick.value);
     JoystickButton buttonRightJoystickButton = new JoystickButton(m_controller1, XboxController.Button.kRightStick.value);
     JoystickButton buttonStart = new JoystickButton(m_controller1, XboxController.Button.kStart.value);
+    JoystickButton dpad = new JoystickButton(m_controller1, XboxController.Button.valueOf(direction, );
 
     JoystickButton buttonX2 = new JoystickButton(m_controller2, XboxController.Button.kX.value);
     JoystickButton buttonB2 = new JoystickButton(m_controller2, XboxController.Button.kB.value);
@@ -106,6 +122,7 @@ public class FinalContainer implements BaseContainer{
     buttonY.whenPressed(new IntakeDeploySpin(m_upperLowerIntake, m_IntakeMotor, Constants.DEPLOY_SPEED, Constants.LOWERSPEED, Constants.UPPERSPEED));
     
     
+
     // limelight and tof testing
     // buttonB.whenPressed(new TurnToZeroLimelight(0, m_drivetrainSubsystem, ll));
     // // buttonB.whenPressed(new GoToDistanceTimeOfFlight(6, m_drivetrainSubsystem, tof));
@@ -134,3 +151,4 @@ public class FinalContainer implements BaseContainer{
     return new InstantCommand();
   }
 }
+
