@@ -42,7 +42,7 @@ public class Robot extends TimedRobot {
     CATAPULT, SWERVE, INTAKE, CLIMBER, FINAL
   }; 
 
-  public static final String container = CLIMBER;
+  public static final String container = SWERVE;
 
   /*To set the robot container, use the dropdown menu in shuffleboard, under the smartdashboard tab*/
 

@@ -14,13 +14,17 @@ import frc.robot.commands.AutoCommand;
 import frc.robot.commands.AutoMeter;
 // import frc.robot.commands.AutoCommand;
 import frc.robot.commands.DefaultDriveCommand;
+import frc.robot.commands.ClimberCommands.ParallelClimber;
 import frc.robot.commands.IntakeCommands.IntakeStow;
 import frc.robot.subsystems.CatapultSubsystem;
+import frc.robot.subsystems.ClimberLeftSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.IntakeMotor;
 import frc.robot.subsystems.UpperLowerIntake;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
+import frc.robot.subsystems.ClimberSubsystem;
+import frc.robot.commands.ClimberCommands.ParallelClimber;
 
 public class RobotContainer implements BaseContainer{
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
@@ -30,7 +34,8 @@ public class RobotContainer implements BaseContainer{
   private final IntakeMotor m_intakeMotor = new IntakeMotor(Constants.INTAKE_DEPLOY_ID, Constants.INTAKE_UPPERTALON_ID,Constants.INTAKE_LOWERTALON_ID);
   private final UpperLowerIntake m_upperLowerIntake = new UpperLowerIntake(Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID);
   
-
+  private final ClimberSubsystem m_climberRightSubsystem = new ClimberSubsystem(43, false); //FIX INPUTS
+  private final ClimberSubsystem m_climberLeftSubsystem = new ClimberSubsystem(45, false);
   public RobotContainer() {
     m_drivetrainSubsystem.zeroGyroscope();
     // Set up the default command for the drivetrain.
@@ -76,8 +81,8 @@ public class RobotContainer implements BaseContainer{
   //   start.whenPressed(m_drivetrainSubsystem::toggleDriveMode);
   //  buttonY.whenPressed(() -> m_drivetrainSubsystem.setWheelAngle(0));
   //   buttonA.whenPressed(() -> m_drivetrainSubsystem.changeWheelAngleBy45());
-    buttonA.whenPressed(new IntakeStow(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED));
-    buttonB.whenPressed(new AutoCommand(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake));
+    buttonA.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, 23));
+    buttonB.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, 1));
     buttonY.whenPressed(() -> m_drivetrainSubsystem.forcingZero());
     buttonX.whenPressed(() -> System.out.println(m_drivetrainSubsystem.getPose()));
 
