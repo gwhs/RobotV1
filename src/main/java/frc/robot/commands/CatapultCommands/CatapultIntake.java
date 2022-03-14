@@ -6,7 +6,9 @@ package frc.robot.commands.CatapultCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.Constants;
 import frc.robot.commands.IntakeCommands.IntakeDeploy;
+import frc.robot.commands.IntakeCommands.IntakeStow;
 import frc.robot.subsystems.CatapultSubsystem;
 import frc.robot.subsystems.IntakeMotor;
 
@@ -16,10 +18,8 @@ public class CatapultIntake extends SequentialCommandGroup {
   public CatapultIntake(IntakeMotor m_IntakeMotor, CatapultSubsystem m_CatapultSubsystemLeft, CatapultSubsystem m_CatapultSubsystemRight, double leftSpeed, double rightSpeed, double deploySpeed, double delay) {
     addCommands(new IntakeDeploy(m_IntakeMotor, deploySpeed),
                   new SequentialCommandGroup(new WaitCommand(deployDelay)),
-                    new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, leftSpeed, rightSpeed, deploySpeed));
+                    new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, leftSpeed, rightSpeed, delay),
+                      new SequentialCommandGroup(new WaitCommand(delay), 
+                        new IntakeStow(m_IntakeMotor, deploySpeed)));
   }
-  public CatapultIntake(CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight,
-      double cATAPULT_LEFT_SPEED, double cATAPULT_RIGHT_SPEED, IntakeMotor m_IntakeMotor) {
-  }
-
 }

@@ -3,7 +3,10 @@
 package frc.robot;
 
 
+import com.ctre.phoenix.led.ColorFlowAnimation.Direction;
+
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -21,6 +24,8 @@ import frc.robot.commands.AutoAlignCommands.PrintLLandTOFDistance;
 import frc.robot.commands.AutoAlignCommands.TurnToZeroLimelight;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
 import frc.robot.commands.CatapultCommands.CatapultIntake;
+import frc.robot.commands.CatapultCommands.CatapultLeft;
+import frc.robot.commands.CatapultCommands.CatapultRight;
 import frc.robot.commands.ClimberCommands.ClimberCommand;
 import frc.robot.commands.ClimberCommands.ParallelClimber;
 import frc.robot.commands.IntakeCommands.IntakeDeploySpin;
@@ -47,15 +52,18 @@ public class FinalContainer implements BaseContainer{
   //intake
   private final IntakeMotor m_intakeMotor = new IntakeMotor(Constants.INTAKE_DEPLOY_ID);
   private final UpperLowerIntake m_upperLowerIntake = new UpperLowerIntake(Constants.INTAKE_UPPERTALON_ID, Constants.INTAKE_LOWERTALON_ID);
-  private final IntakeMotor m_IntakeMotor = new IntakeMotor(Constants.INTAKE_DEPLOY_ID);
+  
 
   private final LimelightPortal ll = new LimelightPortal();
   private final TimeOfFlightRange tof = new TimeOfFlightRange();
+
+  public static Direction direction;
   public FinalContainer() {
 
 
 
     m_drivetrainSubsystem.zeroGyroscope();
+    m_drivetrainSubsystem.forcingZero();
     // Set up the default command for the drivetrain.
     // The controls are for field-oriented driving:
     // Left stick Y axis -> forward and backwards movement
@@ -63,11 +71,12 @@ public class FinalContainer implements BaseContainer{
     // Right stick X axis -> rotation
     m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(
             m_drivetrainSubsystem,
-            () -> -Utilities.modifyAxis(m_controller1.getLeftY()) * 1, //DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND, //1
-            () -> -Utilities.modifyAxis(m_controller1.getLeftX()) * 1, //DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND, //1
+            () -> -Utilities.modifyAxis(m_controller1.getLeftY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND, //1
+            () -> -Utilities.modifyAxis(m_controller1.getLeftX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND, //1
             //() -> -modifyAxis(m_controller1.getRightX()) * 2//DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
-            () -> Utilities.modifyAxis(m_controller1.getLeftTriggerAxis() - m_controller1.getRightTriggerAxis()) * 2 //DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
+            () -> Utilities.modifyAxis(m_controller1.getLeftTriggerAxis() - m_controller1.getRightTriggerAxis()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
     ));
+    
 
     configureButtonBindings();
   };
@@ -104,12 +113,13 @@ public class FinalContainer implements BaseContainer{
     // JoystickButton button = new JoystickButton(m_controller1, XboxController.k.value);
     buttonBack.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     buttonStart.whenPressed(() -> m_drivetrainSubsystem.forcingZero());
-    buttonB.whenPressed(new CatapultIntake(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_LEFT_SPEED, Constants.CATAPULT_RIGHT_SPEED, m_IntakeMotor));
-    buttonX.whenPressed(new AlignToFender(m_drivetrainSubsystem, ll, tof, m_catapultSubsystemRight, m_catapultSubsystemLeft, m_IntakeMotor));
-    buttonY.whenPressed(new IntakeDeploySpin(m_upperLowerIntake, m_IntakeMotor, Constants.DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED));
-    buttonA.whenPressed(new IntakeStowStop(m_upperLowerIntake, m_IntakeMotor, Constants.DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED));
+    buttonB.whenPressed(new CatapultIntake(m_intakeMotor, m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED_LOW, Constants.CATAPULT_SPEED_LOW, Constants.INTAKE_DEPLOY_SPEED, Constants.CATAPULT_DELAY));
+    buttonX.whenPressed(new AlignToFender(m_drivetrainSubsystem, ll, tof, m_catapultSubsystemRight, m_catapultSubsystemLeft, m_intakeMotor));
+    buttonY.whenPressed(new IntakeDeploySpin(m_upperLowerIntake, m_intakeMotor, Constants.DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED));
+    buttonA.whenPressed(new IntakeStowStop(m_upperLowerIntake, m_intakeMotor, Constants.DEPLOY_SPEED));
     
     
+
     // limelight and tof testing
     // buttonB.whenPressed(new TurnToZeroLimelight(0, m_drivetrainSubsystem, ll));
     // // buttonB.whenPressed(new GoToDistanceTimeOfFlight(6, m_drivetrainSubsystem, tof));
@@ -118,11 +128,15 @@ public class FinalContainer implements BaseContainer{
     
 
 
-    buttonX2.whenPressed(new CatapultIntake(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP, 0, m_IntakeMotor)); // dump left
-    buttonB2.whenPressed(new CatapultIntake(m_catapultSubsystemLeft, m_catapultSubsystemRight, 0, Constants.CATAPULT_SPEED_DUMP, m_IntakeMotor)); // dump right
+    buttonX2.whenPressed(new CatapultLeft(m_catapultSubsystemLeft, Constants.CATAPULT_SPEED_DUMP).withTimeout(1)); // dump left
+    buttonB2.whenPressed(new CatapultRight(m_catapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP)); // dump right
     buttonA2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMBER_RETRACT_INCHES)); //retract
-    buttonY2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMER_EXTEND_INCHES)); //extend
-    
+    //buttonY2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMER_EXTEND_INCHES)); //extend
+    buttonY2.whenPressed(new AutoCommand(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake));
+    //buttonUNKNOWN.whenpressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem,21.0);
+
+
+
     // buttonLBumper2.whenPressed();
     // buttonRBumber2.whenPressed();
 
@@ -139,3 +153,4 @@ public class FinalContainer implements BaseContainer{
     return new InstantCommand();
   }
 }
+

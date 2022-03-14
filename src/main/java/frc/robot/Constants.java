@@ -5,14 +5,14 @@ public class Constants {
     public static final int CATAPULT_LEFT_ID = 37;
     public static final int CATAPULT_RIGHT_ID = 21;
     public static double CATAPULT_SPEED = 1;
-    public static double CATAPULT_SPEED_LOW = 0.05;
-    public static double CATAPULT_SPEED_DUMP = 0.4;
+    public static double CATAPULT_SPEED_LOW = 0.58;
+    public static double CATAPULT_SPEED_DUMP = 0.5;
 
     public static double CATAPULT_SPEED_FAR = 1; //Might not use
 
     public static double CATAPULT_LEFT_SPEED = 1; //54%
     public static double CATAPULT_RIGHT_SPEED = 1; //56%
-    public static double CATAPULT_DELAY = 0.5;
+    public static double CATAPULT_DELAY = 0.2;
 
     public static final int INTAKE_UPPERTALON_ID = 55;
     public static final int INTAKE_LOWERTALON_ID = 47;
@@ -33,14 +33,11 @@ public class Constants {
     public static final double INTAKE_LOWER_SPEED = 1;
     public static final double INTAKE_UPPER_SPEED = -1;
 
-
-    //Climbing Modes
-
-    public static final int CLIMBER_MODE_LOW = 1;
-    public static final int CLIMBER_MODE_MID = 2;
+    //climber ids
+    public static final int CLIMBER_RIGHT_ID = 43;
+    public static final int CLIMBER_LEFT_ID = 45;
 
     //SHOOTER MODES
-
     // public static final int SHOOTER_MODE_DOUBLE = 1;
     // public static final int SHOOTER_MODE_DELAY = 2;
     // public static final int SHOOTER_MODE_LOW_HIGH = 3;

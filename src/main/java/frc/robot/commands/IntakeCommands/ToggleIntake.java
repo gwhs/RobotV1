@@ -6,61 +6,28 @@ package frc.robot.commands.IntakeCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants;
 import frc.robot.subsystems.IntakeMotor;
+import frc.robot.subsystems.UpperLowerIntake;
 
-public class ToggleIntake extends CommandBase {
+public class ToggleIntake extends SequentialCommandGroup {
   private IntakeMotor m_IntakeMotor;
-  private double deploySpeed;
-  public boolean deployed = false;
+    private UpperLowerIntake m_UpperLowerIntake;
   /** Creates a new ToggleIntake. */
-  public ToggleIntake(IntakeMotor m_IntakeMotor, double deploySpeed) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    this.m_IntakeMotor = m_IntakeMotor;
-    this.deploySpeed = deploySpeed;
-    addRequirements(m_IntakeMotor);
-  }
+  public ToggleIntake(IntakeMotor m_IntakeMotor, UpperLowerIntake m_UpperLowerIntake) {
+    if(m_IntakeMotor.isDeployed()){
+      addCommands(   
+        new IntakeStowStop(m_UpperLowerIntake, m_IntakeMotor, Constants.DEPLOY_SPEED)
+      );
+    }
+    else {
+      addCommands(
+        new IntakeDeploySpin(m_UpperLowerIntake, m_IntakeMotor, Constants.INTAKE_DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED)
+      );
+    }
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {}
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    if(m_IntakeMotor.isFWDLIMIT() == 1){
-      deployed = false;
-      System.out.println("ISFWDLIMIT IS RUNNING");
-      m_IntakeMotor.setDeployMotorSpeed(-deploySpeed);
-    }
-    else if (m_IntakeMotor.isREVLIMIT() == 1){
-      deployed = true;
-      System.out.println("ISREVLIMIT IS RUNNING");
-      m_IntakeMotor.setDeployMotorSpeed(deploySpeed);
-    }
-    else{
-      deployed = false;
-      m_IntakeMotor.setDeployMotorSpeed(-deploySpeed);
-      System.out.println("INTAKE WAS IN MIDDLE POS");
-    }
-  }
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    m_IntakeMotor.setDeployMotorSpeed(0);
-  }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    System.out.println("" + m_IntakeMotor.isFWDLIMIT() + " " + m_IntakeMotor.isREVLIMIT() + " "+ deployed);
-    if(deployed = false && m_IntakeMotor.isFWDLIMIT() == 1 && m_IntakeMotor.isREVLIMIT() == 0){
-      return true;
-    }
-    else if(deployed = true && m_IntakeMotor.isFWDLIMIT() == 0 && m_IntakeMotor.isREVLIMIT() == 1){
-      return true;
-    }
-    return false;
   }
 }
+  
 

@@ -18,7 +18,7 @@ public class CatapultCommand extends CommandBase {
         this.motor = moto;
         this.speed = speed;
 
-        this.returnSpeed = -0.06;
+        this.returnSpeed = 0;// -0.06;
         
         addRequirements(moto);
 
