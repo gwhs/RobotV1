@@ -4,7 +4,7 @@
 
 package frc.robot.commands.IntakeCommands;
 
-import com.ctre.phoenix.motorcontrol.TalonFXSensorCollection;
+
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeMotor;
