@@ -44,7 +44,7 @@ public class CatapultLeft extends CommandBase {
     double position = motor.getPosition();
     //position is 77.3k for 360 degrees of rotation
     if (Math.abs(position) >= 5100 - offset){
-        motor.setBrake();
+        motor.setCoast();
         motor.setPercent(returnSpeed);
         //put motor in reverse to reset
         ran = true;

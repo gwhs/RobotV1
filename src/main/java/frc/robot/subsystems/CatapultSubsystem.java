@@ -40,7 +40,7 @@ public class CatapultSubsystem extends SubsystemBase {
     else{
       motor.setInverted(InvertType.None);
     }
-    motor.setNeutralMode(NeutralMode.Brake);
+    motor.setNeutralMode(NeutralMode.Coast);
   }
 
 
@@ -82,7 +82,7 @@ public class CatapultSubsystem extends SubsystemBase {
     return motor.getSelectedSensorPosition();
   }
 
-  public void setBrake(){
+  public void setCoast(){
     motor.setNeutralMode(NeutralMode.Coast);
   }
 

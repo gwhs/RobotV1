@@ -36,7 +36,7 @@ public class AutoCommand extends SequentialCommandGroup {
         PathPlannerTrajectory path = threeCargoR;
         addCommands(
                     new IntakeDeploy(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
-                    new CatapultRight(m_catapultSubsystemRight, Constants.CATAPULT_SPEED_LOW),
+                    new CatapultRight(m_catapultSubsystemRight, Constants.CATAPULT_SPEED),
                     //new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(6.89, 4.44, new Rotation2d(Math.toRadians(159.0))))), //left
                     new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(new Pose2d(7.95, 2.73, new Rotation2d(Math.toRadians(-111.00))))), //right
                     new ParallelCommandGroup(
@@ -56,7 +56,7 @@ public class AutoCommand extends SequentialCommandGroup {
                     new IntakeStow(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
                     new IntakeDeploy(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
                     new WaitCommand(1),
-                    new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED_LOW, Constants.CATAPULT_SPEED_LOW, 0)
+                    new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED, Constants.CATAPULT_SPEED_LOW, Constants.CATAPULT_DELAY)
 
         );
     }
