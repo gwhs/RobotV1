@@ -112,7 +112,7 @@ public class FinalContainer implements BaseContainer{
     buttonX.whenPressed(new AlignToFender(m_drivetrainSubsystem, ll, tof, m_catapultSubsystemRight, m_catapultSubsystemLeft, m_intakeMotor));
     buttonY.whenPressed(new IntakeDeploySpin(m_upperLowerIntake, m_intakeMotor, Constants.DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED));
     buttonA.whenPressed(new IntakeStowStop(m_upperLowerIntake, m_intakeMotor, Constants.DEPLOY_SPEED));
-    
+    buttonRBumper.whenPressed(new CatapultIntake(m_intakeMotor, m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED_LOW, Constants.CATAPULT_SPEED_LOW, Constants.INTAKE_DEPLOY_SPEED, Constants.CATAPULT_DELAY));
     
 
     // limelight and tof testing
