@@ -30,6 +30,7 @@ public class CatapultContainer implements BaseContainer{
         JoystickButton buttonX = new JoystickButton(m_controller, XboxController.Button.kX.value);
         JoystickButton buttonA = new JoystickButton(m_controller, XboxController.Button.kA.value);
         JoystickButton buttonRB = new JoystickButton(m_controller, XboxController.Button.kRightBumper.value);
+        JoystickButton buttonY = new JoystickButton(m_controller, XboxController.Button.kY.value);
         // SpinMotor s
         // change motor and speed here. SpinMotor(motor id, percent output[-1 to 1 as double])
         // buttonB.whenPressed( new CatapultDouble(m_CatapultSubsystemLeft,m_CatapultSubsystemRight, Constants.SHOOTER_MODE_LEFT));
@@ -40,6 +41,7 @@ public class CatapultContainer implements BaseContainer{
         buttonX.whenPressed(new CatapultRight(m_CatapultSubsystemRight, Constants.CATAPULT_RIGHT_SPEED));
         buttonA.whenPressed(new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.CATAPULT_LEFT_SPEED, Constants.CATAPULT_RIGHT_SPEED, Constants.CATAPULT_DELAY));
         buttonRB.whenPressed(new ChangeCatapultPower(m_CatapultSubsystemRight, m_CatapultSubsystemLeft, .02));
+        buttonY.whenPressed(new ChangeCatapultPower(m_CatapultSubsystemRight, m_CatapultSubsystemLeft, -.02));
 
     }
 
