@@ -4,15 +4,15 @@ public class Constants {
     // for the catapults, speed is -1.0 to 1.0 as decimal
     public static final int CATAPULT_LEFT_ID = 37;
     public static final int CATAPULT_RIGHT_ID = 21;
-    public static double CATAPULT_SPEED = 0.58;
-    public static double CATAPULT_SPEED_LOW = 0.5;
+    public static double CATAPULT_SPEED = 1;
+    public static double CATAPULT_SPEED_LOW = 0.;
     public static double CATAPULT_SPEED_DUMP = 0.5;
 
     public static double CATAPULT_SPEED_FAR = 1; //Might not use
 
     public static double CATAPULT_LEFT_SPEED = 1; //54%
     public static double CATAPULT_RIGHT_SPEED = 1; //56%
-    public static double CATAPULT_DELAY = 0.2;
+    public static double CATAPULT_DELAY = 0.5;
 
     public static final int INTAKE_UPPERTALON_ID = 55;
     public static final int INTAKE_LOWERTALON_ID = 47;
@@ -55,8 +55,8 @@ public class Constants {
     // public static final int SHOOTER_MODE_DOUBLE_FAR_DELAY = 15;
 
     //constants added for limelight
-    public static final double LL_HEIGHT = 29.5; //needs to be changed to v1 measurements
-    public static final double LL_MOUNT_ANGLE = 45;
+    public static final double LL_HEIGHT = 27.75; 
+    public static final double LL_MOUNT_ANGLE = 50;
     public static final double VISION_TARGET_HEIGHT = 104;
     
     public static final double MAX_ANGLE_VELOCITY = 90;
@@ -67,7 +67,7 @@ public class Constants {
     public static final double DISTANCE_TOLERANCE = 3;  //inches
 
     public static final double TURN_TOLERANCE = 1; //in degrees 
-    public static final double ANGLE_PID_P = 0.35;
+    public static final double ANGLE_PID_P = 0.25;
     public static final double ANGLE_PID_I = 0.00;  //dont change this number
     public static final double ANGLE_PID_D = 0.008;
     
