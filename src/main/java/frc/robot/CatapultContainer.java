@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
 import frc.robot.commands.CatapultCommands.CatapultLeft;
 import frc.robot.commands.CatapultCommands.CatapultRight;
-import frc.robot.commands.CatapultCommands.IncreaseCatapultPower;
+import frc.robot.commands.CatapultCommands.ChangeCatapultPower;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -39,7 +39,7 @@ public class CatapultContainer implements BaseContainer{
         buttonB.whenPressed(new CatapultLeft(m_CatapultSubsystemLeft, Constants.CATAPULT_LEFT_SPEED));
         buttonX.whenPressed(new CatapultRight(m_CatapultSubsystemRight, Constants.CATAPULT_RIGHT_SPEED));
         buttonA.whenPressed(new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.CATAPULT_LEFT_SPEED, Constants.CATAPULT_RIGHT_SPEED, Constants.CATAPULT_DELAY));
-        buttonRB.whenPressed(new IncreaseCatapultPower(m_CatapultSubsystem, 1));
+        buttonRB.whenPressed(new ChangeCatapultPower(m_CatapultSubsystemRight, m_CatapultSubsystemLeft, .02));
 
     }
 

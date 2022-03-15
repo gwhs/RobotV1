@@ -18,7 +18,7 @@ public class CatapultSubsystem extends SubsystemBase {
   private TalonFX motor;
   private double initialOffset;
   private static final int SHOOT_LIMIT = 5100;
-  private double power = Constants.CATAPULT_SPEED_LOW;//will be changed
+  public double power;//will be changed
   /** Creates a new motor. */
   public CatapultSubsystem(int id, boolean inverted) {
     motor = new TalonFX(id);
@@ -26,6 +26,7 @@ public class CatapultSubsystem extends SubsystemBase {
     motor.configVoltageCompSaturation(11);
     motor.enableVoltageCompensation(true);
     initialOffset = motor.getSelectedSensorPosition();
+    power = 0;
     
 
     //one will go forward, the other will go inverted

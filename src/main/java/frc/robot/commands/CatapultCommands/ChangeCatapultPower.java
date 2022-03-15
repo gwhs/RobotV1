@@ -7,21 +7,24 @@ package frc.robot.commands.CatapultCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.CatapultSubsystem;
 
-public class IncreaseCatapultPower extends CommandBase {
-  private CatapultSubsystem m_CatapultSubsystem;
-  private int power;
+public class ChangeCatapultPower extends CommandBase {
+  private double power = 0;
+  private CatapultSubsystem m_CatapultSubsystemRight;
+  private CatapultSubsystem m_CatapultSubsystemLeft;
   /** Creates a new IncreaseCatapultPower. */
-  public IncreaseCatapultPower(CatapultSubsystem m_CatapultSubsystem, int power) {
-    this.m_CatapultSubsystem = m_CatapultSubsystem;
+  public ChangeCatapultPower(CatapultSubsystem m_CatapultSubsystemRight, CatapultSubsystem m_CatapultSubsystemLeft, double power) {
+    this.m_CatapultSubsystemRight = m_CatapultSubsystemRight;
+    this.m_CatapultSubsystemLeft = m_CatapultSubsystemLeft;
     this.power = power;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_CatapultSubsystem);
+    addRequirements(m_CatapultSubsystemRight, m_CatapultSubsystemLeft);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_CatapultSubsystem.changePower(power);
+    m_CatapultSubsystemRight.changePower(power);
+    m_CatapultSubsystemLeft.changePower(power);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
