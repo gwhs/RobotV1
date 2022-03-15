@@ -5,7 +5,7 @@ import frc.robot.subsystems.ClimberSubsystem;
 
 
 public class ParallelClimber extends ParallelCommandGroup{
-    public ParallelClimber(ClimberSubsystem climberLeftSubsystem, ClimberSubsystem climberRightSubsystem, double distance){
-        super(new ClimberCommand(climberLeftSubsystem, distance), new ClimberCommand(climberRightSubsystem, distance));
+    public ParallelClimber(ClimberSubsystem climberLeftSubsystem, ClimberSubsystem climberRightSubsystem, double distance, double speed){
+        super(new ClimberCommand(climberLeftSubsystem, distance, speed), new ClimberCommand(climberRightSubsystem, distance, speed));
     }
 }

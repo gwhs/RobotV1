@@ -13,11 +13,13 @@ public class ClimberCommand extends CommandBase {
   private ClimberSubsystem ClimberSubsystem;
   private double targetPositionTicks;
   private boolean goingUp;
+  private double speed;
 
 
-  public ClimberCommand(ClimberSubsystem ClimberSubsystem, double inches) {  
+  public ClimberCommand(ClimberSubsystem ClimberSubsystem, double inches, double speed) {  
     this.ClimberSubsystem = ClimberSubsystem;
     this.targetPositionTicks = ClimberSubsystem.inchesToTicks(inches);
+    this.speed = speed;
     addRequirements(ClimberSubsystem);
 
   }
@@ -27,10 +29,10 @@ public class ClimberCommand extends CommandBase {
   public void initialize() {
     if (ClimberSubsystem.getPosition() > targetPositionTicks){
       goingUp = false;
-      ClimberSubsystem.setSpeed(-1);
+      ClimberSubsystem.setSpeed(-speed);
     } else {
       goingUp = true;
-      ClimberSubsystem.setSpeed(1);
+      ClimberSubsystem.setSpeed(speed);
     }
   }
 

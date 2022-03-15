@@ -24,6 +24,7 @@ import frc.robot.commands.CatapultCommands.CatapultIntake;
 import frc.robot.commands.CatapultCommands.CatapultLeft;
 import frc.robot.commands.CatapultCommands.CatapultRight;
 import frc.robot.commands.ClimberCommands.ParallelClimber;
+import frc.robot.commands.ClimberCommands.ParallelClimberRetract;
 import frc.robot.commands.IntakeCommands.IntakeDeploySpin;
 import frc.robot.commands.IntakeCommands.IntakeStowStop;
 import frc.robot.utils.Utilities;
@@ -108,9 +109,8 @@ public class FinalContainer implements BaseContainer{
     // JoystickButton button = new JoystickButton(m_controller1, XboxController.k.value);
     buttonBack.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     buttonStart.whenPressed(() -> m_drivetrainSubsystem.forcingZero());
-    buttonB.whenPressed(new CatapultRight(m_catapultSubsystemRight, Constants.CATAPULT_SPEED));
     buttonB.whenPressed(new CatapultIntake(m_intakeMotor, m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED, Constants.CATAPULT_SPEED, Constants.INTAKE_DEPLOY_SPEED, Constants.CATAPULT_DELAY));
-    //buttonX.whenPressed(new AlignToFender(m_drivetrainSubsystem, ll, tof, m_catapultSubsystemRight, m_catapultSubsystemLeft, m_intakeMotor));
+    buttonX.whenPressed(new AlignToFender(m_drivetrainSubsystem, ll, tof, m_catapultSubsystemRight, m_catapultSubsystemLeft, m_intakeMotor));
     buttonY.whenPressed(new IntakeDeploySpin(m_upperLowerIntake, m_intakeMotor, Constants.DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED));
     buttonA.whenPressed(new IntakeStowStop(m_upperLowerIntake, m_intakeMotor, Constants.DEPLOY_SPEED));
     buttonRBumper.whenPressed(new CatapultIntake(m_intakeMotor, m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED_LOW, Constants.CATAPULT_SPEED_LOW, Constants.INTAKE_DEPLOY_SPEED, Constants.CATAPULT_DELAY));
@@ -126,10 +126,10 @@ public class FinalContainer implements BaseContainer{
 
     buttonX2.whenPressed(new CatapultLeft(m_catapultSubsystemLeft, Constants.CATAPULT_SPEED_DUMP).withTimeout(1)); // dump left
     buttonB2.whenPressed(new CatapultRight(m_catapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP)); // dump right
-    buttonA2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMBER_RETRACT_INCHES)); //retract
-    //buttonY2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMER_EXTEND_INCHES)); //extend
-    buttonY2.whenPressed(new AutoCommand(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake));
-    //buttonUNKNOWN.whenpressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem,21.0);
+    buttonA2.whenPressed(new ParallelClimberRetract(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMBER_RETRACT_INCHES_1, Constants.CLIMBER_RETRACT_INCHES_2, Constants.CLIMBER_MAX_SPEED, Constants.CLIMBER_SLOW_SPEED)); //retract
+    buttonY2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMER_EXTEND_INCHES, Constants.CLIMBER_MAX_SPEED)); //extend
+    //buttonY2.whenPressed(new AutoCommand(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake));
+    
 
 
 

@@ -56,8 +56,8 @@ public class ClimberContainer implements BaseContainer{
     // buttonY.whenPressed(new LeftClimbCommand(m_ClimberLeftSubsystem, 6));
     // buttonA.whenPressed(new LeftClimbCommand(m_ClimberLeftSubsystem, 12));
 
-    buttonX.whenPressed(new ParallelClimber(m_ClimberLeftSubsystem, m_ClimberRightSubsystem, 23));
-    buttonA.whenPressed(new ParallelClimber(m_ClimberLeftSubsystem, m_ClimberRightSubsystem, 18));
+    buttonX.whenPressed(new ParallelClimber(m_ClimberLeftSubsystem, m_ClimberRightSubsystem, 23, 1));
+    buttonA.whenPressed(new ParallelClimber(m_ClimberLeftSubsystem, m_ClimberRightSubsystem, 18, 1));
 
     buttonb.whenPressed(new OneInchClimber(m_ClimberRightSubsystem, 1));
     buttonY.whenPressed(new OneInchClimber(m_ClimberRightSubsystem, -1));

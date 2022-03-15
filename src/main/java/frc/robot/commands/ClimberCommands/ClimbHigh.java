@@ -11,5 +11,5 @@ import frc.robot.subsystems.ClimberSubsystem;
 public class ClimbHigh extends SequentialCommandGroup {
   /** Creates a new ClimbHigh. */
   public ClimbHigh(ClimberSubsystem climberLeftSubsystem, ClimberSubsystem climberRightSubsystem, double upOne, double downOne) {
-    addCommands(new ParallelClimber(climberLeftSubsystem, climberRightSubsystem, 23), new WaitCommand(3), new ParallelClimber(climberLeftSubsystem, climberRightSubsystem, 1.5));
+    addCommands(new ParallelClimber(climberLeftSubsystem, climberRightSubsystem, 23, 1), new WaitCommand(3), new ParallelClimber(climberLeftSubsystem, climberRightSubsystem, 1.5, 1));
   }}

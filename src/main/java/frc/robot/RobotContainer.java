@@ -78,9 +78,9 @@ public class RobotContainer implements BaseContainer{
   //  buttonY.whenPressed(() -> m_drivetrainSubsystem.setWheelAngle(0));
   //   buttonA.whenPressed(() -> m_drivetrainSubsystem.changeWheelAngleBy45());
   //ROBOT DOWN
-    buttonA.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, 23));
+    buttonA.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, 23, 1));
   //ROBOT UP
-    buttonB.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, -1.25));
+    buttonB.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, -1.25, 1));
     buttonY.whenPressed(() -> m_drivetrainSubsystem.forcingZero());
     buttonX.whenPressed(() -> System.out.println(m_drivetrainSubsystem.getPose()));
 
