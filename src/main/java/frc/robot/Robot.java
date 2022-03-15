@@ -44,9 +44,6 @@ public class Robot extends TimedRobot {
 
   /*To set the robot container, use the dropdown menu in shuffleboard, under the smartdashboard tab*/
 
-  private AddressableLEDBuffer m_ledBuffer;
-  private AddressableLED m_led;
-
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -84,9 +81,6 @@ public class Robot extends TimedRobot {
         break;
       case CLIMBER:
         m_BaseContainer = new ClimberContainer();
-        break;
-      case INDICATORLIGHT:
-        m_BaseContainer = new IndicaterLightContainer();
         break;
       case FINAL:
         m_BaseContainer = new FinalContainer();
