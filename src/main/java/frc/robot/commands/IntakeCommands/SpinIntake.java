@@ -20,14 +20,14 @@ public class SpinIntake extends CommandBase{
 
     @Override
     public void initialize(){
-    
+        UpperLowerIntake.setIntakeMotorSpeeds(upperSpeed, lowerSpeed);
     }
 
 
     @Override
     public void execute(){
         
-        UpperLowerIntake.setIntakeMotorSpeeds(upperSpeed, lowerSpeed);
+        
     }
 
     @Override
@@ -38,7 +38,7 @@ public class SpinIntake extends CommandBase{
     @Override
     public boolean isFinished() {
         // makes sure arm is at bottom and has shot before ending.
-        
+
         return false;
     }
 }
