@@ -19,7 +19,7 @@ public class GoToDistanceLimelight extends ProfiledPIDCommand {
   /** Creates a new GoToDistanceLimelight. 
    * Goes to set distance target using limelight and trig
   */
-  private DrivetrainSubsystem drivetrainSubsystem;
+  // private DrivetrainSubsystem drivetrainSubsystem;
   private LimelightPortal limeL;
   TrapezoidProfile.Constraints rampUpDown = new TrapezoidProfile.Constraints(10, 5);
 
@@ -47,7 +47,7 @@ public class GoToDistanceLimelight extends ProfiledPIDCommand {
 
     // Set the controller to be continuous (because it is an angle controller)
     //getController().enableContinuousInput(-180, 180);
-    drivetrainSubsystem = drivetrain;
+    // drivetrainSubsystem = drivetrain;
     limeL = ll;
     // Set the controller tolerance - the delta tolerance ensures the robot is stationary at the
     // setpoint before it is considered as having reached the reference

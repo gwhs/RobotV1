@@ -4,7 +4,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.CatapultCommands.CatapultCommand;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
 import frc.robot.commands.CatapultCommands.CatapultLeft;
 import frc.robot.commands.CatapultCommands.CatapultRight;
@@ -12,8 +11,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.CatapultSubsystem;
-import frc.robot.subsystems.IntakeMotor;
-import frc.robot.subsystems.UpperLowerIntake;
 
 
 public class CatapultContainer implements BaseContainer{

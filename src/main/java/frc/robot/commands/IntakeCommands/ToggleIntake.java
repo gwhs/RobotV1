@@ -4,16 +4,12 @@
 
 package frc.robot.commands.IntakeCommands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.subsystems.IntakeMotor;
 import frc.robot.subsystems.UpperLowerIntake;
 
 public class ToggleIntake extends SequentialCommandGroup {
-  private IntakeMotor m_IntakeMotor;
-    private UpperLowerIntake m_UpperLowerIntake;
   /** Creates a new ToggleIntake. */
   public ToggleIntake(IntakeMotor m_IntakeMotor, UpperLowerIntake m_UpperLowerIntake) {
     if(m_IntakeMotor.isDeployed()){

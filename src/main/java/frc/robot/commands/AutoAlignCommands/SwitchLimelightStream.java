@@ -4,7 +4,6 @@
 
 package frc.robot.commands.AutoAlignCommands;
 
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.subsystems.LimelightPortal;
 

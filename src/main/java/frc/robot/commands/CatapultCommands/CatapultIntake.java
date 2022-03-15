@@ -6,7 +6,6 @@ package frc.robot.commands.CatapultCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.Constants;
 import frc.robot.commands.IntakeCommands.IntakeDeploy;
 import frc.robot.commands.IntakeCommands.IntakeStow;
 import frc.robot.subsystems.CatapultSubsystem;

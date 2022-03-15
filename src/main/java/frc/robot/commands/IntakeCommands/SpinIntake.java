@@ -1,7 +1,7 @@
 package frc.robot.commands.IntakeCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.IntakeMotor;
+
 import frc.robot.subsystems.UpperLowerIntake;
 import frc.robot.commands.IntakeCommands.SpinIntake;
 

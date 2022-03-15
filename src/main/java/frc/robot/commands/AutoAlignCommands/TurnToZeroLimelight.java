@@ -26,7 +26,6 @@ public class TurnToZeroLimelight extends ProfiledPIDCommand {
      * @param targetAngleDegrees The angle to turn to
      * @param drive              The drive subsystem to use
      */
-    private DrivetrainSubsystem drivetrainSubsystem;
     private LimelightPortal limeL;
     public TurnToZeroLimelight(double targetAngleDegrees, DrivetrainSubsystem drivetrain, LimelightPortal ll) {
     super(
@@ -46,7 +45,6 @@ public class TurnToZeroLimelight extends ProfiledPIDCommand {
 
       // Set the controller to be continuous (because it is an angle controller)
       //getController().enableContinuousInput(-180, 180);
-    drivetrainSubsystem = drivetrain;
     limeL = ll;
     // Set the controller tolerance - the delta tolerance ensures the robot is stationary at the
     // setpoint before it is considered as having reached the reference
