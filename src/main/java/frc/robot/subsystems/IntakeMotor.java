@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeMotor extends SubsystemBase{
     private TalonFX deployMotor;
-    private IntakeMotor m_IntakeMotor;
     private static boolean deployed = false;
     private static final double DEPLOYED_TICKS = 22000;
     private static final double STOWED_TICKS = 0;

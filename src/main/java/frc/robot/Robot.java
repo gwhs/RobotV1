@@ -9,6 +9,10 @@ import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.TestContainers.CatapultContainer;
+import frc.robot.TestContainers.ClimberContainer;
+import frc.robot.TestContainers.IntakeContainer;
+import frc.robot.TestContainers.RobotContainer;
 import frc.robot.commands.ShuffleboardUpdater;
 import frc.robot.subsystems.ShuffleboardTest;
 
@@ -83,9 +87,6 @@ public class Robot extends TimedRobot {
         break;
       case CLIMBER:
         m_BaseContainer = new ClimberContainer();
-        break;
-      case INDICATORLIGHT:
-        m_BaseContainer = new IndicaterLightContainer();
         break;
       case FINAL:
         m_BaseContainer = new FinalContainer();
