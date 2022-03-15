@@ -4,9 +4,7 @@
 
 package frc.robot.commands.IntakeCommands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.IntakeMotor;
 import frc.robot.subsystems.UpperLowerIntake;
 

@@ -4,13 +4,9 @@
 
 package frc.robot.commands.ClimberCommands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.ClimberContainer;
 import frc.robot.subsystems.ClimberSubsystem;
-import frc.robot.commands.ClimberCommands.ParallelClimber;
 
 public class ClimbHigh extends SequentialCommandGroup {
   /** Creates a new ClimbHigh. */

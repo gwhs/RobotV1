@@ -5,17 +5,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.Robot;
-import frc.robot.commands.CatapultCommands.CatapultCommand;
-import frc.robot.commands.CatapultCommands.CatapultDouble;
 import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.CatapultSubsystem;
-import frc.robot.subsystems.ShuffleboardTest;
 
 
 public class ShuffleboardUpdater extends CommandBase {
