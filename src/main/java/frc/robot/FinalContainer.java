@@ -20,6 +20,7 @@ import frc.robot.subsystems.UpperLowerIntake;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.AutoAlignCommands.AlignToFender;
+import frc.robot.commands.CatapultCommands.CatapultDouble;
 import frc.robot.commands.CatapultCommands.CatapultIntake;
 import frc.robot.commands.CatapultCommands.CatapultLeft;
 import frc.robot.commands.CatapultCommands.CatapultRight;
@@ -38,7 +39,7 @@ public class FinalContainer implements BaseContainer{
   private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
 
   //climber
-  private final ClimberSubsystem m_climberRightSubsystem = new ClimberSubsystem(43, true); //FIX INPUTS
+  private final ClimberSubsystem m_climberRightSubsystem = new ClimberSubsystem(43, true); 
   private final ClimberSubsystem m_climberLeftSubsystem = new ClimberSubsystem(45, false);
 
   //catapult
@@ -107,6 +108,7 @@ public class FinalContainer implements BaseContainer{
     JoystickButton buttonRightJoystickButton2 = new JoystickButton(m_controller2, XboxController.Button.kRightStick.value);
 
     // JoystickButton button = new JoystickButton(m_controller1, XboxController.k.value);
+    
     buttonBack.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     buttonStart.whenPressed(() -> m_drivetrainSubsystem.forcingZero());
     buttonB.whenPressed(new CatapultIntake(m_intakeMotor, m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED, Constants.CATAPULT_SPEED, Constants.INTAKE_DEPLOY_SPEED, Constants.CATAPULT_DELAY));
@@ -127,8 +129,8 @@ public class FinalContainer implements BaseContainer{
     buttonX2.whenPressed(new CatapultLeft(m_catapultSubsystemLeft, Constants.CATAPULT_SPEED_DUMP).withTimeout(1)); // dump left
     buttonB2.whenPressed(new CatapultRight(m_catapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP)); // dump right
     buttonA2.whenPressed(new ParallelClimberRetract(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMBER_RETRACT_INCHES_1, Constants.CLIMBER_RETRACT_INCHES_2, Constants.CLIMBER_MAX_SPEED, Constants.CLIMBER_SLOW_SPEED)); //retract
-    buttonY2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMER_EXTEND_INCHES, Constants.CLIMBER_MAX_SPEED)); //extend
-    //buttonY2.whenPressed(new AutoCommand(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake));
+    //buttonY2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMER_EXTEND_INCHES, Constants.CLIMBER_MAX_SPEED)); //extend
+    buttonY2.whenPressed(new AutoCommand(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake));
     
 
 
@@ -147,6 +149,7 @@ public class FinalContainer implements BaseContainer{
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     return new InstantCommand();
+    //return new AutoCommand(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake)
   }
 }
 
