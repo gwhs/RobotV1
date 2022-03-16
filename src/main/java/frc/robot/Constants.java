@@ -90,8 +90,8 @@ public class Constants {
 
     public static final double CLIMER_EXTEND_INCHES = 23.0;
     public static final double CLIMBER_MAX_SPEED = 1;
-    public static final double CLIMBER_SLOW_SPEED = 0.75;
-    public static final double CLIMBER_RETRACT_INCHES_1 = 5;
+    public static final double CLIMBER_SLOW_SPEED = 0.30;
+    public static final double CLIMBER_RETRACT_INCHES_1 = 7;
     public static final double CLIMBER_RETRACT_INCHES_2 = -1.5;
 
     public static final double CLIMBER_RATIO = 36;
