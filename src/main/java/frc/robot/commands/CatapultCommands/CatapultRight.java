@@ -6,6 +6,7 @@ package frc.robot.commands.CatapultCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.CatapultSubsystem;
+import frc.robot.subsystems.IntakeMotor;
 
 public class CatapultRight extends CommandBase {
   private CatapultSubsystem motor;
@@ -41,7 +42,7 @@ public class CatapultRight extends CommandBase {
   public void execute() {
     double position = motor.getPosition();
     //position is 77.3k for 360 degrees of rotation
-    if (Math.abs(position) >= 5100 - offset){
+    if (Math.abs(position) >= 6600 - offset){
         motor.setCoast();
         motor.setPercent(returnSpeed);
         //put motor in reverse to reset
