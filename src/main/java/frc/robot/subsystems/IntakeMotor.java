@@ -40,16 +40,13 @@ public class IntakeMotor extends SubsystemBase{
     public boolean isDeployed(){
         if(isFWDLIMIT() == 1){
             deployed = false;
-            System.out.println("ISFWDLIMIT IS RUNNING");
           }
           else if (isREVLIMIT() == 1){
             deployed = true;
-            System.out.println("ISREVLIMIT IS RUNNING");
+
           }
           else{
             deployed = false;
-        
-            System.out.println("INTAKE WAS IN MIDDLE POS");
           }
           return deployed;
         }
@@ -94,7 +91,6 @@ public class IntakeMotor extends SubsystemBase{
     {
         setZero();
         deployMotor.set(ControlMode.Position, ticks);
-        System.out.println("Intake pos " + deployMotor.getSelectedSensorPosition());
     }
 
 

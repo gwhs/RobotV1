@@ -29,16 +29,13 @@ public class IntakeDeploy extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("Forward: " + m_IntakeMotor.isFWDLIMIT());
-    System.out.println("Reverse: " + m_IntakeMotor.isREVLIMIT());
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    System.out.println();
-    System.out.println("deployed");
-    System.out.println();
+
   }
 
   // Returns true when the command should end.

@@ -44,7 +44,7 @@ public class CatapultContainer implements BaseContainer{
     }
 
     public void printSomething(){
-        System.out.println("Hellow there");
+
     }
 
     public Command getAutonomousCommand() {

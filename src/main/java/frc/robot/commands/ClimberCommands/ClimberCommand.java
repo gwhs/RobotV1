@@ -40,15 +40,12 @@ public class ClimberCommand extends CommandBase {
   @Override
   public void execute() {
     SmartDashboard.putNumber("RightPosition", ClimberSubsystem.getPosition());
-    System.out.println(ClimberSubsystem.ticksToInches(ClimberSubsystem.getPosition()));
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     ClimberSubsystem.setSpeed(0);
-    System.out.println("done");
-    System.out.println("Right position " + ClimberSubsystem.getPosition());
   }
 
   // Returns true when the command should end.
