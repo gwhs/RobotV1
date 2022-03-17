@@ -20,11 +20,8 @@ import frc.robot.subsystems.UpperLowerIntake;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.AutoAlignCommands.AlignToFender;
-import frc.robot.commands.CatapultCommands.CatapultLeftIntake;
 import frc.robot.commands.CatapultCommands.CatapultIntake;
-import frc.robot.commands.CatapultCommands.CatapultLeft;
-import frc.robot.commands.CatapultCommands.CatapultRight;
-import frc.robot.commands.CatapultCommands.CatapultRightIntake;
+import frc.robot.commands.CatapultCommands.OneCatapultIntake;
 import frc.robot.commands.ClimberCommands.ParallelClimber;
 import frc.robot.commands.ClimberCommands.ParallelClimberRetract;
 import frc.robot.commands.IntakeCommands.IntakeDeploySpin;
@@ -126,8 +123,8 @@ public class FinalContainer implements BaseContainer{
     
 
 
-    buttonX2.whenPressed(new CatapultLeftIntake(m_intakeMotor, m_upperLowerIntake, Constants.INTAKE_DEPLOY_SPEED, m_catapultSubsystemLeft, Constants.CATAPULT_SPEED_DUMP)); // dump left
-    buttonB2.whenPressed(new CatapultRightIntake(m_intakeMotor, m_upperLowerIntake, Constants.INTAKE_DEPLOY_SPEED, m_catapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP)); // dump right
+    buttonX2.whenPressed(new OneCatapultIntake(m_intakeMotor, m_upperLowerIntake, Constants.INTAKE_DEPLOY_SPEED, m_catapultSubsystemLeft, Constants.CATAPULT_SPEED_DUMP)); // dump left
+    buttonB2.whenPressed(new OneCatapultIntake(m_intakeMotor, m_upperLowerIntake, Constants.INTAKE_DEPLOY_SPEED, m_catapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP)); // dump right
     buttonA2.whenPressed(new ParallelClimberRetract(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMBER_RETRACT_INCHES_1, Constants.CLIMBER_RETRACT_INCHES_2, Constants.CLIMBER_MAX_SPEED, Constants.CLIMBER_SLOW_SPEED)); //retract
     buttonY2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMER_EXTEND_INCHES, Constants.CLIMBER_MAX_SPEED)); //extend
     //buttonY2.whenPressed(new AutoCommand(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake));
@@ -146,10 +143,23 @@ public class FinalContainer implements BaseContainer{
     * @return the command to run in autonomous
 */
 
+  private int autoPath = 0;
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return new InstantCommand();
-    //return new AutoCommand(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake)
+    
+    switch(autoPath) {
+      case 0:
+        return AutoCommand.OneCargo(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake);
+      case 1: 
+        return AutoCommand.TwoCargoLeft(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake);
+      case 2:
+        return AutoCommand.TwoCargoRight(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake);
+      case 3:
+      return AutoCommand.ThreeCargoRight(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake);
+      default:
+        return new InstantCommand();
+    }
+    
   }
 }
 

@@ -10,9 +10,9 @@ import frc.robot.subsystems.UpperLowerIntake;
 
 
 
-public class CatapultLeftIntake extends ParallelCommandGroup {
-    public CatapultLeftIntake(IntakeMotor m_intakeMotor, UpperLowerIntake m_upperLowerIntake, double deploySpeed, CatapultSubsystem m_CatapultSubsystem1, double leftSpeed) {
+public class OneCatapultIntake extends ParallelCommandGroup {
+    public OneCatapultIntake(IntakeMotor m_intakeMotor, UpperLowerIntake m_upperLowerIntake, double deploySpeed, CatapultSubsystem m_CatapultSubsystem, double catapultSpeed) {
         addCommands(new IntakeStowStop(m_upperLowerIntake, m_intakeMotor, deploySpeed), 
-                    new CatapultCommand(m_CatapultSubsystem1, leftSpeed).withTimeout(1));
+                    new CatapultCommand(m_CatapultSubsystem, catapultSpeed).withTimeout(1));
     } 
 }
