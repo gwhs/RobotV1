@@ -45,7 +45,6 @@ public class OneInchClimber extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     climberSubsystem.setSpeed(0);
-    System.out.println("Right position " + climberSubsystem.getPosition());
   }
 
   // Returns true when the command should end.

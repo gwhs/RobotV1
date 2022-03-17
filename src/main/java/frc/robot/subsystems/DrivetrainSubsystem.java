@@ -283,7 +283,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
   public boolean toggleDriveMode() {
           driveMode = !driveMode;
-          //System.out.println("setting drive mode to " + driveMode);
           return driveMode;
   }
 
@@ -299,7 +298,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
 
 
   public void setStates(SwerveModuleState[] states) {
-//      System.out.println("states: " + states[FL] + " " + states[FR] + " " + states[BL] + " " + states[BR]);
         setStatesInternal(states);
   }
 

@@ -31,9 +31,7 @@ public class IntakeStow extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    System.out.println();
-    System.out.println("stowed");
-    System.out.println();
+
   }
 
   // Returns true when the command should end.
