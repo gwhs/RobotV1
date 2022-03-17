@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.Robot;
-import frc.robot.commands.CatapultCommands.CatapultDouble;
+import frc.robot.commands.CatapultCommands.CatapultLeftIntake;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ShuffleboardTest extends SubsystemBase {
@@ -23,7 +23,7 @@ public class ShuffleboardTest extends SubsystemBase {
   double delayCount;
 
   private SendableChooser<String> m_containerChooser = new SendableChooser<>();
-  private SendableChooser<CatapultDouble> m_chooser = new SendableChooser<>();
+  private SendableChooser<CatapultLeftIntake> m_chooser = new SendableChooser<>();
   private final CatapultSubsystem m_CatapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false);
   private final CatapultSubsystem m_CatapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID, true);
 
