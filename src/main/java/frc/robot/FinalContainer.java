@@ -74,7 +74,7 @@ public class FinalContainer implements BaseContainer{
     
 
     configureButtonBindings();
-  };
+  }
 
 
   /**

@@ -48,8 +48,8 @@ public class AutoCommand extends SequentialCommandGroup {
             PathPlannerTrajectory path = PathPlanner.loadPath(pathName, 1, 1);
             
             addCommands(
-                        new IntakeDeploy(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
-                        new CatapultRight(m_catapultSubsystemRight, Constants.CATAPULT_SPEED),
+                        //new IntakeDeploy(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
+                        //new CatapultRight(m_catapultSubsystemRight, Constants.CATAPULT_SPEED),
                         new WaitCommand(delay),
                         new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(initPose)),
                         new ParallelCommandGroup(
@@ -64,10 +64,10 @@ public class AutoCommand extends SequentialCommandGroup {
                                 m_drivetrainSubsystem::setStates,
                                 m_drivetrainSubsystem)), 
                         new InstantCommand(() -> m_drivetrainSubsystem.drive(new ChassisSpeeds(0, 0, 0))),
-                        new IntakeStow(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
-                        new IntakeDeploy(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
-                        new WaitCommand(1),
-                        new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED, Constants.CATAPULT_SPEED_LOW, Constants.CATAPULT_DELAY)
+                        //new IntakeStow(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
+                        //new IntakeDeploy(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
+                        new WaitCommand(1)//,
+                        //new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED, Constants.CATAPULT_SPEED_LOW, Constants.CATAPULT_DELAY)
                        );
     
         }
