@@ -155,7 +155,7 @@ public class FinalContainer implements BaseContainer{
       case 2:
         return AutoCommand.TwoCargoRight(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake, Constants.AUTO_DELAY);
       case 3:
-      return AutoCommand.ThreeCargoRight(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake, Constants.AUTO_DELAY);
+        return AutoCommand.ThreeCargoRight(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake, Constants.AUTO_DELAY);
       default:
         return new InstantCommand();
     }
