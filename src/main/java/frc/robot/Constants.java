@@ -6,8 +6,8 @@ public class Constants {
 
     public static final int CATAPULT_LEFT_ID = 37;
     public static final int CATAPULT_RIGHT_ID = 21;
-    public static double CATAPULT_SPEED = 1;
-    public static double CATAPULT_SPEED_LOW = 0.3;
+    public static final double CATAPULT_SPEED = 1;
+    public static double CATAPULT_SPEED_LOW = 0.35;
     public static double CATAPULT_SPEED_DUMP = 0.5;
 
     public static double CATAPULT_SPEED_FAR = 1; //Might not use
