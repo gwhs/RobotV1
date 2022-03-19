@@ -7,14 +7,14 @@ public class Constants {
     public static final int CATAPULT_LEFT_ID = 37;
     public static final int CATAPULT_RIGHT_ID = 21;
     public static final double CATAPULT_SPEED = 1;
-    public static double CATAPULT_SPEED_LOW = 0.35;
-    public static double CATAPULT_SPEED_DUMP = 0.5;
+    public static final double CATAPULT_SPEED_LOW = 0.38;
+    public static final double CATAPULT_SPEED_DUMP = 0.5;
 
-    public static double CATAPULT_SPEED_FAR = 1; //Might not use
+    public static final double CATAPULT_SPEED_FAR = 1; //Might not use
 
-    public static double CATAPULT_LEFT_SPEED = 1; //54%
-    public static double CATAPULT_RIGHT_SPEED = 1; //56%
-    public static double CATAPULT_DELAY = 0.5;
+    public static final double CATAPULT_LEFT_SPEED = 1; //54%
+    public static final double CATAPULT_RIGHT_SPEED = 0.95; //56%
+    public static final double CATAPULT_DELAY = 0.5;
 
     public static final int INTAKE_UPPERTALON_ID = 55;
     public static final int INTAKE_LOWERTALON_ID = 47;

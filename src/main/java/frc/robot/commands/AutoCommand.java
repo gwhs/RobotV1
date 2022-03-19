@@ -9,6 +9,7 @@ import frc.robot.Constants;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
 import frc.robot.commands.CatapultCommands.CatapultRight;
 import frc.robot.commands.IntakeCommands.IntakeDeploy;
+import frc.robot.commands.IntakeCommands.IntakeDeploySpin;
 import frc.robot.commands.IntakeCommands.IntakeStow;
 import frc.robot.commands.IntakeCommands.SpinIntake;
 import frc.robot.subsystems.CatapultSubsystem;
@@ -45,12 +46,11 @@ public class AutoCommand extends SequentialCommandGroup {
     }
 
         public AutoCommand(String pathName, Pose2d initPose, double delay, DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotor m_intakeMotor, UpperLowerIntake m_upperLowerIntake) {
-            PathPlannerTrajectory path = PathPlanner.loadPath(pathName, 1.5, 1);
+            PathPlannerTrajectory path = PathPlanner.loadPath(pathName, 2, 1.5);
             
             addCommands(
-                        new IntakeDeploy(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
-                        new WaitCommand(0.2),
-                        new CatapultRight(m_catapultSubsystemRight, Constants.CATAPULT_SPEED).withTimeout(15),
+                        new IntakeDeploySpin(m_upperLowerIntake, m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED).withTimeout(0.5),
+                        new CatapultRight(m_catapultSubsystemRight, Constants.CATAPULT_RIGHT_SPEED).withTimeout(15),
                         new WaitCommand(delay),
                         new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(initPose)),
                         new ParallelCommandGroup(
