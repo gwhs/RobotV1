@@ -47,5 +47,5 @@ public final class DrivetrainConstants {
     public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR = 5; 
     public static final int BACK_RIGHT_MODULE_STEER_MOTOR = 6; 
     public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 13; 
-    public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(13.6); // FIXME Measure and set back right steer offset 37 340
-}                                                                               //7.6
+    public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(286.3); // FIXME Measure and set back right steer offset 37 340
+}                                                                               //7.6 old correct: 13.6

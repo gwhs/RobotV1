@@ -143,7 +143,7 @@ public class FinalContainer implements BaseContainer{
     * @return the command to run in autonomous
 */
 
-  private int autoPath = 2;
+  private int autoPath = 3;
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     

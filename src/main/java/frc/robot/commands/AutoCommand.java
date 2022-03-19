@@ -49,8 +49,9 @@ public class AutoCommand extends SequentialCommandGroup {
             PathPlannerTrajectory path = PathPlanner.loadPath(pathName, 2, 1.5);
             
             addCommands(
+                        new InstantCommand(() -> m_drivetrainSubsystem.forcingZero()),
                         new IntakeDeploySpin(m_upperLowerIntake, m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED).withTimeout(0.5),
-                        new CatapultRight(m_catapultSubsystemRight, Constants.CATAPULT_RIGHT_SPEED).withTimeout(15),
+                        new CatapultRight(m_catapultSubsystemRight, Constants.CATAPULT_RIGHT_SPEED).withTimeout(1.5),
                         new WaitCommand(delay),
                         new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(initPose)),
                         new ParallelCommandGroup(
