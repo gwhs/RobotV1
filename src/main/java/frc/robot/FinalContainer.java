@@ -111,7 +111,7 @@ public class FinalContainer implements BaseContainer{
     buttonB.whenPressed(new CatapultIntake(m_intakeMotor, m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED, Constants.CATAPULT_RIGHT_SPEED, Constants.INTAKE_DEPLOY_SPEED, Constants.CATAPULT_DELAY));
     buttonX.whenPressed(new AlignToFender(m_drivetrainSubsystem, ll, tof, m_catapultSubsystemRight, m_catapultSubsystemLeft, m_intakeMotor));
     buttonY.whenPressed(new IntakeDeploySpin(m_upperLowerIntake, m_intakeMotor, Constants.DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED));
-    buttonA.whenPressed(new IntakeStowStop(m_upperLowerIntake, m_intakeMotor, Constants.DEPLOY_SPEED));
+    buttonA.whenPressed(new IntakeStowStop(m_upperLowerIntake, m_intakeMotor, Constants.DEPLOY_SPEED).withTimeout(2));
     buttonRBumper.whenPressed(new CatapultIntake(m_intakeMotor, m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED_LOW, Constants.CATAPULT_SPEED_LOW, Constants.INTAKE_DEPLOY_SPEED, Constants.CATAPULT_DELAY));
     
 
@@ -143,7 +143,7 @@ public class FinalContainer implements BaseContainer{
     * @return the command to run in autonomous
 */
 
-  private int autoPath = 3;
+  private int autoPath = 1;
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     

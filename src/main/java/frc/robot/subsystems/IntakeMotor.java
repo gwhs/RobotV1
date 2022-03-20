@@ -101,7 +101,7 @@ public class IntakeMotor extends SubsystemBase{
         deployMotor.set(ControlMode.PercentOutput, speed);
     }
 
-    public void stopDeploy(){
+    public void stop(){
         deployMotor.set(ControlMode.PercentOutput, 0);
     }
 
