@@ -15,7 +15,7 @@ public class CatapultIntake extends SequentialCommandGroup {
   /** Creates a new CatapultIntake. */
   private double deployDelay = 0.3;
   public CatapultIntake(IntakeMotor m_IntakeMotor, CatapultSubsystem m_CatapultSubsystemLeft, CatapultSubsystem m_CatapultSubsystemRight, double leftSpeed, double rightSpeed, double deploySpeed, double delay) {
-    addCommands(new IntakeDeploy(m_IntakeMotor, deploySpeed),
+    addCommands(new IntakeDeploy(m_IntakeMotor, deploySpeed).withTimeout(1),
                   new SequentialCommandGroup(new WaitCommand(deployDelay)),
                     new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, leftSpeed, rightSpeed, delay),
                       new SequentialCommandGroup(new WaitCommand(delay), 

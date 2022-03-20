@@ -51,7 +51,7 @@ public class AutoCommand extends SequentialCommandGroup {
             addCommands(
                         new InstantCommand(() -> m_drivetrainSubsystem.forcingZero()),
                         new IntakeDeploySpin(m_upperLowerIntake, m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED).withTimeout(0.5),
-                        new CatapultRight(m_catapultSubsystemRight, Constants.CATAPULT_RIGHT_SPEED).withTimeout(1.5),
+                        new CatapultRight(m_catapultSubsystemRight, Constants.CATAPULT_RIGHT_SPEED).withTimeout(1),
                         new WaitCommand(delay),
                         new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(initPose)),
                         new ParallelCommandGroup(
@@ -67,7 +67,7 @@ public class AutoCommand extends SequentialCommandGroup {
                                 m_drivetrainSubsystem)), 
                         new InstantCommand(() -> m_drivetrainSubsystem.drive(new ChassisSpeeds(0, 0, 0))),
                         new IntakeStow(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
-                        new IntakeDeploy(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
+                        new IntakeDeploy(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED).withTimeout(1),
                         new WaitCommand(1),
                         new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED, Constants.CATAPULT_SPEED, Constants.CATAPULT_DELAY)
                        );
