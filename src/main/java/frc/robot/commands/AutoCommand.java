@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
+import frc.robot.commands.CatapultCommands.CatapultCommand;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
 import frc.robot.commands.CatapultCommands.CatapultRight;
 import frc.robot.commands.IntakeCommands.IntakeDeploy;
@@ -50,8 +51,8 @@ public class AutoCommand extends SequentialCommandGroup {
             
             addCommands(
                         new InstantCommand(() -> m_drivetrainSubsystem.forcingZero()),
-                        new IntakeDeploySpin(m_upperLowerIntake, m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED).withTimeout(0.5),
-                        new CatapultRight(m_catapultSubsystemRight, Constants.CATAPULT_RIGHT_SPEED).withTimeout(1),
+                        new IntakeDeploySpin(m_upperLowerIntake, m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED).withTimeout(2),
+                        new CatapultCommand(m_catapultSubsystemRight, Constants.CATAPULT_RIGHT_SPEED).withTimeout(1),
                         new WaitCommand(delay),
                         new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(initPose)),
                         new ParallelCommandGroup(
