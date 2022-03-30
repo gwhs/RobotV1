@@ -10,13 +10,16 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.IntakeMotor;
 import frc.robot.subsystems.UpperLowerIntake;
 import frc.robot.BaseContainer;
 import frc.robot.Constants;
 import frc.robot.Robot;
+import frc.robot.commands.IntakeCommands.IntakeDeploy;
 import frc.robot.commands.IntakeCommands.IntakeDeploySpin;
+import frc.robot.commands.IntakeCommands.IntakeStow;
 import frc.robot.commands.IntakeCommands.IntakeStowStop;
 import frc.robot.commands.IntakeCommands.SpinIntake;
 import frc.robot.commands.IntakeCommands.ToggleIntake;
@@ -52,11 +55,15 @@ public class IntakeContainer implements BaseContainer{
     JoystickButton X = new JoystickButton(m_controller,XboxController.Button.kX.value);
     JoystickButton Y = new JoystickButton(m_controller, XboxController.Button.kY.value);
     JoystickButton B = new JoystickButton(m_controller, XboxController.Button.kB.value);
+    JoystickButton A = new JoystickButton(m_controller, XboxController.Button.kA.value);
 
-    RB.whenPressed(new IntakeDeploySpin(m_UpperLowerIntake, m_IntakeMotor, 0.5, 0.85, -1));
-    Y.whenPressed(new IntakeStowStop(m_UpperLowerIntake, m_IntakeMotor, 0.5));
-    X.whenPressed(new SpinIntake(m_UpperLowerIntake, -1, 1));
-    B.whenPressed(new ToggleIntake(m_IntakeMotor, m_UpperLowerIntake));
+    // RB.whenPressed(new IntakeDeploySpin(m_UpperLowerIntake, m_IntakeMotor, 0.5, 0.85, -1));
+    // Y.whenPressed(new IntakeStowStop(m_UpperLowerIntake, m_IntakeMotor, 0.5));
+    X.whenPressed(new IntakeStow(m_IntakeMotor, 1));
+    B.whenPressed(new IntakeDeploy(m_IntakeMotor, 1));
+    Y.whenPressed(new PrintCommand("Foward Limit: " + m_IntakeMotor.isFWDLIMIT())); 
+    A.whenPressed(new PrintCommand("Reverse Limit: " +  m_IntakeMotor.isREVLIMIT()));
+    RB.whenPressed(new PrintCommand("Position: " + m_IntakeMotor.isOtherData()));
 
 
     

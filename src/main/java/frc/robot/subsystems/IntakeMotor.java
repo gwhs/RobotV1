@@ -19,7 +19,6 @@ public class IntakeMotor extends SubsystemBase{
     public IntakeMotor(int deployMotorID){
         this.deployMotor = new TalonFX(deployMotorID);
         //deployMotor.setNeutralMode(NeutralMode.Brake);
-        this.setSoftLimits();
         this.setZero();
     }
 
@@ -28,13 +27,29 @@ public class IntakeMotor extends SubsystemBase{
     }
 
     public int isFWDLIMIT(){
+        deployMotor.clearStickyFaults();
+        //deployMotor.
         TalonFXSensorCollection info = deployMotor.getSensorCollection();
-        return info.isFwdLimitSwitchClosed();
+        return deployMotor.isFwdLimitSwitchClosed();
+    }
+
+    public boolean isFWDLIMITbool(){
+        return isFWDLIMIT() == 1;
+    }
+
+    public boolean isREVLIMITbool(){
+        return (isREVLIMIT() == 1);
     }
 
     public int isREVLIMIT(){
+        deployMotor.clearStickyFaults();
         TalonFXSensorCollection info = deployMotor.getSensorCollection();
-        return info.isRevLimitSwitchClosed();
+        return deployMotor.isRevLimitSwitchClosed();
+    }
+
+    public double isOtherData(){
+        TalonFXSensorCollection info = deployMotor.getSensorCollection();
+        return info.getIntegratedSensorAbsolutePosition();
     }
 
     public boolean isDeployed(){
@@ -109,9 +124,5 @@ public class IntakeMotor extends SubsystemBase{
     public void undeploy(double speed){
         //alphaMotor.setSoftLimit(SoftLimitDirection.kReverse, 4000);
         deployMotor.set(ControlMode.PercentOutput, -speed);
-    }
-
-    public void setSoftLimits(){
-        
     }
 }
