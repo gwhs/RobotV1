@@ -61,9 +61,9 @@ public class IntakeContainer implements BaseContainer{
     // Y.whenPressed(new IntakeStowStop(m_UpperLowerIntake, m_IntakeMotor, 0.5));
     X.whenPressed(new IntakeStow(m_IntakeMotor, 1));
     B.whenPressed(new IntakeDeploy(m_IntakeMotor, 1));
-    Y.whenPressed(new PrintCommand("Foward Limit: " + m_IntakeMotor.isFWDLIMIT())); 
-    A.whenPressed(new PrintCommand("Reverse Limit: " +  m_IntakeMotor.isREVLIMIT()));
-    RB.whenPressed(new PrintCommand("Position: " + m_IntakeMotor.isOtherData()));
+    Y.whenPressed(() -> System.out.println("Foward Limit: " + m_IntakeMotor.isFWDLIMIT())); 
+    A.whenPressed(() -> System.out.println("Reverse Limit: " +  m_IntakeMotor.isREVLIMIT()));
+    RB.whenPressed(() -> System.out.println("Position: " + m_IntakeMotor.isOtherData()));
 
 
     
