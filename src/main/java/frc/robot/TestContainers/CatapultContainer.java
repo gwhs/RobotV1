@@ -9,6 +9,7 @@ import frc.robot.Constants;
 import frc.robot.commands.CatapultCommands.CatapultDouble;
 import frc.robot.commands.CatapultCommands.CatapultLeft;
 import frc.robot.commands.CatapultCommands.CatapultRight;
+import frc.robot.commands.CatapultCommands.ChangePower;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -30,6 +31,8 @@ public class CatapultContainer implements BaseContainer{
         JoystickButton buttonB = new JoystickButton(m_controller, XboxController.Button.kB.value);
         JoystickButton buttonX = new JoystickButton(m_controller, XboxController.Button.kX.value);
         JoystickButton buttonA = new JoystickButton(m_controller, XboxController.Button.kA.value);
+        JoystickButton buttonLBumper = new JoystickButton(m_controller, XboxController.Button.kLeftBumper.value);
+        JoystickButton buttonRBumper = new JoystickButton(m_controller, XboxController.Button.kRightBumper.value);
         // SpinMotor s
         // change motor and speed here. SpinMotor(motor id, percent output[-1 to 1 as double])
         // buttonB.whenPressed( new CatapultDouble(m_CatapultSubsystemLeft,m_CatapultSubsystemRight, Constants.SHOOTER_MODE_LEFT));
@@ -37,9 +40,10 @@ public class CatapultContainer implements BaseContainer{
         // buttonA.whenPressed( new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_DELAY));
 
         buttonB.whenPressed(new CatapultLeft(m_CatapultSubsystemLeft, Constants.CATAPULT_LEFT_SPEED));
-        buttonX.whenPressed(new CatapultRight(m_CatapultSubsystemRight, 0.1));
+        buttonX.whenPressed(new CatapultRight(m_CatapultSubsystemRight, 0.5));
         buttonA.whenPressed(new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.CATAPULT_LEFT_SPEED, Constants.CATAPULT_RIGHT_SPEED, Constants.CATAPULT_DELAY));
-        
+        buttonRBumper.whenPressed(new ChangePower(.01, m_CatapultSubsystemLeft, m_CatapultSubsystemRight));
+        buttonLBumper.whenPressed(new ChangePower(-.01, m_CatapultSubsystemLeft, m_CatapultSubsystemRight));
 
     }
 
