@@ -77,19 +77,19 @@ public class AutoCommand extends SequentialCommandGroup {
                         new IntakeStow(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED).withTimeout(1),
                         new IntakeDeploy(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED).withTimeout(1),
                         new WaitCommand(1),
-                        new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED, Constants.CATAPULT_SPEED, Constants.CATAPULT_DELAY),
-                        new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(endPose)),
-                        new PPSwerveControllerCommand(
-                                zero,
-                                m_drivetrainSubsystem::getPose,
-                                m_drivetrainSubsystem.getKinematics(),
-                                new PIDController(1, 0, 0),
-                                new PIDController(1, 0, 0),
-                                m_drivetrainSubsystem.getThetaController(),
-                                m_drivetrainSubsystem::setStates,
-                                m_drivetrainSubsystem),
-                        new InstantCommand(() -> m_drivetrainSubsystem.drive(new ChassisSpeeds(0, 0, 0))),
-                        new InstantCommand(() -> m_drivetrainSubsystem.zeroGyroscope())
+                        new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED, Constants.CATAPULT_SPEED, Constants.CATAPULT_DELAY)//,
+                        // new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(endPose)),
+                        // new PPSwerveControllerCommand(
+                        //         zero,
+                        //         m_drivetrainSubsystem::getPose,
+                        //         m_drivetrainSubsystem.getKinematics(),
+                        //         new PIDController(1, 0, 0),
+                        //         new PIDController(1, 0, 0),
+                        //         m_drivetrainSubsystem.getThetaController(),
+                        //         m_drivetrainSubsystem::setStates,
+                        //         m_drivetrainSubsystem),
+                        // new InstantCommand(() -> m_drivetrainSubsystem.drive(new ChassisSpeeds(0, 0, 0))),
+                        // new InstantCommand(() -> m_drivetrainSubsystem.zeroGyroscope())
                         );
     
         }
