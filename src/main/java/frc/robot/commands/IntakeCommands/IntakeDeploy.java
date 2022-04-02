@@ -23,22 +23,22 @@ public class IntakeDeploy extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Deploying");
+    // System.out.println("Deploying");
    m_IntakeMotor.setDeployMotorSpeed(-deploySpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("Deploy state: " + m_IntakeMotor.isREVLIMITbool());
+    // System.out.println("Deploy state: " + m_IntakeMotor.isREVLIMITbool());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     m_IntakeMotor.stop();
-    System.out.println("end deploy");
-    System.out.println("End State: " + m_IntakeMotor.isREVLIMITbool());
+    // System.out.println("end deploy");
+    // System.out.println("End State: " + m_IntakeMotor.isREVLIMITbool());
   }
 
   // Returns true when the command should end.

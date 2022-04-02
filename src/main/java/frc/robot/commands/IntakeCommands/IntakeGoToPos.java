@@ -32,13 +32,13 @@ public class IntakeGoToPos extends PIDCommand {
     // Configure additional PID options by calling `getController` here.
     this.ticks = ticks;
     this.m_IntakeMotor = m_IntakeMotor;
-    System.out.println("CONS Sensor ticks: " + m_IntakeMotor.getDeployPosition());
+    // System.out.println("CONS Sensor ticks: " + m_IntakeMotor.getDeployPosition());
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    System.out.println("Sensor ticks: " + m_IntakeMotor.getDeployPosition());
+    // System.out.println("Sensor ticks: " + m_IntakeMotor.getDeployPosition());
     return Math.abs(m_IntakeMotor.getDeployPosition() - ticks) <= 2000;
   }
 }

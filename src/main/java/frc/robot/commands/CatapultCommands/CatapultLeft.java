@@ -29,7 +29,7 @@ public class CatapultLeft extends CommandBase {
   @Override
   public void initialize() {
     ran = false;
-    System.out.println("Round 1 pos:"+motor.getPosition());
+    // System.out.println("Round 1 pos:"+motor.getPosition());
     //sets speed\
     offset = motor.getPosition();
     motor.setSelectedSensorPosition();
