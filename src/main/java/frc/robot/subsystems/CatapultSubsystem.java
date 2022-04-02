@@ -18,7 +18,7 @@ public class CatapultSubsystem extends SubsystemBase {
   private TalonFX motor;
   private double initialOffset;
   private static final int SHOOT_LIMIT = 5100;
-  private double power = Constants.CATAPULT_SPEED_LOW;//will be changed
+  private double power = 0.0;//will be changed
   /** Creates a new motor. */
   public CatapultSubsystem(int id, boolean inverted) {
     motor = new TalonFX(id);
@@ -49,6 +49,11 @@ public class CatapultSubsystem extends SubsystemBase {
   public void setPercent(double speed){
     motor.set(ControlMode.PercentOutput, speed);
   }
+
+  //power is changed using ChangePower command
+  public void setChangedSpeed(double speed){
+    motor.set(ControlMode.PercentOutput, speed + power);
+  }
   
   public boolean isFinishedShooting(){
     double shotposition = motor.getSelectedSensorPosition();
@@ -63,10 +68,6 @@ public class CatapultSubsystem extends SubsystemBase {
       return true;
     }
     return false;
-  }
-
-  public void increaseCatapultByOne(double speed){
-    motor.set(ControlMode.PercentOutput, speed);
   }
 
   public void setSelectedSensorPosition() {
@@ -100,6 +101,24 @@ public class CatapultSubsystem extends SubsystemBase {
 
   public void changePower(double change){
     power += change;
+    power = Math.min(0, power);
+    power = Math.max(-.99, power);
+    // if (power < .2 && power > -.2){
+    //   power += change;
+    // }
+
+    round(power, 2);
   }
+
+  public double getPower(){
+    return power;
   }
+
+  public void round(double num, int decimals){
+    num = num * Math.pow(10, decimals);
+    num = Math.floor(num);
+    num = num / Math.pow(10,decimals);
+    power = num;
+  }
+}
 

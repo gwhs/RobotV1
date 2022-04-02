@@ -34,7 +34,7 @@ public class CatapultRight extends CommandBase {
     //sets speed\
     offset = motor.getPosition();
     motor.setSelectedSensorPosition();
-    motor.setPercent(speed);
+    motor.setChangedSpeed(speed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -42,7 +42,7 @@ public class CatapultRight extends CommandBase {
   public void execute() {
     double position = motor.getPosition();
     //position is 77.3k for 360 degrees of rotation
-    if (Math.abs(position) >= 6600 - offset){
+    if (Math.abs(position) >= 5100 - offset){
         motor.setCoast();
         motor.setPercent(returnSpeed);
         //put motor in reverse to reset

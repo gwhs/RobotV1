@@ -33,7 +33,7 @@ public class CatapultLeft extends CommandBase {
     //sets speed\
     offset = motor.getPosition();
     motor.setSelectedSensorPosition();
-    motor.setPercent(speed);
+    motor.setChangedSpeed(speed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

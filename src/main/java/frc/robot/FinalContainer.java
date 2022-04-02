@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.AutoAlignCommands.AlignToFender;
 import frc.robot.commands.CatapultCommands.CatapultIntake;
+import frc.robot.commands.CatapultCommands.ChangePower;
 import frc.robot.commands.CatapultCommands.OneCatapultIntake;
 import frc.robot.commands.ClimberCommands.ParallelClimber;
 import frc.robot.commands.ClimberCommands.ParallelClimberRetract;
@@ -127,6 +128,9 @@ public class FinalContainer implements BaseContainer{
     buttonB2.whenPressed(new OneCatapultIntake(m_intakeMotor, m_upperLowerIntake, Constants.INTAKE_DEPLOY_SPEED, m_catapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP)); // dump right
     buttonA2.whenPressed(new ParallelClimberRetract(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMBER_RETRACT_INCHES_1, Constants.CLIMBER_RETRACT_INCHES_2, Constants.CLIMBER_MAX_SPEED, Constants.CLIMBER_SLOW_SPEED)); //retract
     buttonY2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMER_EXTEND_INCHES, Constants.CLIMBER_MAX_SPEED)); //extend
+    buttonRBumper2.whenPressed(new ChangePower(.01, m_catapultSubsystemLeft, m_catapultSubsystemRight));
+    buttonLBumper2.whenPressed(new ChangePower(-.01, m_catapultSubsystemLeft, m_catapultSubsystemRight));
+
     //buttonY2.whenPressed(new AutoCommand(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake));
     
 
