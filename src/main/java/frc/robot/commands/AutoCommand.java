@@ -30,28 +30,35 @@ public class AutoCommand extends SequentialCommandGroup {
     private static Pose2d leftInitPose = new Pose2d(6.89, 4.44, new Rotation2d(Math.toRadians(159.0)));
     private static Pose2d rightInitPose = new Pose2d(7.95, 2.73, new Rotation2d(Math.toRadians(-111.00)));
 
+    private static Pose2d rightOneEndPose = new Pose2d(6.72, 0.54, new Rotation2d(-111.0));
+    private static Pose2d rightTwoEndPose = new Pose2d(7.79, 2.76, new Rotation2d(-102.26));
+    private static Pose2d rightThreeEndPose = new Pose2d(7.82, 2.60, new Rotation2d(-107.1));
+    private static Pose2d leftEndPose = new Pose2d(6.65, 4.56, new Rotation2d(159.0));
+
     public static AutoCommand OneCargo(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotor m_intakeMotor, UpperLowerIntake m_upperLowerIntake, double delay) {
-        return new AutoCommand("1 Cargo - Right", rightInitPose, delay, m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake);
+        return new AutoCommand("1 Cargo - Right", rightInitPose, rightOneEndPose, delay, m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake);
     }
 
     public static AutoCommand TwoCargoLeft(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotor m_intakeMotor, UpperLowerIntake m_upperLowerIntake, double delay) {
-        return new AutoCommand("2 Cargo - Left", leftInitPose, delay, m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake);
+        return new AutoCommand("2 Cargo - Left", leftInitPose, leftEndPose, delay, m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake);
     }
 
     public static AutoCommand TwoCargoRight(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotor m_intakeMotor, UpperLowerIntake m_upperLowerIntake, double delay) {
-        return new AutoCommand("2 Cargo - Right", rightInitPose, delay, m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake);
+        return new AutoCommand("2 Cargo - Right - f", rightInitPose, rightTwoEndPose, delay, m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake);
     }
 
     public static AutoCommand ThreeCargoRight(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotor m_intakeMotor, UpperLowerIntake m_upperLowerIntake, double delay) {
-        return new AutoCommand("3 Cargo - Right", rightInitPose, delay, m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake);
+        return new AutoCommand("3 Cargo - Right", rightInitPose, rightThreeEndPose, delay, m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake);
     }
 
-        public AutoCommand(String pathName, Pose2d initPose, double delay, DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotor m_intakeMotor, UpperLowerIntake m_upperLowerIntake) {
+        public AutoCommand(String pathName, Pose2d initPose, Pose2d endPose, double delay, DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotor m_intakeMotor, UpperLowerIntake m_upperLowerIntake) {
             PathPlannerTrajectory path = PathPlanner.loadPath(pathName, 2, 1.5);
+            PathPlannerTrajectory zero = PathPlanner.loadPath(pathName + " Turn", 2, 1.5);
             
             addCommands(
                         new InstantCommand(() -> m_drivetrainSubsystem.forcingZero()),
                         new IntakeDeploySpin(m_upperLowerIntake, m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED).withTimeout(2),
+                        new IntakeDeploy(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED).withTimeout(0.5),
                         new CatapultCommand(m_catapultSubsystemRight, Constants.CATAPULT_RIGHT_SPEED).withTimeout(1),
                         new WaitCommand(delay),
                         new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(initPose)),
@@ -67,11 +74,23 @@ public class AutoCommand extends SequentialCommandGroup {
                                 m_drivetrainSubsystem::setStates,
                                 m_drivetrainSubsystem)), 
                         new InstantCommand(() -> m_drivetrainSubsystem.drive(new ChassisSpeeds(0, 0, 0))),
-                        new IntakeStow(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED),
+                        new IntakeStow(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED).withTimeout(1),
                         new IntakeDeploy(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED).withTimeout(1),
                         new WaitCommand(1),
-                        new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED, Constants.CATAPULT_SPEED, Constants.CATAPULT_DELAY)
-                       );
+                        new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED, Constants.CATAPULT_SPEED, Constants.CATAPULT_DELAY)//,
+                        // new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(endPose)),
+                        // new PPSwerveControllerCommand(
+                        //         zero,
+                        //         m_drivetrainSubsystem::getPose,
+                        //         m_drivetrainSubsystem.getKinematics(),
+                        //         new PIDController(1, 0, 0),
+                        //         new PIDController(1, 0, 0),
+                        //         m_drivetrainSubsystem.getThetaController(),
+                        //         m_drivetrainSubsystem::setStates,
+                        //         m_drivetrainSubsystem),
+                        // new InstantCommand(() -> m_drivetrainSubsystem.drive(new ChassisSpeeds(0, 0, 0))),
+                        // new InstantCommand(() -> m_drivetrainSubsystem.zeroGyroscope())
+                        );
     
         }
 
