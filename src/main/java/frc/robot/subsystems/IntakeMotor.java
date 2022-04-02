@@ -22,6 +22,14 @@ public class IntakeMotor extends SubsystemBase{
         this.setZero();
     }
 
+    public double getStatorCurrent(){
+        return deployMotor.getStatorCurrent();
+    }
+
+    public double getSupplyCurrent(){
+        return deployMotor.getSupplyCurrent();
+    }
+
     public void setZero(){
         deployMotor.setSelectedSensorPosition(0);
     }

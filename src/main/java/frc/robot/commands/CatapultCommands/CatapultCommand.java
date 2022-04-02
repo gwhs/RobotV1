@@ -1,6 +1,6 @@
 package frc.robot.commands.CatapultCommands;
 import frc.robot.subsystems.CatapultSubsystem;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class CatapultCommand extends CommandBase {
@@ -46,7 +46,12 @@ public class CatapultCommand extends CommandBase {
             //put motor in reverse to reset
             ran = true;
         }
-        System.out.println(motor.getPosition());
+        SmartDashboard.putNumber("Catapult Right Supply Current", motor.getSupplyCurrent());
+        SmartDashboard.putNumber("Catapult Right Stator Current", motor.getStatorCurrent());
+        // SmartDashboard.putNumber("Catapult Left Supply Currnt", value);
+        // SmartDashboard.putNumber("Catapult Left Stator current", value);
+
+
         //System.out.println("Elapsed time: " + elapsedTime);
         //System.out.println("check position " + motor.getPosition());
       //  SmartDashboard.putNumber("Spinner Pos", motor.getPosition());
