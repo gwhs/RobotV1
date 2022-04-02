@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
 import frc.robot.Robot;
-import frc.robot.commands.CatapultCommands.OneCatapultIntake;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ShuffleboardTest extends SubsystemBase {
@@ -23,9 +22,9 @@ public class ShuffleboardTest extends SubsystemBase {
   double delayCount;
 
   private SendableChooser<String> m_containerChooser = new SendableChooser<>();
-  private SendableChooser<OneCatapultIntake> m_chooser = new SendableChooser<>();
-  private final CatapultSubsystem m_CatapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false);
-  private final CatapultSubsystem m_CatapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID, true);
+  // private SendableChooser<OneCatapultIntake> m_chooser = new SendableChooser<>();
+  // private final CatapultSubsystem m_CatapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false);
+  // private final CatapultSubsystem m_CatapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID, true);
 
 
   public ShuffleboardTest() {
@@ -33,7 +32,7 @@ public class ShuffleboardTest extends SubsystemBase {
     output = shTab.add("Percent Output", 1).getEntry();
     // containerSwap = shTab.add("Container: ", Robot.CATAPULT).getEntry();
     delayInput = shTab.add("Delay set:", 3.0).getEntry();
-    SmartDashboard.putData("Catapult mode", m_chooser);
+    // SmartDashboard.putData("Catapult mode", m_chooser);
     SmartDashboard.putData("Container mode", m_containerChooser);
     
     // m_chooser.setDefaultOption("Double Shoot", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_DOUBLE));

@@ -9,10 +9,7 @@ import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.TestContainers.CatapultContainer;
-import frc.robot.TestContainers.ClimberContainer;
 import frc.robot.TestContainers.IntakeContainer;
-import frc.robot.TestContainers.RobotContainer;
 import frc.robot.commands.ShuffleboardUpdater;
 import frc.robot.subsystems.ShuffleboardTest;
 
@@ -76,20 +73,8 @@ public class Robot extends TimedRobot {
     // m_led.setData(m_ledBuffer);
 
     switch (container){
-      case SWERVE:
-        m_BaseContainer = new RobotContainer();
-        break;
-      case CATAPULT:
-        m_BaseContainer = new CatapultContainer();
-        break;
       case INTAKE:
         m_BaseContainer = new IntakeContainer();
-        break;
-      case CLIMBER:
-        m_BaseContainer = new ClimberContainer();
-        break;
-      case FINAL:
-        m_BaseContainer = new FinalContainer();
         break;
     } 
     m_autonomousCommand = m_BaseContainer.getAutonomousCommand();
