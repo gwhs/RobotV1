@@ -7,7 +7,8 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXSensorCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
-
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class IntakeMotor extends SubsystemBase{
@@ -24,6 +25,14 @@ public class IntakeMotor extends SubsystemBase{
 
     public void setZero(){
         deployMotor.setSelectedSensorPosition(0);
+    }
+
+    public double getStatorCurrent(){
+        return deployMotor.getStatorCurrent();
+    }
+
+    public double getSupplyCurrent(){
+        return deployMotor.getSupplyCurrent();
     }
 
     public int isFWDLIMIT(){

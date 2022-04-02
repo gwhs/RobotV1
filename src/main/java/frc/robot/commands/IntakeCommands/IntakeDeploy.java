@@ -6,6 +6,7 @@ package frc.robot.commands.IntakeCommands;
 
 
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeMotor;
 
@@ -31,6 +32,11 @@ public class IntakeDeploy extends CommandBase {
   @Override
   public void execute() {
     // System.out.println("Deploy state: " + m_IntakeMotor.isREVLIMITbool());
+    SmartDashboard.putNumber("Ticks", m_IntakeMotor.isOtherData());
+    SmartDashboard.putNumber("Deploy Motor State FWD", m_IntakeMotor.isFWDLIMIT());
+    SmartDashboard.putNumber("Deploy Motor State REV ", m_IntakeMotor.isREVLIMIT());
+    SmartDashboard.putNumber("Deploy Motor Stator Current", m_IntakeMotor.getStatorCurrent());
+    SmartDashboard.putNumber("Deploy Motor Supply", m_IntakeMotor.getSupplyCurrent());
   }
 
   // Called once the command ends or is interrupted.

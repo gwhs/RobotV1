@@ -21,6 +21,8 @@ public class ShuffleboardTest extends SubsystemBase {
   String containerMode;
   double delayCount;
 
+
+
   private SendableChooser<String> m_containerChooser = new SendableChooser<>();
   // private SendableChooser<OneCatapultIntake> m_chooser = new SendableChooser<>();
   // private final CatapultSubsystem m_CatapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false);
@@ -34,6 +36,8 @@ public class ShuffleboardTest extends SubsystemBase {
     delayInput = shTab.add("Delay set:", 3.0).getEntry();
     // SmartDashboard.putData("Catapult mode", m_chooser);
     SmartDashboard.putData("Container mode", m_containerChooser);
+
+
     
     // m_chooser.setDefaultOption("Double Shoot", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_DOUBLE));
     // m_chooser.addOption("Delay", new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.SHOOTER_MODE_DELAY));
@@ -58,6 +62,7 @@ public class ShuffleboardTest extends SubsystemBase {
         m_containerChooser.addOption(containerName, containerName);
       }
     }
+
   }
 
   public String getContainerMode()
