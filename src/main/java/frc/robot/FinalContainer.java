@@ -43,8 +43,8 @@ public class FinalContainer implements BaseContainer{
   private final ClimberSubsystem m_climberLeftSubsystem = new ClimberSubsystem(45, false);
 
   //catapult
-  private final CatapultSubsystem m_catapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false);
-  private final CatapultSubsystem m_catapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID, true);
+  private final CatapultSubsystem m_catapultSubsystemLeft = new CatapultSubsystem(Constants.CATAPULT_LEFT_ID, false, Constants.CATAPULT_LEFT_SHOOT_LIMIT);
+  private final CatapultSubsystem m_catapultSubsystemRight = new CatapultSubsystem(Constants.CATAPULT_RIGHT_ID, true, Constants.CATAPULT_RIGHT_SHOOT_LIMIT);
   
   //intake
   private final IntakeMotor m_intakeMotor = new IntakeMotor(Constants.INTAKE_DEPLOY_ID);
@@ -132,8 +132,8 @@ public class FinalContainer implements BaseContainer{
     
 
 
-    buttonX2.whenPressed(new OneCatapultIntake(m_intakeMotor, m_upperLowerIntake, Constants.INTAKE_DEPLOY_SPEED, m_catapultSubsystemLeft, Constants.CATAPULT_SPEED_DUMP)); // dump left
-    buttonB2.whenPressed(new OneCatapultIntake(m_intakeMotor, m_upperLowerIntake, Constants.INTAKE_DEPLOY_SPEED, m_catapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP)); // dump right
+    buttonX2.whenPressed(new OneCatapultIntake(m_intakeMotor, m_upperLowerIntake, Constants.INTAKE_DEPLOY_SPEED, m_catapultSubsystemLeft, Constants.CATAPULT_SPEED)); // dump left
+    buttonB2.whenPressed(new OneCatapultIntake(m_intakeMotor, m_upperLowerIntake, Constants.INTAKE_DEPLOY_SPEED, m_catapultSubsystemRight, Constants.CATAPULT_SPEED)); // dump right
     buttonA2.whenPressed(new ParallelClimberRetract(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMBER_RETRACT_INCHES_1, Constants.CLIMBER_RETRACT_INCHES_2, Constants.CLIMBER_MAX_SPEED, Constants.CLIMBER_SLOW_SPEED)); //retract
     buttonY2.whenPressed(new ParallelClimber(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMER_EXTEND_INCHES, Constants.CLIMBER_MAX_SPEED)); //extend
     buttonRBumper2.whenPressed(new ChangePower(.01, m_catapultSubsystemLeft, m_catapultSubsystemRight));

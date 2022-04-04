@@ -17,15 +17,16 @@ import frc.robot.Constants;
 public class CatapultSubsystem extends SubsystemBase {
   private TalonFX motor;
   private double initialOffset;
-  private static final int SHOOT_LIMIT = 5100;
+  private int SHOOT_LIMIT;
   private double power = 0.0;//will be changed
   /** Creates a new motor. */
-  public CatapultSubsystem(int id, boolean inverted) {
+  public CatapultSubsystem(int id, boolean inverted, int shootLimitTicks) {
     motor = new TalonFX(id);
     //consistant amt of power every time
-    motor.configVoltageCompSaturation(11);
+    motor.configVoltageCompSaturation(9);
     motor.enableVoltageCompensation(true);
     initialOffset = motor.getSelectedSensorPosition();
+    SHOOT_LIMIT = shootLimitTicks;
     
 
     //one will go forward, the other will go inverted

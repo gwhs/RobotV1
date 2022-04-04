@@ -41,7 +41,7 @@ public class CatapultCommand extends CommandBase {
         //long elapsedTime = System.currentTimeMillis() - start;;
         //position is 77.3k for 360 degrees of rotation
         if (motor.isFinishedShooting()){
-            motor.setCoast();
+            //motor.setCoast();
             motor.setPercent(returnSpeed);
             //put motor in reverse to reset
             ran = true;
