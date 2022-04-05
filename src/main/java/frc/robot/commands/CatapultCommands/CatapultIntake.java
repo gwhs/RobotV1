@@ -13,11 +13,11 @@ import frc.robot.subsystems.IntakeMotor;
 
 public class CatapultIntake extends SequentialCommandGroup {
   /** Creates a new CatapultIntake. */
-  private double deployDelay = 0.3;
+  private double deployDelay = 0.5;
   public CatapultIntake(IntakeMotor m_IntakeMotor, CatapultSubsystem m_CatapultSubsystemLeft, CatapultSubsystem m_CatapultSubsystemRight, double leftSpeed, double rightSpeed, double deploySpeed, double delay) {
     addCommands(new IntakeDeploy(m_IntakeMotor, deploySpeed).withTimeout(1),
                   new SequentialCommandGroup(new WaitCommand(deployDelay)),
-                    new CatapultDouble(m_CatapultSubsystemLeft, m_CatapultSubsystemRight, leftSpeed, rightSpeed, delay),
+                    new CatapultDouble(m_CatapultSubsystemRight, m_CatapultSubsystemLeft, leftSpeed, rightSpeed, delay),
                       new SequentialCommandGroup(new WaitCommand(delay), 
                         new IntakeStow(m_IntakeMotor, deploySpeed)));
   }

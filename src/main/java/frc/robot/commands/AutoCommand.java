@@ -77,7 +77,7 @@ public class AutoCommand extends SequentialCommandGroup {
                         new IntakeStow(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED).withTimeout(1),
                         new IntakeDeploy(m_intakeMotor, Constants.INTAKE_DEPLOY_SPEED).withTimeout(1),
                         new WaitCommand(1),
-                        new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED, Constants.CATAPULT_SPEED, Constants.CATAPULT_DELAY)//,
+                        new CatapultDouble(m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_LEFT_SPEED, Constants.CATAPULT_RIGHT_SPEED, Constants.CATAPULT_DELAY)//,
                         // new InstantCommand(() -> m_drivetrainSubsystem.resetOdometry(endPose)),
                         // new PPSwerveControllerCommand(
                         //         zero,
