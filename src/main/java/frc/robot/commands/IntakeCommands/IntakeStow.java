@@ -22,14 +22,14 @@ public class IntakeStow extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Stow running");
+    //System.out.println("Stow running");
     m_IntakeMotor.setDeployMotorSpeed(speed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("Stow state: " + m_IntakeMotor.isFWDLIMIT());
+    //System.out.println("Stow state: " + m_IntakeMotor.isFWDLIMIT());
     SmartDashboard.putNumber("Ticks", m_IntakeMotor.isOtherData());
     SmartDashboard.putNumber("Deploy Motor State FWD", m_IntakeMotor.isFWDLIMIT());
     SmartDashboard.putNumber("Deploy Motor State REV ", m_IntakeMotor.isREVLIMIT());
@@ -41,14 +41,14 @@ public class IntakeStow extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_IntakeMotor.stop();
-    System.out.println("end intake stow");
-    System.out.println("End Stow State: " + m_IntakeMotor.isFWDLIMIT());
+    //System.out.println("end intake stow");
+    //System.out.println("End Stow State: " + m_IntakeMotor.isFWDLIMIT());
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    System.out.println("isFinishe Stow State: " + m_IntakeMotor.isFWDLIMIT());
+    //System.out.println("isFinishe Stow State: " + m_IntakeMotor.isFWDLIMIT());
     return m_IntakeMotor.isFWDLIMIT() == 1;
 }
 }

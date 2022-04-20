@@ -28,7 +28,7 @@ public class CatapultCommand extends CommandBase {
     public void initialize() {
         //start = System.currentTimeMillis();
         ran = false;
-        System.out.println("Round 1 pos:"+motor.getPosition());
+        //System.out.println("Round 1 pos:"+motor.getPosition());
         //sets speed\
         motor.setSelectedSensorPosition();
         motor.setPercent(speed);

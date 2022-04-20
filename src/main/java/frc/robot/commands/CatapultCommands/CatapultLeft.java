@@ -29,7 +29,7 @@ public class CatapultLeft extends CommandBase {
   @Override
   public void initialize() {
     ran = false;
-    System.out.println("Round 1 pos:"+motor.getPosition());
+    //System.out.println("Round 1 pos:"+motor.getPosition());
     //sets speed\
     offset = motor.getPosition();
     motor.setSelectedSensorPosition();
@@ -47,15 +47,15 @@ public class CatapultLeft extends CommandBase {
         //put motor in reverse to reset
         ran = true;
     }
-    System.out.println(motor.getPosition());
+    //System.out.println(motor.getPosition());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     motor.setPercent(0);
-    System.out.println(motor.getPosition());
-    System.out.println("Goodbye World");
+    //System.out.println(motor.getPosition());
+    //System.out.println("Goodbye World");
 
   }
 

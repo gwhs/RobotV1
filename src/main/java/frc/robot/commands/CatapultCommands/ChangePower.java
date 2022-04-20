@@ -20,8 +20,8 @@ public class ChangePower extends CommandBase{
         leftCatapult.changePower(change);
         rightCatapult.changePower(change);
         //System.out.println("changed power by " + change);
-        System.out.println("left" + (leftCatapult.getPower() + Constants.CATAPULT_SPEED_LOW));
-        System.out.println("right" + (rightCatapult.getPower() + Constants.CATAPULT_SPEED_LOW));
+        //System.out.println("left" + (leftCatapult.getPower() + Constants.CATAPULT_SPEED_LOW));
+        //System.out.println("right" + (rightCatapult.getPower() + Constants.CATAPULT_SPEED_LOW));
     }
     
     public void execute(){
@@ -29,7 +29,7 @@ public class ChangePower extends CommandBase{
     }
 
     public void end(){
-        System.out.println("dome");
+        //System.out.println("dome");
     }
 
     public boolean isFinished(){

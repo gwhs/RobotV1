@@ -33,8 +33,9 @@ public class AlignToFender extends SequentialCommandGroup {
       new AlignAndMoveToLimelight(44, swerveDrive, ll), 
       new TurnToZeroLimelight(0, swerveDrive, ll).withTimeout(0.25),
       new GoToDistanceTimeOfFlight(3, swerveDrive, sensor)*/
-      new TurnToZeroLimelight(0, drivetrain, ll).withTimeout(0.75), 
-      new GoToDistanceTimeOfFlight(6.5, drivetrain, sensor).withTimeout(3.5),
-      new CatapultIntake(m_intakeMotor, m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.CATAPULT_SPEED, Constants.CATAPULT_SPEED, Constants.INTAKE_DEPLOY_SPEED, Constants.CATAPULT_DELAY)); 
+      new TurnToZeroLimelight(0, drivetrain, ll).withTimeout(0.75)//, 
+      //new GoToDistanceTimeOfFlight(6.5, drivetrain, sensor).withTimeout(3.5),
+      //new CatapultIntake(m_intakeMotor, m_CatapultSubsystemLeft, m_CatapultSubsystemRight, Constants.CATAPULT_SPEED, Constants.CATAPULT_SPEED, Constants.INTAKE_DEPLOY_SPEED, Constants.CATAPULT_DELAY)
+      ); 
   }
 }
