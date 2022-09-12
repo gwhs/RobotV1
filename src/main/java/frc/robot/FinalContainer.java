@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.DefaultDriveCommandRobotOriented;
 import frc.robot.commands.AutoAlignCommands.AlignToFender;
+import frc.robot.commands.CatapultCommands.CatapultCommand;
 import frc.robot.commands.CatapultCommands.CatapultIntake;
 import frc.robot.commands.CatapultCommands.ChangePower;
 import frc.robot.commands.CatapultCommands.OneCatapultIntake;
@@ -121,7 +122,19 @@ public class FinalContainer implements BaseContainer{
     buttonX.whenPressed(new AlignToFender(m_drivetrainSubsystem, ll, tof, m_catapultSubsystemRight, m_catapultSubsystemLeft, m_intakeMotor));
     buttonY.whenPressed(new IntakeDeploySpin(m_upperLowerIntake, m_intakeMotor, Constants.DEPLOY_SPEED, Constants.INTAKE_LOWER_SPEED, Constants.INTAKE_UPPER_SPEED));
     buttonA.whenPressed(new IntakeStowStop(m_upperLowerIntake, m_intakeMotor, Constants.DEPLOY_SPEED).withTimeout(2));
-    buttonRBumper.whenPressed(new CatapultIntake(m_intakeMotor, m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED_LOW, Constants.CATAPULT_SPEED_LOW, Constants.INTAKE_DEPLOY_SPEED, Constants.CATAPULT_DELAY));
+    buttonRBumper.whenPressed(new CatapultCommand(m_catapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP));
+    buttonLBumper.whenPressed(new CatapultCommand(m_catapultSubsystemLeft, Constants.CATAPULT_SPEED_DUMP));
+
+    /*back button to reset car moving orientation
+    start, figure it out first
+    b button is shooting
+    x will need the hub, only test out if the hub is avaliable
+    y will activate the intake
+    a will pull the intake back in, b also does this as well before shooting
+    bumpers are meant for climbing
+    **/
+    
+    //buttonRBumper.whenPressed(new CatapultIntake(m_intakeMotor, m_catapultSubsystemLeft, m_catapultSubsystemRight, Constants.CATAPULT_SPEED_LOW, Constants.CATAPULT_SPEED_LOW, Constants.INTAKE_DEPLOY_SPEED, Constants.CATAPULT_DELAY));
     
 
     // limelight and tof testing
@@ -161,13 +174,13 @@ public class FinalContainer implements BaseContainer{
     
     switch(autoPath) {
       case 0:
-        return AutoCommand.OneCargo(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake, Constants.AUTO_DELAY);
+        return AutoCommand.TwoCargo(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake, Constants.AUTO_DELAY);
       case 1: 
-        return AutoCommand.TwoCargoLeft(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake, Constants.AUTO_DELAY);
+        return AutoCommand.ThreeCargoLeft(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake, Constants.AUTO_DELAY);
       case 2:
-        return AutoCommand.TwoCargoRight(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake, Constants.AUTO_DELAY);
-      case 3:
         return AutoCommand.ThreeCargoRight(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake, Constants.AUTO_DELAY);
+      case 3:
+        return AutoCommand.FourCargoRight(m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake, Constants.AUTO_DELAY);
       default:
         return new InstantCommand();
     }

@@ -35,19 +35,19 @@ public class AutoCommand extends SequentialCommandGroup {
     private static Pose2d rightThreeEndPose = new Pose2d(7.82, 2.60, new Rotation2d(-107.1));
     private static Pose2d leftEndPose = new Pose2d(6.65, 4.56, new Rotation2d(159.0));
 
-    public static AutoCommand OneCargo(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotor m_intakeMotor, UpperLowerIntake m_upperLowerIntake, double delay) {
+    public static AutoCommand TwoCargo(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotor m_intakeMotor, UpperLowerIntake m_upperLowerIntake, double delay) {
         return new AutoCommand("1 Cargo - Right", rightInitPose, rightOneEndPose, delay, m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake);
     }
 
-    public static AutoCommand TwoCargoLeft(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotor m_intakeMotor, UpperLowerIntake m_upperLowerIntake, double delay) {
+    public static AutoCommand ThreeCargoLeft(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotor m_intakeMotor, UpperLowerIntake m_upperLowerIntake, double delay) {
         return new AutoCommand("2 Cargo - Left", leftInitPose, leftEndPose, delay, m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake);
     }
 
-    public static AutoCommand TwoCargoRight(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotor m_intakeMotor, UpperLowerIntake m_upperLowerIntake, double delay) {
+    public static AutoCommand ThreeCargoRight(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotor m_intakeMotor, UpperLowerIntake m_upperLowerIntake, double delay) {
         return new AutoCommand("2 Cargo - Right - f", rightInitPose, rightTwoEndPose, delay, m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake);
     }
 
-    public static AutoCommand ThreeCargoRight(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotor m_intakeMotor, UpperLowerIntake m_upperLowerIntake, double delay) {
+    public static AutoCommand FourCargoRight(DrivetrainSubsystem m_drivetrainSubsystem, CatapultSubsystem m_catapultSubsystemLeft, CatapultSubsystem m_catapultSubsystemRight, IntakeMotor m_intakeMotor, UpperLowerIntake m_upperLowerIntake, double delay) {
         return new AutoCommand("3 Cargo - Right", rightInitPose, rightThreeEndPose, delay, m_drivetrainSubsystem, m_catapultSubsystemLeft, m_catapultSubsystemRight, m_intakeMotor, m_upperLowerIntake);
     }
 
