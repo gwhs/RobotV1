@@ -72,8 +72,8 @@ public class FinalContainer implements BaseContainer{
             () -> -Utilities.modifyAxis(m_controller1.getLeftY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND, //1
             () -> -Utilities.modifyAxis(m_controller1.getLeftX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND, //1
             //() -> -modifyAxis(m_controller1.getRightX()) * 2//DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
-            () -> Utilities.modifyAxis(m_controller1.getLeftTriggerAxis() - m_controller1.getRightTriggerAxis()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
-    ));
+            () -> Utilities.modifyAxis(m_controller1.getLeftTriggerAxis() - m_controller1.getRightTriggerAxis()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND*0.4
+            ));
     
     // m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommandRobotOriented(
     //         m_drivetrainSubsystem,
@@ -128,7 +128,7 @@ public class FinalContainer implements BaseContainer{
     /*back button to reset car moving orientation
     start, figure it out first
     b button is shooting
-    x will need the hub, only test out if the hub is avaliable
+    x will need the hub, only test out if the hub is avaliable, probably wont use at all
     y will activate the intake
     a will pull the intake back in, b also does this as well before shooting
     bumpers are meant for climbing
@@ -144,7 +144,7 @@ public class FinalContainer implements BaseContainer{
     // buttonX.whenPressed(new TurnToZeroLimelight(0, m_drivetrainSubsystem, ll).withTimeout(0.75));
     
 
-
+    //the second controller settings
     buttonX2.whenPressed(new OneCatapultIntake(m_intakeMotor, m_upperLowerIntake, Constants.INTAKE_DEPLOY_SPEED, m_catapultSubsystemLeft, Constants.CATAPULT_SPEED_DUMP)); // dump left
     buttonB2.whenPressed(new OneCatapultIntake(m_intakeMotor, m_upperLowerIntake, Constants.INTAKE_DEPLOY_SPEED, m_catapultSubsystemRight, Constants.CATAPULT_SPEED_DUMP)); // dump right
     buttonA2.whenPressed(new ParallelClimberRetract(m_climberLeftSubsystem, m_climberRightSubsystem, Constants.CLIMBER_RETRACT_INCHES_1, Constants.CLIMBER_RETRACT_INCHES_2, Constants.CLIMBER_MAX_SPEED, Constants.CLIMBER_SLOW_SPEED)); //retract
@@ -168,7 +168,7 @@ public class FinalContainer implements BaseContainer{
     * @return the command to run in autonomous
 */
 
-  private int autoPath = 1;
+  private int autoPath = 3;
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     
@@ -184,7 +184,7 @@ public class FinalContainer implements BaseContainer{
       default:
         return new InstantCommand();
     }
-    
+     
   }
 }
 
