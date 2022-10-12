@@ -72,7 +72,7 @@ public class FinalContainer implements BaseContainer{
             () -> -Utilities.modifyAxis(m_controller1.getLeftY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND, //1
             () -> -Utilities.modifyAxis(m_controller1.getLeftX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND, //1
             //() -> -modifyAxis(m_controller1.getRightX()) * 2//DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND
-            () -> Utilities.modifyAxis(m_controller1.getLeftTriggerAxis() - m_controller1.getRightTriggerAxis()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND*0.4
+            () -> Utilities.modifyAxis(m_controller1.getLeftTriggerAxis() - m_controller1.getRightTriggerAxis()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND*0.25
             ));
     
     // m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommandRobotOriented(
@@ -168,7 +168,7 @@ public class FinalContainer implements BaseContainer{
     * @return the command to run in autonomous
 */
 
-  private int autoPath = 3;
+  private int autoPath = 0;
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     

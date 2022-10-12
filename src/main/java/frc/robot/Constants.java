@@ -15,8 +15,8 @@ public class Constants {
 
     public static final double CATAPULT_SPEED_FAR = 1; //Might not use
 
-    public static final double CATAPULT_LEFT_SPEED = 0.5; //54% , 0.9 (old original numbers), 0.90 new original
-    public static final double CATAPULT_RIGHT_SPEED = 0.5; //56% , 0.92 (old original numbers), 0.89 new original
+    public static final double CATAPULT_LEFT_SPEED = 0.9; //54% , 0.9 (old original numbers), 0.90 new original
+    public static final double CATAPULT_RIGHT_SPEED = 0.89; //56% , 0.92 (old original numbers), 0.89 new original
     public static final double CATAPULT_DELAY = 0.5;
 
     public static final int INTAKE_UPPERTALON_ID = 55;
